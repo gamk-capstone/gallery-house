@@ -1,20 +1,20 @@
 'use strict'
 
-const {db, models: {User, Art} } = require('../server/db')
+const {db, models: {User, Art, Wall, ArtOnWall} } = require('../server/db')
 
 /**
  * seed - this function clears the database, updates tables to
  *      match the models, and populates the database.
  */
 async function seed() {
-  await db.sync({ force: true }) // clears db and matches models to tables
-  console.log('db synced!')
+  await db.sync({ force: true }); // clears db and matches models to tables
+  console.log("db synced!");
 
   // Creating Users
   const users = await Promise.all([
-    User.create({ username: 'cody', password: '123' }),
-    User.create({ username: 'murphy', password: '123' }),
-  ])
+    User.create({ username: "cody", password: "123" }),
+    User.create({ username: "murphy", password: "123" }),
+  ]);
 
   //Creating Art
   const art = await Promise.all([
@@ -33,18 +33,44 @@ async function seed() {
     }),
   ]);
 
-  console.log(`seeded ${users.length} users`)
-  console.log(`seeded successfully`)
-  return {
-    users: {
-      cody: users[0],
-      murphy: users[1]
-    },
-    art: {
-      art1: art[0],
-      art2: art[1],
+  //Creating Wall
+  const wall = await Promise.all([
+    Wall.create({
+      name: "wall1",
+      userId: 1,
+      artOnWall: [
+        {artId: 1},
+        {artId: 2}
+      ]
+    }),
+    {
+      include: [{
+        association: ArtOnWall,
+      as: 'artOnWall'
+    }]
     }
-  }
+  ]);
+
+  console.log(`seeded ${users.length} users`);
+  console.log(`seeded successfully`);
+  // return {
+  //   users: {
+  //     cody: users[0],
+  //     murphy: users[1],
+  //   },
+  //   art: {
+  //     art1: art[0],
+  //     art2: art[1],
+  //   },
+  //   wall: {
+  //     cody: wall[0],
+  //     murphy: wall[1],
+  //   },
+  //   artOnWall: {
+  //     cody: art[0],
+  //     murphy: art[1],
+  //   },
+  // };
 }
 
 /*
