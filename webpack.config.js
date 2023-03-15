@@ -4,6 +4,14 @@ module.exports = {
     path: __dirname + '/public',
     filename: 'bundle.js',
   },
+  resolve: { 
+    fallback: { 
+      fs: false, 
+      stream: require.resolve("stream-browserify"),
+      path: require.resolve("path-browserify"), 
+      buffer: require.resolve("buffer/") 
+    }
+   },
   context: __dirname,
   devtool: 'source-map',
   module: {
