@@ -23,7 +23,7 @@ const AppRoutes = () => {
     <div>
       {isLoggedIn ? (
         <Routes>
-          <Route path="/*" element={<Home />} />
+          <Route path="/*" element={<GalleryWall />} />
           <Route path="/home" element={<Home />} />
           <Route path="/gallery" element={<GalleryWall />} />
           <Route path="/saved" element={<SavedWalls />} />
