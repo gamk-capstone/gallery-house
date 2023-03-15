@@ -1,6 +1,6 @@
 'use strict'
 
-const {db, models: {User} } = require('../server/db')
+const {db, models: {User, Art} } = require('../server/db')
 
 /**
  * seed - this function clears the database, updates tables to
@@ -16,12 +16,33 @@ async function seed() {
     User.create({ username: 'murphy', password: '123' }),
   ])
 
+  //Creating Art
+  const art = await Promise.all([
+    Art.create({
+      name: "Starry Night",
+      imageUrl:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1200px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg",
+      purchaseUrl:
+        "https://www.overstockart.com/painting/van-gogh-starry-night",
+    }),
+    Art.create({
+      name: "Dance",
+      imageUrl: "https://arthive.net/res/media/img/oy800/work/b74/449397.jpg",
+      purchaseUrl:
+        "https://artisticafineart.com/products/the-dance-1910-by-henri-matisse",
+    }),
+  ]);
+
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
   return {
     users: {
       cody: users[0],
       murphy: users[1]
+    },
+    art: {
+      art1: art[0],
+      art2: art[1],
     }
   }
 }

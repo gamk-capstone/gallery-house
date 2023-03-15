@@ -6,7 +6,7 @@ const Art = db.define('art', {
         type: Sequelize.STRING,
         allowNull: false
     },
-    listingUrl: {
+    purchaseUrl: {
         type: Sequelize.STRING,
     },
     imageUrl: {
