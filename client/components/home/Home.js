@@ -1,17 +1,9 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React from "react";
 
-/**
- * COMPONENT
- */
-const Home = (props) => {
-  const username = useSelector((state) => state.auth.me.username);
-
-  return (
-    <div>
-      <h3>Welcome, {username}</h3>
-    </div>
-  );
+const Home = () => {
+    return (
+        <div>GALLERY HOUSE LANDING PAGE</div>
+    )
 };
 
 export default Home;

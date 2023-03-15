@@ -2,8 +2,10 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import AuthForm from '../components/auth/AuthForm';
-import Home from '../components/home/Home';
 import { me } from './store';
+import Home from "../components/home/Home"
+import GalleryWall from "../components/galleryWall/GalleryWall"
+import SavedWalls from "../components/savedWalls/SavedWalls"
 
 /**
  * COMPONENT
@@ -21,14 +23,16 @@ const AppRoutes = () => {
     <div>
       {isLoggedIn ? (
         <Routes>
-          <Route path="/*" element={<Home />} />
-          <Route to="/home" element={<Home />} />
+          <Route path="/*" element={<GalleryWall />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/gallery" element={<GalleryWall />} />
+          <Route path="/saved" element={<SavedWalls />} />
         </Routes>
       ) : (
         <Routes>
           <Route
             path="/*"
-            element={<AuthForm name="login" displayName="Login" />}
+            element={<Home />}
           />
           <Route
             path="/login"
