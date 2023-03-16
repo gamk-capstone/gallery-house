@@ -4,11 +4,13 @@ const db = require("./db");
 
 const User = require("./models/User");
 const Art = require("./models/Art");
+const UserArt = require("./models/UserArt");
 const Wall = require("./models/Wall");
 
 //associations could go here!
 Wall.belongsTo(User);
 Art.belongsToMany(Wall, { through: "ArtOnWall" });
+UserArt.belongsToMany(Wall, { through: "ArtOnWall" });
 Wall.belongsToMany(Art, { through: "ArtOnWall" });
 
 module.exports = {
@@ -16,6 +18,7 @@ module.exports = {
   models: {
     User,
     Art,
+    UserArt,
     Wall,
   },
 };
