@@ -7,9 +7,12 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchAllArtAsync = createAsyncThunk("artFetchAll", async () => {
   try {
-    let { data } =
-      await axios.get(`https://cors-anywhere.herokuapp.com/https://openapi.etsy.com/v2/listings/active?includes=Images&keywords=artwork,art,painting&api_key=5wdviq8lfzumur7vsxlc7i3g`);
-    console.log(data.results)
+    let { data } = await axios.get(
+      `https://cors-anywhere.herokuapp.com/https://openapi.etsy.com/v3/application/listings/active?limit=1000&api_key=5wdviq8lfzumur7vsxlc7i3g`,
+      { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+    );
+
+    console.log(data)
     return data;
   } catch (error) {
     console.log(error);
