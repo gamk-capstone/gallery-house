@@ -1,20 +1,23 @@
-'use strict'
+"use strict";
 
-const {db, models: {User, Art} } = require('../server/db')
+const {
+  db,
+  models: { User, Art, Wall, ArtOnWall },
+} = require("../server/db");
 
 /**
  * seed - this function clears the database, updates tables to
  *      match the models, and populates the database.
  */
 async function seed() {
-  await db.sync({ force: true }) // clears db and matches models to tables
-  console.log('db synced!')
+  await db.sync({ force: true }); // clears db and matches models to tables
+  console.log("db synced!");
 
   // Creating Users
   const users = await Promise.all([
-    User.create({ username: 'cody', password: '123' }),
-    User.create({ username: 'murphy', password: '123' }),
-  ])
+    User.create({ username: "cody", password: "123" }),
+    User.create({ username: "murphy", password: "123" }),
+  ]);
 
   //Creating Art
   const art = await Promise.all([
@@ -33,18 +36,51 @@ async function seed() {
     }),
   ]);
 
-  console.log(`seeded ${users.length} users`)
-  console.log(`seeded successfully`)
-  return {
-    users: {
-      cody: users[0],
-      murphy: users[1]
-    },
-    art: {
-      art1: art[0],
-      art2: art[1],
-    }
-  }
+  //Creating Wall
+  const walls = await Promise.all([
+    Wall.create({
+      name: "wall1",
+      userId: 1,
+    }),
+    Wall.create({
+      name: "wall2",
+      userId: 1,
+    }),
+    Wall.create({
+      name: "wall3",
+      userId: 2,
+    }),
+  ]);
+
+  // find the art
+  const artRow = await Art.findByPk(1);
+  const artRow2 = await Art.findByPk(2);
+  // insert the association in the ArtOnWall table
+  await walls[0].addArt(artRow, { through: ArtOnWall });
+  await walls[0].addArt(artRow2, { through: ArtOnWall });
+  await walls[1].addArt(artRow2, { through: ArtOnWall });
+  await walls[2].addArt(artRow2, { through: ArtOnWall });
+
+  console.log(`seeded ${users.length} users`);
+  console.log(`seeded successfully`);
+  // return {
+  //   users: {
+  //     cody: users[0],
+  //     murphy: users[1],
+  //   },
+  //   art: {
+  //     art1: art[0],
+  //     art2: art[1],
+  //   },
+  //   wall: {
+  //     cody: wall[0],
+  //     murphy: wall[1],
+  //   },
+  //   artOnWall: {
+  //     cody: art[0],
+  //     murphy: art[1],
+  //   },
+  // };
 }
 
 /*
@@ -53,16 +89,16 @@ async function seed() {
  The `seed` function is concerned only with modifying the database.
 */
 async function runSeed() {
-  console.log('seeding...')
+  console.log("seeding...");
   try {
-    await seed()
+    await seed();
   } catch (err) {
-    console.error(err)
-    process.exitCode = 1
+    console.error(err);
+    process.exitCode = 1;
   } finally {
-    console.log('closing db connection')
-    await db.close()
-    console.log('db connection closed')
+    console.log("closing db connection");
+    await db.close();
+    console.log("db connection closed");
   }
 }
 
@@ -72,8 +108,8 @@ async function runSeed() {
   any errors that might occur inside of `seed`.
 */
 if (module === require.main) {
-  runSeed()
+  runSeed();
 }
 
 // we export the seed function for testing purposes (see `./seed.spec.js`)
-module.exports = seed
+module.exports = seed;
