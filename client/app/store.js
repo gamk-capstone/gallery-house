@@ -7,6 +7,8 @@ const store = configureStore({
   reducer: { 
     auth: authReducer,
     art: artReducer,
+    // userArt:UserArtSlice,
+    // singleUserArt: SingleUserArtSlice
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
