@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
 import authReducer from '../components/auth/authSlice';
-import artReducer from "../../script/art/artSlice"
+import artReducer from "../../script/art/estyArtSlice"
 
 const store = configureStore({
   reducer: { 
