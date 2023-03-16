@@ -8,9 +8,9 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 export const fetchAllArtAsync = createAsyncThunk("artFetchAll", async () => {
   try {
     let { data } =
-      await axios.get(`https://openapi.etsy.com/v2/listings/active?includes=Images&keywords=artwork,art,painting&api_key=5wdviq8lfzumur7vsxlc7i3g`);
-    console.log(data[0])
-    return data[0];
+      await axios.get(`https://cors-anywhere.herokuapp.com/https://openapi.etsy.com/v2/listings/active?includes=Images&keywords=artwork,art,painting&api_key=5wdviq8lfzumur7vsxlc7i3g`);
+    console.log(data.results)
+    return data;
   } catch (error) {
     console.log(error);
   }

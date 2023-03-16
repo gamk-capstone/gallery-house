@@ -1,6 +1,5 @@
-import React from "react";
-import { useSelector, useState } from "react-redux";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { selectArt, fetchAllArtAsync } from "../../../script/art/artSlice";
 
 const GalleryWall = (props) => {
