@@ -19,3 +19,69 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.FiveImageWallParentDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.FiveImageWallTop {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 1em;
+}
+
+.FiveImageWallBottom {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1em;
+}
+
+.fiveImg1 {
+  width: 300px;
+  height: 200px;
+  padding: 1rem;
+  border: 3px solid rgb(228, 218, 218);
+  background: radial-gradient(rgb(224, 222, 222), whitesmoke);
+  filter: drop-shadow(3px 3px 3px rgb(160, 160, 160));
+}
+.fiveImg2 {
+  width: 200px;
+  height: 200px;
+  padding: 2rem;
+  border: 3px solid rgb(228, 218, 218);
+  background: radial-gradient(rgb(224, 222, 222), whitesmoke);
+  filter: drop-shadow(3px 3px 3px rgb(160, 160, 160));
+}
+
+.fiveImg3 {
+  width: 300px;
+  height: 200px;
+  padding: 1rem;
+  border: 3px solid rgb(228, 218, 218);
+  background: radial-gradient(rgb(224, 222, 222), whitesmoke);
+  filter: drop-shadow(3px 3px 3px rgb(160, 160, 160));
+}
+
+.fiveImg4 {
+  width: 200px;
+  height: 300px;
+  padding: 1rem;
+  border: 3px solid rgb(228, 218, 218);
+  background: radial-gradient(rgb(224, 222, 222), whitesmoke);
+  filter: drop-shadow(3px 3px 3px rgb(160, 160, 160));
+}
+
+.fiveImg5 {
+  width: 300px;
+  height: 200px;
+  padding: 1rem;
+  border: 3px solid rgb(228, 218, 218);
+  background: radial-gradient(rgb(224, 222, 222), whitesmoke);
+  filter: drop-shadow(3px 3px 3px rgb(160, 160, 160));
+}
