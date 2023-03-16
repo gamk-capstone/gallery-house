@@ -8,13 +8,13 @@ const SevenImageGalleryWall = () => {
         <img src="/red.jpeg" className="landscapeRectangle" />
       </div>
       <div className="SevenImageWallMiddle">
-        <img src="/red.jpeg" className="square" />
+        <img src="/mattisse.jpeg" className="square" />
         <img src="/red.jpeg" className="square" />
         <img src="/red.jpeg" className="square" />
       </div>
       <div className="SevenImageWallBottom">
-        <img src="/red.jpeg" className="landscapeRectangle" />
-        <img src="/red.jpeg" className="square" />
+        <img src="/mattisse.jpeg" className="landscapeRectangle" />
+        <img src="/square-art.jpeg" className="square" />
       </div>
     </div>
   );
