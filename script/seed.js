@@ -20,38 +20,10 @@ async function seed() {
     User.create({ username: "murphy", password: "123" }),
   ]);
 
-  // const fetchOneHundredListingIdsAsync = async () => {
-  //   try {
-  //     //GETs 100 listing_ids
-  //     let { data } = await axios.get(
-  //       `https://api.etsy.com/v3/application/listings/active?limit=100&keywords=art,artwork,paintings&api_key=5wdviq8lfzumur7vsxlc7i3g`,
-  //       { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
-  //     );
-  //     const titles = data.results.map((l) => l.title);
-  //     const listing_ids = data.results.map((l) => l.listing_id);
-  //     return listing_ids;
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  // const listingsArr = fetchOneHundredListingIdsAsync();
-
-  // const fetchAssosiatedImage = async () => {
-  //   for (let i = 0; i <= listingsArr; i++) {
-  //     try {
-  //       let { data } = await axios.get(
-  //         `https://api.etsy.com/v3/application/listings/${listingsArr[i]}/images`,
-  //         { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
-  //       );
-  //       console.log(data);
-  //       return data;
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
-  // };
-
-  // fetchAssosiatedImage();
+  /**
+   * `findAllActiveListingsByShop` retrieves a list of all active listings on Etsy in a specific shop, paginated by listing creation date.
+   * @returns {array} An array of 100 active listing_ids.
+   */
 
   const findAllActiveListingsByShop = async () => {
     try {
@@ -60,13 +32,16 @@ async function seed() {
         { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
       );
       const listing_ids = data.results.map((l) => l.listing_id);
-      console.log(listing_ids);
       return listing_ids;
     } catch (error) {
       console.log(error);
     }
   };
 
+  /**
+   * `getListingsByListingIds` allows to query multiple listing ids at once. Limit 100 ids maximum per query.
+   * @returns {obj[]} An array of objects, including "name", "imageUrl", and "purchaseUrl" keys.
+   */
   const getListingsByListingIds = async () => {
     try {
       let { data } = await axios.get(
@@ -74,34 +49,19 @@ async function seed() {
         { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
       );
       const result = data.results.map((l) => ({
-        title: l.title,
+        name: l.title,
         imageUrl: l.images[0].url_fullxfull,
         purchaseUrl: l.url,
       }));
-      console.log(result)
       return result;
     } catch (error) {
       console.log(error);
     }
   };
-  getListingsByListingIds();
+  const art17721959 = await getListingsByListingIds();
 
-  //Creating Art
-  const art = await Promise.all([
-    Art.create({
-      name: "Starry Night",
-      imageUrl:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1200px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg",
-      purchaseUrl:
-        "https://www.overstockart.com/painting/van-gogh-starry-night",
-    }),
-    Art.create({
-      name: "Dance",
-      imageUrl: "https://arthive.net/res/media/img/oy800/work/b74/449397.jpg",
-      purchaseUrl:
-        "https://artisticafineart.com/products/the-dance-1910-by-henri-matisse",
-    }),
-  ]);
+  //Creating instances of Art Model from Esty shop 17721959. Note: We can easily change the shop(s) we're featuring in our db.
+  const loadArt17721959 = await Promise.all(art17721959.map((l) => Art.create(l)))
 
   //Creating Wall
   const walls = await Promise.all([
@@ -128,26 +88,9 @@ async function seed() {
   await walls[1].addArt(artRow2, { through: ArtOnWall });
   await walls[2].addArt(artRow2, { through: ArtOnWall });
 
+  console.log(`seeded ${loadArt17721959.length} artworks from shop Esty shop 17721959`)
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);
-  // return {
-  //   users: {
-  //     cody: users[0],
-  //     murphy: users[1],
-  //   },
-  //   art: {
-  //     art1: art[0],
-  //     art2: art[1],
-  //   },
-  //   wall: {
-  //     cody: wall[0],
-  //     murphy: wall[1],
-  //   },
-  //   artOnWall: {
-  //     cody: art[0],
-  //     murphy: art[1],
-  //   },
-  // };
 }
 
 /*
