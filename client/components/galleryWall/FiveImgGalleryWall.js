@@ -4,13 +4,13 @@ const FiveImageGalleryWall = () => {
   return (
     <div className="FiveImageWallParentDiv">
       <div className="FiveImageWallTop">
-        <img src="/red.jpeg" className="fiveImg1" />
-        <img src="/red.jpeg" className="fiveImg2" />
+        <img src="/red.jpeg" className="landscapeRectangle" />
+        <img src="/red.jpeg" className="square" />
       </div>
       <div className="FiveImageWallBottom">
-        <img src="/red.jpeg" className="fiveImg3" />
-        <img src="/red.jpeg" className="fiveImg4" />
-        <img src="/red.jpeg" className="fiveImg5" />
+        <img src="/red.jpeg" className="landscapeRectangle" />
+        <img src="/red.jpeg" className="portraitRectangle" />
+        <img src="/red.jpeg" className="landscapeRectangle" />
       </div>
     </div>
   );

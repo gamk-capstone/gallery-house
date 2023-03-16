@@ -7,6 +7,7 @@ import Home from "../components/home/Home";
 import GalleryWall from "../components/galleryWall/GalleryWall";
 import SavedWalls from "../components/savedWalls/SavedWalls";
 import FiveImageGalleryWall from "../components/galleryWall/FiveImgGalleryWall";
+import SevenImageGalleryWall from "../components/galleryWall/SevenImgGalleryWall";
 
 /**
  * COMPONENT
@@ -41,6 +42,7 @@ const AppRoutes = () => {
             element={<AuthForm name="signup" displayName="Sign Up" />}
           />
           <Route path="/fiveimagewall" element={<FiveImageGalleryWall />} />
+          <Route path="/sevenimagewall" element={<SevenImageGalleryWall />} />
         </Routes>
       )}
     </div>

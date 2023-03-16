@@ -20,21 +20,31 @@ form div {
   display: inline-block;
 }
 
-.FiveImageWallParentDiv {
+.FiveImageWallParentDiv,
+.SevenImageWallParentDiv {
   display: flex;
   flex-direction: column;
   gap: 1em;
 }
 
-.FiveImageWallTop {
+.FiveImageWallTop,
+.SevenImageWallTop {
   display: flex;
   flex-direction: row;
   align-items: flex-end;
   justify-content: center;
   gap: 1em;
 }
+.SevenImageWallMiddle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
 
-.FiveImageWallBottom {
+.FiveImageWallBottom,
+.SevenImageWallBottom {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -42,7 +52,7 @@ form div {
   gap: 1em;
 }
 
-.fiveImg1 {
+.landscapeRectangle {
   width: 300px;
   height: 200px;
   padding: 1rem;
@@ -50,7 +60,7 @@ form div {
   background: radial-gradient(rgb(224, 222, 222), whitesmoke);
   filter: drop-shadow(3px 3px 3px rgb(160, 160, 160));
 }
-.fiveImg2 {
+.square {
   width: 200px;
   height: 200px;
   padding: 2rem;
@@ -59,27 +69,9 @@ form div {
   filter: drop-shadow(3px 3px 3px rgb(160, 160, 160));
 }
 
-.fiveImg3 {
-  width: 300px;
-  height: 200px;
-  padding: 1rem;
-  border: 3px solid rgb(228, 218, 218);
-  background: radial-gradient(rgb(224, 222, 222), whitesmoke);
-  filter: drop-shadow(3px 3px 3px rgb(160, 160, 160));
-}
-
-.fiveImg4 {
+.portraitRectangle {
   width: 200px;
   height: 300px;
-  padding: 1rem;
-  border: 3px solid rgb(228, 218, 218);
-  background: radial-gradient(rgb(224, 222, 222), whitesmoke);
-  filter: drop-shadow(3px 3px 3px rgb(160, 160, 160));
-}
-
-.fiveImg5 {
-  width: 300px;
-  height: 200px;
   padding: 1rem;
   border: 3px solid rgb(228, 218, 218);
   background: radial-gradient(rgb(224, 222, 222), whitesmoke);
