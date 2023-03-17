@@ -1,4 +1,5 @@
 "use strict";
+const axios = require("axios");
 
 const {
   db,
@@ -19,22 +20,48 @@ async function seed() {
     User.create({ username: "murphy", password: "123" }),
   ]);
 
-  //Creating Art
-  const art = await Promise.all([
-    Art.create({
-      name: "Starry Night",
-      imageUrl:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1200px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg",
-      purchaseUrl:
-        "https://www.overstockart.com/painting/van-gogh-starry-night",
-    }),
-    Art.create({
-      name: "Dance",
-      imageUrl: "https://arthive.net/res/media/img/oy800/work/b74/449397.jpg",
-      purchaseUrl:
-        "https://artisticafineart.com/products/the-dance-1910-by-henri-matisse",
-    }),
-  ]);
+  /**
+   * `findAllActiveListingsByShop` retrieves a list of all active listings on Etsy in a specific shop, paginated by listing creation date.
+   * @returns {array} An array of 100 active listing_ids.
+   */
+
+  const findAllActiveListingsByShop = async () => {
+    try {
+      let { data } = await axios.get(
+        `https://openapi.etsy.com/v3/application/shops/17721959/listings/active?limit=100`,
+        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+      );
+      const listing_ids = data.results.map((l) => l.listing_id);
+      return listing_ids;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  /**
+   * `getListingsByListingIds` allows to query multiple listing ids at once. Limit 100 ids maximum per query.
+   * @returns {obj[]} An array of objects, including "name", "imageUrl", and "purchaseUrl" keys.
+   */
+  const getListingsByListingIds = async () => {
+    try {
+      let { data } = await axios.get(
+        `https://openapi.etsy.com/v3/application/listings/batch?includes=Images&listing_ids=${await findAllActiveListingsByShop()}`,
+        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+      );
+      const result = data.results.map((l) => ({
+        name: l.title,
+        imageUrl: l.images[0].url_fullxfull,
+        purchaseUrl: l.url,
+      }));
+      return result;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const art17721959 = await getListingsByListingIds();
+
+  //Creating instances of Art Model from Esty shop 17721959. Note: We can easily change the shop(s) we're featuring in our db.
+  const loadArt17721959 = await Promise.all(art17721959.map((l) => Art.create(l)))
 
   //Creating Wall
   const walls = await Promise.all([
@@ -61,26 +88,9 @@ async function seed() {
   await walls[1].addArt(artRow2, { through: ArtOnWall });
   await walls[2].addArt(artRow2, { through: ArtOnWall });
 
+  console.log(`seeded ${loadArt17721959.length} artworks from shop Esty shop 17721959`)
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);
-  // return {
-  //   users: {
-  //     cody: users[0],
-  //     murphy: users[1],
-  //   },
-  //   art: {
-  //     art1: art[0],
-  //     art2: art[1],
-  //   },
-  //   wall: {
-  //     cody: wall[0],
-  //     murphy: wall[1],
-  //   },
-  //   artOnWall: {
-  //     cody: art[0],
-  //     murphy: art[1],
-  //   },
-  // };
 }
 
 /*

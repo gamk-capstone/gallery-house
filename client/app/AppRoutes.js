@@ -6,6 +6,7 @@ import { me } from './store';
 import Home from "../components/home/Home"
 import GalleryWall from "../components/galleryWall/GalleryWall"
 import SavedWalls from "../components/savedWalls/SavedWalls"
+import EstyArt from "../../script/art/EstyArt"
 
 /**
  * COMPONENT
@@ -27,6 +28,7 @@ const AppRoutes = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/gallery" element={<GalleryWall />} />
           <Route path="/saved" element={<SavedWalls />} />
+          <Route path="/estyart" element={<EstyArt />} />
         </Routes>
       ) : (
         <Routes>
