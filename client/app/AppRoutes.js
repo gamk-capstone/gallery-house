@@ -10,6 +10,7 @@ import FiveImageGalleryWall from "../components/galleryWall/FiveImgGalleryWall";
 import SixImageGalleryWall from "../components/galleryWall/SixImgGalleryWall";
 import SevenImageGalleryWall from "../components/galleryWall/SevenImgGalleryWall";
 import EightImageGalleryWall from "../components/galleryWall/EigthtImgGalleryWall";
+import User from "../components/user/User";
 
 /**
  * COMPONENT
@@ -31,6 +32,7 @@ const AppRoutes = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/gallery" element={<GalleryWall />} />
           <Route path="/saved" element={<SavedWalls />} />
+          <Route path="/users/:id" element={<User />} />
         </Routes>
       ) : (
         <Routes>
