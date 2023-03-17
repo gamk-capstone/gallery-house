@@ -21,7 +21,6 @@ const Navbar = () => {
             <Link to="/home">Home</Link>
             <Link to="/gallery">Gallery Wall</Link>
             <Link to="/saved">Saved Galleries</Link>
-            <Link to="/estyart">Esty Art</Link>
             <button type="button" onClick={logoutAndRedirectHome}>
               Logout
             </button>
