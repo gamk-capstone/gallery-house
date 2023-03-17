@@ -19,3 +19,88 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.FiveImageWallParentDiv,
+.SixImageWallParentDiv,
+.SevenImageWallParentDiv,
+.EightImageWallParentDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.FiveImageWallTop,
+.SixImageWallTop,
+.SevenImageWallTop,
+.EightImageWallTop {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 2em;
+}
+.SevenImageWallMiddle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
+}
+
+.FiveImageWallBottom,
+.SevenImageWallBottom,
+.EightImageWallBottom,
+.SixImageWallBottom {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2em;
+}
+
+.landscapeRectangle {
+  width: 300px;
+  height: 200px;
+  padding: 1rem;
+  border: 3px solid rgb(228, 218, 218);
+  background: radial-gradient(rgb(224, 222, 222), whitesmoke);
+  filter: drop-shadow(3px 3px 3px rgb(160, 160, 160));
+  object-fit: cover;
+}
+
+.landscapeRectangleExtraWide {
+  width: 350px;
+  height: 200px;
+  padding: 1rem;
+  border: 3px solid rgb(228, 218, 218);
+  background: radial-gradient(rgb(224, 222, 222), whitesmoke);
+  filter: drop-shadow(3px 3px 3px rgb(160, 160, 160));
+}
+
+.square {
+  width: 200px;
+  height: 200px;
+  padding: 1rem;
+  border: 3px solid rgb(228, 218, 218);
+  background: radial-gradient(rgb(224, 222, 222), whitesmoke);
+  filter: drop-shadow(3px 3px 3px rgb(160, 160, 160));
+  object-fit: cover;
+}
+
+.squareLarge {
+  width: 300px;
+  height: 300px;
+  padding: 1rem;
+  border: 3px solid rgb(228, 218, 218);
+  background: radial-gradient(rgb(224, 222, 222), whitesmoke);
+  filter: drop-shadow(3px 3px 3px rgb(160, 160, 160));
+}
+
+.portraitRectangle {
+  width: 200px;
+  height: 300px;
+  padding: 1rem;
+  border: 3px solid rgb(228, 218, 218);
+  background: radial-gradient(rgb(224, 222, 222), whitesmoke);
+  filter: drop-shadow(3px 3px 3px rgb(160, 160, 160));
+}
