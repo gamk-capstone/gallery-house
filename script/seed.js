@@ -1,5 +1,6 @@
 "use strict";
 const axios = require("axios");
+const chalk = require('chalk');
 
 const {
   db,
@@ -16,27 +17,76 @@ async function seed() {
 
   // Creating Users
   const users = await Promise.all([
-    User.create({ username: "cody", password: "123" }),
-    User.create({ username: "murphy", password: "123" }),
+    User.create({ username: "grace", password: "123" }),
+    User.create({ username: "malinda", password: "123" }),
+    User.create({ username: "alex", password: "123" }),
+    User.create({ username: "katrina", password: "123" }),
   ]);
+
+  //Julia Ockert, FungusGallery, ArtKoraju, RedCheeksFactory, OnLaneAvenue
+  const shop_ids = [5478758, 19639425, 14928731, 7780904, 6300167];
 
   /**
    * `findAllActiveListingsByShop` retrieves a list of all active listings on Etsy in a specific shop, paginated by listing creation date.
    * @returns {array} An array of 100 active listing_ids.
    */
 
-  const findAllActiveListingsByShop = async () => {
+  const findAllActiveListingsByShop = async (shop_ids) => {
     try {
+      // const shop_id = shop_ids.map((s) => s)
+      // console.log(shop_id)
       let { data } = await axios.get(
         `https://openapi.etsy.com/v3/application/shops/17721959/listings/active?limit=100`,
         { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
       );
+      let data1 = await axios.get(
+        `https://openapi.etsy.com/v3/application/shops/5478758/listings/active?limit=100`,
+        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+      );
+      let data2 = await axios.get(
+        `https://openapi.etsy.com/v3/application/shops/19639425/listings/active?limit=100`,
+        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+      );
+      let data3 = await axios.get(
+        `https://openapi.etsy.com/v3/application/shops/14928731/listings/active?limit=100`,
+        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+      );
+      let data4 = await axios.get(
+        `https://openapi.etsy.com/v3/application/shops/7780904/listings/active?limit=100`,
+        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+      );
+      let data5 = await axios.get(
+        `https://openapi.etsy.com/v3/application/shops/6300167/listings/active?limit=100`,
+        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+      );
+
       const listing_ids = data.results.map((l) => l.listing_id);
-      return listing_ids;
+      const listings_ids1 = data1.data.results.map((l) => l.listing_id);
+      const listings_ids2 = data2.data.results.map((l) => l.listing_id);
+      const listing_ids3 = data3.data.results.map((l) => l.listing_id);
+      const listing_ids4 = data4.data.results.map((l) => l.listing_id);
+      const listing_ids5 = data5.data.results.map((l) => l.listing_id);
+
+      const listing_ids_result = [
+        ...listing_ids,
+        ...listings_ids1,
+        ...listings_ids2,
+        ...listing_ids3,
+        ...listing_ids4,
+        ...listing_ids5,
+      ];
+      return listing_ids_result;
     } catch (error) {
       console.log(error);
     }
   };
+
+  const result = await findAllActiveListingsByShop();
+  const a = result.slice(0, 100);
+  const b = result.slice(101, 201);
+  const c = result.slice(201, 301);
+  const d = result.slice(301, 401);
+  const e = result.slice(401, 501);
 
   /**
    * `getListingsByListingIds` allows to query multiple listing ids at once. Limit 100 ids maximum per query.
@@ -45,23 +95,68 @@ async function seed() {
   const getListingsByListingIds = async () => {
     try {
       let { data } = await axios.get(
-        `https://openapi.etsy.com/v3/application/listings/batch?includes=Images&listing_ids=${await findAllActiveListingsByShop()}`,
+        `https://openapi.etsy.com/v3/application/listings/batch?includes=Images&listing_ids=${a}`,
         { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
       );
+      let data1 = await axios.get(
+        `https://openapi.etsy.com/v3/application/listings/batch?includes=Images&listing_ids=${b}`,
+        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+      );
+      let data2 = await axios.get(
+        `https://openapi.etsy.com/v3/application/listings/batch?includes=Images&listing_ids=${c}`,
+        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+      );
+      let data3 = await axios.get(
+        `https://openapi.etsy.com/v3/application/listings/batch?includes=Images&listing_ids=${d}`,
+        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+      );
+      let data4 = await axios.get(
+        `https://openapi.etsy.com/v3/application/listings/batch?includes=Images&listing_ids=${e}`,
+        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+      );
+
       const result = data.results.map((l) => ({
         name: l.title,
         imageUrl: l.images[0].url_fullxfull,
         purchaseUrl: l.url,
       }));
-      return result;
+      const result1 = data1.data.results.map((l) => ({
+        name: l.title,
+        imageUrl: l.images[0].url_fullxfull,
+        purchaseUrl: l.url,
+      }));
+      const result2 = data2.data.results.map((l) => ({
+        name: l.title,
+        imageUrl: l.images[0].url_fullxfull,
+        purchaseUrl: l.url,
+      }));
+      const result3 = data3.data.results.map((l) => ({
+        name: l.title,
+        imageUrl: l.images[0].url_fullxfull,
+        purchaseUrl: l.url,
+      }));
+      const result4 = data4.data.results.map((l) => ({
+        name: l.title,
+        imageUrl: l.images[0].url_fullxfull,
+        purchaseUrl: l.url,
+      }));
+
+      const final_result = [
+        ...result,
+        ...result1,
+        ...result2,
+        ...result3,
+        ...result4,
+      ];
+      return final_result;
     } catch (error) {
       console.log(error);
     }
   };
-  const art17721959 = await getListingsByListingIds();
+  const art = await getListingsByListingIds();
 
   //Creating instances of Art Model from Esty shop 17721959. Note: We can easily change the shop(s) we're featuring in our db.
-  const loadArt17721959 = await Promise.all(art17721959.map((l) => Art.create(l)))
+  const loadArt = await Promise.all(art.map((l) => Art.create(l)));
 
   //Creating Wall
   const walls = await Promise.all([
@@ -88,9 +183,9 @@ async function seed() {
   await walls[1].addArt(artRow2, { through: ArtOnWall });
   await walls[2].addArt(artRow2, { through: ArtOnWall });
 
-  console.log(`seeded ${loadArt17721959.length} artworks from shop Esty shop 17721959`)
-  console.log(`seeded ${users.length} users`);
-  console.log(`seeded successfully`);
+  console.log(`seeded ${chalk.blue(art.length)} artworks from 6 Esty shops`);
+  console.log(`seeded ${chalk.green(users.length)} users`);
+  console.log(chalk.red(`seeded successfully`));
 }
 
 /*
@@ -108,7 +203,7 @@ async function runSeed() {
   } finally {
     console.log("closing db connection");
     await db.close();
-    console.log("db connection closed");
+    console.log(chalk.yellow("db connection closed 🎨"));
   }
 }
 
