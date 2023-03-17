@@ -6,7 +6,6 @@ import { me } from "./store";
 import Home from "../components/home/Home";
 import GalleryWall from "../components/galleryWall/GalleryWall";
 import SavedWalls from "../components/savedWalls/SavedWalls";
-import EstyArt from "../../script/art/EstyArt";
 import FiveImageGalleryWall from "../components/galleryWall/FiveImgGalleryWall";
 import SixImageGalleryWall from "../components/galleryWall/SixImgGalleryWall";
 import SevenImageGalleryWall from "../components/galleryWall/SevenImgGalleryWall";
@@ -32,7 +31,6 @@ const AppRoutes = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/gallery" element={<GalleryWall />} />
           <Route path="/saved" element={<SavedWalls />} />
-          <Route path="/estyart" element={<EstyArt />} />
         </Routes>
       ) : (
         <Routes>
