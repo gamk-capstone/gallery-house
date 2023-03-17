@@ -26,7 +26,7 @@ form div {
 .EightImageWallParentDiv {
   display: flex;
   flex-direction: column;
-  gap: 2em;
+  gap: 1em;
 }
 
 .FiveImageWallTop,
@@ -37,14 +37,14 @@ form div {
   flex-direction: row;
   align-items: flex-end;
   justify-content: center;
-  gap: 2em;
+  gap: 1em;
 }
 .SevenImageWallMiddle {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 2em;
+  gap: 1em;
 }
 
 .FiveImageWallBottom,
@@ -55,13 +55,13 @@ form div {
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
-  gap: 2em;
+  gap: 1em;
 }
 
 .landscapeRectangle {
   width: 150px;
   height: 100px;
-  padding: 1rem;
+  padding: 0.5rem;
   border: 3px solid rgb(228, 218, 218);
   background: radial-gradient(rgb(224, 222, 222), whitesmoke);
   filter: drop-shadow(3px 3px 3px rgb(160, 160, 160));
@@ -71,7 +71,7 @@ form div {
 .landscapeRectangleExtraWide {
   width: 175px;
   height: 100px;
-  padding: 1rem;
+  padding: 0.5rem;
   border: 3px solid rgb(228, 218, 218);
   background: radial-gradient(rgb(224, 222, 222), whitesmoke);
   filter: drop-shadow(3px 3px 3px rgb(160, 160, 160));
@@ -80,7 +80,7 @@ form div {
 .square {
   width: 100px;
   height: 100px;
-  padding: 1rem;
+  padding: 0.5rem;
   border: 3px solid rgb(228, 218, 218);
   background: radial-gradient(rgb(224, 222, 222), whitesmoke);
   filter: drop-shadow(3px 3px 3px rgb(160, 160, 160));
@@ -90,7 +90,7 @@ form div {
 .squareLarge {
   width: 150px;
   height: 150px;
-  padding: 1rem;
+  padding: 0.5rem;
   border: 3px solid rgb(228, 218, 218);
   background: radial-gradient(rgb(224, 222, 222), whitesmoke);
   filter: drop-shadow(3px 3px 3px rgb(160, 160, 160));
@@ -99,7 +99,7 @@ form div {
 .portraitRectangle {
   width: 100px;
   height: 150px;
-  padding: 1rem;
+  padding: 0.5rem;
   border: 3px solid rgb(228, 218, 218);
   background: radial-gradient(rgb(224, 222, 222), whitesmoke);
   filter: drop-shadow(3px 3px 3px rgb(160, 160, 160));
