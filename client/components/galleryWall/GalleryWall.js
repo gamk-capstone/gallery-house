@@ -3,6 +3,7 @@ import FiveImageGalleryWall from "./FiveImgGalleryWall";
 import SixImageGalleryWall from "./SixImgGalleryWall";
 import SevenImageGalleryWall from "./SevenImgGalleryWall";
 import EightImageGalleryWall from "./EightImgGalleryWall";
+import Sofa from "./Sofa";
 
 const GalleryWall = () => {
   const [selectedNumPhotos, setSelectedNumPhotos] = useState("5");
@@ -26,7 +27,7 @@ const GalleryWall = () => {
   return (
     <div className="galleryWallParentDiv">
       {getNumberForLayout()}
-      <img src="/sofa-beige-rounded.png" className="sofaImage" />
+      <Sofa />
       <>
         <label for="numberOfPhotos">
           Select the number of photos for your gallery wall:

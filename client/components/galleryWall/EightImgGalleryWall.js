@@ -4,16 +4,16 @@ const EightImageGalleryWall = () => {
   return (
     <div className="EightImageWallParentDiv">
       <div className="EightImageWallTop">
-        <img src="/red.jpeg" className="landscapeRectangleExtraWide" />
-        <img src="/red.jpeg" className="squareLarge" />
-        <img src="/red.jpeg" className="portraitRectangle" />
-        <img src="/red.jpeg" className="landscapeRectangleExtraWide" />
+        <img src="/white.jpeg" className="landscapeRectangleExtraWide" />
+        <img src="/white.jpeg" className="squareLarge" />
+        <img src="/white.jpeg" className="portraitRectangle" />
+        <img src="/white.jpeg" className="landscapeRectangleExtraWide" />
       </div>
       <div className="EightImageWallBottom">
-        <img src="/red.jpeg" className="landscapeRectangleExtraWide" />
-        <img src="/red.jpeg" className="portraitRectangle" />
-        <img src="/red.jpeg" className="squareLarge" />
-        <img src="/red.jpeg" className="landscapeRectangleExtraWide" />
+        <img src="/white.jpeg" className="landscapeRectangleExtraWide" />
+        <img src="/white.jpeg" className="portraitRectangle" />
+        <img src="/white.jpeg" className="squareLarge" />
+        <img src="/white.jpeg" className="landscapeRectangleExtraWide" />
       </div>
     </div>
   );

@@ -62,9 +62,9 @@ form div {
   width: 150px;
   height: 100px;
   padding: 0.5rem;
-  border: 3px solid rgb(228, 218, 218);
-  background: radial-gradient(rgb(224, 222, 222), whitesmoke);
-  filter: drop-shadow(3px 3px 3px rgb(160, 160, 160));
+  border: 2px solid #e2be75;
+  background: linear-gradient(30deg, #bf953f, #fcf6ba, #b38728, #fbf5b7);
+  filter: drop-shadow(3px 3px 3px rgb(182, 173, 153));
   object-fit: cover;
 }
 
@@ -72,18 +72,19 @@ form div {
   width: 175px;
   height: 100px;
   padding: 0.5rem;
-  border: 3px solid rgb(228, 218, 218);
-  background: radial-gradient(rgb(224, 222, 222), whitesmoke);
-  filter: drop-shadow(3px 3px 3px rgb(160, 160, 160));
+  border: 2px solid #e2be75;
+  background: linear-gradient(30deg, #bf953f, #fcf6ba, #b38728, #fbf5b7);
+  filter: drop-shadow(3px 3px 3px rgb(182, 173, 153));
+  object-fit: cover;
 }
 
 .square {
   width: 100px;
   height: 100px;
   padding: 0.5rem;
-  border: 3px solid rgb(228, 218, 218);
-  background: radial-gradient(rgb(224, 222, 222), whitesmoke);
-  filter: drop-shadow(3px 3px 3px rgb(160, 160, 160));
+  border: 2px solid #e2be75;
+  background: linear-gradient(40deg, #bf953f, #fcf6ba, #b38728, #fbf5b7);
+  filter: drop-shadow(3px 3px 3px rgb(182, 173, 153));
   object-fit: cover;
 }
 
@@ -91,18 +92,20 @@ form div {
   width: 150px;
   height: 150px;
   padding: 0.5rem;
-  border: 3px solid rgb(228, 218, 218);
-  background: radial-gradient(rgb(224, 222, 222), whitesmoke);
-  filter: drop-shadow(3px 3px 3px rgb(160, 160, 160));
+  border: 2px solid #e2be75;
+  background: linear-gradient(40deg, #bf953f, #fcf6ba, #b38728, #fbf5b7);
+  filter: drop-shadow(3px 3px 3px rgb(182, 173, 153));
+  object-fit: cover;
 }
 
 .portraitRectangle {
   width: 100px;
   height: 150px;
   padding: 0.5rem;
-  border: 3px solid rgb(228, 218, 218);
-  background: radial-gradient(rgb(224, 222, 222), whitesmoke);
-  filter: drop-shadow(3px 3px 3px rgb(160, 160, 160));
+  border: 2px solid #e2be75;
+  background: linear-gradient(50deg, #bf953f, #fcf6ba, #b38728, #fbf5b7);
+  filter: drop-shadow(3px 3px 3px rgb(182, 173, 153));
+  object-fit: cover;
 }
 
 .sofaImage {
