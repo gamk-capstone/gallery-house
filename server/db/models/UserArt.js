@@ -6,16 +6,16 @@ const UserArt = db.define('userArt', {
         type: Sequelize.STRING,
         allowNull: false
     },
-    imageUrl: {
-        type: Sequelize.STRING,
-        allowNull: false
+    s3Url: {
+      type: Sequelize.STRING,
+      allowNull: false
     },
-     colors: {
-      type: Sequelize.ARRAY(Sequelize.TEXT),
+     mainColors: {
+      type: Sequelize.ARRAY(Sequelize.ARRAY(Sequelize.INTEGER)),
       defaultValue: []
     },
     complimentaryColor: {
-      type: Sequelize.STRING
+      type: Sequelize.ARRAY(Sequelize.INTEGER)
     }
   })
 
