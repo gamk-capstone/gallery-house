@@ -4,14 +4,14 @@ const SixImageGalleryWall = () => {
   return (
     <div className="SixImageWallParentDiv">
       <div className="SixImageWallTop">
-        <img src="/red.jpeg" className="square" />
-        <img src="/red.jpeg" className="square" />
-        <img src="/red.jpeg" className="square" />
+        <img src="/white.jpeg" className="square" />
+        <img src="/white.jpeg" className="square" />
+        <img src="/white.jpeg" className="square" />
       </div>
       <div className="SixImageWallBottom">
-        <img src="/red.jpeg" className="square" />
-        <img src="/red.jpeg" className="square" />
-        <img src="/red.jpeg" className="square" />
+        <img src="/white.jpeg" className="square" />
+        <img src="/white.jpeg" className="square" />
+        <img src="/white.jpeg" className="square" />
       </div>
     </div>
   );

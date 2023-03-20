@@ -1,11 +1,12 @@
 "use strict";
 const axios = require("axios");
-const chalk = require('chalk');
+const chalk = require("chalk");
 
 const {
   db,
   models: { User, Art, Wall, ArtOnWall },
 } = require("../server/db");
+const getMainColors = require("../server/get-images");
 
 /**
  * seed - this function clears the database, updates tables to
@@ -119,26 +120,31 @@ async function seed() {
         name: l.title,
         imageUrl: l.images[0].url_fullxfull,
         purchaseUrl: l.url,
+        colors: [[l.images[0].hue, l.images[0].saturation, l.images[0].brightness]]
       }));
       const result1 = data1.data.results.map((l) => ({
         name: l.title,
         imageUrl: l.images[0].url_fullxfull,
         purchaseUrl: l.url,
+        colors: [[l.images[0].hue, l.images[0].saturation, l.images[0].brightness]]
       }));
       const result2 = data2.data.results.map((l) => ({
         name: l.title,
         imageUrl: l.images[0].url_fullxfull,
         purchaseUrl: l.url,
+        colors: [[l.images[0].hue, l.images[0].saturation, l.images[0].brightness]]
       }));
       const result3 = data3.data.results.map((l) => ({
         name: l.title,
         imageUrl: l.images[0].url_fullxfull,
         purchaseUrl: l.url,
+        colors: [[l.images[0].hue, l.images[0].saturation, l.images[0].brightness]]
       }));
       const result4 = data4.data.results.map((l) => ({
         name: l.title,
         imageUrl: l.images[0].url_fullxfull,
         purchaseUrl: l.url,
+        colors: [[l.images[0].hue, l.images[0].saturation, l.images[0].brightness]]
       }));
 
       const final_result = [
@@ -148,12 +154,22 @@ async function seed() {
         ...result3,
         ...result4,
       ];
+
       return final_result;
     } catch (error) {
       console.log(error);
     }
   };
+
   const art = await getListingsByListingIds();
+
+  // const assignColors = async () => {
+  //   // for (let i = 0; i<=art.length - 300; i++){
+  //     art[0].colors = await getMainColors(art[0].imageUrl);
+  //   // }
+  // };
+
+  // await assignColors();
 
   //Creating instances of Art Model from Esty shop 17721959. Note: We can easily change the shop(s) we're featuring in our db.
   const loadArt = await Promise.all(art.map((l) => Art.create(l)));
