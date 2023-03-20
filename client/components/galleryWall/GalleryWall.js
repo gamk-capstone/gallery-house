@@ -5,6 +5,11 @@ import { useDispatch } from "react-redux";
 import { createUserArtAsync } from "../userArt/UserArtSlice";
 const accessKey = process.env.ACCESS_KEY_ID;
 const secretKey = process.env.SECRET_ACCESS_KEY;
+import FiveImageGalleryWall from "./FiveImgGalleryWall";
+import SixImageGalleryWall from "./SixImgGalleryWall";
+import SevenImageGalleryWall from "./SevenImgGalleryWall";
+import EightImageGalleryWall from "./EightImgGalleryWall";
+import Sofa from "./Sofa";
 
 const GalleryWall = (props) => {
   const username = useSelector((state) => state.auth.me.username);
@@ -37,7 +42,7 @@ const GalleryWall = (props) => {
     dispatch(
       createUserArtAsync({
         name: file.name,
-        s3Url: Location
+        s3Url: Location,
       })
     );
   };
@@ -46,24 +51,56 @@ const GalleryWall = (props) => {
     setFile(event.target.files[0]);
   };
 
+  const [selectedNumPhotos, setSelectedNumPhotos] = useState("5");
+  const getNumberForLayout = () => {
+    switch (selectedNumPhotos) {
+      case "5":
+        return <FiveImageGalleryWall />;
+        break;
+      case "6":
+        return <SixImageGalleryWall />;
+        break;
+      case "7":
+        return <SevenImageGalleryWall />;
+        break;
+      case "8":
+        return <EightImageGalleryWall />;
+    }
+  };
+
   return (
-    <div>
-    <div>
-      <p>{username}'s Gallery Wall! </p>
-    </div>
-    <div>
-      <input type="file" accept="image/*" onChange={fileSelectedHandler} />
-      {file && (
-        <div style={{ marginTop: "10px" }}>
-          <button onClick={uploadToS3}>Upload</button>
-        </div>
-      )}
-      {imageUrl && (
-        <div style={{ marginTop: "10px" }}>
-          <img src={imageUrl} alt="uploaded" />
-        </div>
-      )}
-    </div>
+    <div className="galleryWallParentDiv">
+      {getNumberForLayout()}
+      <Sofa />
+      <>
+        <label htmlFor="numberOfPhotos">
+          Choose the number of photos for your gallery wall:
+        </label>
+        <select
+          name="numberOfPhotos"
+          id="numberOfPhotos"
+          onChange={(e) => setSelectedNumPhotos(e.target.value)}
+        >
+          <option value={5}>5</option>
+          <option value={6}>6</option>
+          <option value={7}>7</option>
+          <option value={8}>8</option>
+        </select>
+      </>
+      <div></div>
+      <div>
+        <input type="file" accept="image/*" onChange={fileSelectedHandler} />
+        {file && (
+          <div style={{ marginTop: "10px" }}>
+            <button onClick={uploadToS3}>Upload</button>
+          </div>
+        )}
+        {imageUrl && (
+          <div style={{ marginTop: "10px" }}>
+            <img src={imageUrl} alt="uploaded" />
+          </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -26,7 +26,7 @@ form div {
 .EightImageWallParentDiv {
   display: flex;
   flex-direction: column;
-  gap: 2em;
+  gap: 1em;
 }
 
 .FiveImageWallTop,
@@ -37,14 +37,14 @@ form div {
   flex-direction: row;
   align-items: flex-end;
   justify-content: center;
-  gap: 2em;
+  gap: 1em;
 }
 .SevenImageWallMiddle {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 2em;
+  gap: 1em;
 }
 
 .FiveImageWallBottom,
@@ -55,52 +55,82 @@ form div {
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
-  gap: 2em;
+  gap: 1em;
 }
 
 .landscapeRectangle {
-  width: 300px;
-  height: 200px;
-  padding: 1rem;
-  border: 3px solid rgb(228, 218, 218);
-  background: radial-gradient(rgb(224, 222, 222), whitesmoke);
-  filter: drop-shadow(3px 3px 3px rgb(160, 160, 160));
+  width: 150px;
+  height: 100px;
+  padding: 0.5rem;
+  border: 2px solid #e2be75;
+  background: linear-gradient(30deg, #bf953f, #fcf6ba, #b38728, #fbf5b7);
+  filter: drop-shadow(3px 3px 3px rgb(182, 173, 153));
   object-fit: cover;
 }
 
 .landscapeRectangleExtraWide {
-  width: 350px;
-  height: 200px;
-  padding: 1rem;
-  border: 3px solid rgb(228, 218, 218);
-  background: radial-gradient(rgb(224, 222, 222), whitesmoke);
-  filter: drop-shadow(3px 3px 3px rgb(160, 160, 160));
+  width: 175px;
+  height: 100px;
+  padding: 0.5rem;
+  border: 2px solid #e2be75;
+  background: linear-gradient(30deg, #bf953f, #fcf6ba, #b38728, #fbf5b7);
+  filter: drop-shadow(3px 3px 3px rgb(182, 173, 153));
+  object-fit: cover;
 }
 
 .square {
-  width: 200px;
-  height: 200px;
-  padding: 1rem;
-  border: 3px solid rgb(228, 218, 218);
-  background: radial-gradient(rgb(224, 222, 222), whitesmoke);
-  filter: drop-shadow(3px 3px 3px rgb(160, 160, 160));
+  width: 100px;
+  height: 100px;
+  padding: 0.5rem;
+  border: 2px solid #e2be75;
+  background: linear-gradient(40deg, #bf953f, #fcf6ba, #b38728, #fbf5b7);
+  filter: drop-shadow(3px 3px 3px rgb(182, 173, 153));
   object-fit: cover;
 }
 
 .squareLarge {
-  width: 300px;
-  height: 300px;
-  padding: 1rem;
-  border: 3px solid rgb(228, 218, 218);
-  background: radial-gradient(rgb(224, 222, 222), whitesmoke);
-  filter: drop-shadow(3px 3px 3px rgb(160, 160, 160));
+  width: 150px;
+  height: 150px;
+  padding: 0.5rem;
+  border: 2px solid #e2be75;
+  background: linear-gradient(40deg, #bf953f, #fcf6ba, #b38728, #fbf5b7);
+  filter: drop-shadow(3px 3px 3px rgb(182, 173, 153));
+  object-fit: cover;
 }
 
 .portraitRectangle {
-  width: 200px;
-  height: 300px;
-  padding: 1rem;
-  border: 3px solid rgb(228, 218, 218);
-  background: radial-gradient(rgb(224, 222, 222), whitesmoke);
-  filter: drop-shadow(3px 3px 3px rgb(160, 160, 160));
+  width: 100px;
+  height: 150px;
+  padding: 0.5rem;
+  border: 2px solid #e2be75;
+  background: linear-gradient(50deg, #bf953f, #fcf6ba, #b38728, #fbf5b7);
+  filter: drop-shadow(3px 3px 3px rgb(182, 173, 153));
+  object-fit: cover;
+}
+
+.sofaImage {
+  width: 800px;
+}
+
+.galleryWallParentDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active,
+.dot:hover {
+  background-color: #717171;
 }
