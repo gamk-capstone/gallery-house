@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const {
-  models: { User, ArtOnWall, Wall },
+  models: { ArtOnWall, Wall },
 } = require("../db");
 module.exports = router;
 
@@ -21,7 +21,7 @@ router.get("/users/:userId/galleries/:galleryId", async (req, res, next) => {
 
 
 //route for getting all galleries
-router.get("/users/:id/galleries", async (req, res, next) => {
+router.get("/users/:userId/galleries", async (req, res, next) => {
   try {
     const allUserGalleries = await Wall.findAll({
       where: {
