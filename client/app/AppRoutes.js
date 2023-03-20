@@ -1,11 +1,15 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
-import AuthForm from '../components/auth/AuthForm';
-import { me } from './store';
-import Home from "../components/home/Home"
-import GalleryWall from "../components/galleryWall/GalleryWall"
-import SavedWalls from "../components/savedWalls/SavedWalls"
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Route, Routes } from "react-router-dom";
+import AuthForm from "../components/auth/AuthForm";
+import { me } from "./store";
+import Home from "../components/home/Home";
+import GalleryWall from "../components/galleryWall/GalleryWall";
+import SavedWalls from "../components/savedWalls/SavedWalls";
+import FiveImageGalleryWall from "../components/galleryWall/FiveImgGalleryWall";
+import SixImageGalleryWall from "../components/galleryWall/SixImgGalleryWall";
+import SevenImageGalleryWall from "../components/galleryWall/SevenImgGalleryWall";
+import EightImageGalleryWall from "../components/galleryWall/EigthtImgGalleryWall";
 
 /**
  * COMPONENT
@@ -30,10 +34,7 @@ const AppRoutes = () => {
         </Routes>
       ) : (
         <Routes>
-          <Route
-            path="/*"
-            element={<Home />}
-          />
+          <Route path="/*" element={<Home />} />
           <Route
             path="/login"
             element={<AuthForm name="login" displayName="Login" />}
@@ -42,6 +43,10 @@ const AppRoutes = () => {
             path="/signup"
             element={<AuthForm name="signup" displayName="Sign Up" />}
           />
+          <Route path="/fiveimagewall" element={<FiveImageGalleryWall />} />
+          <Route path="/siximagewall" element={<SixImageGalleryWall />} />
+          <Route path="/sevenimagewall" element={<SevenImageGalleryWall />} />
+          <Route path="/eightimagewall" element={<EightImageGalleryWall />} />
         </Routes>
       )}
     </div>
