@@ -67,3 +67,5 @@ const GalleryWall = (props) => {
     </div>
   );
 };
+
+export default GalleryWall;
