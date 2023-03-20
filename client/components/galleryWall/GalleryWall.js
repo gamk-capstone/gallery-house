@@ -29,8 +29,8 @@ const GalleryWall = () => {
       {getNumberForLayout()}
       <Sofa />
       <>
-        <label for="numberOfPhotos">
-          Select the number of photos for your gallery wall:
+        <label htmlFor="numberOfPhotos">
+          Choose the number of photos for your gallery wall:
         </label>
         <select
           name="numberOfPhotos"

@@ -13,15 +13,20 @@ const Sofa = () => {
   };
   return (
     <>
-      {/* {getSofaForLayout()}
-      <label for="sofaSelection">Choose your furniture:</label>
-      <input type="radio" onClick={setSelectedSofa("sofaBeigeRounded")}>
-        Modern Rounded Sofa
-      </input>
-      <input type="radio" onClick={setSelectedSofa("sofaTealVelvet")}>
-        Mid Century Modern Velevet Sofa
-      </input> */}
-      <img src="/sofa-beige-rounded.png" className="sofaImage" />
+      {getSofaForLayout()}
+      <label htmlFor="sofaSelection">Choose your furniture:</label>
+      <label htmlFor="sofaBeigeRounded">Sofa Beige Rounded</label>
+      <input
+        type="radio"
+        onChange={() => setSelectedSofa("sofaBeigeRounded")}
+        checked={selectedSofa === "sofaBeigeRounded"}
+      />
+      <label htmlFor="sofaTealVelvet">Mid Century Modern Velevet Sofa</label>
+      <input
+        type="radio"
+        onChange={() => setSelectedSofa("sofaTealVelvet")}
+        checked={selectedSofa === "sofaTealVelvet"}
+      />
     </>
   );
 };
