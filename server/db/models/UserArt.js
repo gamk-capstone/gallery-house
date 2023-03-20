@@ -11,11 +11,11 @@ const UserArt = db.define('userArt', {
       allowNull: false
     },
      mainColors: {
-      type: Sequelize.ARRAY(Sequelize.STRING),
+      type: Sequelize.ARRAY(Sequelize.ARRAY(Sequelize.INTEGER)),
       defaultValue: []
     },
     complimentaryColor: {
-      type: Sequelize.STRING
+      type: Sequelize.ARRAY(Sequelize.INTEGER)
     }
   })
 
