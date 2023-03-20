@@ -5,7 +5,7 @@ import axios from "axios";
 //Get user saved wall
 export const fetchUserWallsAsync = createAsyncThunk("fetchUserWalls", async () => {
   try {
-    const { data } = await axios.get(`/api/user/:id/galleries/${id}`);
+    const { data } = await axios.get(`/api/user/:userId/galleries/${galleryId}`);
     return data;
   } catch (err) {
     next(err);
