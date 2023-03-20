@@ -1,10 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import FiveImageGalleryWall from "./FiveImgGalleryWall";
-import SixImageGalleryWall from "./SixImgGalleryWall";
-import SevenImageGalleryWall from "./SevenImgGalleryWall";
-import EightImageGalleryWall from "./EightImgGalleryWall";
-import Sofa from "./Sofa";
+import FiveImageGalleryWall from "../galleryWall/FiveImgGalleryWall";
+import SixImageGalleryWall from "../galleryWall/SixImgGalleryWall";
+import SevenImageGalleryWall from "../galleryWall/SevenImgGalleryWall";
+import EightImageGalleryWall from "../galleryWall/EightImgGalleryWall";
+import Sofa from "../galleryWall/Sofa";
 
 
 
