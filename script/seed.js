@@ -9,14 +9,16 @@ const {
 const getMainColors = require("../server/get-images");
 
 /**
- * seed - this function clears the database, updates tables to
- *      match the models, and populates the database.
+ * `seed` clears the "gallery-house" database, updates tables to match the models, and populates the database.
+ * The function interacts with the User, Art, Wall, and ArtOnWall models.
  */
 async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
   console.log("db synced!");
 
-  // Creating Users
+  // --------------------------------------------------------------------
+  //#region Instances of `User` model
+  // --------------------------------------------------------------------
   const users = await Promise.all([
     User.create({ username: "grace", password: "123" }),
     User.create({ username: "malinda", password: "123" }),
@@ -24,7 +26,13 @@ async function seed() {
     User.create({ username: "katrina", password: "123" }),
   ]);
 
-  //Julia Ockert, FungusGallery, ArtKoraju, RedCheeksFactory, OnLaneAvenue
+  //#endregion Instances of `User` model
+
+  // --------------------------------------------------------------------
+  //#region Instances of `Art` model
+  // --------------------------------------------------------------------
+
+  //Store our six featured Esty shops (Julia Ockert, FungusGallery, ArtKoraju, RedCheeksFactory, OnLaneAvenue) ids
   const shop_ids = [5478758, 19639425, 14928731, 7780904, 6300167];
 
   /**
@@ -163,32 +171,41 @@ async function seed() {
   const art4 = art.slice(301, 401);
   const art5 = art.slice(401, 501);
 
-  const assignColors = async () => {
-    for (let i = 0; i<=art1.length - 1; i++){
+  /**
+   * `getEstyImagesMainColors` uses a callback function `getMainColors` (from /server/get-images.js) to retrieve the four main
+   * colors of each image in our db. The colors are stored according to their HSL value (Hue, Saturation, and Lumousity).
+   * @returns the `colors` column of art table populated with data
+   */
+  const getEstyImagesMainColors = async () => {
+    for (let i = 0; i <= art1.length - 1; i++) {
       art1[i].colors = await getMainColors(art1[i].imageUrl);
     }
-    for (let i = 0; i<=art2.length - 1; i++){
+    for (let i = 0; i <= art2.length - 1; i++) {
       art2[i].colors = await getMainColors(art2[i].imageUrl);
     }
-    for (let i = 0; i<=art3.length - 1; i++){
+    for (let i = 0; i <= art3.length - 1; i++) {
       art3[i].colors = await getMainColors(art3[i].imageUrl);
     }
-    for (let i = 0; i<=art4.length - 1; i++){
+    for (let i = 0; i <= art4.length - 1; i++) {
       art4[i].colors = await getMainColors(art4[i].imageUrl);
     }
-    for (let i = 0; i<=art5.length - 1; i++){
+    for (let i = 0; i <= art5.length - 1; i++) {
       art5[i].colors = await getMainColors(art5[i].imageUrl);
     }
     return;
   };
 
-  await assignColors();
+  await getEstyImagesMainColors();
 
-  //Creating instances of Art Model from Esty shop 17721959. Note: We can easily change the shop(s) we're featuring in our db.
-  
+  //Finally, create instances of Art model using manipulated data retrieved from Esty's (v3) open API.
   const loadArt = await Promise.all(art.map((l) => Art.create(l)));
 
-  //Creating Wall
+  //#endregion Instances of `Art` model
+
+  // --------------------------------------------------------------------
+  //#region Instances of `Wall` model
+  // --------------------------------------------------------------------
+
   const walls = await Promise.all([
     Wall.create({
       name: "wall1",
@@ -204,25 +221,27 @@ async function seed() {
     }),
   ]);
 
-  // find the art
+  // Find the associated art
   const artRow = await Art.findByPk(1);
   const artRow2 = await Art.findByPk(2);
-  // insert the association in the ArtOnWall table
+  // Insert the associated art in the `ArtOnWall` model
   await walls[0].addArt(artRow, { through: ArtOnWall });
   await walls[0].addArt(artRow2, { through: ArtOnWall });
   await walls[1].addArt(artRow2, { through: ArtOnWall });
   await walls[2].addArt(artRow2, { through: ArtOnWall });
+
+  //#endregion Instances of `Wall` model
 
   console.log(`seeded ${chalk.blue(art.length)} artworks from 6 Esty shops`);
   console.log(`seeded ${chalk.green(users.length)} users`);
   console.log(chalk.red(`seeded successfully`));
 }
 
-/*
- We've separated the `seed` function from the `runSeed` function.
- This way we can isolate the error handling and exit trapping.
- The `seed` function is concerned only with modifying the database.
-*/
+/**
+ * We've separated the `seed` function from the `runSeed` function.
+ * This way we can isolate the error handling and exit trapping.
+ * The `seed` function is concerned only with modifying the database.
+ */
 async function runSeed() {
   console.log("seeding...");
   try {
@@ -246,5 +265,5 @@ if (module === require.main) {
   runSeed();
 }
 
-// we export the seed function for testing purposes (see `./seed.spec.js`)
+// We export the seed function for testing purposes (see `./seed.spec.js`)
 module.exports = seed;
