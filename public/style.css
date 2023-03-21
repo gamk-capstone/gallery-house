@@ -134,3 +134,10 @@ form div {
 .dot:hover {
   background-color: #717171;
 }
+
+.myArt-image {
+  width: 100px;
+  height: 150px;
+  object-fit: cover;
+  padding: 0.5rem;
+}

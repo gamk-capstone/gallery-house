@@ -11,6 +11,14 @@ const Wall = require("./models/Wall");
 Wall.belongsTo(User);
 Art.belongsToMany(Wall, { through: "ArtOnWall" });
 UserArt.belongsToMany(Wall, { through: "ArtOnWall" });
+UserArt.belongsTo(User, { 
+  foreignKey: 'userId',
+  as: 'user'
+});
+User.hasMany(UserArt, { 
+  foreignKey: 'userId',
+  as: 'userArts'
+});
 Wall.belongsToMany(Art, { through: "ArtOnWall" });
 
 module.exports = {

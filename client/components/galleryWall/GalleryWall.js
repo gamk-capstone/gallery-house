@@ -10,9 +10,11 @@ import SixImageGalleryWall from "./SixImgGalleryWall";
 import SevenImageGalleryWall from "./SevenImgGalleryWall";
 import EightImageGalleryWall from "./EightImgGalleryWall";
 import Sofa from "./Sofa";
+import MyArt from "../myArt/myArt";
 
 const GalleryWall = (props) => {
   const username = useSelector((state) => state.auth.me.username);
+  const { id } = useSelector((state) => state.auth.me);
   const dispatch = useDispatch();
   const s3 = new AWS.S3();
   const [imageUrl, setImageUrl] = useState(null);
@@ -43,6 +45,7 @@ const GalleryWall = (props) => {
       createUserArtAsync({
         name: file.name,
         s3Url: Location,
+        userId: id
       })
     );
   };
@@ -55,16 +58,16 @@ const GalleryWall = (props) => {
   const getNumberForLayout = () => {
     switch (selectedNumPhotos) {
       case "5":
-        return <FiveImageGalleryWall />;
+        return <FiveImageGalleryWall userArtUrl={imageUrl}/>;
         break;
       case "6":
-        return <SixImageGalleryWall />;
+        return <SixImageGalleryWall userArtUrl={imageUrl}/>;
         break;
       case "7":
-        return <SevenImageGalleryWall />;
+        return <SevenImageGalleryWall userArtUrl={imageUrl}/>;
         break;
       case "8":
-        return <EightImageGalleryWall />;
+        return <EightImageGalleryWall userArtUrl={imageUrl}/>;
     }
   };
 
@@ -88,16 +91,12 @@ const GalleryWall = (props) => {
         </select>
       </>
       <div></div>
+      <MyArt />
       <div>
         <input type="file" accept="image/*" onChange={fileSelectedHandler} />
         {file && (
           <div style={{ marginTop: "10px" }}>
             <button onClick={uploadToS3}>Upload</button>
-          </div>
-        )}
-        {imageUrl && (
-          <div style={{ marginTop: "10px" }}>
-            <img src={imageUrl} alt="uploaded" />
           </div>
         )}
       </div>

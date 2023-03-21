@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const {
-  models: { Art, UserArt },
+  models: { Art, User, UserArt },
 } = require("../db");
 const getMainColors = require("../get-images");
 module.exports = router;
@@ -15,7 +15,19 @@ router.get("/user", async (req, res, next) => {
   }
 });
 
-//route for getting one userArt
+//route for getting all userArt of one user
+router.get("/user/all/:id", async (req, res, next) => {
+  try {
+    const userArt = await UserArt.findAll({
+      where: { userId: req.params.id }
+    });
+    res.json(userArt);
+  } catch (err) {
+    next(err);
+  }
+});
+
+//route for getting single userArt
 router.get("/user/:id", async (req, res, next) => {
   try {
     const userArt = await UserArt.findByPk(req.params.id);

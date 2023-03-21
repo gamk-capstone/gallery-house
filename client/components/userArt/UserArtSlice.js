@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const fetchUserArtAsync = createAsyncThunk("fetchUserArt", async () => {
+export const fetchUserArtAsync = createAsyncThunk("fetchUserArt", async (id) => {
   try {
-    const { data } = await axios.get("/api/art/user");
+    const { data } = await axios.get(`/api/art/user/all/${id}`);
     return data;
   } catch (err) {
     next(err);
@@ -41,7 +41,7 @@ export const deleteUserArtAsync = createAsyncThunk(
         return action.payload;
       });
       builder.addCase(createUserArtAsync.fulfilled, (state, action) => {
-        return action.payload;
+       state.push(action.payload);
       });
       builder.addCase(deleteUserArtAsync.fulfilled, (state, action) => {
         return {};
