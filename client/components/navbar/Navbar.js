@@ -16,7 +16,7 @@ const Navbar = () => {
     <div>
       <nav>
         {isLoggedIn ? (
-          <div>
+          <div className="flex flex-row justify-center gap-4">
             {/* The navbar will show these links after you log in */}
             <Link to="/home">Home</Link>
             <Link to="/create">Create</Link>
@@ -26,7 +26,7 @@ const Navbar = () => {
             </button>
           </div>
         ) : (
-          <div>
+          <div className="flex flex-row justify-center gap-4">
             {/* The navbar will show these links before you log in */}
             <Link to="/home">Gallery House</Link>
             <Link to="/create">Create</Link>
