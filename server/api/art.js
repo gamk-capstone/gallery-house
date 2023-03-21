@@ -5,7 +5,7 @@ const {
 const getMainColors = require("../get-images");
 module.exports = router;
 
-//route for getting all userArt
+// route at /api/user GETS all instances of UserArt model
 router.get("/user", async (req, res, next) => {
   try {
     const userArt = await UserArt.findAll();
@@ -15,7 +15,7 @@ router.get("/user", async (req, res, next) => {
   }
 });
 
-//route for getting one userArt
+//route /api/user/:id GETS just one instance of UserArt based on its primary key
 router.get("/user/:id", async (req, res, next) => {
   try {
     const userArt = await UserArt.findByPk(req.params.id);
@@ -25,7 +25,7 @@ router.get("/user/:id", async (req, res, next) => {
   }
 });
 
-//route for posting a new userArt
+//route at /api/user POSTS new instance of UserArt
 router.post("/user", async (req, res, next) => {
   try {
     const complimentaryColor = (hslArr) => {
@@ -52,7 +52,7 @@ router.post("/user", async (req, res, next) => {
   }
 });
 
-//route for editing userArt
+//route at /api/user/:id PUTS (updates) one instance of UserArt based on its primary key
 router.put("/user/:id", async (req, res, next) => {
   try {
     const userArt = await UserArt.findByPk(req.params.id);
