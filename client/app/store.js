@@ -3,14 +3,14 @@ import logger from 'redux-logger';
 import authReducer from '../components/auth/authSlice';
 import UserArtSlice from '../components/userArt/UserArtSlice';
 import SingleUserArtSlice from '../components/userArt/SingleUserArtSlice';
-import userWallsSlice from '../components/user/userSlice';
+import userWallsSlice from '../components/user/userWallsSlice';
 
 const store = configureStore({
   reducer: { 
     auth: authReducer,
     userArt:UserArtSlice,
     singleUserArt: SingleUserArtSlice,
-    userWalls: userWallsSlice
+    userWalls: userWallsSlice,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
