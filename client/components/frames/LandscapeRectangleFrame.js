@@ -1,5 +1,9 @@
 import React from "react";
 
+/**
+ * `LandscapeRectangleFrame` component
+ * @returns HTML for rectanglar landscape frame
+ */
 const LandscapeRectangleFrame = () => {
   return (
     <img
