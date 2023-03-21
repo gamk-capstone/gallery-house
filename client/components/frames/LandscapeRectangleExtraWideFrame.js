@@ -1,5 +1,9 @@
 import React from "react";
 
+/**
+ * `LandscapeRectangleExtraWideFrame` component
+ * @returns HTML for rectangular ex-wide landscape frame
+ */
 const LandscapeRectangleExtraWideFrame = () => {
   return (
     <img
