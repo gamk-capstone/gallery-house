@@ -1,17 +1,18 @@
 import React from "react";
+import SquareFrame from "../frames/SquareFrame";
 
 const SixImageGalleryWall = () => {
   return (
-    <div className="SixImageWallParentDiv">
-      <div className="SixImageWallTop">
-        <img src="/white.jpeg" className="square" />
-        <img src="/white.jpeg" className="square" />
-        <img src="/white.jpeg" className="square" />
+    <div className="flex justify-center flex-col gap-4">
+      <div className="flex justify-center flex-row items-end gap-4">
+        <SquareFrame />
+        <SquareFrame />
+        <SquareFrame />
       </div>
-      <div className="SixImageWallBottom">
-        <img src="/white.jpeg" className="square" />
-        <img src="/white.jpeg" className="square" />
-        <img src="/white.jpeg" className="square" />
+      <div className="flex justify-center flex-row items-start gap-4">
+        <SquareFrame />
+        <SquareFrame />
+        <SquareFrame />
       </div>
     </div>
   );
