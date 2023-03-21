@@ -1,14 +1,15 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-/*
-  CONSTANT VARIABLES
-*/
+/**
+ * This is where we keep all the state details for our AuthForm.
+ */
+
 const TOKEN = 'token';
 
-/*
-  THUNKS
-*/
+/**
+ * `me` is an async thunk that GETS data at /auth/me. Only tokens with valid headers be returned.
+ */
 export const me = createAsyncThunk('auth/me', async () => {
   const token = window.localStorage.getItem(TOKEN);
   try {
@@ -31,6 +32,10 @@ export const me = createAsyncThunk('auth/me', async () => {
   }
 });
 
+/**
+ * `authenticate` is an aysnc thunk that POSTS (creates) a JWT with a user's information, stores it in local storage, and 
+ * passes the newly created token as an arguement in the `me` thunk.
+ */
 export const authenticate = createAsyncThunk(
   'auth/authenticate',
   async ({ username, password, method }, thunkAPI) => {
@@ -48,15 +53,16 @@ export const authenticate = createAsyncThunk(
   }
 );
 
-/*
-  SLICE
-*/
+/**
+ * `authSlice` maintains the state of AuthForm.
+ */
 export const authSlice = createSlice({
   name: 'auth',
   initialState: {
     me: {},
     error: null,
   },
+  //On log out, remove JWT from local storage.
   reducers: {
     logout(state, action) {
       window.localStorage.removeItem(TOKEN);
@@ -64,6 +70,7 @@ export const authSlice = createSlice({
       state.error = null;
     },
   },
+  //Beacuse our thunks are async, their reducers are extraReducers.
   extraReducers: (builder) => {
     builder.addCase(me.fulfilled, (state, action) => {
       state.me = action.payload;
