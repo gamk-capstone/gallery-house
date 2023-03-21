@@ -5,8 +5,8 @@ import AuthForm from "../components/auth/AuthForm";
 import { me } from "./store";
 import Home from "../components/home/Home";
 import GalleryWall from "../components/galleryWall/GalleryWall";
-import SavedWalls from "../components/savedWalls/SavedWalls";
-
+import SavedWall from "../components/savedWall/SavedWall";
+import User from "../components/user/User";
 /**
  * COMPONENT
  */
@@ -26,7 +26,8 @@ const AppRoutes = () => {
           <Route path="/*" element={<GalleryWall />} />
           <Route path="/home" element={<Home />} />
           <Route path="/gallery" element={<GalleryWall />} />
-          <Route path="/saved" element={<SavedWalls />} />
+          <Route path="/saved" element={<SavedWall />} />
+          <Route path="/users/:id" element={<User />} />
         </Routes>
       ) : (
         <Routes>

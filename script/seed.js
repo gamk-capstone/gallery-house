@@ -120,31 +120,31 @@ async function seed() {
         name: l.title,
         imageUrl: l.images[0].url_fullxfull,
         purchaseUrl: l.url,
-        colors: [[l.images[0].hue, l.images[0].saturation, l.images[0].brightness]]
+        // colors: [[l.images[0].hue, l.images[0].saturation, l.images[0].brightness]]
       }));
       const result1 = data1.data.results.map((l) => ({
         name: l.title,
         imageUrl: l.images[0].url_fullxfull,
         purchaseUrl: l.url,
-        colors: [[l.images[0].hue, l.images[0].saturation, l.images[0].brightness]]
+        // colors: [[l.images[0].hue, l.images[0].saturation, l.images[0].brightness]]
       }));
       const result2 = data2.data.results.map((l) => ({
         name: l.title,
         imageUrl: l.images[0].url_fullxfull,
         purchaseUrl: l.url,
-        colors: [[l.images[0].hue, l.images[0].saturation, l.images[0].brightness]]
+        // colors: [[l.images[0].hue, l.images[0].saturation, l.images[0].brightness]]
       }));
       const result3 = data3.data.results.map((l) => ({
         name: l.title,
         imageUrl: l.images[0].url_fullxfull,
         purchaseUrl: l.url,
-        colors: [[l.images[0].hue, l.images[0].saturation, l.images[0].brightness]]
+        // colors: [[l.images[0].hue, l.images[0].saturation, l.images[0].brightness]]
       }));
       const result4 = data4.data.results.map((l) => ({
         name: l.title,
         imageUrl: l.images[0].url_fullxfull,
         purchaseUrl: l.url,
-        colors: [[l.images[0].hue, l.images[0].saturation, l.images[0].brightness]]
+        // colors: [[l.images[0].hue, l.images[0].saturation, l.images[0].brightness]]
       }));
 
       const final_result = [
@@ -162,16 +162,35 @@ async function seed() {
   };
 
   const art = await getListingsByListingIds();
+  const art1 = art.slice(0, 100);
+  const art2 = art.slice(101, 201);
+  const art3 = art.slice(201, 301);
+  const art4 = art.slice(301, 401);
+  const art5 = art.slice(401, 501);
 
-  // const assignColors = async () => {
-  //   // for (let i = 0; i<=art.length - 300; i++){
-  //     art[0].colors = await getMainColors(art[0].imageUrl);
-  //   // }
-  // };
+  const assignColors = async () => {
+    for (let i = 0; i<=art1.length - 1; i++){
+      art1[i].colors = await getMainColors(art1[i].imageUrl);
+    }
+    for (let i = 0; i<=art2.length - 1; i++){
+      art2[i].colors = await getMainColors(art2[i].imageUrl);
+    }
+    for (let i = 0; i<=art3.length - 1; i++){
+      art3[i].colors = await getMainColors(art3[i].imageUrl);
+    }
+    for (let i = 0; i<=art4.length - 1; i++){
+      art4[i].colors = await getMainColors(art4[i].imageUrl);
+    }
+    for (let i = 0; i<=art5.length - 1; i++){
+      art5[i].colors = await getMainColors(art5[i].imageUrl);
+    }
+    return;
+  };
 
-  // await assignColors();
+  await assignColors();
 
   //Creating instances of Art Model from Esty shop 17721959. Note: We can easily change the shop(s) we're featuring in our db.
+  
   const loadArt = await Promise.all(art.map((l) => Art.create(l)));
 
   //Creating Wall
