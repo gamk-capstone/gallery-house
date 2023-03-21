@@ -5,7 +5,7 @@ const {
 module.exports = router;
 
 //route for getting single gallery
-router.get("/users/:userId/galleries/:galleryId", async (req, res, next) => {
+router.get("/:userId/galleries/:galleryId", async (req, res, next) => {
   try {
     const userGalleries = await Wall.findByPk(req.params.galleryId,{
       where: {
@@ -21,16 +21,17 @@ router.get("/users/:userId/galleries/:galleryId", async (req, res, next) => {
 
 
 //route for getting all galleries
-router.get("/users/:userId/galleries", async (req, res, next) => {
+router.get("/:userId/galleries", async (req, res, next) => {
   try {
     const allUserGalleries = await Wall.findAll({
       where: {
         userId: req.params.userId,
       },
-      include: { model: ArtOnWall}
+      include: ArtOnWall
     });
     res.json(allUserGalleries);
   } catch (err) {
     next(err);
   }
 });
+
