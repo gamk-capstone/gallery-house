@@ -1,6 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+/**
+ * `fetchUserArtAsync` GETS data at /api/art/user
+ */
 export const fetchUserArtAsync = createAsyncThunk("fetchUserArt", async () => {
   try {
     const { data } = await axios.get("/api/art/user");
@@ -10,6 +13,9 @@ export const fetchUserArtAsync = createAsyncThunk("fetchUserArt", async () => {
   }
 });
 
+/**
+ * `createUserArtAsync` POSTS data at /api/art/user
+ */
 export const createUserArtAsync = createAsyncThunk("addUserArt", async (userArtInfo) => {
   try {
     const { data } = await axios.post("/api/art/user", 
@@ -21,6 +27,9 @@ export const createUserArtAsync = createAsyncThunk("addUserArt", async (userArtI
   }
 });
 
+/**
+ * `deleteUserArtAsync` DELETES data at /api/art/user/:id 
+ */
 export const deleteUserArtAsync = createAsyncThunk(
   "deleteUserArt",
   async (id) => {
