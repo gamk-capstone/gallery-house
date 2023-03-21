@@ -4,7 +4,7 @@ const {
 } = require("../db");
 module.exports = router;
 
-//route for getting single gallery
+//route at /api/:userId/galleries/:galleryId GETS one saved wall for a user based on thier userId
 router.get("/:userId/galleries/:galleryId", async (req, res, next) => {
   try {
     const userGalleries = await Wall.findByPk(req.params.galleryId,{
@@ -20,7 +20,7 @@ router.get("/:userId/galleries/:galleryId", async (req, res, next) => {
 });
 
 
-//route for getting all galleries
+//route at /api/:userId/galleries GETS all saved walls for a user based on their userId
 router.get("/:userId/galleries", async (req, res, next) => {
   try {
     const allUserGalleries = await Wall.findAll({
