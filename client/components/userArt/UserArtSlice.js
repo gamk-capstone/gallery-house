@@ -10,9 +10,11 @@ export const fetchUserArtAsync = createAsyncThunk("fetchUserArt", async () => {
   }
 });
 
-export const createUserArtAsync = createAsyncThunk("addUserArt", async (newUserArt) => {
+export const createUserArtAsync = createAsyncThunk("addUserArt", async (userArtInfo) => {
   try {
-    const { data } = await axios.post("/api/art/user");
+    const { data } = await axios.post("/api/art/user", 
+    userArtInfo
+    );
     return data;
   } catch (err) {
     next (err)

@@ -175,10 +175,6 @@ async function seed() {
     for (let i = 0; i<=art2.length - 1; i++){
       art2[i].colors = await getMainColors(art2[i].imageUrl);
     }
-    return;
-  };
-
-  const assignColors1 = async () => {
     for (let i = 0; i<=art3.length - 1; i++){
       art3[i].colors = await getMainColors(art3[i].imageUrl);
     }
@@ -189,10 +185,9 @@ async function seed() {
       art5[i].colors = await getMainColors(art5[i].imageUrl);
     }
     return;
-  }
+  };
 
   await assignColors();
-  await assignColors1();
 
   //Creating instances of Art Model from Esty shop 17721959. Note: We can easily change the shop(s) we're featuring in our db.
   
