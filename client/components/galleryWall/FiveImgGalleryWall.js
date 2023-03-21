@@ -7,7 +7,7 @@ const FiveImageGalleryWall = () => {
         <img src="/white.jpeg" className="landscapeRectangle" />
         <img src="/white.jpeg" className="square" />
       </div>
-      <div className="FiveImageWallBottom">
+      <div className="flex justify-center flex-row items-start gap-1">
         <img src="/white.jpeg" className="landscapeRectangle" />
         <img src="/white.jpeg" className="portraitRectangle" />
         <img src="/white.jpeg" className="landscapeRectangle" />
