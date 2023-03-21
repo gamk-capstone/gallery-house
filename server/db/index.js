@@ -1,4 +1,4 @@
-//this is the access point for all things database related!
+//This is the access point for all things database related
 
 const db = require("./db");
 
@@ -7,7 +7,7 @@ const Art = require("./models/Art");
 const UserArt = require("./models/UserArt");
 const Wall = require("./models/Wall");
 
-//associations could go here!
+//Assosiations 
 Wall.belongsTo(User);
 Art.belongsToMany(Wall, { through: "ArtOnWall" });
 UserArt.belongsToMany(Wall, { through: "ArtOnWall" });
