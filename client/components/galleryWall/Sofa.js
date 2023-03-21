@@ -5,10 +5,10 @@ const Sofa = () => {
   const getSofaForLayout = () => {
     switch (selectedSofa) {
       case "sofaBeigeRounded":
-        return <img src="/sofa-beige-rounded.png" className="sofaImage" />;
+        return <img src="/sofa-beige-rounded.png" className="max-w-[900px]" />;
         break;
       case "sofaTealVelvet":
-        return <img src="/sofa-teal-velvet.png" className="sofaImage" />;
+        return <img src="/sofa-teal-velvet.png" className="max-w-[900px]" />;
     }
   };
   return (

@@ -1,20 +1,22 @@
 import React from "react";
+import SquareFrame from "../frames/SquareFrame";
+import LandscapeRectangleFrame from "../frames/LandscapeRectangleFrame";
 
 const SevenImageGalleryWall = () => {
   return (
-    <div className="SevenImageWallParentDiv">
-      <div className="SevenImageWallTop">
-        <img src="/white.jpeg" className="square" />
-        <img src="/white.jpeg" className="landscapeRectangle" />
+    <div className="flex justify-center flex-col gap-4">
+      <div className="flex justify-center flex-row items-end gap-4">
+        <SquareFrame />
+        <LandscapeRectangleFrame />
       </div>
-      <div className="SevenImageWallMiddle">
-        <img src="/mattisse.jpeg" className="square" />
-        <img src="/white.jpeg" className="square" />
-        <img src="/white.jpeg" className="square" />
+      <div className="flex justify-center flex-row items-center gap-4">
+        <SquareFrame />
+        <SquareFrame />
+        <SquareFrame />
       </div>
-      <div className="SevenImageWallBottom">
-        <img src="/mattisse.jpeg" className="landscapeRectangle" />
-        <img src="/square-art.jpeg" className="square" />
+      <div className="flex justify-center flex-row items-start gap-4">
+        <LandscapeRectangleFrame />
+        <SquareFrame />
       </div>
     </div>
   );

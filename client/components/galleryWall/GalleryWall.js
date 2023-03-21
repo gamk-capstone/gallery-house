@@ -72,7 +72,7 @@ const GalleryWall = (props) => {
   };
 
   return (
-    <div className="galleryWallParentDiv">
+    <div className="flex flex-col items-center gap-8">
       {getNumberForLayout()}
       <Sofa />
       <>
