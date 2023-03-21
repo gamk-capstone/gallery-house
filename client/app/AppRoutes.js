@@ -8,7 +8,7 @@ import GalleryWall from "../components/galleryWall/GalleryWall";
 import SavedWall from "../components/savedWall/SavedWall";
 import User from "../components/user/User";
 /**
- * `AppRoutes` Component defines the routes in Gallery House, based on whether a user is logged in or not.
+ * The `AppRoutes` component defines the routes in Gallery House, based on whether a user is logged in or not.
  */
 
 const AppRoutes = () => {
