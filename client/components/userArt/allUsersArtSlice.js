@@ -32,8 +32,8 @@ export const deleteUserArtAsync = createAsyncThunk(
     }
   });
 
-  export const allUserArtSlice = createSlice({
-    name: "userArt",
+  export const allUsersArtSlice = createSlice({
+    name: "usersArt",
     initialState: [],
     reducers: {},
     extraReducers: (builder) => {
@@ -51,4 +51,4 @@ export const deleteUserArtAsync = createAsyncThunk(
 
   export const selectUserArt = (state) => state.userArt;
 
-  export default allUserArtSlice.reducer;
+  export default allUsersArtSlice.reducer;

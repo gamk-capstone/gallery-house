@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import AWS from "aws-sdk";
 import { useDispatch } from "react-redux";
-import { createUserArtAsync } from "../userArt/UserArtSlice";
+import { createUserArtAsync } from "../userArt/allUsersArtSlice";
 const accessKey = process.env.ACCESS_KEY_ID;
 const secretKey = process.env.SECRET_ACCESS_KEY;
 import FiveImgGalleryWall from "./FiveImgGalleryWall";
