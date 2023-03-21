@@ -1,5 +1,9 @@
 import React from "react";
 
+/**
+ * `PortraitRectangleFrame` component
+ * @returns HTML for rectangular portrait frame
+ */
 const PortraitRectangleFrame = () => {
   return (
     <img
