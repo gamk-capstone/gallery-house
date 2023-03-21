@@ -7,6 +7,7 @@ import Home from "../components/home/Home";
 import GalleryWall from "../components/galleryWall/GalleryWall";
 import SavedWall from "../components/savedWall/SavedWall";
 import User from "../components/user/User";
+import Toolbar from "../components/toolbar/Toolbar";
 /**
  * COMPONENT
  */
@@ -41,6 +42,7 @@ const AppRoutes = () => {
             element={<AuthForm name="signup" displayName="Sign Up" />}
           />
           <Route path="/create" element={<GalleryWall />} />
+          <Route path="/toolbartest" element={<Toolbar />} />
         </Routes>
       )}
     </div>
