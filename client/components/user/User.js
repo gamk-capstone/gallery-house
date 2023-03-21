@@ -6,6 +6,10 @@ import {
 import { Link, useParams } from "react-router-dom";
 import { selectUserObject } from "../auth/authSlice";
 
+/**
+ * `User` component 
+ * @returns user's saved walls
+ */
 const User = () => {
   const dispatch = useDispatch();
   const { userId } = useParams();
