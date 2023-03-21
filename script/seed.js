@@ -120,31 +120,26 @@ async function seed() {
         name: l.title,
         imageUrl: l.images[0].url_fullxfull,
         purchaseUrl: l.url,
-        // colors: [[l.images[0].hue, l.images[0].saturation, l.images[0].brightness]]
       }));
       const result1 = data1.data.results.map((l) => ({
         name: l.title,
         imageUrl: l.images[0].url_fullxfull,
         purchaseUrl: l.url,
-        // colors: [[l.images[0].hue, l.images[0].saturation, l.images[0].brightness]]
       }));
       const result2 = data2.data.results.map((l) => ({
         name: l.title,
         imageUrl: l.images[0].url_fullxfull,
         purchaseUrl: l.url,
-        // colors: [[l.images[0].hue, l.images[0].saturation, l.images[0].brightness]]
       }));
       const result3 = data3.data.results.map((l) => ({
         name: l.title,
         imageUrl: l.images[0].url_fullxfull,
         purchaseUrl: l.url,
-        // colors: [[l.images[0].hue, l.images[0].saturation, l.images[0].brightness]]
       }));
       const result4 = data4.data.results.map((l) => ({
         name: l.title,
         imageUrl: l.images[0].url_fullxfull,
         purchaseUrl: l.url,
-        // colors: [[l.images[0].hue, l.images[0].saturation, l.images[0].brightness]]
       }));
 
       const final_result = [
