@@ -1,4 +1,8 @@
-body {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* body {
   font-family: sans-serif;
 }
 
@@ -133,4 +137,4 @@ form div {
 .active,
 .dot:hover {
   background-color: #717171;
-}
+} */

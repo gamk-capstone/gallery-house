@@ -1,19 +1,22 @@
 import React from "react";
+import LandscapeRectangleExtraWideFrame from "../frames/LandscapeRectangleExtraWideFrame";
+import PortraitRectangleFrame from "../frames/PortraitRectangleFrame";
+import SquareLargeFrame from "../frames/SquareLargeFrame";
 
 const EightImageGalleryWall = () => {
   return (
-    <div className="EightImageWallParentDiv">
-      <div className="EightImageWallTop">
-        <img src="/white.jpeg" className="landscapeRectangleExtraWide" />
-        <img src="/white.jpeg" className="squareLarge" />
-        <img src="/white.jpeg" className="portraitRectangle" />
-        <img src="/white.jpeg" className="landscapeRectangleExtraWide" />
+    <div className="flex justify-center flex-col gap-4">
+      <div className="flex justify-center flex-row items-end gap-4">
+        <LandscapeRectangleExtraWideFrame />
+        <SquareLargeFrame />
+        <PortraitRectangleFrame />
+        <LandscapeRectangleExtraWideFrame />
       </div>
-      <div className="EightImageWallBottom">
-        <img src="/white.jpeg" className="landscapeRectangleExtraWide" />
-        <img src="/white.jpeg" className="portraitRectangle" />
-        <img src="/white.jpeg" className="squareLarge" />
-        <img src="/white.jpeg" className="landscapeRectangleExtraWide" />
+      <div className="flex justify-center flex-row items-start gap-4">
+        <LandscapeRectangleExtraWideFrame />
+        <PortraitRectangleFrame />
+        <SquareLargeFrame />
+        <LandscapeRectangleExtraWideFrame />
       </div>
     </div>
   );
