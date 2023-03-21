@@ -1,11 +1,12 @@
 "use strict";
 const axios = require("axios");
-const chalk = require('chalk');
+const chalk = require("chalk");
 
 const {
   db,
   models: { User, Art, Wall, ArtOnWall },
 } = require("../server/db");
+const getMainColors = require("../server/get-images");
 
 /**
  * seed - this function clears the database, updates tables to
@@ -148,14 +149,43 @@ async function seed() {
         ...result3,
         ...result4,
       ];
+
       return final_result;
     } catch (error) {
       console.log(error);
     }
   };
+
   const art = await getListingsByListingIds();
+  const art1 = art.slice(0, 100);
+  const art2 = art.slice(101, 201);
+  const art3 = art.slice(201, 301);
+  const art4 = art.slice(301, 401);
+  const art5 = art.slice(401, 501);
+
+  const assignColors = async () => {
+    for (let i = 0; i<=art1.length - 1; i++){
+      art1[i].colors = await getMainColors(art1[i].imageUrl);
+    }
+    for (let i = 0; i<=art2.length - 1; i++){
+      art2[i].colors = await getMainColors(art2[i].imageUrl);
+    }
+    for (let i = 0; i<=art3.length - 1; i++){
+      art3[i].colors = await getMainColors(art3[i].imageUrl);
+    }
+    for (let i = 0; i<=art4.length - 1; i++){
+      art4[i].colors = await getMainColors(art4[i].imageUrl);
+    }
+    for (let i = 0; i<=art5.length - 1; i++){
+      art5[i].colors = await getMainColors(art5[i].imageUrl);
+    }
+    return;
+  };
+
+  await assignColors();
 
   //Creating instances of Art Model from Esty shop 17721959. Note: We can easily change the shop(s) we're featuring in our db.
+  
   const loadArt = await Promise.all(art.map((l) => Art.create(l)));
 
   //Creating Wall

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   selectUserWalls, fetchUserWallsAsync,
-} from "./UserSlice";
+} from "./userWallsSlice";
 import { Link, useParams } from "react-router-dom";
 import { selectUserObject } from "../auth/authSlice";
 
