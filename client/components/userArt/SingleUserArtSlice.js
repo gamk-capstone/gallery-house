@@ -1,7 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-
+/**
+ * `fetchSingleUserArtAsync` GETS data at /api/art/user/:id
+ */
 export const fetchSingleUserArtAsync = createAsyncThunk("fetchSingleUserArt", async (id) => {
   try {
     const { data } = await axios.get(`/api/art/user/${id}`);
@@ -11,6 +13,9 @@ export const fetchSingleUserArtAsync = createAsyncThunk("fetchSingleUserArt", as
   }
 });
 
+/**
+ * `updateSingleUserArtAsync` PUTS (updates) data at /api/art/user/:userArtInfo.id
+ */
 export const updateSingleUserArtAsync = createAsyncThunk("updateSingleUserArt", async (userArtInfo) => {
   try {
     const { data } = await axios.put(`/api/art/user/${userArtInfo.id}`,
