@@ -3,7 +3,11 @@ import LandscapeRectangleFrame from "../frames/LandscapeRectangleFrame";
 import SquareFrame from "../frames/SquareFrame";
 import PortraitRectangleFrame from "../frames/PortraitRectangleFrame";
 
-const FiveImageGalleryWall = () => {
+/**
+ * `FiveImgGalleryWall` component 
+ * @returns HTML for gallery wall comprised of five images
+ */
+const FiveImgGalleryWall = () => {
   return (
     <div className="flex justify-center flex-col gap-4">
       <div className="flex justify-center flex-row items-end gap-4">
@@ -18,4 +22,4 @@ const FiveImageGalleryWall = () => {
     </div>
   );
 };
-export default FiveImageGalleryWall;
+export default FiveImgGalleryWall;
