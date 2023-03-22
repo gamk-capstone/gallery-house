@@ -88,34 +88,50 @@ const GalleryWall = (props) => {
     }
   };
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-row gap-40">
       <div id="toolbarContainer" className="flex items-center">
-        <div id="toolbar" className="flex flex-col">
-          <div id="numberFramesSelection">
-            <label htmlFor="numberOfFrames">
-              Choose the number of photos for your gallery wall:
-            </label>
+        <div
+          id="toolbar"
+          className="flex flex-col bg-slate-300 p-4 max-w-[5rem] gap-4"
+        >
+          <div
+            id="numberFramesSelection"
+            className="flex flex-col justify-center gap-2"
+          >
+            <i className="material-icons text-2xl">filter_5</i>
+            <label htmlFor="numberOfFrames"></label>
             <select
               name="numberOfFrames"
               onChange={(e) => setSelectedNumPhotos(e.target.value)}
             >
+              <option value={5}>-</option>
               <option value={5}>5</option>
               <option value={6}>6</option>
               <option value={7}>7</option>
               <option value={8}>8</option>
             </select>
           </div>
-          <div id="furnitureSelection">
-            <label htmlFor="furnitureSelection">Choose your furniture:</label>
+          <hr></hr>
+          <div
+            id="furnitureSelection"
+            className="flex flex-col justify-center gap-2"
+          >
+            <i className="material-icons">chair</i>
+            <label htmlFor="furnitureSelection"></label>
             <select
               name="furnitureSelection"
               onChange={(e) => setSelectedSofa(e.target.value)}
             >
+              <option value="sofaBeigeRounded">-</option>
               <option value="sofaBeigeRounded">Sofa Beige Rounded</option>
               <option value="sofaTealVelvet">
                 Mid Century Modern Velevet Sofa
               </option>
             </select>
+          </div>
+          <hr></hr>
+          <div id="photoUpload">
+            <i className="material-icons">add_a_photo</i>
           </div>
         </div>
       </div>
