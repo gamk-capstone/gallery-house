@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const fetchEtsyImages = createAsyncThunk("updateEmptyFrameCount", async (searchParams) => {
+export const fetchEtsyImages = createAsyncThunk("fetchEtsyImages", async (searchParams) => {
   try {
     const { data } = await axios.get(`/api/art/etsyArt/${searchParams.hueNum}/${searchParams.limit}`
     );

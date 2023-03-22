@@ -27,9 +27,10 @@ const GalleryWall = () => {
 
   console.log(`galleryWallFrames`, filledFrames);
 
-  const fillFrames = () => {
+  const fillFrames = async (e) => {
+    e.preventDefault();
     const total = selectedNumPhotos - filledFrames;
-    const images = dispatch(fetchEtsyImages({ limit: total, hueNum: 200}));
+    const images = await dispatch(fetchEtsyImages({ limit: total, hueNum: 200}));
     console.log("images from thunk", images);
   };
 
@@ -186,7 +187,7 @@ const GalleryWall = () => {
         {getNumberForLayout()}
         {getSofaForLayout()}
         <div id="userArtStuff">
-          <button onClick={fillFrames()}>Generate Art</button>
+          <button onClick={(e)=>fillFrames(e)}>Generate Art</button>
           <MyArt ref={myArtStateRef} />
           <button onClick={() => getMyArtState()}>Select Frame</button>
           <div>
