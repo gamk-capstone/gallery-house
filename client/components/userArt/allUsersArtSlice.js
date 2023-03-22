@@ -4,9 +4,9 @@ import axios from "axios";
 /**
  * `fetchUserArtAsync` GETS data at /api/art/user
  */
-export const fetchUserArtAsync = createAsyncThunk("fetchUserArt", async () => {
+export const fetchUserArtAsync = createAsyncThunk("fetchUserArt", async (id) => {
   try {
-    const { data } = await axios.get("/api/art/user");
+    const { data } = await axios.get(`/api/art/user/all/${id}`);
     return data;
   } catch (err) {
     next(err);
@@ -50,7 +50,7 @@ export const deleteUserArtAsync = createAsyncThunk(
         return action.payload;
       });
       builder.addCase(createUserArtAsync.fulfilled, (state, action) => {
-        return action.payload;
+        state.push(action.payload);
       });
       builder.addCase(deleteUserArtAsync.fulfilled, (state, action) => {
         return {};
@@ -58,6 +58,6 @@ export const deleteUserArtAsync = createAsyncThunk(
     }
   });
 
-  export const selectUserArt = (state) => state.userArt;
+  export const selectUserArt = (state) => state.usersArt;
 
   export default allUsersArtSlice.reducer;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import AWS from "aws-sdk";
 import { useDispatch } from "react-redux";
@@ -10,12 +10,13 @@ import SixImgGalleryWall from "./SixImgGalleryWall";
 import SevenImgGalleryWall from "./SevenImgGalleryWall";
 import EightImgGalleryWall from "./EightImgGalleryWall";
 
-const GalleryWall = (props) => {
-  const username = useSelector((state) => state.auth.me.username);
+const GalleryWall = () => {
+  const { id } = useSelector((state) => state.auth.me);
   const dispatch = useDispatch();
   const s3 = new AWS.S3();
   const [imageUrl, setImageUrl] = useState(null);
   const [file, setFile] = useState([]);
+  const myArtStateRef = useRef();
 
   AWS.config.update({
     accessKeyId: accessKey,
@@ -34,20 +35,24 @@ const GalleryWall = (props) => {
       Body: file,
     };
     const { Location } = await s3.upload(params).promise();
-    setImageUrl(Location);
     console.log("uploading to s3", Location);
 
-    //dispatch thunk to create new UserArt object in our local db
     dispatch(
       createUserArtAsync({
         name: file.name,
         s3Url: Location,
+        userId: id,
       })
     );
   };
 
   const fileSelectedHandler = (event) => {
     setFile(event.target.files[0]);
+  };
+
+  const getMyArtState = () => {
+    const myArtState = myArtStateRef.current.getImgUrl();
+    setImageUrl(myArtState);
   };
 
   // local state to keep track of the number of frames to render according to user selction
@@ -59,16 +64,16 @@ const GalleryWall = (props) => {
   const getNumberForLayout = () => {
     switch (selectedNumPhotos) {
       case "5":
-        return <FiveImgGalleryWall />;
+        return <FiveImgGalleryWall userArtUrl={imageUrl} />;
         break;
       case "6":
-        return <SixImgGalleryWall />;
+        return <SixImgGalleryWall userArtUrl={imageUrl} />;
         break;
       case "7":
-        return <SevenImgGalleryWall />;
+        return <SevenImgGalleryWall userArtUrl={imageUrl} />;
         break;
       case "8":
-        return <EightImgGalleryWall />;
+        return <EightImgGalleryWall userArtUrl={imageUrl} />;
     }
   };
 
@@ -88,7 +93,7 @@ const GalleryWall = (props) => {
     }
   };
   return (
-    <div className="flex flex-row gap-40">
+    <div className="flex flex-col items-center gap-8">
       <div id="toolbarContainer" className="flex items-center">
         <div
           id="toolbar"
@@ -135,27 +140,24 @@ const GalleryWall = (props) => {
           </div>
         </div>
       </div>
+      {getNumberForLayout()}
+      {getSofaForLayout()}
 
-      <div
-        id="framesAndFurnitureContainer"
-        className="flex flex-col items-center gap-8"
-      >
-        {getNumberForLayout()}
-        {getSofaForLayout()}
-        <div></div>
-        <div>
-          <input type="file" accept="image/*" onChange={fileSelectedHandler} />
-          {file && (
-            <div style={{ marginTop: "10px" }}>
-              <button onClick={uploadToS3}>Upload</button>
-            </div>
-          )}
-          {imageUrl && (
-            <div style={{ marginTop: "10px" }}>
-              <img src={imageUrl} alt="uploaded" />
-            </div>
-          )}
-        </div>
+      <div></div>
+      <MyArt ref={myArtStateRef} />
+      <button onClick={() => getMyArtState()}>Select Frame</button>
+      <div>
+        <input type="file" accept="image/*" onChange={fileSelectedHandler} />
+        {file && (
+          <div style={{ marginTop: "10px" }}>
+            <button onClick={uploadToS3}>Upload</button>
+          </div>
+        )}
+        {imageUrl && (
+          <div style={{ marginTop: "10px" }}>
+            <img src={imageUrl} alt="uploaded" />
+          </div>
+        )}
       </div>
     </div>
   );
