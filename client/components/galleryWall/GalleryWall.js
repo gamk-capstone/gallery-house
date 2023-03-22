@@ -17,7 +17,19 @@ const GalleryWall = () => {
   const s3 = new AWS.S3();
   const [imageUrl, setImageUrl] = useState(null);
   const [file, setFile] = useState([]);
+  const [filledFrames, setFilledFrames] = useState(0);
   const myArtStateRef = useRef();
+
+  //use state in gallery wall to determine the amount of total frames
+  //create function that subtracts filled frames from total frames
+  //dispatch that number to thunk that generates etsy images
+
+  console.log(`galleryWallFrames`, filledFrames);
+
+  const getTotalFramesToFill = () => {
+    const total = (selectedNumPhotos - filledFrames)
+    console.log(total);
+  };
 
   AWS.config.update({
     accessKeyId: accessKey,
@@ -65,16 +77,16 @@ const GalleryWall = () => {
   const getNumberForLayout = () => {
     switch (selectedNumPhotos) {
       case "5":
-        return <FiveImgGalleryWall userArtUrl={imageUrl} />;
+        return <FiveImgGalleryWall userArtUrl={imageUrl} filledFrames={ filledFrames } setFilledFrames={ setFilledFrames }/>;
         break;
       case "6":
-        return <SixImgGalleryWall userArtUrl={imageUrl} />;
+        return <SixImgGalleryWall  userArtUrl={imageUrl} filledFrames={ filledFrames } setFilledFrames={ setFilledFrames }/>;
         break;
       case "7":
-        return <SevenImgGalleryWall userArtUrl={imageUrl} />;
+        return <SevenImgGalleryWall  userArtUrl={imageUrl} filledFrames={ filledFrames } setFilledFrames={ setFilledFrames }/>;
         break;
       case "8":
-        return <EightImgGalleryWall userArtUrl={imageUrl} />;
+        return <EightImgGalleryWall  userArtUrl={imageUrl} filledFrames={ filledFrames } setFilledFrames={ setFilledFrames }/>;
     }
   };
 
@@ -148,6 +160,7 @@ const GalleryWall = () => {
         {getNumberForLayout()}
         {getSofaForLayout()}
         <div id="userArtStuff">
+          <button onClick={getTotalFramesToFill()}>Generate Art</button>
           <MyArt ref={myArtStateRef} />
           <button onClick={() => getMyArtState()}>Select Frame</button>
           <div>
@@ -159,11 +172,6 @@ const GalleryWall = () => {
             {file && (
               <div style={{ marginTop: "10px" }}>
                 <button onClick={uploadToS3}>Upload</button>
-              </div>
-            )}
-            {imageUrl && (
-              <div style={{ marginTop: "10px" }}>
-                <img src={imageUrl} alt="uploaded" />
               </div>
             )}
           </div>
