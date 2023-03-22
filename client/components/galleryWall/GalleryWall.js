@@ -9,7 +9,6 @@ import FiveImgGalleryWall from "./FiveImgGalleryWall";
 import SixImgGalleryWall from "./SixImgGalleryWall";
 import SevenImgGalleryWall from "./SevenImgGalleryWall";
 import EightImgGalleryWall from "./EightImgGalleryWall";
-import Sofa from "./Sofa";
 
 const GalleryWall = (props) => {
   const username = useSelector((state) => state.auth.me.username);
@@ -90,46 +89,34 @@ const GalleryWall = (props) => {
   };
   return (
     <div className="flex flex-row">
-      <div id="toolbarContainer" className="flex flex-col">
-        <div id="numberFramesSelection">
-          <label htmlFor="numberOfFrames">
-            Choose the number of photos for your gallery wall:
-          </label>
-          <select
-            name="numberOfFrames"
-            onChange={(e) => setSelectedNumPhotos(e.target.value)}
-          >
-            <option value={5}>5</option>
-            <option value={6}>6</option>
-            <option value={7}>7</option>
-            <option value={8}>8</option>
-          </select>
-        </div>
-        <div id="furnitureSelection">
-          <label htmlFor="furnitureSelection">Choose your furniture:</label>
-          <select
-            name="furnitureSelection"
-            onChange={(e) => setSelectedSofa(e.target.value)}
-          >
-            <option value="sofaBeigeRounded">Sofa Beige Rounded</option>
-            <option value="sofaTealVelvet">
-              Mid Century Modern Velevet Sofa
-            </option>
-          </select>
-          {/* <label htmlFor="sofaBeigeRounded">Sofa Beige Rounded</label>
-          <input
-            type="radio"
-            onChange={() => setSelectedSofa("sofaBeigeRounded")}
-            checked={selectedSofa === "sofaBeigeRounded"}
-          />
-          <label htmlFor="sofaTealVelvet">
-            Mid Century Modern Velevet Sofa
-          </label>
-          <input
-            type="radio"
-            onChange={() => setSelectedSofa("sofaTealVelvet")}
-            checked={selectedSofa === "sofaTealVelvet"}
-          /> */}
+      <div id="toolbarContainer" className="flex items-center">
+        <div id="toolbar" className="flex flex-col">
+          <div id="numberFramesSelection">
+            <label htmlFor="numberOfFrames">
+              Choose the number of photos for your gallery wall:
+            </label>
+            <select
+              name="numberOfFrames"
+              onChange={(e) => setSelectedNumPhotos(e.target.value)}
+            >
+              <option value={5}>5</option>
+              <option value={6}>6</option>
+              <option value={7}>7</option>
+              <option value={8}>8</option>
+            </select>
+          </div>
+          <div id="furnitureSelection">
+            <label htmlFor="furnitureSelection">Choose your furniture:</label>
+            <select
+              name="furnitureSelection"
+              onChange={(e) => setSelectedSofa(e.target.value)}
+            >
+              <option value="sofaBeigeRounded">Sofa Beige Rounded</option>
+              <option value="sofaTealVelvet">
+                Mid Century Modern Velevet Sofa
+              </option>
+            </select>
+          </div>
         </div>
       </div>
 
