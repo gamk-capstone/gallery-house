@@ -10,6 +10,7 @@ import SixImgGalleryWall from "./SixImgGalleryWall";
 import SevenImgGalleryWall from "./SevenImgGalleryWall";
 import EightImgGalleryWall from "./EightImgGalleryWall";
 import MyArt from "../myArt/MyArt";
+import { fetchEtsyImages } from "./galleryWallSlice";
 
 const GalleryWall = () => {
   const { id } = useSelector((state) => state.auth.me);
@@ -26,9 +27,11 @@ const GalleryWall = () => {
 
   console.log(`galleryWallFrames`, filledFrames);
 
-  const getTotalFramesToFill = () => {
-    const total = (selectedNumPhotos - filledFrames)
-    console.log(total);
+  const fillFrames = async (e) => {
+    e.preventDefault();
+    const total = selectedNumPhotos - filledFrames;
+    const images = await dispatch(fetchEtsyImages({ limit: total, hueNum: 200}));
+    console.log("images from thunk", images);
   };
 
   AWS.config.update({
@@ -77,16 +80,40 @@ const GalleryWall = () => {
   const getNumberForLayout = () => {
     switch (selectedNumPhotos) {
       case "5":
-        return <FiveImgGalleryWall userArtUrl={imageUrl} filledFrames={ filledFrames } setFilledFrames={ setFilledFrames }/>;
+        return (
+          <FiveImgGalleryWall
+            userArtUrl={imageUrl}
+            filledFrames={filledFrames}
+            setFilledFrames={setFilledFrames}
+          />
+        );
         break;
       case "6":
-        return <SixImgGalleryWall  userArtUrl={imageUrl} filledFrames={ filledFrames } setFilledFrames={ setFilledFrames }/>;
+        return (
+          <SixImgGalleryWall
+            userArtUrl={imageUrl}
+            filledFrames={filledFrames}
+            setFilledFrames={setFilledFrames}
+          />
+        );
         break;
       case "7":
-        return <SevenImgGalleryWall  userArtUrl={imageUrl} filledFrames={ filledFrames } setFilledFrames={ setFilledFrames }/>;
+        return (
+          <SevenImgGalleryWall
+            userArtUrl={imageUrl}
+            filledFrames={filledFrames}
+            setFilledFrames={setFilledFrames}
+          />
+        );
         break;
       case "8":
-        return <EightImgGalleryWall  userArtUrl={imageUrl} filledFrames={ filledFrames } setFilledFrames={ setFilledFrames }/>;
+        return (
+          <EightImgGalleryWall
+            userArtUrl={imageUrl}
+            filledFrames={filledFrames}
+            setFilledFrames={setFilledFrames}
+          />
+        );
     }
   };
 
@@ -120,7 +147,10 @@ const GalleryWall = () => {
             <label htmlFor="numberOfFrames"></label>
             <select
               name="numberOfFrames"
-              onChange={(e) => setSelectedNumPhotos(e.target.value)}
+              onChange={(e) => {
+                setSelectedNumPhotos(e.target.value)
+                setFilledFrames(0)
+              }}
             >
               <option value={5}>-</option>
               <option value={5}>5</option>
@@ -160,7 +190,7 @@ const GalleryWall = () => {
         {getNumberForLayout()}
         {getSofaForLayout()}
         <div id="userArtStuff">
-          <button onClick={getTotalFramesToFill()}>Generate Art</button>
+          <button onClick={(e)=>fillFrames(e)}>Generate Art</button>
           <MyArt ref={myArtStateRef} />
           <button onClick={() => getMyArtState()}>Select Frame</button>
           <div>

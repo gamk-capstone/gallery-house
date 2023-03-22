@@ -39,7 +39,6 @@ const Navbar = () => {
           <div className="flex flex-row justify-center gap-4">
             {/* The navbar will show these links before a user logs in and when a user logs out */}
             <Link to="/home">Gallery House</Link>
-            <Link to="/create">Create</Link>
             <Link to="/login">Login</Link>
             <Link to="/signup">Sign Up</Link>
           </div>
