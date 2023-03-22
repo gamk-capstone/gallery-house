@@ -174,11 +174,6 @@ const GalleryWall = () => {
                 <button onClick={uploadToS3}>Upload</button>
               </div>
             )}
-            {imageUrl && (
-              <div style={{ marginTop: "10px" }}>
-                <img src={imageUrl} alt="uploaded" />
-              </div>
-            )}
           </div>
         </div>
       </div>
