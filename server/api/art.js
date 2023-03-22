@@ -5,6 +5,30 @@ const {
 const getMainColors = require("../get-images");
 module.exports = router;
 
+//route at /api/art GETS all instances of Art model
+router.get("/*", async (req, res, next) => {
+  try {
+    const estyArt = await Art.findAll();
+    res.json(estyArt);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// //route at /api/art/:num GETS :num instances of Art model whose colors are complimentary to UserArt
+// router.get("/5", async (req, res, next) => {
+//   try {
+//     const estyArtByColor = await Art.findAll({
+//       where: {
+//         [colors[0]]: 200 
+//       },
+//     });
+//     res.json(estyArtByColor);
+//   } catch (err) {
+//     next(err);
+//   }
+// });
+
 //route for getting all userArt of one user
 router.get("/user/all/:id", async (req, res, next) => {
   try {
@@ -17,7 +41,7 @@ router.get("/user/all/:id", async (req, res, next) => {
   }
 });
 
-//route /api/user/:id GETS just one instance of UserArt based on its primary key
+//route /api/art/user/:id GETS just one instance of UserArt based on its primary key
 router.get("/user/:id", async (req, res, next) => {
   try {
     const userArt = await UserArt.findByPk(req.params.id);
@@ -27,7 +51,7 @@ router.get("/user/:id", async (req, res, next) => {
   }
 });
 
-//route at /api/user/:id DELETES a single UserArt
+//route at /api/art/user/:id DELETES a single UserArt
 router.delete("/user/:id", async (req, res, next) => {
   try {
     const userArt = await UserArt.findByPk(req.params.id);
@@ -37,7 +61,7 @@ router.delete("/user/:id", async (req, res, next) => {
   }
 });
 
-//route at /api/user POSTS new instance of UserArt
+//route at /api/art/user POSTS new instance of UserArt
 router.post("/user", async (req, res, next) => {
   try {
     const complimentaryColor = (hslArr) => {
