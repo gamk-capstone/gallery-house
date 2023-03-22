@@ -9,6 +9,7 @@ import FiveImgGalleryWall from "./FiveImgGalleryWall";
 import SixImgGalleryWall from "./SixImgGalleryWall";
 import SevenImgGalleryWall from "./SevenImgGalleryWall";
 import EightImgGalleryWall from "./EightImgGalleryWall";
+import MyArt from "../myArt/MyArt";
 
 const GalleryWall = () => {
   const { id } = useSelector((state) => state.auth.me);
@@ -93,7 +94,7 @@ const GalleryWall = () => {
     }
   };
   return (
-    <div className="flex flex-col items-center gap-8">
+    <div className="flex flex-row gap-40">
       <div id="toolbarContainer" className="flex items-center">
         <div
           id="toolbar"
@@ -140,24 +141,33 @@ const GalleryWall = () => {
           </div>
         </div>
       </div>
-      {getNumberForLayout()}
-      {getSofaForLayout()}
-
-      <div></div>
-      <MyArt ref={myArtStateRef} />
-      <button onClick={() => getMyArtState()}>Select Frame</button>
-      <div>
-        <input type="file" accept="image/*" onChange={fileSelectedHandler} />
-        {file && (
-          <div style={{ marginTop: "10px" }}>
-            <button onClick={uploadToS3}>Upload</button>
+      <div
+        id="frameAndFurnitureContainer"
+        className="flex flex-col justify-center"
+      >
+        {getNumberForLayout()}
+        {getSofaForLayout()}
+        <div id="userArtStuff">
+          <MyArt ref={myArtStateRef} />
+          <button onClick={() => getMyArtState()}>Select Frame</button>
+          <div>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={fileSelectedHandler}
+            />
+            {file && (
+              <div style={{ marginTop: "10px" }}>
+                <button onClick={uploadToS3}>Upload</button>
+              </div>
+            )}
+            {imageUrl && (
+              <div style={{ marginTop: "10px" }}>
+                <img src={imageUrl} alt="uploaded" />
+              </div>
+            )}
           </div>
-        )}
-        {imageUrl && (
-          <div style={{ marginTop: "10px" }}>
-            <img src={imageUrl} alt="uploaded" />
-          </div>
-        )}
+        </div>
       </div>
     </div>
   );
