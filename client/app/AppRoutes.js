@@ -54,8 +54,6 @@ const AppRoutes = () => {
             path="/signup"
             element={<AuthForm name="signup" displayName="Sign Up" />}
           />
-          {/* The /create route brings a user to the `AuthForm` component (method signup) */}
-          <Route path="/create" element={<GalleryWall />} />
         </Routes>
       )}
     </div>
