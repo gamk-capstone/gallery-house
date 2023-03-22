@@ -18,7 +18,14 @@ const GalleryWall = () => {
   const s3 = new AWS.S3();
   const [imageUrl, setImageUrl] = useState(null);
   const [file, setFile] = useState([]);
+  const [filledFrames, setFilledFrames] = useState(0);
   const myArtStateRef = useRef();
+
+  //use state in gallery wall to determine the amount of total frames
+  //create function that subtracts filled frames from total frames
+  //dispatch that number to thunk that generates etsy images
+
+  console.log(`galleryWallFrames`, filledFrames);
 
   AWS.config.update({
     accessKeyId: accessKey,
@@ -61,16 +68,16 @@ const GalleryWall = () => {
   const getNumberForLayout = () => {
     switch (selectedNumPhotos) {
       case "5":
-        return <FiveImgGalleryWall userArtUrl={imageUrl}/>;
+        return <FiveImgGalleryWall userArtUrl={imageUrl} filledFrames={ filledFrames } setFilledFrames={ setFilledFrames }/>;
         break;
       case "6":
-        return <SixImgGalleryWall  userArtUrl={imageUrl}/>;
+        return <SixImgGalleryWall  userArtUrl={imageUrl} filledFrames={ filledFrames } setFilledFrames={ setFilledFrames }/>;
         break;
       case "7":
-        return <SevenImgGalleryWall  userArtUrl={imageUrl}/>;
+        return <SevenImgGalleryWall  userArtUrl={imageUrl} filledFrames={ filledFrames } setFilledFrames={ setFilledFrames }/>;
         break;
       case "8":
-        return <EightImgGalleryWall  userArtUrl={imageUrl}/>;
+        return <EightImgGalleryWall  userArtUrl={imageUrl} filledFrames={ filledFrames } setFilledFrames={ setFilledFrames }/>;
     }
   };
 
