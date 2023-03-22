@@ -25,6 +25,16 @@ router.get("/user/:id", async (req, res, next) => {
   }
 });
 
+//route at /api/user/:id DELETES a single UserArt
+router.delete("/user/:id", async (req, res, next) => {
+  try {
+    const userArt = await UserArt.findByPk(req.params.id);
+    res.json(userArt);
+  } catch (err) {
+    next(err);
+  }
+});
+
 //route at /api/user POSTS new instance of UserArt
 router.post("/user", async (req, res, next) => {
   try {
