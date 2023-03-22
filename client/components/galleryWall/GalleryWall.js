@@ -147,7 +147,10 @@ const GalleryWall = () => {
             <label htmlFor="numberOfFrames"></label>
             <select
               name="numberOfFrames"
-              onChange={(e) => setSelectedNumPhotos(e.target.value)}
+              onChange={(e) => {
+                setSelectedNumPhotos(e.target.value)
+                setFilledFrames(0)
+              }}
             >
               <option value={5}>-</option>
               <option value={5}>5</option>
