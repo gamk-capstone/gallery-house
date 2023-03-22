@@ -128,26 +128,31 @@ async function seed() {
         name: l.title,
         imageUrl: l.images[0].url_fullxfull,
         purchaseUrl: l.url,
+        colors: [[0]],
       }));
       const result1 = data1.data.results.map((l) => ({
         name: l.title,
         imageUrl: l.images[0].url_fullxfull,
         purchaseUrl: l.url,
+        colors: [[0]],
       }));
       const result2 = data2.data.results.map((l) => ({
         name: l.title,
         imageUrl: l.images[0].url_fullxfull,
         purchaseUrl: l.url,
+        colors: [[0]],
       }));
       const result3 = data3.data.results.map((l) => ({
         name: l.title,
         imageUrl: l.images[0].url_fullxfull,
         purchaseUrl: l.url,
+        colors: [[0]],
       }));
       const result4 = data4.data.results.map((l) => ({
         name: l.title,
         imageUrl: l.images[0].url_fullxfull,
         purchaseUrl: l.url,
+        colors: [[0]],
       }));
 
       const final_result = [
@@ -157,6 +162,7 @@ async function seed() {
         ...result3,
         ...result4,
       ];
+
 
       return final_result;
     } catch (error) {
@@ -171,31 +177,31 @@ async function seed() {
   const art4 = art.slice(301, 401);
   const art5 = art.slice(401, 501);
 
-  /**
+    /**
    * `getEstyImagesMainColors` uses a callback function `getMainColors` (from /server/get-images.js) to retrieve the four main
    * colors of each image in our db. The colors are stored according to their HSL value (Hue, Saturation, and Lumousity).
    * @returns the `colors` column of art table populated with data
    */
-  const getEstyImagesMainColors = async () => {
-    for (let i = 0; i <= art1.length - 1; i++) {
-      art1[i].colors = await getMainColors(art1[i].imageUrl);
-    }
-    for (let i = 0; i <= art2.length - 1; i++) {
-      art2[i].colors = await getMainColors(art2[i].imageUrl);
-    }
-    for (let i = 0; i <= art3.length - 1; i++) {
-      art3[i].colors = await getMainColors(art3[i].imageUrl);
-    }
-    for (let i = 0; i <= art4.length - 1; i++) {
-      art4[i].colors = await getMainColors(art4[i].imageUrl);
-    }
-    for (let i = 0; i <= art5.length - 1; i++) {
-      art5[i].colors = await getMainColors(art5[i].imageUrl);
-    }
-    return;
-  };
+    const getEstyImagesMainColors = async () => {
+      for (let i = 0; i <= art1.length - 1; i++) {
+        art1[i].colors = await getMainColors(art1[i].imageUrl);
+      }
+      for (let i = 0; i <= art2.length - 1; i++) {
+        art2[i].colors = await getMainColors(art2[i].imageUrl);
+      }
+      for (let i = 0; i <= art3.length - 1; i++) {
+        art3[i].colors = await getMainColors(art3[i].imageUrl);
+      }
+      for (let i = 0; i <= art4.length - 1; i++) {
+        art4[i].colors = await getMainColors(art4[i].imageUrl);
+      }
+      for (let i = 0; i <= art5.length - 1; i++) {
+        art5[i].colors = await getMainColors(art5[i].imageUrl);
+      }
+      return;
+    };
 
-  await getEstyImagesMainColors();
+    await getEstyImagesMainColors();
 
   //Finally, create instances of Art model using manipulated data retrieved from Esty's (v3) open API.
   const loadArt = await Promise.all(art.map((l) => Art.create(l)));

@@ -4,9 +4,11 @@ const {
 } = require("../db");
 const getMainColors = require("../get-images");
 module.exports = router;
+const { Op } = require("sequelize");
+const sequelize = require('sequelize');
 
 //route at /api/art GETS all instances of Art model
-router.get("/*", async (req, res, next) => {
+router.get("/etsyArt", async (req, res, next) => {
   try {
     const estyArt = await Art.findAll();
     res.json(estyArt);
@@ -15,25 +17,33 @@ router.get("/*", async (req, res, next) => {
   }
 });
 
-// //route at /api/art/:num GETS :num instances of Art model whose colors are complimentary to UserArt
-// router.get("/5", async (req, res, next) => {
-//   try {
-//     const estyArtByColor = await Art.findAll({
-//       where: {
-//         [colors[0]]: 200 
-//       },
-//     });
-//     res.json(estyArtByColor);
-//   } catch (err) {
-//     next(err);
-//   }
-// });
+//route at /api/art/:hueNum GETS instances of Art model, one of who's 4 main colors have hue greater than 200
+//the findAndCountAll method returns an object with two properties:
+    // count - an integer - the total number records matching the query
+    // rows - an array of objects - the obtained records
+router.get("/etsyArt/200", async (req, res, next) => {
+  try {
+    const estyArtByColor = await Art.findAndCountAll({
+      where: {
+        colors: {
+          [Op.gt]: [[200]], //this looks for any colors whose hue number is greater than 200
+        }
+      },
+      limit: 4, //this is where we can pass down the number of frames to get the right number of images
+      order: sequelize.fn('RANDOM'), //returns data in random order on each call
+    });
+    console.log(estyArtByColor);
+    res.json(estyArtByColor);
+  } catch (err) {
+    next(err);
+  }
+});
 
 //route for getting all userArt of one user
 router.get("/user/all/:id", async (req, res, next) => {
   try {
     const userArt = await UserArt.findAll({
-      where: { userId: req.params.id }
+      where: { userId: req.params.id },
     });
     res.json(userArt);
   } catch (err) {
@@ -81,7 +91,7 @@ router.post("/user", async (req, res, next) => {
 
     req.body.mainColors = hslColors;
     req.body.complimentaryColor = compColor;
-    
+
     res.status(201).send(await UserArt.create(req.body));
   } catch (err) {
     next(err);
