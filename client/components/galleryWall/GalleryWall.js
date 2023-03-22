@@ -26,6 +26,11 @@ const GalleryWall = () => {
 
   console.log(`galleryWallFrames`, filledFrames);
 
+  const getTotalFramesToFill = () => {
+    const total = (selectedNumPhotos - filledFrames)
+    console.log(total);
+  };
+
   AWS.config.update({
     accessKeyId: accessKey,
     secretAccessKey: secretKey,
@@ -155,6 +160,7 @@ const GalleryWall = () => {
         {getNumberForLayout()}
         {getSofaForLayout()}
         <div id="userArtStuff">
+          <button onClick={getTotalFramesToFill()}>Generate Art</button>
           <MyArt ref={myArtStateRef} />
           <button onClick={() => getMyArtState()}>Select Frame</button>
           <div>
