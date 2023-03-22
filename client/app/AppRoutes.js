@@ -7,6 +7,7 @@ import Home from "../components/home/Home";
 import GalleryWall from "../components/galleryWall/GalleryWall";
 import SavedWall from "../components/savedWall/SavedWall";
 import User from "../components/user/User";
+import Toolbar from "../components/toolbar/Toolbar";
 /**
  * The `AppRoutes` component defines the routes in Gallery House, based on whether a user is logged in or not.
  */
@@ -54,6 +55,7 @@ const AppRoutes = () => {
             path="/signup"
             element={<AuthForm name="signup" displayName="Sign Up" />}
           />
+          <Route path="/toolbartest" element={<Toolbar />} />
         </Routes>
       )}
     </div>
