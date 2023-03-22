@@ -1,6 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+/**
+ * This is where we keep all the state details for our userSavedWalls.
+ */
 
 //Get user saved wall
 export const fetchUserWallsAsync = createAsyncThunk("fetchUserWalls", async () => {

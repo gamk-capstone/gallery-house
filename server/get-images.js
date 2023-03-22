@@ -1,5 +1,10 @@
 const getColors = require("get-image-colors");
 
+/**
+ * `getMainColors` takes an imageUrl and returns the hsl values of the image's four main colors.
+ * @param {*} imageUrl 
+ * @returns an array of arrays containing the hsl values of the given image's fourt main colors
+ */
 const getMainColors = async (imageUrl) => {
   const options = {
     count: 4,

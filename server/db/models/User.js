@@ -7,6 +7,11 @@ const bcrypt = require('bcrypt');
 const SALT_ROUNDS = 5;
 const JWT = process.env.JWT;
 
+/**
+ * `User` model has columns `username` and `password`
+ * username [string] - must be unique and cannot be null
+ * password [string]
+ */
 const User = db.define('user', {
   username: {
     type: Sequelize.STRING,
@@ -21,19 +26,20 @@ const User = db.define('user', {
 module.exports = User;
 
 /**
- * instanceMethods
+ * instanceMethods on `User` model
  */
 User.prototype.correctPassword = function(candidatePwd) {
-  //we need to compare the plain version to an encrypted version of the password
+  //Compare the plain version to an encrypted version of the password
   return bcrypt.compare(candidatePwd, this.password);
 }
 
 User.prototype.generateToken = function() {
+  //Generate the token with .sign method
   return jwt.sign({id: this.id}, JWT)
 }
 
 /**
- * classMethods
+ * classMethods on `User` model
  */
 User.authenticate = async function({ username, password }){
     const user = await this.findOne({where: { username }})

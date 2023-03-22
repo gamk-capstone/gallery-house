@@ -1,5 +1,9 @@
 import React from "react";
 
+/**
+ * `SquareFrame` component
+ * @returns HTML for square frame 
+ */
 const SquareFrame = () => {
   return (
     <img
