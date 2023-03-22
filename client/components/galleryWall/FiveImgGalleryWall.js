@@ -7,17 +7,18 @@ import PortraitRectangleFrame from "../frames/PortraitRectangleFrame";
  * `FiveImgGalleryWall` component 
  * @returns HTML for gallery wall comprised of five images
  */
-const FiveImgGalleryWall = () => {
+
+const FiveImgGalleryWall = ({ userArtUrl }) => {
   return (
     <div className="flex justify-center flex-col gap-4">
       <div className="flex justify-center flex-row items-end gap-4">
-        <LandscapeRectangleFrame />
-        <SquareFrame />
+        <LandscapeRectangleFrame userArtUrl={userArtUrl}/>
+        <SquareFrame userArtUrl={userArtUrl}/>
       </div>
       <div className="flex justify-center flex-row items-start gap-4">
-        <LandscapeRectangleFrame />
-        <PortraitRectangleFrame />
-        <LandscapeRectangleFrame />
+        <LandscapeRectangleFrame userArtUrl={userArtUrl}/>
+        <PortraitRectangleFrame userArtUrl={userArtUrl}/>
+        <LandscapeRectangleFrame userArtUrl={userArtUrl}/>
       </div>
     </div>
   );

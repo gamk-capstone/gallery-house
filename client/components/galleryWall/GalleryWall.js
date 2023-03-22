@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import AWS from "aws-sdk";
 import { useDispatch } from "react-redux";
@@ -9,14 +9,16 @@ import FiveImgGalleryWall from "./FiveImgGalleryWall";
 import SixImgGalleryWall from "./SixImgGalleryWall";
 import SevenImgGalleryWall from "./SevenImgGalleryWall";
 import EightImgGalleryWall from "./EightImgGalleryWall";
+import MyArt from "../myArt/MyArt";
 import Sofa from "./Sofa";
 
-const GalleryWall = (props) => {
-  const username = useSelector((state) => state.auth.me.username);
+const GalleryWall = () => {
+  const { id } = useSelector((state) => state.auth.me);
   const dispatch = useDispatch();
   const s3 = new AWS.S3();
   const [imageUrl, setImageUrl] = useState(null);
   const [file, setFile] = useState([]);
+  const myArtStateRef = useRef();
 
   AWS.config.update({
     accessKeyId: accessKey,
@@ -35,14 +37,13 @@ const GalleryWall = (props) => {
       Body: file,
     };
     const { Location } = await s3.upload(params).promise();
-    setImageUrl(Location);
     console.log("uploading to s3", Location);
 
-    //dispatch thunk to create new UserArt object in our local db
     dispatch(
       createUserArtAsync({
         name: file.name,
         s3Url: Location,
+        userId: id
       })
     );
   };
@@ -51,20 +52,25 @@ const GalleryWall = (props) => {
     setFile(event.target.files[0]);
   };
 
+  const getMyArtState = () => {
+    const myArtState = myArtStateRef.current.getImgUrl();
+    setImageUrl(myArtState);
+  };
+
   const [selectedNumPhotos, setSelectedNumPhotos] = useState("5");
   const getNumberForLayout = () => {
     switch (selectedNumPhotos) {
       case "5":
-        return <FiveImgGalleryWall />;
+        return <FiveImgGalleryWall userArtUrl={imageUrl}/>;
         break;
       case "6":
-        return <SixImgGalleryWall />;
+        return <SixImgGalleryWall  userArtUrl={imageUrl}/>;
         break;
       case "7":
-        return <SevenImgGalleryWall />;
+        return <SevenImgGalleryWall  userArtUrl={imageUrl}/>;
         break;
       case "8":
-        return <EightImgGalleryWall />;
+        return <EightImgGalleryWall  userArtUrl={imageUrl}/>;
     }
   };
 
@@ -88,6 +94,8 @@ const GalleryWall = (props) => {
         </select>
       </>
       <div></div>
+      <MyArt ref={myArtStateRef} />
+      <button onClick={() => getMyArtState()}>Select Frame</button>
       <div>
         <input type="file" accept="image/*" onChange={fileSelectedHandler} />
         {file && (

@@ -12,6 +12,14 @@ Wall.belongsTo(User);
 Art.belongsToMany(Wall, { through: "ArtOnWall" });
 UserArt.belongsToMany(Wall, { through: "ArtOnWall" });
 Wall.belongsToMany(Art, { through: "ArtOnWall" });
+UserArt.belongsTo(User, { 
+  foreignKey: 'userId',
+  as: 'user'
+});
+User.hasMany(UserArt, { 
+  foreignKey: 'userId',
+  as: 'userArts'
+});
 
 module.exports = {
   db,
