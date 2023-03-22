@@ -5,9 +5,17 @@ import React, { useState } from "react";
  * @returns HTML for rectangular portrait frame
  */
 
-const PortraitRectangleFrame = ({ userArtUrl }) => {
+const PortraitRectangleFrame = ({ userArtUrl, setFilledFrames, filledFrames }) => {
   const [selected, setSelected] = useState(false)
   const [currentUrl, setCurrentUrl] = useState(null);
+
+  const updateCount = () => {
+    if (!selected) {
+      setFilledFrames(filledFrames + 1)
+    } else if (selected) {
+      setFilledFrames(filledFrames - 1)
+    }
+  };
 
   return (
     <img
@@ -16,6 +24,7 @@ const PortraitRectangleFrame = ({ userArtUrl }) => {
       onClick={() => {
         setCurrentUrl(userArtUrl);
         setSelected(!selected);
+        updateCount();
       }}
     />
   );
