@@ -10,7 +10,6 @@ import SixImgGalleryWall from "./SixImgGalleryWall";
 import SevenImgGalleryWall from "./SevenImgGalleryWall";
 import EightImgGalleryWall from "./EightImgGalleryWall";
 import MyArt from "../myArt/MyArt";
-import Sofa from "./Sofa";
 
 const GalleryWall = () => {
   const { id } = useSelector((state) => state.auth.me);
@@ -50,7 +49,7 @@ const GalleryWall = () => {
       createUserArtAsync({
         name: file.name,
         s3Url: Location,
-        userId: id
+        userId: id,
       })
     );
   };
@@ -64,7 +63,12 @@ const GalleryWall = () => {
     setImageUrl(myArtState);
   };
 
+  // local state to keep track of the number of frames to render according to user selction
   const [selectedNumPhotos, setSelectedNumPhotos] = useState("5");
+  /**
+   * `getNumberForLayout` switches the number of frames rendered based on a user's input.
+   * @returns the correct component based on a user's input
+   */
   const getNumberForLayout = () => {
     switch (selectedNumPhotos) {
       case "5":
@@ -81,40 +85,96 @@ const GalleryWall = () => {
     }
   };
 
+  // local state to keep track of the furniture image to render according to user selection
+  const [selectedSofa, setSelectedSofa] = useState("sofaBeigeRounded");
+  /**
+   * `getSofaForLayout` switches the imageUrl of the sofa based on a user's input.
+   * @returns HTML for the correct sofa image
+   */
+  const getSofaForLayout = () => {
+    switch (selectedSofa) {
+      case "sofaBeigeRounded":
+        return <img src="/sofa-beige-rounded.png" className="max-w-[900px]" />;
+        break;
+      case "sofaTealVelvet":
+        return <img src="/sofa-teal-velvet.png" className="max-w-[900px]" />;
+    }
+  };
   return (
-    <div className="flex flex-col items-center gap-8">
-      {getNumberForLayout()}
-      <Sofa />
-      <>
-        <label htmlFor="numberOfPhotos">
-          Choose the number of photos for your gallery wall:
-        </label>
-        <select
-          name="numberOfPhotos"
-          id="numberOfPhotos"
-          onChange={(e) => setSelectedNumPhotos(e.target.value)}
+    <div className="flex flex-row gap-40">
+      <div id="toolbarContainer" className="flex items-center">
+        <div
+          id="toolbar"
+          className="flex flex-col bg-slate-300 p-4 max-w-[5rem] gap-4"
         >
-          <option value={5}>5</option>
-          <option value={6}>6</option>
-          <option value={7}>7</option>
-          <option value={8}>8</option>
-        </select>
-      </>
-      <div></div>
-      <MyArt ref={myArtStateRef} />
-      <button onClick={() => getMyArtState()}>Select Frame</button>
-      <div>
-        <input type="file" accept="image/*" onChange={fileSelectedHandler} />
-        {file && (
-          <div style={{ marginTop: "10px" }}>
-            <button onClick={uploadToS3}>Upload</button>
+          <div
+            id="numberFramesSelection"
+            className="flex flex-col justify-center gap-2"
+          >
+            <i className="material-icons text-2xl">filter_5</i>
+            <label htmlFor="numberOfFrames"></label>
+            <select
+              name="numberOfFrames"
+              onChange={(e) => setSelectedNumPhotos(e.target.value)}
+            >
+              <option value={5}>-</option>
+              <option value={5}>5</option>
+              <option value={6}>6</option>
+              <option value={7}>7</option>
+              <option value={8}>8</option>
+            </select>
           </div>
-        )}
-        {imageUrl && (
-          <div style={{ marginTop: "10px" }}>
-            <img src={imageUrl} alt="uploaded" />
+          <hr></hr>
+          <div
+            id="furnitureSelection"
+            className="flex flex-col justify-center gap-2"
+          >
+            <i className="material-icons">chair</i>
+            <label htmlFor="furnitureSelection"></label>
+            <select
+              name="furnitureSelection"
+              onChange={(e) => setSelectedSofa(e.target.value)}
+            >
+              <option value="sofaBeigeRounded">-</option>
+              <option value="sofaBeigeRounded">Sofa Beige Rounded</option>
+              <option value="sofaTealVelvet">
+                Mid Century Modern Velevet Sofa
+              </option>
+            </select>
           </div>
-        )}
+          <hr></hr>
+          <div id="photoUpload">
+            <i className="material-icons">add_a_photo</i>
+          </div>
+        </div>
+      </div>
+      <div
+        id="frameAndFurnitureContainer"
+        className="flex flex-col justify-center"
+      >
+        {getNumberForLayout()}
+        {getSofaForLayout()}
+        <div id="userArtStuff">
+          <MyArt ref={myArtStateRef} />
+          <button onClick={() => getMyArtState()}>Select Frame</button>
+          <div>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={fileSelectedHandler}
+            />
+            {file && (
+              <div style={{ marginTop: "10px" }}>
+                <button onClick={uploadToS3}>Upload</button>
+              </div>
+            )}
+            {imageUrl && (
+              <div style={{ marginTop: "10px" }}>
+                <img src={imageUrl} alt="uploaded" />
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
