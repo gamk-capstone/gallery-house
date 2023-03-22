@@ -2,21 +2,21 @@ import React from "react";
 import SquareFrame from "../frames/SquareFrame";
 import LandscapeRectangleFrame from "../frames/LandscapeRectangleFrame";
 
-const SevenImageGalleryWall = () => {
+const SevenImageGalleryWall = ({ userArtUrl }) => {
   return (
     <div className="flex justify-center flex-col gap-4">
       <div className="flex justify-center flex-row items-end gap-4">
-        <SquareFrame />
-        <LandscapeRectangleFrame />
+        <SquareFrame userArtUrl={userArtUrl}/>
+        <LandscapeRectangleFrame userArtUrl={userArtUrl}/>
       </div>
       <div className="flex justify-center flex-row items-center gap-4">
-        <SquareFrame />
-        <SquareFrame />
-        <SquareFrame />
+        <SquareFrame userArtUrl={userArtUrl}/>
+        <SquareFrame userArtUrl={userArtUrl}/>
+        <SquareFrame userArtUrl={userArtUrl}/>
       </div>
       <div className="flex justify-center flex-row items-start gap-4">
-        <LandscapeRectangleFrame />
-        <SquareFrame />
+        <LandscapeRectangleFrame userArtUrl={userArtUrl}/>
+        <SquareFrame userArtUrl={userArtUrl}/>
       </div>
     </div>
   );

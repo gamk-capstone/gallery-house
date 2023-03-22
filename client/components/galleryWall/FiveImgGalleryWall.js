@@ -3,16 +3,17 @@ import LandscapeRectangleFrame from "../frames/LandscapeRectangleFrame";
 import SquareFrame from "../frames/SquareFrame";
 import PortraitRectangleFrame from "../frames/PortraitRectangleFrame";
 
+const FiveImageGalleryWall = ({ userArtUrl }) => {
   return (
-    <div className="FiveImageWallParentDiv">
-      <div className="FiveImageWallTop">
-        <img src="/white.jpeg" className="landscapeRectangle" />
-        <img src="/white.jpeg" className="square" />
+    <div className="flex justify-center flex-col gap-4">
+      <div className="flex justify-center flex-row items-end gap-4">
+        <LandscapeRectangleFrame userArtUrl={userArtUrl}/>
+        <SquareFrame userArtUrl={userArtUrl}/>
       </div>
-      <div className="FiveImageWallBottom">
-        <img src="/white.jpeg" className="landscapeRectangle" />
-        <img src="/white.jpeg" className="portraitRectangle" />
-        <img src="/white.jpeg" className="landscapeRectangle" />
+      <div className="flex justify-center flex-row items-start gap-4">
+        <LandscapeRectangleFrame userArtUrl={userArtUrl}/>
+        <PortraitRectangleFrame userArtUrl={userArtUrl}/>
+        <LandscapeRectangleFrame userArtUrl={userArtUrl}/>
       </div>
     </div>
   );
