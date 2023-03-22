@@ -1,6 +1,13 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
 
+/**
+ * `UserArt` model has columns for `name`, `s3Url`, `mainColors`, and `complimentaryColor`.
+ * name [string] - cannot be null
+ * s3Url [string] - cannot be null
+ * mainColors [[integer]] - defaultValue is an empty array 
+ * complimentaryColor [integer] 
+ */
 const UserArt = db.define('userArt', {
     name: {
         type: Sequelize.STRING,

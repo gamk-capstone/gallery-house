@@ -1,7 +1,16 @@
 import React, { useState } from "react";
 
+/**
+ * `Sofa` component 
+ * @returns HTML for select sofa image
+ */
 const Sofa = () => {
   const [selectedSofa, setSelectedSofa] = useState("sofaBeigeRounded");
+
+  /**
+   * `getSofaForLayout` switches the imageUrl of the sofa based on a user's input.
+   * @returns HTML for the correct sofa image 
+   */
   const getSofaForLayout = () => {
     switch (selectedSofa) {
       case "sofaBeigeRounded":

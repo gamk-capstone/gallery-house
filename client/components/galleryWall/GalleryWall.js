@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import AWS from "aws-sdk";
 import { useDispatch } from "react-redux";
-import { createUserArtAsync } from "../userArt/UserArtSlice";
+import { createUserArtAsync } from "../userArt/allUsersArtSlice";
 const accessKey = process.env.ACCESS_KEY_ID;
 const secretKey = process.env.SECRET_ACCESS_KEY;
-import FiveImageGalleryWall from "./FiveImgGalleryWall";
-import SixImageGalleryWall from "./SixImgGalleryWall";
-import SevenImageGalleryWall from "./SevenImgGalleryWall";
-import EightImageGalleryWall from "./EightImgGalleryWall";
+import FiveImgGalleryWall from "./FiveImgGalleryWall";
+import SixImgGalleryWall from "./SixImgGalleryWall";
+import SevenImgGalleryWall from "./SevenImgGalleryWall";
+import EightImgGalleryWall from "./EightImgGalleryWall";
 import Sofa from "./Sofa";
 
 const GalleryWall = (props) => {
@@ -55,16 +55,16 @@ const GalleryWall = (props) => {
   const getNumberForLayout = () => {
     switch (selectedNumPhotos) {
       case "5":
-        return <FiveImageGalleryWall />;
+        return <FiveImgGalleryWall />;
         break;
       case "6":
-        return <SixImageGalleryWall />;
+        return <SixImgGalleryWall />;
         break;
       case "7":
-        return <SevenImageGalleryWall />;
+        return <SevenImgGalleryWall />;
         break;
       case "8":
-        return <EightImageGalleryWall />;
+        return <EightImgGalleryWall />;
     }
   };
 
