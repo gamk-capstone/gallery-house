@@ -21,15 +21,16 @@ router.get("/etsyArt", async (req, res, next) => {
 //the findAndCountAll method returns an object with two properties:
     // count - an integer - the total number records matching the query
     // rows - an array of objects - the obtained records
-router.get("/etsyArt/200", async (req, res, next) => {
+router.get("/etsyArt/:hueNum", async (req, res, next) => {
   try {
+    const imageCount = req.body.searchParams;
     const estyArtByColor = await Art.findAndCountAll({
       where: {
         colors: {
-          [Op.gt]: [[200]], //this looks for any colors whose hue number is greater than 200
+          [Op.gt]: [[req.params.hueNum]], //this looks for any colors whose hue number is greater than hueNum
         }
       },
-      limit: 4, //this is where we can pass down the number of frames to get the right number of images
+      limit: imageCount, //this is where we can pass down the number of frames to get the right number of images
       order: sequelize.fn('RANDOM'), //returns data in random order on each call
     });
     console.log(estyArtByColor);
