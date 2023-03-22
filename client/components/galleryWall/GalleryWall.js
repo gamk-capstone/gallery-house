@@ -9,6 +9,7 @@ import FiveImgGalleryWall from "./FiveImgGalleryWall";
 import SixImgGalleryWall from "./SixImgGalleryWall";
 import SevenImgGalleryWall from "./SevenImgGalleryWall";
 import EightImgGalleryWall from "./EightImgGalleryWall";
+import MyArt from "../myArt/MyArt";
 import Sofa from "./Sofa";
 
 const GalleryWall = () => {
@@ -42,6 +43,7 @@ const GalleryWall = () => {
       createUserArtAsync({
         name: file.name,
         s3Url: Location,
+        userId: id
       })
     );
   };

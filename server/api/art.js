@@ -5,10 +5,12 @@ const {
 const getMainColors = require("../get-images");
 module.exports = router;
 
-// route at /api/user GETS all instances of UserArt model
-router.get("/user", async (req, res, next) => {
+//route for getting all userArt of one user
+router.get("/user/all/:id", async (req, res, next) => {
   try {
-    const userArt = await UserArt.findAll();
+    const userArt = await UserArt.findAll({
+      where: { userId: req.params.id }
+    });
     res.json(userArt);
   } catch (err) {
     next(err);

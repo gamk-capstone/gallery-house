@@ -1,6 +1,6 @@
 import React, { useEffect, useState, forwardRef, useImperativeHandle } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchUserArtAsync, deleteUserArtAsync, selectUserArt } from "../userArt/UserArtSlice";
+import { fetchUserArtAsync, selectUserArt } from "../userArt/allUsersArtSlice";
 
 const MyArt = forwardRef((props, _ref) => {
   const username = useSelector((state) => state.auth.me.username);
@@ -28,13 +28,9 @@ const MyArt = forwardRef((props, _ref) => {
         <h2>You have {art.length} piece(s) of art.</h2>
         <div>
         {art?.map((piece) => {
-          return (
-            <div>
-          <img src={piece.s3Url} className="w-40 h-60 p-3 object-cover drop-shadow-md shrink" key={piece.id} onClick={() => {
+          return <img src={piece.s3Url} className="w-40 h-60 p-3 object-cover drop-shadow-md shrink" key={piece.id} onClick={() => {
             setImgUrl(piece.s3Url)
-          }}/>
-          </div>
-        )
+          }}/>;
         })}
         </div>
       </div>
