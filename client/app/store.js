@@ -4,6 +4,7 @@ import authReducer from '../components/auth/authSlice';
 import allUsersArtSlice from '../components/userArt/allUsersArtSlice';
 import singleUserArtSlice from '../components/userArt/singleUserArtSlice';
 import userWallsSlice from '../components/user/userWallsSlice';
+import galleryWallSlice from "../components/galleryWall/galleryWallSlice";
 
 // This is where we configure our store. We keep our slice reducers here, and passed them down to every part of our app as global state.
 const store = configureStore({
@@ -12,6 +13,7 @@ const store = configureStore({
     usersArt: allUsersArtSlice,
     singleUserArt: singleUserArtSlice,
     userWalls: userWallsSlice,
+    galleryWall: galleryWallSlice,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
