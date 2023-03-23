@@ -13,10 +13,9 @@ const LandscapeRectangleFrame = ({
   generate,
   setGenerate,
 }) => {
-  console.log("generate in frame", generate);
-
   const [selected, setSelected] = useState(false);
   const [currentUrl, setCurrentUrl] = useState("/white.jpeg");
+  const [thisGenerate, setThisGenerate] = useState(generate);
 
   const updateCount = () => {
     if (!selected) {
@@ -29,26 +28,27 @@ const LandscapeRectangleFrame = ({
   const updateFrameStatus = () => {
     //Guard case: First check if the user has selected this frame, if they have
     //Set generate false.
-    if (selected) {
-      setGenerate(false);
+    if (thisGenerate && selected) {
+      setThisGenerate(false);
     }
     //Guard case: Then check if the currentUrl is userArtUrl, if it is
     //Set generate false.
-    if (currentUrl === userArtUrl) {
+    if (thisGenerate && currentUrl === userArtUrl) {
       console.log("currentURL", currentUrl);
-      setGenerate(false);
+      setThisGenerate(false);
     }
   };
   updateFrameStatus();
 
   useEffect(() => {
     //Otherwise, generate is true. Populate this frame.
-    if (generate) {
+    if (thisGenerate) {
       //setCurrentUrl === estyUrl
       console.log("single URL", etsyImages[1]);
       setCurrentUrl(etsyImages[1]);
     }
-  }, [updateFrameStatus, generate]);
+  }, [updateFrameStatus]);
+  console.log("thisGenerate in frame", thisGenerate);
 
   return (
     <img
