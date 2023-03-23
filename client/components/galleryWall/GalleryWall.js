@@ -25,13 +25,23 @@ const GalleryWall = () => {
   //create function that subtracts filled frames from total frames
   //dispatch that number to thunk that generates etsy images
 
-  console.log(`galleryWallFrames`, filledFrames);
+  const [etsyImages, setEtsyImages] = useState([]);
+  const [generate, setGenerate] = useState(false);
 
   const fillFrames = async (e) => {
     e.preventDefault();
-    const total = selectedNumPhotos - filledFrames;
-    const images = await dispatch(fetchEtsyImages({ limit: total, hueNum: 200}));
-    console.log("images from thunk", images);
+    const total = selectedNumPhotos;
+    // - filledFrames;
+    const images = await dispatch(
+      fetchEtsyImages({ limit: total, hueNum: 200 })
+    );
+    const imgArrToSendToFrames = images.payload.rows.map((i) => i.imageUrl)
+    setEtsyImages(imgArrToSendToFrames);
+    if (!generate) {
+      setGenerate(true);
+    } else {
+      setGenerate(false);
+    }
   };
 
   AWS.config.update({
@@ -85,6 +95,8 @@ const GalleryWall = () => {
             userArtUrl={imageUrl}
             filledFrames={filledFrames}
             setFilledFrames={setFilledFrames}
+            etsyImages={etsyImages}
+            generate={generate}
           />
         );
         break;
@@ -94,6 +106,8 @@ const GalleryWall = () => {
             userArtUrl={imageUrl}
             filledFrames={filledFrames}
             setFilledFrames={setFilledFrames}
+            etsyImages={etsyImages}
+            generate={generate}
           />
         );
         break;
@@ -103,6 +117,8 @@ const GalleryWall = () => {
             userArtUrl={imageUrl}
             filledFrames={filledFrames}
             setFilledFrames={setFilledFrames}
+            etsyImages={etsyImages}
+            generate={generate}
           />
         );
         break;
@@ -112,6 +128,8 @@ const GalleryWall = () => {
             userArtUrl={imageUrl}
             filledFrames={filledFrames}
             setFilledFrames={setFilledFrames}
+            etsyImages={etsyImages}
+            generate={generate}
           />
         );
     }
@@ -148,8 +166,8 @@ const GalleryWall = () => {
             <select
               name="numberOfFrames"
               onChange={(e) => {
-                setSelectedNumPhotos(e.target.value)
-                setFilledFrames(0)
+                setSelectedNumPhotos(e.target.value);
+                setFilledFrames(0);
               }}
             >
               <option value={5}>-</option>
@@ -190,7 +208,7 @@ const GalleryWall = () => {
         {getNumberForLayout()}
         {getSofaForLayout()}
         <div id="userArtStuff">
-          <button onClick={(e)=>fillFrames(e)}>Generate Art</button>
+          <button onClick={(e) => fillFrames(e)}>Generate Art</button>
           <MyArt ref={myArtStateRef} />
           <button onClick={() => getMyArtState()}>Select Frame</button>
           <div>
