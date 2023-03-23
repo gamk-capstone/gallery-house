@@ -96,9 +96,7 @@ const GalleryWall = () => {
             filledFrames={filledFrames}
             setFilledFrames={setFilledFrames}
             etsyImages={etsyImages}
-            setEtsyImages={setEtsyImages}
             generate={generate}
-            setGenerate={setGenerate}
           />
         );
         break;
@@ -108,6 +106,8 @@ const GalleryWall = () => {
             userArtUrl={imageUrl}
             filledFrames={filledFrames}
             setFilledFrames={setFilledFrames}
+            etsyImages={etsyImages}
+            generate={generate}
           />
         );
         break;

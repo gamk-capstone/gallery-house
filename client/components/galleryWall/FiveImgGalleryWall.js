@@ -26,7 +26,6 @@ const FiveImgGalleryWall = ({
           setFilledFrames={setFilledFrames}
           etsyImages={etsyImages[0]}
           generate={generate}
-          setGenerate={setGenerate}
         />
         <SquareFrame
           userArtUrl={userArtUrl}
@@ -34,7 +33,6 @@ const FiveImgGalleryWall = ({
           setFilledFrames={setFilledFrames}
           etsyImages={etsyImages[1]}
           generate={generate}
-          setGenerate={setGenerate}
         />
       </div>
       <div className="flex justify-center flex-row items-start gap-4">
@@ -44,7 +42,6 @@ const FiveImgGalleryWall = ({
           setFilledFrames={setFilledFrames}
           etsyImages={etsyImages[2]}
           generate={generate}
-          setGenerate={setGenerate}
         />
         <PortraitRectangleFrame
           userArtUrl={userArtUrl}
@@ -52,7 +49,6 @@ const FiveImgGalleryWall = ({
           setFilledFrames={setFilledFrames}
           etsyImages={etsyImages[3]}
           generate={generate}
-          setGenerate={setGenerate}
         />
         <LandscapeRectangleFrame
           userArtUrl={userArtUrl}
@@ -60,7 +56,6 @@ const FiveImgGalleryWall = ({
           setFilledFrames={setFilledFrames}
           etsyImages={etsyImages[4]}
           generate={generate}
-          setGenerate={setGenerate}
         />
       </div>
     </div>
