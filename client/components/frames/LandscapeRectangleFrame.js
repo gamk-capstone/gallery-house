@@ -11,7 +11,6 @@ const LandscapeRectangleFrame = ({
   filledFrames,
   etsyImages,
   generate,
-  setGenerate,
 }) => {
   const [selected, setSelected] = useState(false);
   const [currentUrl, setCurrentUrl] = useState("/white.jpeg");
@@ -24,6 +23,7 @@ const LandscapeRectangleFrame = ({
       setFilledFrames(filledFrames - 1);
     }
   };
+
   useEffect(() => {
     const updateFrameStatus = () => {
       //Guard case: Then check if the currentUrl is userArtUrl, if it is set generate false.
@@ -36,7 +36,7 @@ const LandscapeRectangleFrame = ({
 
   useEffect(() => {
     const populateWithEtsyImg = () => {
-      //If thisGenerate is true. Populate this frame.
+      //If thisGenerate is true, populate this frame.
       if (thisGenerate) {
         //setCurrentUrl === estyUrl
         setCurrentUrl(etsyImages);
@@ -46,9 +46,6 @@ const LandscapeRectangleFrame = ({
     };
     populateWithEtsyImg();
   }, [generate]);
-
-  console.log("thisGenerate in frame", thisGenerate);
-  console.log("thisCurrentUrl", currentUrl);
 
   return (
     <img
