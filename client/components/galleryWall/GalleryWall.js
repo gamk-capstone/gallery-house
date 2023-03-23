@@ -128,6 +128,8 @@ const GalleryWall = () => {
             userArtUrl={imageUrl}
             filledFrames={filledFrames}
             setFilledFrames={setFilledFrames}
+            etsyImages={etsyImages}
+            generate={generate}
           />
         );
     }
