@@ -14,6 +14,7 @@ const SevenImageGalleryWall = ({
   etsyImages,
   generate,
 }) => {
+  console.log("etsyImages", etsyImages);
   return (
     <div className="flex justify-center flex-col gap-4">
       <div className="flex justify-center flex-row items-end gap-4">

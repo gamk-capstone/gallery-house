@@ -15,7 +15,7 @@ const SquareFrame = ({
   const [selected, setSelected] = useState(false);
   const [currentUrl, setCurrentUrl] = useState("/white.jpeg");
   const [thisGenerate, setThisGenerate] = useState(true);
-
+  console.log("etsyImages square", etsyImages);
   const updateCount = () => {
     if (!selected) {
       setFilledFrames(filledFrames + 1);
@@ -48,7 +48,7 @@ const SquareFrame = ({
   }, [generate]);
 
   return (
-<div>
+    <div>
       {etsyImages ? (
         <a href={etsyImages.purchaseUrl}>
           <img
@@ -75,5 +75,7 @@ const SquareFrame = ({
     </div>
   );
 };
+
+//className={`w-40 h-40 p-3 border-2 border-solid border-[#e2be75] object-cover bg-gradient-to-t from-[#bf953f] via-[#b38728] to-[#fbf5b7] drop-shadow-md shrink`}
 
 export default SquareFrame;

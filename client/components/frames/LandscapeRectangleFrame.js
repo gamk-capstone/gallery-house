@@ -16,7 +16,6 @@ const LandscapeRectangleFrame = ({
   const [currentUrl, setCurrentUrl] = useState("/white.jpeg");
   const [thisGenerate, setThisGenerate] = useState(true);
 
-  console.log("etsyImages in frame", etsyImages);
   const updateCount = () => {
     if (!selected) {
       setFilledFrames(filledFrames + 1);
