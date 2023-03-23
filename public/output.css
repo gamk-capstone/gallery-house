@@ -547,6 +547,28 @@ video {
   }
 }
 
+.btn-primary {
+  border-radius: 9999px;
+  border-width: 4px;
+  border-style: solid;
+  --tw-border-opacity: 1;
+  border-color: rgb(250 103 206 / var(--tw-border-opacity));
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-family: Le Havre Regular, sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.btn-primary:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(250 103 206 / var(--tw-bg-opacity));
+}
+
 .row-span-1 {
   grid-row: span 1 / span 1;
 }
@@ -677,19 +699,14 @@ video {
   background-color: rgb(252 165 165 / var(--tw-bg-opacity));
 }
 
-.bg-red-600 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(220 38 38 / var(--tw-bg-opacity));
-}
-
 .bg-slate-300 {
   --tw-bg-opacity: 1;
   background-color: rgb(203 213 225 / var(--tw-bg-opacity));
 }
 
-.bg-slate-700 {
+.bg-yellow {
   --tw-bg-opacity: 1;
-  background-color: rgb(51 65 85 / var(--tw-bg-opacity));
+  background-color: rgb(237 204 38 / var(--tw-bg-opacity));
 }
 
 .bg-gradient-to-t {
@@ -736,6 +753,10 @@ video {
   font-family: HWT Arabesque, cursive;
 }
 
+.font-house-regular {
+  font-family: Le Havre Regular, sans-serif;
+}
+
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
@@ -744,6 +765,16 @@ video {
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 }
 
 .font-light {
@@ -755,139 +786,7 @@ video {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
-/* body {
-  font-family: sans-serif;
+.focus\:outline-none:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
 }
-
-a {
-  text-decoration: none;
-}
-
-label {
-  display: block;
-}
-
-nav a {
-  display: inline-block;
-  margin: 1em;
-}
-
-form div {
-  margin: 1em;
-  display: inline-block;
-}
-
-.FiveImageWallParentDiv,
-.SixImageWallParentDiv,
-.SevenImageWallParentDiv,
-.EightImageWallParentDiv {
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-}
-
-.FiveImageWallTop,
-.SixImageWallTop,
-.SevenImageWallTop,
-.EightImageWallTop {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 1em;
-}
-.SevenImageWallMiddle {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 1em;
-}
-
-.FiveImageWallBottom,
-.SevenImageWallBottom,
-.EightImageWallBottom,
-.SixImageWallBottom {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 1em;
-}
-
-.landscapeRectangle {
-  width: 150px;
-  height: 100px;
-  padding: 0.5rem;
-  border: 2px solid #e2be75;
-  background: linear-gradient(30deg, #bf953f, #fcf6ba, #b38728, #fbf5b7);
-  filter: drop-shadow(3px 3px 3px rgb(182, 173, 153));
-  object-fit: cover;
-}
-
-.landscapeRectangleExtraWide {
-  width: 175px;
-  height: 100px;
-  padding: 0.5rem;
-  border: 2px solid #e2be75;
-  background: linear-gradient(30deg, #bf953f, #fcf6ba, #b38728, #fbf5b7);
-  filter: drop-shadow(3px 3px 3px rgb(182, 173, 153));
-  object-fit: cover;
-}
-
-.square {
-  width: 100px;
-  height: 100px;
-  padding: 0.5rem;
-  border: 2px solid #e2be75;
-  background: linear-gradient(40deg, #bf953f, #fcf6ba, #b38728, #fbf5b7);
-  filter: drop-shadow(3px 3px 3px rgb(182, 173, 153));
-  object-fit: cover;
-}
-
-.squareLarge {
-  width: 150px;
-  height: 150px;
-  padding: 0.5rem;
-  border: 2px solid #e2be75;
-  background: linear-gradient(40deg, #bf953f, #fcf6ba, #b38728, #fbf5b7);
-  filter: drop-shadow(3px 3px 3px rgb(182, 173, 153));
-  object-fit: cover;
-}
-
-.portraitRectangle {
-  width: 100px;
-  height: 150px;
-  padding: 0.5rem;
-  border: 2px solid #e2be75;
-  background: linear-gradient(50deg, #bf953f, #fcf6ba, #b38728, #fbf5b7);
-  filter: drop-shadow(3px 3px 3px rgb(182, 173, 153));
-  object-fit: cover;
-}
-
-.sofaImage {
-  width: 800px;
-}
-
-.galleryWallParentDiv {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-}
-
-.dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-}
-
-.active,
-.dot:hover {
-  background-color: #717171;
-} */

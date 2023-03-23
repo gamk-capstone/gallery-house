@@ -16,6 +16,7 @@ module.exports = {
         "dark-pink": "#ad368a",
         teal: "#6de2d4",
         "dark-teal": "#71ada8",
+        yellow: "#edcc26",
         black: "#000000",
       },
     },

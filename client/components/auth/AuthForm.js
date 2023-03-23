@@ -31,21 +31,29 @@ const AuthForm = ({ name, displayName }) => {
       <form
         onSubmit={handleLoginOrSignUpSubmit}
         name={name}
-        className="flex flex-col items-center bg-red-600 p-10 gap-4"
+        className="flex flex-col items-center bg-yellow p-10 gap-4"
       >
         <div className="flex flex-col items-center">
           <label htmlFor="username" className="max-w-sm">
-            <small>Username:</small>
+            <small className="font-house-regular text-lg">Username:</small>
           </label>
-          <input name="username" type="text" className="max-w-sm p-4" />
+          <input
+            name="username"
+            type="text"
+            className="max-w-sm p-4 font-house-regular text-lg focus:outline-none"
+          />
         </div>
         <div className="flex flex-col items-center">
           <label htmlFor="password" className="max-w-sm">
-            <small>Password:</small>
+            <small className="font-house-regular text-xl">Password:</small>
           </label>
-          <input name="password" type="password" className="max-w-sm p-4" />
+          <input
+            name="password"
+            type="password"
+            className="max-w-sm p-4 font-house-regular text-xl focus:outline-none"
+          />
         </div>
-        <button type="submit" className="bg-slate-700 max-w-[5rem]">
+        <button type="submit" className="btn-primary">
           {displayName}
         </button>
 
