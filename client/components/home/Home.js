@@ -7,7 +7,7 @@ import FiveImgGalleryWall from "../galleryWall/FiveImgGalleryWall";
 const Home = () => {
   return (
     <div className="grid grid-rows-1 justify-items-center">
-      <div className="font-house-font text-3xl">
+      <div className="font-logo-font text-3xl">
         Gallery{" "}
         <span className="font-house-font font-light text-3xl text-pink-700">
           ·

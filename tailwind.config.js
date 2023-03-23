@@ -5,7 +5,11 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        "house-font": ["Le Havre Black", "sans-serif"],
+        "house-black": ["Le Havre Black", "sans-serif"],
+        "house-bold": ["Le Havre Bold", "sans-serif"],
+        "house-regular": ["Le Havre Regular", "sans-serif"],
+        "house-regular-italic": ["Le Havre Regular Italic", "sans-serif"],
+        "logo-font": ["HWT Arabesque", "cursive"],
       },
       colors: {
         pink: "#fa67ce",
