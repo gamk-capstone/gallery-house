@@ -38,8 +38,8 @@ const SevenImageGalleryWall = ({
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}
           setFilledFrames={setFilledFrames}
-          etsyImages={etsyImages}
-          generate={etsyImages ? etsyImages[2] : ""}
+          etsyImages={etsyImages ? etsyImages[2] : ""}
+          generate={generate}
         />
         <SquareFrame
           userArtUrl={userArtUrl}

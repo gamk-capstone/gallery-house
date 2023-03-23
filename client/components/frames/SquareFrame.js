@@ -15,7 +15,7 @@ const SquareFrame = ({
   const [selected, setSelected] = useState(false);
   const [currentUrl, setCurrentUrl] = useState("/white.jpeg");
   const [thisGenerate, setThisGenerate] = useState(true);
-  console.log("etsyImages square", etsyImages);
+
   const updateCount = () => {
     if (!selected) {
       setFilledFrames(filledFrames + 1);
@@ -46,8 +46,6 @@ const SquareFrame = ({
     };
     populateWithEtsyImg();
   }, [generate]);
-
-  console.log("currentURl", currentUrl)
 
   return (
     <div>
