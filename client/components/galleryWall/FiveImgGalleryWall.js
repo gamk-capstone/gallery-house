@@ -24,14 +24,14 @@ const FiveImgGalleryWall = ({
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}
           setFilledFrames={setFilledFrames}
-          etsyImages={etsyImages[0]}
+          etsyImages={`${etsyImages ? etsyImages[0] : ""}`}
           generate={generate}
         />
         <SquareFrame
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}
           setFilledFrames={setFilledFrames}
-          etsyImages={etsyImages[1]}
+          etsyImages={`${etsyImages ? etsyImages[1] : ""}`}
           generate={generate}
         />
       </div>
@@ -40,21 +40,21 @@ const FiveImgGalleryWall = ({
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}
           setFilledFrames={setFilledFrames}
-          etsyImages={etsyImages[2]}
+          etsyImages={`${etsyImages ? etsyImages[2] : ""}`}
           generate={generate}
         />
         <PortraitRectangleFrame
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}
           setFilledFrames={setFilledFrames}
-          etsyImages={etsyImages[3]}
+          etsyImages={`${etsyImages ? etsyImages[3] : ""}`}
           generate={generate}
         />
         <LandscapeRectangleFrame
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}
           setFilledFrames={setFilledFrames}
-          etsyImages={etsyImages[4]}
+          etsyImages={`${etsyImages ? etsyImages[4] : ""}`}
           generate={generate}
         />
       </div>
