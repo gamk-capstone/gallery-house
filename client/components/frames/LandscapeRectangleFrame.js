@@ -26,7 +26,7 @@ const LandscapeRectangleFrame = ({
 
   useEffect(() => {
     const updateFrameStatus = () => {
-      //Guard case: Then check if the currentUrl is userArtUrl, if it is set generate false.
+      //Guard case: If the currentUrl is userArtUrl, set thisGenerate false.
       if (currentUrl === userArtUrl) {
         setThisGenerate(false);
       }
@@ -38,7 +38,7 @@ const LandscapeRectangleFrame = ({
     const populateWithEtsyImg = () => {
       //If thisGenerate is true, populate this frame.
       if (thisGenerate) {
-        //setCurrentUrl === estyUrl
+        //setCurrentUrl === estyImageUrl
         setCurrentUrl(etsyImages);
       } else {
         currentUrl === currentUrl;
