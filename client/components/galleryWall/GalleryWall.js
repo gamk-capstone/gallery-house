@@ -130,6 +130,16 @@ const GalleryWall = () => {
         break;
       case "sofaTealVelvet":
         return <img src="/sofa-teal-velvet.png" className="max-w-[900px]" />;
+      case "blackLeather":
+        return <img src="/black-leather.png" className="max-w-[900px]" />;
+      case "blueVelvet":
+        return <img src="/blue-velvet.png" className="max-w-[900px]" />;
+      case "blushVelvet":
+        return <img src="/blush-velvet.png" className="max-w-[900px]" />;
+      case "ovalTable":
+        return <img src="/oval-table.png" className="max-w-[900px]" />;
+      case "rectangleTable":
+        return <img src="/dining-table-rectangle.png" className="max-w-[900px]" />;
     }
   };
   return (
@@ -148,8 +158,8 @@ const GalleryWall = () => {
             <select
               name="numberOfFrames"
               onChange={(e) => {
-                setSelectedNumPhotos(e.target.value)
-                setFilledFrames(0)
+                setSelectedNumPhotos(e.target.value);
+                setFilledFrames(0);
               }}
             >
               <option value={5}>-</option>
@@ -173,8 +183,13 @@ const GalleryWall = () => {
               <option value="sofaBeigeRounded">-</option>
               <option value="sofaBeigeRounded">Sofa Beige Rounded</option>
               <option value="sofaTealVelvet">
-                Mid Century Modern Velevet Sofa
+                Mid Century Modern Teal Velvet Sofa
               </option>
+              <option value="blushVelvet">Blush Velvet Sofa</option>
+              <option value="blackLeather">Black Leather Sofa</option>
+              <option value="blueVelvet">Navy Blue Fabric Sofa</option>
+              <option value="ovalTable">Oval Dining Table</option>
+              <option value="rectangleTable">Rectangle Dining Table</option>
             </select>
           </div>
           <hr></hr>
@@ -190,7 +205,7 @@ const GalleryWall = () => {
         {getNumberForLayout()}
         {getSofaForLayout()}
         <div id="userArtStuff">
-          <button onClick={(e)=>fillFrames(e)}>Generate Art</button>
+          <button onClick={(e) => fillFrames(e)}>Generate Art</button>
           <MyArt ref={myArtStateRef} />
           <button onClick={() => getMyArtState()}>Select Frame</button>
           <div>
