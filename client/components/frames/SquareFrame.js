@@ -5,7 +5,8 @@ import React, { useState } from "react";
  * @returns HTML for square frame 
  */
 
-const SquareFrame = ({ userArtUrl, setFilledFrames, filledFrames }) => {
+const SquareFrame = ({ userArtUrl, setFilledFrames, filledFrames, etsyImages,
+  generate }) => {
   const [selected, setSelected] = useState(false);
   const [currentUrl, setCurrentUrl] = useState(null);
 
@@ -16,6 +17,16 @@ const SquareFrame = ({ userArtUrl, setFilledFrames, filledFrames }) => {
       setFilledFrames(filledFrames - 1)
     }
   };
+
+  const updateEmptyFrameWithEtsyArt = () => {
+    //If not selected, and empty, and user has clicked generate
+    if (!generate) {
+    } else if (generate && !selected) {
+      console.log("GENERATE SQUARE FRAME", generate);
+      //setCurrentUrl === estyUrl
+    }
+  };
+  updateEmptyFrameWithEtsyArt();
 
   return (
     <img

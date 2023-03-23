@@ -12,7 +12,7 @@ const LandscapeRectangleFrame = ({
   etsyImages,
   generate,
 }) => {
-  console.log("estyImages in frame", etsyImages)
+  console.log("estyImage in frame", etsyImages)
   console.log("generate in frame", generate)
 
   const [selected, setSelected] = useState(false);
@@ -29,9 +29,8 @@ const LandscapeRectangleFrame = ({
   const updateEmptyFrameWithEtsyArt = () => {
     //If not selected, and empty, and user has clicked generate
     if (!generate) {
-      console.log("Don't generate", generate)
-    } else if (generate) {
-      console.log("GENERATE BUTTON IS CLICKED", generate);
+    } else if (generate && !selected) {
+      console.log("GENERATE LANDSCAPE FRAME", generate);
       //setCurrentUrl === estyUrl
     }
   };

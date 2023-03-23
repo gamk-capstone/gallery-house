@@ -16,6 +16,8 @@ const FiveImgGalleryWall = ({
   generate,
 }) => {
 
+  console.log("etsyImages on sized wall", etsyImages)
+
   return (
     <div className="flex justify-center flex-col gap-4">
       <div className="flex justify-center flex-row items-end gap-4">
@@ -23,7 +25,7 @@ const FiveImgGalleryWall = ({
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}
           setFilledFrames={setFilledFrames}
-          etsyImages={etsyImages}
+          etsyImages={etsyImages[0]}
           generate={generate}
         />
         <SquareFrame

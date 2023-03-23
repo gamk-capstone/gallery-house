@@ -5,7 +5,8 @@ import React, { useState } from "react";
  * @returns HTML for rectangular portrait frame
  */
 
-const PortraitRectangleFrame = ({ userArtUrl, setFilledFrames, filledFrames }) => {
+const PortraitRectangleFrame = ({ userArtUrl, setFilledFrames, filledFrames, etsyImages,
+  generate }) => {
   const [selected, setSelected] = useState(false)
   const [currentUrl, setCurrentUrl] = useState(null);
 
@@ -16,6 +17,16 @@ const PortraitRectangleFrame = ({ userArtUrl, setFilledFrames, filledFrames }) =
       setFilledFrames(filledFrames - 1)
     }
   };
+
+  const updateEmptyFrameWithEtsyArt = () => {
+    //If not selected, and empty, and user has clicked generate
+    if (!generate) {
+    } else if (generate && !selected && currentUrl === "/white.jpeg" || currentUrl === null) {
+      console.log("GENERATE PORTRAIT-RECTANGLE FRAME", generate);
+      //setCurrentUrl === estyUrl
+    }
+  };
+  updateEmptyFrameWithEtsyArt();
 
   return (
     <img
