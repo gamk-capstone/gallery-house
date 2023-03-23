@@ -6,13 +6,13 @@ module.exports = {
     extend: {
       fontFamily: {
         "house-font": ["Le Havre Black", "sans-serif"],
-        colors: {
-          pink: "#fa67ce",
-          "dark-pink": "#ad368a",
-          teal: "#6de2d4",
-          "dark-teal": "#71ada8",
-          black: "#000000",
-        },
+      },
+      colors: {
+        pink: "#fa67ce",
+        "dark-pink": "#ad368a",
+        teal: "#6de2d4",
+        "dark-teal": "#71ada8",
+        black: "#000000",
       },
     },
   },
