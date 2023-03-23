@@ -21,8 +21,7 @@ const SquareFrame = ({ userArtUrl, setFilledFrames, filledFrames, etsyImages,
   const updateEmptyFrameWithEtsyArt = () => {
     //If not selected, and empty, and user has clicked generate
     if (!generate) {
-    } else if (generate && !selected) {
-      console.log("GENERATE SQUARE FRAME", generate);
+    } else if (generate && !selected && currentUrl === "/white.jpeg" || currentUrl === null) {
       //setCurrentUrl === estyUrl
     }
   };

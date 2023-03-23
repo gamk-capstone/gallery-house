@@ -97,6 +97,7 @@ const GalleryWall = () => {
             etsyImages={etsyImages}
             setEtsyImages={setEtsyImages}
             generate={generate}
+            setGenerate={setGenerate}
           />
         );
         break;

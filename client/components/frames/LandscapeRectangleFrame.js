@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 /**
  * `LandscapeRectangleFrame` component
@@ -11,12 +11,12 @@ const LandscapeRectangleFrame = ({
   filledFrames,
   etsyImages,
   generate,
+  setGenerate,
 }) => {
-  console.log("estyImage in frame", etsyImages)
-  console.log("generate in frame", generate)
+  console.log("generate in frame", generate);
 
   const [selected, setSelected] = useState(false);
-  const [currentUrl, setCurrentUrl] = useState(null);
+  const [currentUrl, setCurrentUrl] = useState("/white.jpeg");
 
   const updateCount = () => {
     if (!selected) {
@@ -26,15 +26,29 @@ const LandscapeRectangleFrame = ({
     }
   };
 
-  const updateEmptyFrameWithEtsyArt = () => {
-    //If not selected, and empty, and user has clicked generate
-    if (!generate) {
-    } else if (generate && !selected) {
-      console.log("GENERATE LANDSCAPE FRAME", generate);
-      //setCurrentUrl === estyUrl
+  const updateFrameStatus = () => {
+    //Guard case: First check if the user has selected this frame, if they have
+    //Set generate false.
+    if (selected) {
+      setGenerate(false);
+    }
+    //Guard case: Then check if the currentUrl is userArtUrl, if it is
+    //Set generate false.
+    if (currentUrl === userArtUrl) {
+      console.log("currentURL", currentUrl);
+      setGenerate(false);
     }
   };
-  updateEmptyFrameWithEtsyArt();
+  updateFrameStatus();
+
+  useEffect(() => {
+    //Otherwise, generate is true. Populate this frame.
+    if (generate) {
+      //setCurrentUrl === estyUrl
+      console.log("single URL", etsyImages[1]);
+      setCurrentUrl(etsyImages[1]);
+    }
+  }, [updateFrameStatus, generate]);
 
   return (
     <img

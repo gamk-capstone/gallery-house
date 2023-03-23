@@ -22,7 +22,6 @@ const PortraitRectangleFrame = ({ userArtUrl, setFilledFrames, filledFrames, ets
     //If not selected, and empty, and user has clicked generate
     if (!generate) {
     } else if (generate && !selected && currentUrl === "/white.jpeg" || currentUrl === null) {
-      console.log("GENERATE PORTRAIT-RECTANGLE FRAME", generate);
       //setCurrentUrl === estyUrl
     }
   };
