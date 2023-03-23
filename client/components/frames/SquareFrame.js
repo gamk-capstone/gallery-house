@@ -41,11 +41,13 @@ const SquareFrame = ({
         //setCurrentUrl === estyImageUrl
         setCurrentUrl(etsyImages.imageUrl);
       } else {
-        currentUrl === currentUrl;
+        // currentUrl === currentUrl;
       }
     };
     populateWithEtsyImg();
   }, [generate]);
+
+  console.log("currentURl", currentUrl)
 
   return (
     <div>
