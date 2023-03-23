@@ -24,7 +24,7 @@ const FiveImgGalleryWall = ({
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}
           setFilledFrames={setFilledFrames}
-          etsyImages={etsyImages}
+          etsyImages={etsyImages[0]}
           generate={generate}
           setGenerate={setGenerate}
         />
@@ -32,7 +32,7 @@ const FiveImgGalleryWall = ({
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}
           setFilledFrames={setFilledFrames}
-          etsyImages={etsyImages}
+          etsyImages={etsyImages[1]}
           generate={generate}
           setGenerate={setGenerate}
         />
@@ -42,7 +42,7 @@ const FiveImgGalleryWall = ({
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}
           setFilledFrames={setFilledFrames}
-          etsyImages={etsyImages}
+          etsyImages={etsyImages[2]}
           generate={generate}
           setGenerate={setGenerate}
         />
@@ -50,7 +50,7 @@ const FiveImgGalleryWall = ({
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}
           setFilledFrames={setFilledFrames}
-          etsyImages={etsyImages}
+          etsyImages={etsyImages[3]}
           generate={generate}
           setGenerate={setGenerate}
         />
@@ -58,7 +58,7 @@ const FiveImgGalleryWall = ({
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}
           setFilledFrames={setFilledFrames}
-          etsyImages={etsyImages}
+          etsyImages={etsyImages[4]}
           generate={generate}
           setGenerate={setGenerate}
         />

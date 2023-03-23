@@ -30,7 +30,8 @@ const GalleryWall = () => {
 
   const fillFrames = async (e) => {
     e.preventDefault();
-    const total = selectedNumPhotos - filledFrames;
+    const total = selectedNumPhotos;
+    // - filledFrames;
     const images = await dispatch(
       fetchEtsyImages({ limit: total, hueNum: 200 })
     );
