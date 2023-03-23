@@ -13,12 +13,8 @@ const FiveImgGalleryWall = ({
   filledFrames,
   setFilledFrames,
   etsyImages,
-  setEtsyImages,
   generate,
 }) => {
-  console.log("etsyImages", etsyImages);
-  console.log("generate", generate);
-  console.log("userArtUrl", userArtUrl)
 
   return (
     <div className="flex justify-center flex-col gap-4">

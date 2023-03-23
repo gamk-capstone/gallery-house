@@ -25,11 +25,8 @@ const GalleryWall = () => {
   //create function that subtracts filled frames from total frames
   //dispatch that number to thunk that generates etsy images
 
-  console.log(`galleryWallFrames`, filledFrames);
-
   const [etsyImages, setEtsyImages] = useState([]);
   const [generate, setGenerate] = useState(false);
-  console.log(`generate-gallery Wall`, generate);
 
   const fillFrames = async (e) => {
     e.preventDefault();
@@ -37,8 +34,8 @@ const GalleryWall = () => {
     const images = await dispatch(
       fetchEtsyImages({ limit: total, hueNum: 200 })
     );
-    console.log("images from thunk", images);
-    setEtsyImages(images);
+    const imgArrToSendToFrames = images.payload.rows.map((i) => i.imageUrl)
+    setEtsyImages(imgArrToSendToFrames);
     if (!generate) {
       setGenerate(true);
     } else {

@@ -14,7 +14,6 @@ const LandscapeRectangleFrame = ({
 }) => {
   console.log("estyImages in frame", etsyImages)
   console.log("generate in frame", generate)
-  console.log("userArtlUrl in frame", userArtUrl)
 
   const [selected, setSelected] = useState(false);
   const [currentUrl, setCurrentUrl] = useState(null);
