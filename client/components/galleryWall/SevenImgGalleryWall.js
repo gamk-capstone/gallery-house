@@ -21,14 +21,14 @@ const SevenImageGalleryWall = ({
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}
           setFilledFrames={setFilledFrames}
-          etsyImages={`${etsyImages ? etsyImages[0] : ""}`}
+          etsyImages={etsyImages ? etsyImages[0] : ""}
           generate={generate}
         />
         <LandscapeRectangleFrame
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}
           setFilledFrames={setFilledFrames}
-          etsyImages={`${etsyImages ? etsyImages[1] : ""}`}
+          etsyImages={etsyImages ? etsyImages[1] : ""}
           generate={generate}
         />
       </div>
@@ -38,20 +38,20 @@ const SevenImageGalleryWall = ({
           filledFrames={filledFrames}
           setFilledFrames={setFilledFrames}
           etsyImages={etsyImages}
-          generate={`${etsyImages ? etsyImages[2] : ""}`}
+          generate={etsyImages ? etsyImages[2] : ""}
         />
         <SquareFrame
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}
           setFilledFrames={setFilledFrames}
-          etsyImages={`${etsyImages ? etsyImages[3] : ""}`}
+          etsyImages={etsyImages ? etsyImages[3] : ""}
           generate={generate}
         />
         <SquareFrame
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}
           setFilledFrames={setFilledFrames}
-          etsyImages={`${etsyImages ? etsyImages[4] : ""}`}
+          etsyImages={etsyImages ? etsyImages[4] : ""}
           generate={generate}
         />
       </div>
@@ -60,14 +60,14 @@ const SevenImageGalleryWall = ({
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}
           setFilledFrames={setFilledFrames}
-          etsyImages={`${etsyImages ? etsyImages[5] : ""}`}
+          etsyImages={etsyImages ? etsyImages[5] : ""}
           generate={generate}
         />
         <SquareFrame
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}
           setFilledFrames={setFilledFrames}
-          etsyImages={`${etsyImages ? etsyImages[6] : ""}`}
+          etsyImages={etsyImages ? etsyImages[6] : ""}
           generate={generate}
         />
       </div>
