@@ -1,7 +1,8 @@
-import React from 'react';
+import React from "react";
 
-import Navbar from '../components/navbar/Navbar';
-import AppRoutes from './AppRoutes';
+import Navbar from "../components/navbar/Navbar";
+import NavbarHomepage from "../components/navbar/NavbarHomepage";
+import AppRoutes from "./AppRoutes";
 
 const App = () => {
   return (

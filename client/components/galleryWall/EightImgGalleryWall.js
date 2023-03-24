@@ -22,28 +22,28 @@ const EightImgGalleryWall = ({
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}
           setFilledFrames={setFilledFrames}
-          etsyImages={`${etsyImages ? etsyImages[0] : ""}`}
+          etsyImages={etsyImages ? etsyImages[0] : ""}
           generate={generate}
         />
         <SquareLargeFrame
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}
           setFilledFrames={setFilledFrames}
-          etsyImages={`${etsyImages ? etsyImages[1] : ""}`}
+          etsyImages={etsyImages ? etsyImages[1] : ""}
           generate={generate}
         />
         <PortraitRectangleFrame
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}
           setFilledFrames={setFilledFrames}
-          etsyImages={`${etsyImages ? etsyImages[2] : ""}`}
+          etsyImages={etsyImages ? etsyImages[2] : ""}
           generate={generate}
         />
         <LandscapeRectangleExtraWideFrame
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}
           setFilledFrames={setFilledFrames}
-          etsyImages={`${etsyImages ? etsyImages[3] : ""}`}
+          etsyImages={etsyImages ? etsyImages[3] : ""}
           generate={generate}
         />
       </div>
@@ -52,28 +52,28 @@ const EightImgGalleryWall = ({
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}
           setFilledFrames={setFilledFrames}
-          etsyImages={`${etsyImages ? etsyImages[4] : ""}`}
+          etsyImages={etsyImages ? etsyImages[4] : ""}
           generate={generate}
         />
         <PortraitRectangleFrame
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}
           setFilledFrames={setFilledFrames}
-          etsyImages={`${etsyImages ? etsyImages[5] : ""}`}
+          etsyImages={etsyImages ? etsyImages[5] : ""}
           generate={generate}
         />
         <SquareLargeFrame
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}
           setFilledFrames={setFilledFrames}
-          etsyImages={`${etsyImages ? etsyImages[6] : ""}`}
+          etsyImages={etsyImages ? etsyImages[6] : ""}
           generate={generate}
         />
         <LandscapeRectangleExtraWideFrame
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}
           setFilledFrames={setFilledFrames}
-          etsyImages={`${etsyImages ? etsyImages[7] : ""}`}
+          etsyImages={etsyImages ? etsyImages[7] : ""}
           generate={generate}
         />
       </div>

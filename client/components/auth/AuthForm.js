@@ -1,12 +1,12 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { authenticate } from '../../app/store';
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { authenticate } from "../../app/store";
 
 /**
  * The `AuthForm` component can be used for Login or Sign Up.
  * Props for Login: name="login", displayName="Login"
  * Props for Sign up: name="signup", displayName="Sign Up"
-**/
+ **/
 
 const AuthForm = ({ name, displayName }) => {
   const { error } = useSelector((state) => state.auth);
@@ -27,23 +27,36 @@ const AuthForm = ({ name, displayName }) => {
 
   return (
     //HTML for the Login and Sign up form
-    <div>
-      <form onSubmit={handleLoginOrSignUpSubmit} name={name}>
-        <div>
-          <label htmlFor="username">
-            <small>Username</small>
+    <div className="flex flex-col items-center pt-8">
+      <form
+        onSubmit={handleLoginOrSignUpSubmit}
+        name={name}
+        className="flex flex-col items-center bg-yellow p-10 gap-4"
+      >
+        <div className="flex flex-col items-center">
+          <label htmlFor="username" className="max-w-sm">
+            <small className="font-house-regular text-lg">Username:</small>
           </label>
-          <input name="username" type="text" />
+          <input
+            name="username"
+            type="text"
+            className="max-w-sm p-4 font-house-regular text-lg focus:outline-none"
+          />
         </div>
-        <div>
-          <label htmlFor="password">
-            <small>Password</small>
+        <div className="flex flex-col items-center">
+          <label htmlFor="password" className="max-w-sm">
+            <small className="font-house-regular text-xl">Password:</small>
           </label>
-          <input name="password" type="password" />
+          <input
+            name="password"
+            type="password"
+            className="max-w-sm p-4 font-house-regular text-xl focus:outline-none"
+          />
         </div>
-        <div>
-          <button type="submit">{displayName}</button>
-        </div>
+        <button type="submit" className="btn-primary">
+          {displayName}
+        </button>
+
         {error && <div> {error} </div>}
       </form>
     </div>

@@ -36,9 +36,13 @@ const GalleryWall = () => {
     const images = await dispatch(
       fetchEtsyImages({ limit: total, hueNum: compColor[0] })
     );
+
     console.log(compColor[0]);
-    console.log(images.payload);
-    const imgArrToSendToFrames = images.payload.rows.map((i) => i.imageUrl)
+    const imgArrToSendToFrames = images.payload.rows.map((i) => ({
+      imageUrl: i.imageUrl,
+      purchaseUrl: i.purchaseUrl,
+    }));
+    console.log(imgArrToSendToFrames);
     setEtsyImages(imgArrToSendToFrames);
     if (!generate) {
       setGenerate(true);
