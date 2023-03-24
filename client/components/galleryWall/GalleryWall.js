@@ -18,6 +18,8 @@ const GalleryWall = () => {
   const s3 = new AWS.S3();
   const [imageUrl, setImageUrl] = useState(null);
   const [file, setFile] = useState([]);
+  const [compColor, setCompColor] = useState(null);
+
   const [filledFrames, setFilledFrames] = useState(0);
   const myArtStateRef = useRef();
 
