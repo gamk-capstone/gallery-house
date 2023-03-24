@@ -6,4 +6,7 @@
   .btn-primary {
     @apply py-2 px-4 text-black font-house-regular text-xl rounded-full border-4 border-solid border-pink hover:bg-pink;
   }
+  .nav-link {
+    @apply text-black font-house-bold text-3xl focus:text-pink hover:text-pink;
+  }
 }
