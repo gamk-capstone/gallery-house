@@ -17,6 +17,7 @@ const GalleryWall = () => {
   const dispatch = useDispatch();
   const s3 = new AWS.S3();
   const [imageUrl, setImageUrl] = useState(null);
+  const [compColor, setCompColor] = useState(null);
   const [file, setFile] = useState([]);
   const [filledFrames, setFilledFrames] = useState(0);
   const myArtStateRef = useRef();
@@ -33,8 +34,10 @@ const GalleryWall = () => {
     const total = selectedNumPhotos;
     // - filledFrames;
     const images = await dispatch(
-      fetchEtsyImages({ limit: total, hueNum: 200 })
+      fetchEtsyImages({ limit: total, hueNum: compColor[0] })
     );
+    console.log(compColor[0]);
+    console.log(images.payload);
     const imgArrToSendToFrames = images.payload.rows.map((i) => i.imageUrl)
     setEtsyImages(imgArrToSendToFrames);
     if (!generate) {
@@ -77,8 +80,10 @@ const GalleryWall = () => {
   };
 
   const getMyArtState = () => {
-    const myArtState = myArtStateRef.current.getImgUrl();
-    setImageUrl(myArtState);
+    const myArtUrlState = myArtStateRef.current.getImgUrl();
+    const myArtCompColorState = myArtStateRef.current.getImgCompColor();
+    setImageUrl(myArtUrlState);
+    setCompColor(myArtCompColorState);
   };
 
   // local state to keep track of the number of frames to render according to user selction
