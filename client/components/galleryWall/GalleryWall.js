@@ -17,7 +17,6 @@ const GalleryWall = () => {
   const dispatch = useDispatch();
   const s3 = new AWS.S3();
   const [imageUrl, setImageUrl] = useState(null);
-  const [compColor, setCompColor] = useState(null);
   const [file, setFile] = useState([]);
   const [filledFrames, setFilledFrames] = useState(0);
   const myArtStateRef = useRef();
@@ -34,10 +33,8 @@ const GalleryWall = () => {
     const total = selectedNumPhotos;
     // - filledFrames;
     const images = await dispatch(
-      fetchEtsyImages({ limit: total, hueNum: compColor[0] })
+      fetchEtsyImages({ limit: total, hueNum: 200 })
     );
-
-    console.log(compColor[0]);
     const imgArrToSendToFrames = images.payload.rows.map((i) => ({
       imageUrl: i.imageUrl,
       purchaseUrl: i.purchaseUrl,
@@ -83,10 +80,8 @@ const GalleryWall = () => {
   };
 
   const getMyArtState = () => {
-    const myArtUrlState = myArtStateRef.current.getImgUrl();
-    const myArtCompColorState = myArtStateRef.current.getImgCompColor();
-    setImageUrl(myArtUrlState);
-    setCompColor(myArtCompColorState);
+    const myArtState = myArtStateRef.current.getImgUrl();
+    setImageUrl(myArtState);
   };
 
   // local state to keep track of the number of frames to render according to user selction
@@ -165,7 +160,9 @@ const GalleryWall = () => {
       case "ovalTable":
         return <img src="/oval-table.png" className="max-w-[900px]" />;
       case "rectangleTable":
-        return <img src="/dining-table-rectangle.png" className="max-w-[900px]" />;
+        return (
+          <img src="/dining-table-rectangle.png" className="max-w-[900px]" />
+        );
     }
   };
   return (
@@ -232,6 +229,7 @@ const GalleryWall = () => {
         {getSofaForLayout()}
         <div id="userArtStuff">
           <button onClick={(e) => fillFrames(e)}>Generate Art</button>
+          {/** button onClick setSave(true) */}
           <MyArt ref={myArtStateRef} />
           <button onClick={() => getMyArtState()}>Select Frame</button>
           <div>

@@ -16,7 +16,8 @@ const SquareFrame = ({
   const [currentUrl, setCurrentUrl] = useState("/white.jpeg");
   const [thisGenerate, setThisGenerate] = useState(true);
 
-  console.log(currentUrl)
+  //PUT thunk to wall.js
+  // console.log(currentUrl)
 
   const updateCount = () => {
     if (!selected) {
