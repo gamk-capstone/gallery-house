@@ -8,11 +8,15 @@ const MyArt = forwardRef((props, _ref) => {
   const dispatch = useDispatch();
   const art = useSelector(selectUserArt);
   const [imgUrl, setImgUrl] = useState(null);
+  const [compColor, setCompColor] = useState(null);
 
   useImperativeHandle(_ref, () => ({
     getImgUrl: () => {
       return imgUrl;
     },
+    getImgCompColor: () => {
+      return compColor;
+    }
   }));
 
   useEffect(() => {
@@ -29,7 +33,8 @@ const MyArt = forwardRef((props, _ref) => {
         <div>
         {art?.map((piece) => {
           return <img src={piece.s3Url} className="w-40 h-60 p-3 object-cover drop-shadow-md shrink" key={piece.id} onClick={() => {
-            setImgUrl(piece.s3Url)
+            setImgUrl(piece.s3Url);
+            setCompColor(piece.complimentaryColor);
           }}/>;
         })}
         </div>
