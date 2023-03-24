@@ -33,8 +33,14 @@ const GalleryWall = () => {
     const total = selectedNumPhotos;
     // - filledFrames;
     const images = await dispatch(
+<<<<<<< HEAD
       fetchEtsyImages({ limit: total, hueNum: 200 })
     );
+=======
+      fetchEtsyImages({ limit: total, hueNum: compColor ? compColor[0] : 180 })
+    );
+
+>>>>>>> main
     const imgArrToSendToFrames = images.payload.rows.map((i) => ({
       imageUrl: i.imageUrl,
       purchaseUrl: i.purchaseUrl,
