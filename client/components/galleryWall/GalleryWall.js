@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 import AWS from "aws-sdk";
 import { useDispatch } from "react-redux";
@@ -26,10 +26,28 @@ const GalleryWall = () => {
   const [filledFrames, setFilledFrames] = useState(0);
   const myArtStateRef = useRef();
 
-  const handleSaveWall = () => {
-    console.log(etsyImages)
-    console.log(imageUrl)
-  }
+  const handleSaveWall = (e) => {
+    e.preventDefault();
+    if (filledFrames === 0 && etsyImages.length === 0) {
+      alert(`Your wall is empty. Please add images before saving.`);
+    } else {
+      if (filledFrames && etsyImages.length < selectedNumPhotos) {
+        console.log(filledFrames);
+        console.log(selectedNumPhotos);
+        alert(`Your wall isn't complete. Are you sure you want to save it?`);
+      }
+      let savedWallImages = [];
+      if (imageUrl && imageUrl.length > 0) {
+        savedWallImages.push(imageUrl);
+      }
+      if (etsyImages && etsyImages.length > 0) {
+        etsyImages.map((i) => savedWallImages.push(i.imageUrl));
+      }
+      console.log(savedWallImages);
+      console.log("imageUrl", imageUrl);
+      console.log("etsyEtsy", etsyImages);
+    }
+  };
 
   const [etsyImages, setEtsyImages] = useState([]);
   const [generate, setGenerate] = useState(false);
@@ -235,8 +253,10 @@ const GalleryWall = () => {
         {getNumberForLayout()}
         {getSofaForLayout()}
         <div id="userArtStuff">
+          {/** Generate art button */}
           <button onClick={(e) => fillFrames(e)}>Generate Art</button>
-          <button onClick={(e) => handleSaveWall()}>Save</button>
+          {/** Save button */}
+          <button onClick={(e) => handleSaveWall(e)}>Save</button>
           <MyArt ref={myArtStateRef} />
           <button onClick={() => getMyArtState()}>Select Frame</button>
           <div>

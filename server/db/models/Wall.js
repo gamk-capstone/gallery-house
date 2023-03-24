@@ -3,12 +3,17 @@ const db = require("../db");
 
 /**
  * `Wall` model has column for `name`.
- * name [string] - cannot be null
+ * name [string] - can be null
+ * images [[string]] - can be null
  */
 const Wall = db.define("wall", {
   name: {
     type: Sequelize.STRING,
-    allowNull: false,
+    allowNull: true,
+  },
+  images: {
+    type: Sequelize.ARRAY(Sequelize.STRING),
+    allowNull: true,
   },
 });
 
