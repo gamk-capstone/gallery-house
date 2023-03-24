@@ -8,7 +8,7 @@ import { logout } from "../../app/store";
  * @returns the correct Link options based on whether a user is logged in or not.
  */
 
-const Navbar = () => {
+const NavbarHomepage = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="border-yellow border-solid border-b-[1.5rem]">
+      <nav>
         {isLoggedIn ? (
           <div className="flex flex-row justify-between items-center pr-16">
             <div className="flex flex-row justify-start items-center gap-32 p-16">
@@ -81,4 +81,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavbarHomepage;
