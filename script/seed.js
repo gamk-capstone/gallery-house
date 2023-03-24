@@ -214,13 +214,13 @@ async function seed() {
   const walls = await Promise.all([
     Wall.create({
       name: "wall1",
-      images: [
-        "https://gamkgalleryhouse.s3.us-east-2.amazonaws.com/1679519860760.pexels-pixabay-45201.jpeg",
-        "https://gamkgalleryhouse.s3.us-east-2.amazonaws.com/1679519860760.pexels-pixabay-45201.jpeg",
-        "https://gamkgalleryhouse.s3.us-east-2.amazonaws.com/1679519860760.pexels-pixabay-45201.jpeg",
-        "https://gamkgalleryhouse.s3.us-east-2.amazonaws.com/1679519860760.pexels-pixabay-45201.jpeg",
-        "https://gamkgalleryhouse.s3.us-east-2.amazonaws.com/1679519860760.pexels-pixabay-45201.jpeg",
-      ],
+      // images: [
+      //   "https://gamkgalleryhouse.s3.us-east-2.amazonaws.com/1679519860760.pexels-pixabay-45201.jpeg",
+      //   "https://gamkgalleryhouse.s3.us-east-2.amazonaws.com/1679519860760.pexels-pixabay-45201.jpeg",
+      //   "https://gamkgalleryhouse.s3.us-east-2.amazonaws.com/1679519860760.pexels-pixabay-45201.jpeg",
+      //   "https://gamkgalleryhouse.s3.us-east-2.amazonaws.com/1679519860760.pexels-pixabay-45201.jpeg",
+      //   "https://gamkgalleryhouse.s3.us-east-2.amazonaws.com/1679519860760.pexels-pixabay-45201.jpeg",
+      // ],
       userId: 1,
     }),
     Wall.create({

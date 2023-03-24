@@ -31,7 +31,10 @@ const GalleryWall = () => {
     if (filledFrames === 0 && etsyImages.length === 0) {
       alert(`Your wall is empty. Please add images before saving.`);
     } else {
-      if (filledFrames && etsyImages.length < selectedNumPhotos) {
+      if (
+        filledFrames < selectedNumPhotos &&
+        etsyImages.length < selectedNumPhotos
+      ) {
         console.log(filledFrames);
         console.log(selectedNumPhotos);
         alert(`Your wall isn't complete. Are you sure you want to save it?`);
@@ -41,7 +44,12 @@ const GalleryWall = () => {
         savedWallImages.push(imageUrl);
       }
       if (etsyImages && etsyImages.length > 0) {
-        etsyImages.map((i) => savedWallImages.push(i.imageUrl));
+        etsyImages.map((i) =>
+          savedWallImages.push({
+            imageUrl: i.imageUrl,
+            purchaseUrl: i.purchaseUrl,
+          })
+        );
       }
       console.log(savedWallImages);
       console.log("imageUrl", imageUrl);
