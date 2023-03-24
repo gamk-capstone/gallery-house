@@ -91,7 +91,6 @@ router.get("/etsyArt/:hueNum/:limit", async (req, res, next) => {
       limit: req.params.limit, //this is where we can pass down the number of frames to get the right number of images
       order: sequelize.fn("RANDOM"), //returns data in random order on each call
     });
-    console.log(estyArtByColor);
     res.json(estyArtByColor);
   } catch (err) {
     next(err);

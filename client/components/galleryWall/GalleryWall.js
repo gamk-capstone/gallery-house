@@ -39,7 +39,6 @@ const GalleryWall = () => {
       imageUrl: i.imageUrl,
       purchaseUrl: i.purchaseUrl,
     }));
-    console.log(imgArrToSendToFrames);
     setEtsyImages(imgArrToSendToFrames);
     if (!generate) {
       setGenerate(true);
