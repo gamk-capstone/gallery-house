@@ -11,10 +11,10 @@ const Wall = db.define("wall", {
     type: Sequelize.STRING,
     allowNull: true,
   },
-  // images: {
-  //   type: Sequelize.ARRAY(Sequelize.STRING),
-  //   allowNull: true,
-  // },
+  images: {
+    type: Sequelize.ARRAY(Sequelize.STRING),
+    allowNull: true,
+  },
 });
 
 module.exports = Wall;

@@ -41,7 +41,7 @@ const GalleryWall = () => {
       }
       let savedWallImages = [];
       if (imageUrl && imageUrl.length > 0) {
-        savedWallImages.push(imageUrl);
+        savedWallImages.push({ imageUrl: imageUrl, purchaseUrl: null });
       }
       if (etsyImages && etsyImages.length > 0) {
         etsyImages.map((i) =>
@@ -52,8 +52,6 @@ const GalleryWall = () => {
         );
       }
       console.log(savedWallImages);
-      console.log("imageUrl", imageUrl);
-      console.log("etsyEtsy", etsyImages);
     }
   };
 
