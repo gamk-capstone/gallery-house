@@ -12,12 +12,10 @@ const SquareFrame = ({
   etsyImages,
   generate,
 }) => {
-  const [selected, setSelected] = useState(false);
-  const [currentUrl, setCurrentUrl] = useState("/white.jpeg");
-  const [thisGenerate, setThisGenerate] = useState(true);
 
-  //PUT thunk to wall.js
-  // console.log(currentUrl)
+  const [selected, setSelected] = useState(false);
+  const [thisGenerate, setThisGenerate] = useState(true);
+  const [currentUrl, setCurrentUrl] = useState("/white.jpeg");
 
   const updateCount = () => {
     if (!selected) {

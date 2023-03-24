@@ -20,12 +20,16 @@ const GalleryWall = () => {
   const [file, setFile] = useState([]);
   const [compColor, setCompColor] = useState(null);
 
-  const [filledFrames, setFilledFrames] = useState(0);
-  const myArtStateRef = useRef();
-
   //use state in gallery wall to determine the amount of total frames
   //create function that subtracts filled frames from total frames
   //dispatch that number to thunk that generates etsy images
+  const [filledFrames, setFilledFrames] = useState(0);
+  const myArtStateRef = useRef();
+
+  const handleSaveWall = () => {
+    console.log(etsyImages)
+    console.log(imageUrl)
+  }
 
   const [etsyImages, setEtsyImages] = useState([]);
   const [generate, setGenerate] = useState(false);
@@ -232,7 +236,7 @@ const GalleryWall = () => {
         {getSofaForLayout()}
         <div id="userArtStuff">
           <button onClick={(e) => fillFrames(e)}>Generate Art</button>
-          {/** button onClick setSave(true) */}
+          <button onClick={(e) => handleSaveWall()}>Save</button>
           <MyArt ref={myArtStateRef} />
           <button onClick={() => getMyArtState()}>Select Frame</button>
           <div>

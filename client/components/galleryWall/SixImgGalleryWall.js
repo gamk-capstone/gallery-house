@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import SquareFrame from "../frames/SquareFrame";
 
 /**
@@ -6,7 +6,14 @@ import SquareFrame from "../frames/SquareFrame";
  * @returns HTML for gallery wall comprised of six images
  */
 
-const SixImageGalleryWall = ({ userArtUrl, filledFrames, setFilledFrames, etsyImages, generate }) => {
+const SixImageGalleryWall = ({
+  userArtUrl,
+  filledFrames,
+  setFilledFrames,
+  etsyImages,
+  generate,
+}) => {
+
   return (
     <div className="flex justify-center flex-col gap-4">
       <div className="flex justify-center flex-row items-end gap-4">
@@ -23,6 +30,7 @@ const SixImageGalleryWall = ({ userArtUrl, filledFrames, setFilledFrames, etsyIm
           setFilledFrames={setFilledFrames}
           etsyImages={etsyImages ? etsyImages[1] : ""}
           generate={generate}
+
         />
         <SquareFrame
           userArtUrl={userArtUrl}
