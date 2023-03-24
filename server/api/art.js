@@ -83,11 +83,7 @@ router.post("/user", async (req, res, next) => {
 router.get("/etsyArt/:hueNum/:limit", async (req, res, next) => {
   try {
     const estyArtByColor = await Art.findAndCountAll({
-      where: {
-        colors: {
-          [Op.gt]: [[req.params.hueNum]], //this looks for any colors whose hue number is greater than hueNum
-        },
-      },
+      where: sequelize.literal(`colors[1][1] BETWEEN ${req.params.hueNum - 50} AND ${req.params.hueNum + 50}`),
       limit: req.params.limit, //this is where we can pass down the number of frames to get the right number of images
       order: sequelize.fn("RANDOM"), //returns data in random order on each call
     });
