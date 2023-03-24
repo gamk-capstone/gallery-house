@@ -1,25 +1,21 @@
 import React from "react";
-import FiveImgGalleryWall from "../galleryWall/FiveImgGalleryWall";
 /**
  * `Home` component
  * @returns HTML for the Gallery House landing page
  */
 const Home = () => {
   return (
-    <div className="grid grid-rows-1 justify-items-center">
-      <div className="font-logo-font text-3xl">
-        Gallery{" "}
-        <span className="font-house-font font-light text-3xl text-pink-700">
-          ·
-        </span>{" "}
-        House
-      </div>
-      <div className="grid grid-rows-2 justify-items-center">
-        <FiveImgGalleryWall className="row-start-1 row-span-1"></FiveImgGalleryWall>
-        <img
-          src="/sofa-beige-rounded.png"
-          className="row-start-2 row-span-1 max-w-[900px]"
-        />
+    <div className="flex flex-col items-center pt-[3rem]">
+      <div className="flex flex-col bg-yellow w-[60%] p-40">
+        <h1 className="font-logo-font text-dark-pink text-7xl">
+          So much color, so little time.
+        </h1>
+        <p className="font-house-regular-italic text-dark-pink text-xl">
+          We match your art to complimentary pieces from Esty sellers so that
+          you can seamlessly create beautiful custom gallery walls informed by
+          color theory
+        </p>
+        <button>Start Creating</button>
       </div>
     </div>
   );

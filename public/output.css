@@ -643,6 +643,14 @@ video {
   width: 100%;
 }
 
+.w-80 {
+  width: 20rem;
+}
+
+.w-\[60\%\] {
+  width: 60%;
+}
+
 .max-w-\[20rem\] {
   max-width: 20rem;
 }
@@ -899,6 +907,10 @@ video {
   padding: 2rem;
 }
 
+.p-40 {
+  padding: 10rem;
+}
+
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -933,6 +945,10 @@ video {
   font-family: Le Havre Bold, sans-serif;
 }
 
+.font-house-regular-italic {
+  font-family: Le Havre Regular Italic, sans-serif;
+}
+
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
@@ -953,6 +969,21 @@ video {
   line-height: 1.75rem;
 }
 
+.text-9xl {
+  font-size: 8rem;
+  line-height: 1;
+}
+
+.text-8xl {
+  font-size: 6rem;
+  line-height: 1;
+}
+
+.text-7xl {
+  font-size: 4.5rem;
+  line-height: 1;
+}
+
 .font-light {
   font-weight: 300;
 }
@@ -965,6 +996,11 @@ video {
 .text-pink {
   --tw-text-opacity: 1;
   color: rgb(250 103 206 / var(--tw-text-opacity));
+}
+
+.text-dark-pink {
+  --tw-text-opacity: 1;
+  color: rgb(173 54 138 / var(--tw-text-opacity));
 }
 
 .drop-shadow-md {
