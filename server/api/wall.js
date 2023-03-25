@@ -4,13 +4,10 @@ const {
 } = require("../db");
 
 //route at /api/wall POSTS an instance of Wall model
-router.post("/wall", async (req, res, next) => {
-    try {
-      const estyArt = await Wall.create({
-
-      });
-      res.json(estyArt);
-    } catch (err) {
-      next(err);
-    }
-  });
+router.post("/", async (req, res, next) => {
+  try {
+    res.status(201).send(await Wall.create(req.body));
+  } catch (err) {
+    next(err);
+  }
+});

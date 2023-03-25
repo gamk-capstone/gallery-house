@@ -32,184 +32,205 @@ async function seed() {
   //#region Instances of `Art` model
   // --------------------------------------------------------------------
 
-  //Store our six featured Esty shops (Julia Ockert, FungusGallery, ArtKoraju, RedCheeksFactory, OnLaneAvenue) ids
-  // const shop_ids = [5478758, 19639425, 14928731, 7780904, 6300167];
+  // Store our six featured Esty shops (Julia Ockert, FungusGallery, ArtKoraju, RedCheeksFactory, OnLaneAvenue) ids
+  const shop_ids = [5478758, 19639425, 14928731, 7780904, 6300167];
 
   // /**
   //  * `findAllActiveListingsByShop` retrieves a list of all active listings on Etsy in a specific shop, paginated by listing creation date.
   //  * @returns {array} An array of 100 active listing_ids.
   //  */
 
-  // const findAllActiveListingsByShop = async (shop_ids) => {
-  //   try {
-  //     // const shop_id = shop_ids.map((s) => s)
-  //     // console.log(shop_id)
-  //     let { data } = await axios.get(
-  //       `https://openapi.etsy.com/v3/application/shops/17721959/listings/active?limit=100`,
-  //       { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
-  //     );
-  //     let data1 = await axios.get(
-  //       `https://openapi.etsy.com/v3/application/shops/5478758/listings/active?limit=100`,
-  //       { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
-  //     );
-  //     let data2 = await axios.get(
-  //       `https://openapi.etsy.com/v3/application/shops/19639425/listings/active?limit=100`,
-  //       { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
-  //     );
-  //     let data3 = await axios.get(
-  //       `https://openapi.etsy.com/v3/application/shops/14928731/listings/active?limit=100`,
-  //       { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
-  //     );
-  //     let data4 = await axios.get(
-  //       `https://openapi.etsy.com/v3/application/shops/7780904/listings/active?limit=100`,
-  //       { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
-  //     );
-  //     let data5 = await axios.get(
-  //       `https://openapi.etsy.com/v3/application/shops/6300167/listings/active?limit=100`,
-  //       { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
-  //     );
+  const findAllActiveListingsByShop = async (shop_ids) => {
+    try {
+      // const shop_id = shop_ids.map((s) => s)
+      // console.log(shop_id)
+      let { data } = await axios.get(
+        `https://openapi.etsy.com/v3/application/shops/17721959/listings/active?limit=100`,
+        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+      );
+      let data1 = await axios.get(
+        `https://openapi.etsy.com/v3/application/shops/5478758/listings/active?limit=100`,
+        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+      );
+      let data2 = await axios.get(
+        `https://openapi.etsy.com/v3/application/shops/19639425/listings/active?limit=100`,
+        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+      );
+      let data3 = await axios.get(
+        `https://openapi.etsy.com/v3/application/shops/14928731/listings/active?limit=100`,
+        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+      );
+      let data4 = await axios.get(
+        `https://openapi.etsy.com/v3/application/shops/7780904/listings/active?limit=100`,
+        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+      );
+      let data5 = await axios.get(
+        `https://openapi.etsy.com/v3/application/shops/6300167/listings/active?limit=100`,
+        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+      );
+      // let data6 = await axios.get(
+      //   ``
+      // )
 
-  //     const listing_ids = data.results.map((l) => l.listing_id);
-  //     const listings_ids1 = data1.data.results.map((l) => l.listing_id);
-  //     const listings_ids2 = data2.data.results.map((l) => l.listing_id);
-  //     const listing_ids3 = data3.data.results.map((l) => l.listing_id);
-  //     const listing_ids4 = data4.data.results.map((l) => l.listing_id);
-  //     const listing_ids5 = data5.data.results.map((l) => l.listing_id);
+      const listing_ids = data.results.map((l) => l.listing_id);
 
-  //     const listing_ids_result = [
-  //       ...listing_ids,
-  //       ...listings_ids1,
-  //       ...listings_ids2,
-  //       ...listing_ids3,
-  //       ...listing_ids4,
-  //       ...listing_ids5,
-  //     ];
-  //     return listing_ids_result;
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+      const listings_ids1 = data1.data.results.map((l) => l.listing_id);
+      const listings_ids2 = data2.data.results.map((l) => l.listing_id);
+      const listing_ids3 = data3.data.results.map((l) => l.listing_id);
+      const listing_ids4 = data4.data.results.map((l) => l.listing_id);
+      const listing_ids5 = data5.data.results.map((l) => l.listing_id);
 
-  // const result = await findAllActiveListingsByShop();
-  // const a = result.slice(0, 100);
-  // const b = result.slice(101, 201);
-  // const c = result.slice(201, 301);
-  // const d = result.slice(301, 401);
-  // const e = result.slice(401, 501);
+      const listing_ids_result = [
+        ...listing_ids,
+        ...listings_ids1,
+        ...listings_ids2,
+        ...listing_ids3,
+        ...listing_ids4,
+        ...listing_ids5,
+      ];
+
+      //remove bad listings
+      // listing_ids_result.splice(listing_ids_result.indexOf(656437627), 1);
+      // listing_ids_result.splice(listing_ids_result.indexOf(1012513409), 1);
+      // console.log(listing_ids_result.indexOf(762424440));
+      // listing_ids_result.splice(listing_ids_result.indexOf(762424440), 1);
+
+      return listing_ids_result;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const result = await findAllActiveListingsByShop();
+  const a = result.slice(0, 100);
+  const b = result.slice(101, 201);
+  const c = result.slice(201, 301);
+  const d = result.slice(301, 401);
+  const e = result.slice(401, 501);
 
   // /**
   //  * `getListingsByListingIds` allows to query multiple listing ids at once. Limit 100 ids maximum per query.
   //  * @returns {obj[]} An array of objects, including "name", "imageUrl", and "purchaseUrl" keys.
   //  */
-  // const getListingsByListingIds = async () => {
-  //   try {
-  //     let { data } = await axios.get(
-  //       `https://openapi.etsy.com/v3/application/listings/batch?includes=Images&listing_ids=${a}`,
-  //       { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
-  //     );
-  //     let data1 = await axios.get(
-  //       `https://openapi.etsy.com/v3/application/listings/batch?includes=Images&listing_ids=${b}`,
-  //       { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
-  //     );
-  //     let data2 = await axios.get(
-  //       `https://openapi.etsy.com/v3/application/listings/batch?includes=Images&listing_ids=${c}`,
-  //       { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
-  //     );
-  //     let data3 = await axios.get(
-  //       `https://openapi.etsy.com/v3/application/listings/batch?includes=Images&listing_ids=${d}`,
-  //       { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
-  //     );
-  //     let data4 = await axios.get(
-  //       `https://openapi.etsy.com/v3/application/listings/batch?includes=Images&listing_ids=${e}`,
-  //       { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
-  //     );
+  const getListingsByListingIds = async () => {
+    try {
+      let { data } = await axios.get(
+        `https://openapi.etsy.com/v3/application/listings/batch?includes=Images&listing_ids=${a}`,
+        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+      );
+      let data1 = await axios.get(
+        `https://openapi.etsy.com/v3/application/listings/batch?includes=Images&listing_ids=${b}`,
+        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+      );
+      let data2 = await axios.get(
+        `https://openapi.etsy.com/v3/application/listings/batch?includes=Images&listing_ids=${c}`,
+        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+      );
+      let data3 = await axios.get(
+        `https://openapi.etsy.com/v3/application/listings/batch?includes=Images&listing_ids=${d}`,
+        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+      );
+      let data4 = await axios.get(
+        `https://openapi.etsy.com/v3/application/listings/batch?includes=Images&listing_ids=${e}`,
+        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+      );
 
-  //     const result = data.results.map((l) => ({
-  //       name: l.title,
-  //       imageUrl: l.images[0].url_fullxfull,
-  //       purchaseUrl: l.url,
-  //       colors: [[0]],
-  //     }));
-  //     const result1 = data1.data.results.map((l) => ({
-  //       name: l.title,
-  //       imageUrl: l.images[0].url_fullxfull,
-  //       purchaseUrl: l.url,
-  //       colors: [[0]],
-  //     }));
-  //     const result2 = data2.data.results.map((l) => ({
-  //       name: l.title,
-  //       imageUrl: l.images[0].url_fullxfull,
-  //       purchaseUrl: l.url,
-  //       colors: [[0]],
-  //     }));
-  //     const result3 = data3.data.results.map((l) => ({
-  //       name: l.title,
-  //       imageUrl: l.images[0].url_fullxfull,
-  //       purchaseUrl: l.url,
-  //       colors: [[0]],
-  //     }));
-  //     const result4 = data4.data.results.map((l) => ({
-  //       name: l.title,
-  //       imageUrl: l.images[0].url_fullxfull,
-  //       purchaseUrl: l.url,
-  //       colors: [[0]],
-  //     }));
+      const result = data.results.map((l) => ({
+        name: l.title,
+        imageUrl: l.images[0].url_fullxfull,
+        purchaseUrl: l.url,
+      }));
+      const result1 = data1.data.results.map((l) => ({
+        name: l.title,
+        imageUrl: l.images[0].url_fullxfull,
+        purchaseUrl: l.url,
+      }));
+      const result2 = data2.data.results.map((l) => ({
+        name: l.title,
+        imageUrl: l.images[0].url_fullxfull,
+        purchaseUrl: l.url,
+      }));
+      const result3 = data3.data.results.map((l) => ({
+        name: l.title,
+        imageUrl: l.images[0].url_fullxfull,
+        purchaseUrl: l.url,
+      }));
+      const result4 = data4.data.results.map((l) => ({
+        name: l.title,
+        imageUrl: l.images[0].url_fullxfull,
+        purchaseUrl: l.url,
+      }));
 
-  //     const final_result = [
-  //       ...result,
-  //       ...result1,
-  //       ...result2,
-  //       ...result3,
-  //       ...result4,
-  //     ];
+      const final_result = [
+        ...result,
+        ...result1,
+        ...result2,
+        ...result3,
+        ...result4,
+      ];
 
-  //     return final_result;
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+      return final_result;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  // const art = await getListingsByListingIds();
-  // const art1 = art.slice(0, 100);
-  // const art2 = art.slice(101, 201);
-  // const art3 = art.slice(201, 301);
-  // const art4 = art.slice(301, 401);
-  // const art5 = art.slice(401, 501);
+  const art = await getListingsByListingIds();
+  const art1 = art.slice(0, 100);
+  const art2 = art.slice(101, 201);
+  const art3 = art.slice(201, 301);
+  const art4 = art.slice(301, 401);
+  const art5 = art.slice(401, 501);
 
-  // /**
-  //  * `getEstyImagesMainColors` uses a callback function `getMainColors` (from /server/get-images.js) to retrieve the four main
-  //  * colors of each image in our db. The colors are stored according to their HSL value (Hue, Saturation, and Lumousity).
-  //  * @returns the `colors` column of art table populated with data
-  //  */
-  // const getEstyImagesMainColors = async () => {
-  //   for (let i = 0; i <= art1.length - 1; i++) {
-  //     art1[i].colors = await getMainColors(art1[i].imageUrl);
-  //   }
-  //   for (let i = 0; i <= art2.length - 1; i++) {
-  //     art2[i].colors = await getMainColors(art2[i].imageUrl);
-  //   }
-  //   for (let i = 0; i <= art3.length - 1; i++) {
-  //     art3[i].colors = await getMainColors(art3[i].imageUrl);
-  //   }
-  //   for (let i = 0; i <= art4.length - 1; i++) {
-  //     art4[i].colors = await getMainColors(art4[i].imageUrl);
-  //   }
-  //   for (let i = 0; i <= art5.length - 1; i++) {
-  //     art5[i].colors = await getMainColors(art5[i].imageUrl);
-  //   }
-  //   return;
-  // };
+  /**
+   * `getEstyImagesMainColors` uses a callback function `getMainColors` (from /server/get-images.js) to retrieve the four main
+   * colors of each image in our db. The colors are stored according to their HSL value (Hue, Saturation, and Lumousity).
+   * @returns the `colors` column of art table populated with data
+   */
+  const getEstyImagesMainColors = async () => {
+    for (let i = 0; i <= art1.length - 1; i++) {
+      //store results of current image 4 main colors in a variable
+      let colorsFromFn = await getMainColors(art1[i].imageUrl);
+      console.log("BEFORE________", colorsFromFn)
+      // analyze the results of the current image's 4 main colors
+      // if the current array has 4 image values
+      if (colorsFromFn.length - 1 === 4) {
+        //check each value
+        for (let j = 0; j <= colorsFromFn.length; j++) {
+          if (!isNaN(color[j]) && color[j] && Number.isInteger(color[j])) {
+            art1[i].colors = colorsFromFn;
+            console.log("AFTER_______", art1[i].colors)
+          }
+        }
+      } else {
+        continue;
+      }
+    }
+    // for (let i = 0; i <= art2.length - 1; i++) {
+    //   art2[i].colors = await getMainColors(art2[i].imageUrl);
+    // }
+    // for (let i = 0; i <= art3.length - 1; i++) {
+    //   art3[i].colors = await getMainColors(art3[i].imageUrl);
+    // }
+    // for (let i = 0; i <= art4.length - 1; i++) {
+    //   art4[i].colors = await getMainColors(art4[i].imageUrl);
+    // }
+    // for (let i = 0; i <= art5.length - 1; i++) {
+    //   art5[i].colors = await getMainColors(art5[i].imageUrl);
+    // }
+    return;
+  };
 
-  // await getEstyImagesMainColors();
+  await getEstyImagesMainColors();
 
-  // //Finally, create instances of Art model using manipulated data retrieved from Esty's (v3) open API.
-  // const loadArt = await Promise.all(art.map((l) => Art.create(l)));
+  //Finally, create instances of Art model using manipulated data retrieved from Esty's (v3) open API.
+  const loadArt = await Promise.all(art.map((l) => Art.create(l)));
 
-  //#endregion Instances of `Art` model
+  // //#endregion Instances of `Art` model
 
-  // --------------------------------------------------------------------
-  //#region Instances of `Wall` model
-  // --------------------------------------------------------------------
+  // // --------------------------------------------------------------------
+  // //#region Instances of `Wall` model
+  // // --------------------------------------------------------------------
 
   // const walls = await Promise.all([
   //   Wall.create({
@@ -218,11 +239,11 @@ async function seed() {
   //   }),
   //   Wall.create({
   //     name: "wall2",
-  //     userId: 1,
+  //     userId: 2,
   //   }),
   //   Wall.create({
   //     name: "wall3",
-  //     userId: 2,
+  //     userId: 3,
   //   }),
   // ]);
 
@@ -235,7 +256,7 @@ async function seed() {
   // await walls[1].addArt(artRow2, { through: ArtOnWall });
   // await walls[2].addArt(artRow2, { through: ArtOnWall });
 
-  //#endregion Instances of `Wall` model
+  // #endregion Instances of `Wall` model
 
   // --------------------------------------------------------------------
   //#region Instances of `SavedWall` model
@@ -301,6 +322,9 @@ async function seed() {
       ],
     }),
   ]);
+
+  await savedWalls[0].setUser(await User.findByPk(1));
+  await savedWalls[1].setUser(await User.findByPk(1));
 
   console.log(`seeded ${chalk.blue(art.length)} artworks from 6 Esty shops`);
   console.log(`seeded ${chalk.green(users.length)} users`);

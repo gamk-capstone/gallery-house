@@ -1,6 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+/**
+ * `fetchEtsyImages` GETS data at Etsy (v3) API based on hue number and number of images.
+ */
 export const fetchEtsyImages = createAsyncThunk(
   "fetchEtsyImages",
   async (searchParams) => {
@@ -15,12 +18,29 @@ export const fetchEtsyImages = createAsyncThunk(
   }
 );
 
+/**
+ * `saveWallAsync` POSTS data at /api/walls
+ */
+export const saveWallAsync = createAsyncThunk(
+  "saveWall",
+  async (savedWallImages) => {
+    const { data } = await axios.post(
+      "http://localhost:8080/api/walls",
+      savedWallImages
+    );
+    return data;
+  }
+);
+
 export const galleryWallSlice = createSlice({
   name: "galleryWall",
   initialState: [],
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchEtsyImages.fulfilled, (state, { payload }) => payload);
+    builder.addCase(saveWallAsync.fulfilled, (state, { payload }) => {
+      state.push(payload);
+    });
   },
 });
 

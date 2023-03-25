@@ -10,7 +10,8 @@ import SixImgGalleryWall from "./SixImgGalleryWall";
 import SevenImgGalleryWall from "./SevenImgGalleryWall";
 import EightImgGalleryWall from "./EightImgGalleryWall";
 import MyArt from "../myArt/MyArt";
-import { fetchEtsyImages } from "./galleryWallSlice";
+import { fetchEtsyImages, saveWallAsync } from "./galleryWallSlice";
+import { useNavigate } from "react-router-dom";
 
 const GalleryWall = () => {
   const { id } = useSelector((state) => state.auth.me);
@@ -19,6 +20,8 @@ const GalleryWall = () => {
   const [imageUrl, setImageUrl] = useState(null);
   const [file, setFile] = useState([]);
   const [compColor, setCompColor] = useState(null);
+
+  const navigate = useNavigate();
 
   //use state in gallery wall to determine the amount of total frames
   //create function that subtracts filled frames from total frames
@@ -52,6 +55,8 @@ const GalleryWall = () => {
         );
       }
       console.log(savedWallImages);
+      dispatch(saveWallAsync(savedWallImages))
+      navigate("/create");
     }
   };
 
