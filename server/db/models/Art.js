@@ -22,7 +22,7 @@ const Art = db.define("art", {
     allowNull: false,
   },
   colors: {
-    type: Sequelize.ARRAY(Sequelize.ARRAY(Sequelize.INTEGER, Sequelize.INTEGER, Sequelize.INTEGER, Sequelize.INTEGER)),
+    type: Sequelize.ARRAY(Sequelize.ARRAY(Sequelize.INTEGER)),
     defaultValue: [],
   },
 });

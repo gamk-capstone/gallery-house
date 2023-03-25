@@ -32,46 +32,80 @@ async function seed() {
   //#region Instances of `Art` model
   // --------------------------------------------------------------------
 
-  // Store our six featured Esty shops (Julia Ockert, FungusGallery, ArtKoraju, RedCheeksFactory, OnLaneAvenue) ids
-  const shop_ids = [5478758, 19639425, 14928731, 7780904, 6300167, 86186094];
+  /**
+   * Store our 10 featured Esty shops' ids
+   * 1. Julia Ockert, https://www.etsy.com/shop/JuliaOckert, 5478758
+   * 2. FungusGallery, https://www.etsy.com/shop/FungusGallery, 19639425
+   * 3. ArtKoraju, https://www.etsy.com/shop/ArtKoraju, 14928731
+   * 4. RedCheeksFactory, https://www.etsy.com/shop/RedCheeksFactory, 7780904
+   * 5. OnLaneAvenue, https://www.etsy.com/shop/OnLaneAvenue, 6300167
+   * 6. Stardust Print Shop, https://www.etsy.com/shop/StardustPrintShop, 12949606
+   * 7. CityandFlowerCollage, https://www.etsy.com/shop/CityandFlowerCollage, 8954053
+   * 8. ArtNostalgie, https://www.etsy.com/shop/ArtNostalgie, 10607194
+   * 9. SlavArtVintage, https://www.etsy.com/shop/SlavArtVintage, 17352094
+   * 10. carlallanosprints, https://www.etsy.com/shop/carlallanosprints, 10642912
+   * 11. ClareElsaesser, https://www.etsy.com/shop/ClareElsaesser, 5677896
+   * 12. Mirlande, https://www.etsy.com/shop/Mirlande, 5625705
+   */
+  const shop_ids = [
+    5478758, 19639425, 14928731, 7780904, 6300167, 12949606, 8954053, 10607194,
+    // 17352094, 10642912, 5677896, 5625705,
+  ];
 
-  // /**
   //  * `findAllActiveListingsByShop` retrieves a list of all active listings on Etsy in a specific shop, paginated by listing creation date.
   //  * @returns {array} An array of 100 active listing_ids.
   //  */
 
   const findAllActiveListingsByShop = async (shop_ids) => {
     try {
-      // const shop_id = shop_ids.map((s) => s)
-      // console.log(shop_id)
       let { data } = await axios.get(
-        `https://openapi.etsy.com/v3/application/shops/17721959/listings/active?limit=100`,
-        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
-      );
-      let data1 = await axios.get(
         `https://openapi.etsy.com/v3/application/shops/5478758/listings/active?limit=100`,
         { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
       );
-      let data2 = await axios.get(
+      let data1 = await axios.get(
         `https://openapi.etsy.com/v3/application/shops/19639425/listings/active?limit=100`,
         { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
       );
-      let data3 = await axios.get(
+      let data2 = await axios.get(
         `https://openapi.etsy.com/v3/application/shops/14928731/listings/active?limit=100`,
         { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
       );
-      let data4 = await axios.get(
+      let data3 = await axios.get(
         `https://openapi.etsy.com/v3/application/shops/7780904/listings/active?limit=100`,
         { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
       );
-      let data5 = await axios.get(
+      let data4 = await axios.get(
         `https://openapi.etsy.com/v3/application/shops/6300167/listings/active?limit=100`,
         { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
       );
-      let data6 = await axios.get(
-        `https://openapi.etsy.com/v3/application/shops/86186094/listings/active?limit=100`,
+      let data5 = await axios.get(
+        `https://openapi.etsy.com/v3/application/shops/12949606/listings/active?limit=100`,
         { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
-      )
+      );
+      let data6 = await axios.get(
+        `https://openapi.etsy.com/v3/application/shops/8954053/listings/active?limit=100`,
+        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+      );
+      let data7 = await axios.get(
+        `https://openapi.etsy.com/v3/application/shops/10607194/listings/active?limit=100`,
+        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+      );
+      let data8 = await axios.get(
+        `https://openapi.etsy.com/v3/application/shops/17352094/listings/active?limit=100`,
+        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+      );
+      let data9 = await axios.get(
+        `https://openapi.etsy.com/v3/application/shops/10642912/listings/active?limit=100`,
+        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+      );
+      let data10 = await axios.get(
+        `https://openapi.etsy.com/v3/application/shops/5677896/listings/active?limit=100`,
+        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+      );
+      let data11 = await axios.get(
+        `https://openapi.etsy.com/v3/application/shops/5625705/listings/active?limit=100`,
+        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+      );
 
       const listing_ids = data.results.map((l) => l.listing_id);
       const listings_ids1 = data1.data.results.map((l) => l.listing_id);
@@ -80,6 +114,11 @@ async function seed() {
       const listing_ids4 = data4.data.results.map((l) => l.listing_id);
       const listing_ids5 = data5.data.results.map((l) => l.listing_id);
       const listing_ids6 = data6.data.results.map((l) => l.listing_id);
+      const listing_ids7 = data7.data.results.map((l) => l.listing_id);
+      const listing_ids8 = data8.data.results.map((l) => l.listing_id);
+      const listing_ids9 = data9.data.results.map((l) => l.listing_id);
+      const listing_ids10 = data10.data.results.map((l) => l.listing_id);
+      const listing_ids11 = data11.data.results.map((l) => l.listing_id);
 
       const listing_ids_result = [
         ...listing_ids,
@@ -88,8 +127,19 @@ async function seed() {
         ...listing_ids3,
         ...listing_ids4,
         ...listing_ids5,
-        ...listing_ids6
+        ...listing_ids6,
+        ...listing_ids7,
+        // ...listing_ids8,
+        // ...listing_ids9,
+        // ...listing_ids10,
+        // ...listing_ids11,
       ];
+      //removed faulty listing
+      listing_ids_result.splice(listing_ids_result.indexOf(1012513409), 1);
+      listing_ids_result.splice(listing_ids_result.indexOf(809794921), 1);
+      listing_ids_result.splice(listing_ids_result.indexOf(267791209), 1);
+      listing_ids_result.splice(listing_ids_result.indexOf(817216741), 1);
+      listing_ids_result.splice(listing_ids_result.indexOf(667190580), 1);
 
       return listing_ids_result;
     } catch (error) {
@@ -103,7 +153,11 @@ async function seed() {
   const c = result.slice(201, 301);
   const d = result.slice(301, 401);
   const e = result.slice(401, 501);
-  const f = result.slice(501, 601)
+  const f = result.slice(501, 601);
+  const g = result.slice(601, 701);
+  const h = result.slice(701, 801);
+  const i = result.slice(801, 901);
+  const j = result.slice(901, 1001);
 
   // /**
   //  * `getListingsByListingIds` allows to query multiple listing ids at once. Limit 100 ids maximum per query.
@@ -133,6 +187,22 @@ async function seed() {
       );
       let data5 = await axios.get(
         `https://openapi.etsy.com/v3/application/listings/batch?includes=Images&listing_ids=${f}`,
+        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+      );
+      let data6 = await axios.get(
+        `https://openapi.etsy.com/v3/application/listings/batch?includes=Images&listing_ids=${g}`,
+        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+      );
+      let data7 = await axios.get(
+        `https://openapi.etsy.com/v3/application/listings/batch?includes=Images&listing_ids=${h}`,
+        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+      );
+      let data8 = await axios.get(
+        `https://openapi.etsy.com/v3/application/listings/batch?includes=Images&listing_ids=${i}`,
+        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+      );
+      let data9 = await axios.get(
+        `https://openapi.etsy.com/v3/application/listings/batch?includes=Images&listing_ids=${j}`,
         { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
       );
 
@@ -166,6 +236,26 @@ async function seed() {
         imageUrl: l.images[0].url_fullxfull,
         purchaseUrl: l.url,
       }));
+      const result6 = data6.data.results.map((l) => ({
+        name: l.title,
+        imageUrl: l.images[0].url_fullxfull,
+        purchaseUrl: l.url,
+      }));
+      const result7 = data7.data.results.map((l) => ({
+        name: l.title,
+        imageUrl: l.images[0].url_fullxfull,
+        purchaseUrl: l.url,
+      }));
+      const result8 = data8.data.results.map((l) => ({
+        name: l.title,
+        imageUrl: l.images[0].url_fullxfull,
+        purchaseUrl: l.url,
+      }));
+      const result9 = data9.data.results.map((l) => ({
+        name: l.title,
+        imageUrl: l.images[0].url_fullxfull,
+        purchaseUrl: l.url,
+      }));
 
       const final_result = [
         ...result,
@@ -174,6 +264,10 @@ async function seed() {
         ...result3,
         ...result4,
         ...result5,
+        ...result6,
+        ...result7,
+        ...result8,
+        ...result9,
       ];
 
       return final_result;
@@ -183,7 +277,9 @@ async function seed() {
   };
 
   const art = await getListingsByListingIds();
+  console.log("art.length", art.length);
 
+  let removed = 0;
   /**
    * `getEstyImagesMainColors` uses a callback function `getMainColors` (from /server/get-images.js) to retrieve the four main
    * colors of each image in our db. The colors are stored according to their HSL value (Hue, Saturation, and Lumousity).
@@ -191,26 +287,57 @@ async function seed() {
    */
   const getEstyImagesMainColors = async () => {
     for (let i = 0; i <= art.length - 1; i++) {
-      //store results of current image 4 main colors in a variable
+      //store results of current image's 4 main colors in a variable
       let colorsFromFn = await getMainColors(art[i].imageUrl);
-      console.log("BEFORE________", colorsFromFn);
+
+      /** example shape of colorsFromFn:
+       * [
+       * [ 350, 71, 78, 1 ],
+       * [ 271, 40, 24, 1 ],
+       * [ 38, 77, 47, 1 ],
+       * [ 320, 46, 37, 1 ]
+       * ]
+       */
+      // Have to perform linear search because the array is unsorted
+      // To apply Binary Search first the 2D array needs to be sorted in any order that itself takes (M*N)log(M*N) time. So the total time complexity to search any element here is O((M * N) log(M * N)) + O(N + M) which very poor when it is compared with the time complexity of Linear Search which is just O(N*M). Therefore, I choose Linear Search for searching in an unsorted array, over Binary Search.
+
+      // if (colorsFromFn.find((arr) => arr.includes(0 || NaN))) {
+      //   break;
+      // }
+      if (colorsFromFn.length - 1 !== 4) {
+        break;
+      }
+
       // analyze the results of the current image's 4 main colors
       // if the current array has 4 image values
-      if (colorsFromFn.length - 1 === 4) {
-        //check each value
-        for (let j = 0; j <= colorsFromFn.length; j++) {
-          // if the current value of the current color exists AND is an integer and NOT NaN
-          if (!isNaN(color[j]) && color[j] && Number.isInteger(color[j])) {
-            //insert the current 4 main colors into the Art model's `colors` attribute
-            art[i].colors = colorsFromFn;
-            console.log("AFTER_______", art[i].colors);
-          }
-        }
-      } else {
-        continue;
+
+      for (let j = 0; j <= colorsFromFn.length - 1; j++) {
+        let currColor = colorsFromFn[j];
+
+        /** example shape of currColor:
+         * [ 350, 71, 78, 1 ]
+         */
+
+        for (let z = 0; z <= currColor.length - 1; z++) {
+          let currValue = currColor[z];
+
+          /**
+           * example shape of currValue:
+           * 350
+           */
+
+          // if the current value is not a number OR it doesn't exist OR it is not an integer, exit the loop.
+          if (isNaN(currValue) || !currValue || !Number.isInteger(currValue)) {
+            // console.log("BREAK____________", colorsFromFn);
+            removed++;
+            break;
+          } //otherwise, continue searching the currValues in the currColor
+        } //otherwise, continue searching the currValue in the next color...
       }
+      //if the colorsFromFn data precisely matches all of these requirements, add the colorsFromFn to the `colors` attribute
+      //of our Art model.
+      art[i].colors = colorsFromFn;
     }
-    return;
   };
 
   await getEstyImagesMainColors();
@@ -224,29 +351,29 @@ async function seed() {
   // //#region Instances of `Wall` model
   // // --------------------------------------------------------------------
 
-  const walls = await Promise.all([
-    Wall.create({
-      name: "wall1",
-      userId: 1,
-    }),
-    Wall.create({
-      name: "wall2",
-      userId: 2,
-    }),
-    Wall.create({
-      name: "wall3",
-      userId: 3,
-    }),
-  ]);
+  // const walls = await Promise.all([
+  //   Wall.create({
+  //     name: "wall1",
+  //     userId: 1,
+  //   }),
+  //   Wall.create({
+  //     name: "wall2",
+  //     userId: 2,
+  //   }),
+  //   Wall.create({
+  //     name: "wall3",
+  //     userId: 3,
+  //   }),
+  // ]);
 
-  // Find the associated art
-  const artRow = await Art.findByPk(1);
-  const artRow2 = await Art.findByPk(2);
-  // Insert the associated art in the `ArtOnWall` model
-  await walls[0].addArt(artRow, { through: ArtOnWall });
-  await walls[0].addArt(artRow2, { through: ArtOnWall });
-  await walls[1].addArt(artRow2, { through: ArtOnWall });
-  await walls[2].addArt(artRow2, { through: ArtOnWall });
+  // // Find the associated art
+  // const artRow = await Art.findByPk(1);
+  // const artRow2 = await Art.findByPk(2);
+  // // Insert the associated art in the `ArtOnWall` model
+  // await walls[0].addArt(artRow, { through: ArtOnWall });
+  // await walls[0].addArt(artRow2, { through: ArtOnWall });
+  // await walls[1].addArt(artRow2, { through: ArtOnWall });
+  // await walls[2].addArt(artRow2, { through: ArtOnWall });
 
   // #endregion Instances of `Wall` model
 
@@ -318,7 +445,12 @@ async function seed() {
   await savedWalls[0].setUser(await User.findByPk(1));
   await savedWalls[1].setUser(await User.findByPk(1));
 
-  console.log(`seeded ${chalk.blue(art.length)} artworks from ${shop_ids.length} Esty shops`);
+  console.log(
+    `seeded ${chalk.blue(art.length)} pieces of art from ${chalk.blue(
+      shop_ids.length
+    )} Esty shops`
+  );
+  console.log(`${chalk.magenta(removed)} faulty artworks removed from seed`);
   console.log(`seeded ${chalk.green(users.length)} users`);
   console.log(chalk.red(`seeded successfully`));
 }
