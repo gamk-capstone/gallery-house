@@ -33,7 +33,7 @@ async function seed() {
   // --------------------------------------------------------------------
 
   // Store our six featured Esty shops (Julia Ockert, FungusGallery, ArtKoraju, RedCheeksFactory, OnLaneAvenue) ids
-  const shop_ids = [5478758, 19639425, 14928731, 7780904, 6300167];
+  const shop_ids = [5478758, 19639425, 14928731, 7780904, 6300167, 86186094];
 
   // /**
   //  * `findAllActiveListingsByShop` retrieves a list of all active listings on Etsy in a specific shop, paginated by listing creation date.
@@ -68,17 +68,18 @@ async function seed() {
         `https://openapi.etsy.com/v3/application/shops/6300167/listings/active?limit=100`,
         { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
       );
-      // let data6 = await axios.get(
-      //   ``
-      // )
+      let data6 = await axios.get(
+        `https://openapi.etsy.com/v3/application/shops/86186094/listings/active?limit=100`,
+        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+      )
 
       const listing_ids = data.results.map((l) => l.listing_id);
-
       const listings_ids1 = data1.data.results.map((l) => l.listing_id);
       const listings_ids2 = data2.data.results.map((l) => l.listing_id);
       const listing_ids3 = data3.data.results.map((l) => l.listing_id);
       const listing_ids4 = data4.data.results.map((l) => l.listing_id);
       const listing_ids5 = data5.data.results.map((l) => l.listing_id);
+      const listing_ids6 = data6.data.results.map((l) => l.listing_id);
 
       const listing_ids_result = [
         ...listing_ids,
@@ -87,13 +88,8 @@ async function seed() {
         ...listing_ids3,
         ...listing_ids4,
         ...listing_ids5,
+        ...listing_ids6
       ];
-
-      //remove bad listings
-      // listing_ids_result.splice(listing_ids_result.indexOf(656437627), 1);
-      // listing_ids_result.splice(listing_ids_result.indexOf(1012513409), 1);
-      // console.log(listing_ids_result.indexOf(762424440));
-      // listing_ids_result.splice(listing_ids_result.indexOf(762424440), 1);
 
       return listing_ids_result;
     } catch (error) {
@@ -107,6 +103,7 @@ async function seed() {
   const c = result.slice(201, 301);
   const d = result.slice(301, 401);
   const e = result.slice(401, 501);
+  const f = result.slice(501, 601)
 
   // /**
   //  * `getListingsByListingIds` allows to query multiple listing ids at once. Limit 100 ids maximum per query.
@@ -132,6 +129,10 @@ async function seed() {
       );
       let data4 = await axios.get(
         `https://openapi.etsy.com/v3/application/listings/batch?includes=Images&listing_ids=${e}`,
+        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+      );
+      let data5 = await axios.get(
+        `https://openapi.etsy.com/v3/application/listings/batch?includes=Images&listing_ids=${f}`,
         { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
       );
 
@@ -160,6 +161,11 @@ async function seed() {
         imageUrl: l.images[0].url_fullxfull,
         purchaseUrl: l.url,
       }));
+      const result5 = data5.data.results.map((l) => ({
+        name: l.title,
+        imageUrl: l.images[0].url_fullxfull,
+        purchaseUrl: l.url,
+      }));
 
       const final_result = [
         ...result,
@@ -167,6 +173,7 @@ async function seed() {
         ...result2,
         ...result3,
         ...result4,
+        ...result5,
       ];
 
       return final_result;
@@ -176,11 +183,6 @@ async function seed() {
   };
 
   const art = await getListingsByListingIds();
-  const art1 = art.slice(0, 100);
-  const art2 = art.slice(101, 201);
-  const art3 = art.slice(201, 301);
-  const art4 = art.slice(301, 401);
-  const art5 = art.slice(401, 501);
 
   /**
    * `getEstyImagesMainColors` uses a callback function `getMainColors` (from /server/get-images.js) to retrieve the four main
@@ -188,36 +190,26 @@ async function seed() {
    * @returns the `colors` column of art table populated with data
    */
   const getEstyImagesMainColors = async () => {
-    for (let i = 0; i <= art1.length - 1; i++) {
+    for (let i = 0; i <= art.length - 1; i++) {
       //store results of current image 4 main colors in a variable
-      let colorsFromFn = await getMainColors(art1[i].imageUrl);
-      console.log("BEFORE________", colorsFromFn)
+      let colorsFromFn = await getMainColors(art[i].imageUrl);
+      console.log("BEFORE________", colorsFromFn);
       // analyze the results of the current image's 4 main colors
       // if the current array has 4 image values
       if (colorsFromFn.length - 1 === 4) {
         //check each value
         for (let j = 0; j <= colorsFromFn.length; j++) {
+          // if the current value of the current color exists AND is an integer and NOT NaN
           if (!isNaN(color[j]) && color[j] && Number.isInteger(color[j])) {
-            art1[i].colors = colorsFromFn;
-            console.log("AFTER_______", art1[i].colors)
+            //insert the current 4 main colors into the Art model's `colors` attribute
+            art[i].colors = colorsFromFn;
+            console.log("AFTER_______", art[i].colors);
           }
         }
       } else {
         continue;
       }
     }
-    // for (let i = 0; i <= art2.length - 1; i++) {
-    //   art2[i].colors = await getMainColors(art2[i].imageUrl);
-    // }
-    // for (let i = 0; i <= art3.length - 1; i++) {
-    //   art3[i].colors = await getMainColors(art3[i].imageUrl);
-    // }
-    // for (let i = 0; i <= art4.length - 1; i++) {
-    //   art4[i].colors = await getMainColors(art4[i].imageUrl);
-    // }
-    // for (let i = 0; i <= art5.length - 1; i++) {
-    //   art5[i].colors = await getMainColors(art5[i].imageUrl);
-    // }
     return;
   };
 
@@ -232,29 +224,29 @@ async function seed() {
   // //#region Instances of `Wall` model
   // // --------------------------------------------------------------------
 
-  // const walls = await Promise.all([
-  //   Wall.create({
-  //     name: "wall1",
-  //     userId: 1,
-  //   }),
-  //   Wall.create({
-  //     name: "wall2",
-  //     userId: 2,
-  //   }),
-  //   Wall.create({
-  //     name: "wall3",
-  //     userId: 3,
-  //   }),
-  // ]);
+  const walls = await Promise.all([
+    Wall.create({
+      name: "wall1",
+      userId: 1,
+    }),
+    Wall.create({
+      name: "wall2",
+      userId: 2,
+    }),
+    Wall.create({
+      name: "wall3",
+      userId: 3,
+    }),
+  ]);
 
-  // // Find the associated art
-  // const artRow = await Art.findByPk(1);
-  // const artRow2 = await Art.findByPk(2);
-  // // Insert the associated art in the `ArtOnWall` model
-  // await walls[0].addArt(artRow, { through: ArtOnWall });
-  // await walls[0].addArt(artRow2, { through: ArtOnWall });
-  // await walls[1].addArt(artRow2, { through: ArtOnWall });
-  // await walls[2].addArt(artRow2, { through: ArtOnWall });
+  // Find the associated art
+  const artRow = await Art.findByPk(1);
+  const artRow2 = await Art.findByPk(2);
+  // Insert the associated art in the `ArtOnWall` model
+  await walls[0].addArt(artRow, { through: ArtOnWall });
+  await walls[0].addArt(artRow2, { through: ArtOnWall });
+  await walls[1].addArt(artRow2, { through: ArtOnWall });
+  await walls[2].addArt(artRow2, { through: ArtOnWall });
 
   // #endregion Instances of `Wall` model
 
@@ -326,7 +318,7 @@ async function seed() {
   await savedWalls[0].setUser(await User.findByPk(1));
   await savedWalls[1].setUser(await User.findByPk(1));
 
-  console.log(`seeded ${chalk.blue(art.length)} artworks from 6 Esty shops`);
+  console.log(`seeded ${chalk.blue(art.length)} artworks from ${shop_ids.length} Esty shops`);
   console.log(`seeded ${chalk.green(users.length)} users`);
   console.log(chalk.red(`seeded successfully`));
 }
