@@ -5,7 +5,7 @@ import AuthForm from "../components/auth/AuthForm";
 import { me } from "./store";
 import Home from "../components/home/Home";
 import GalleryWall from "../components/galleryWall/GalleryWall";
-import SavedWall from "../components/savedWall/SavedWall";
+import SavedWalls from "../components/savedWalls/SavedWalls";
 import User from "../components/user/User";
 import Toolbar from "../components/toolbar/Toolbar";
 /**

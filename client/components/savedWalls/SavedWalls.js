@@ -6,7 +6,7 @@ import {
   selectGalleryWall,
 } from "../galleryWall/galleryWallSlice";
 
-const SavedWall = (props) => {
+const SavedWalls = (props) => {
   const username = useSelector((state) => state.auth.me.username);
   const { id } = useSelector((state) => state.auth.me);
   const walls = useSelector(selectGalleryWall);
@@ -47,4 +47,4 @@ const SavedWall = (props) => {
   );
 };
 
-export default SavedWall;
+export default SavedWalls;
