@@ -43,13 +43,13 @@ async function seed() {
    * 7. CityandFlowerCollage, https://www.etsy.com/shop/CityandFlowerCollage, 8954053
    * 8. ArtNostalgie, https://www.etsy.com/shop/ArtNostalgie, 10607194
    * 9. SlavArtVintage, https://www.etsy.com/shop/SlavArtVintage, 17352094
-   * 10. carlallanosprints, https://www.etsy.com/shop/carlallanosprints, 10642912
+   * 10. DesireePfeifferPhoto, hhttps://www.etsy.com/shop/DesireePfeifferPhoto, 19121341
    * 11. ClareElsaesser, https://www.etsy.com/shop/ClareElsaesser, 5677896
    * 12. Mirlande, https://www.etsy.com/shop/Mirlande, 5625705
    */
   const shop_ids = [
     5478758, 19639425, 14928731, 7780904, 6300167, 12949606, 8954053, 10607194,
-    // 17352094, 10642912, 5677896, 5625705,
+    17352094, 5677896, 5625705, 19121341
   ];
 
   let removed = 0;
@@ -96,17 +96,17 @@ async function seed() {
         { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
       );
       let data9 = await axios.get(
-        `https://openapi.etsy.com/v3/application/shops/10642912/listings/active?limit=100`,
-        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
-      );
-      let data10 = await axios.get(
         `https://openapi.etsy.com/v3/application/shops/5677896/listings/active?limit=100`,
         { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
       );
-      let data11 = await axios.get(
+      let data10 = await axios.get(
         `https://openapi.etsy.com/v3/application/shops/5625705/listings/active?limit=100`,
         { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
       );
+      // let data11 = await axios.get(
+      //   `https://openapi.etsy.com/v3/application/shops/19121341/listings/active?limit=100`,
+      //   { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+      // );
 
       const listing_ids = data.results.map((l) => l.listing_id);
       const listings_ids1 = data1.data.results.map((l) => l.listing_id);
@@ -151,6 +151,22 @@ async function seed() {
       listing_ids_result.splice(listing_ids_result.indexOf(1428988952), 1);
       removed++;
       listing_ids_result.splice(listing_ids_result.indexOf(1211486212), 1);
+      removed++;
+      listing_ids_result.splice(listing_ids_result.indexOf(673804198), 1);
+      removed++;
+      listing_ids_result.splice(listing_ids_result.indexOf(641805968), 1);
+      removed++;
+      listing_ids_result.splice(listing_ids_result.indexOf(1108744508), 1);
+      removed++;
+      listing_ids_result.splice(listing_ids_result.indexOf(879972253), 1);
+      removed++;
+      listing_ids_result.splice(listing_ids_result.indexOf(648967950), 1);
+      removed++;
+      listing_ids_result.splice(listing_ids_result.indexOf(561690842), 1);
+      removed++;
+      listing_ids_result.splice(listing_ids_result.indexOf(1210493804), 1);
+      removed++;
+      listing_ids_result.splice(listing_ids_result.indexOf(1409734426), 1);
       removed++;
 
       return listing_ids_result;
