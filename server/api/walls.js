@@ -17,6 +17,22 @@ router.get("/:userId", async (req, res, next) => {
   }
 });
 
+//route at /api/walls/:userId/:wallId GETS a single instance of Wall model for a single user based on thier userId, and wallId
+router.get("/:userId/:wallId", async (req, res, next) => {
+  try {
+    console.log(req.params)
+    res.send(await SavedWall.findAll({
+      where: {
+        id: req.params.wallId,
+        userId: req.params.userId
+      }
+    }));
+  } catch (error) {
+    next(error);
+  }
+});
+
+
 //route at /api/walls POSTS an instance of Wall model
 router.post("/", async (req, res, next) => {
   try {

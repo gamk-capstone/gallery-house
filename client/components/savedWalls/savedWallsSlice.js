@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 /**
- * `getWallsAysnc` GETS data at /api/user/:userId/walls and returns all walls for this user
+ * `fetchWallsAysnc` GETS data at /api/user/:userId and returns all walls for this user
  */
 export const fetchWallsAsync = createAsyncThunk(
   "walls/fetchAll",

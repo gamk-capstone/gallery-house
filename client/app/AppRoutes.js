@@ -46,7 +46,7 @@ const AppRoutes = () => {
           <Route path="/saved/:wallId" element={<SavedWall />} />
 
           {/* The /users/:id route brings a user to the `User` component */}
-          <Route path="/users/:id" element={<User />} />
+          {/* <Route path="/users/:id" element={<User />} /> */}
         </Routes>
       ) : (
         //A guest (or logged-out) user's routes:

@@ -22,14 +22,13 @@ const SavedWalls = (props) => {
     // setSavedWalls(getSavedWalls);
   }, [dispatch]);
 
-   //`handleDeleteWall` dispatches a thunk to delete data at /api/user/:userId/walls/:wallId and filters the local state accordingly.
-   const handleDeleteWall = async (evt, wallId) => {
+  //`handleDeleteWall` dispatches a thunk to delete data at /api/user/:userId/walls/:wallId and filters the local state accordingly.
+  const handleDeleteWall = async (evt, wallId) => {
     evt.preventDefault();
     dispatch(deleteWallById(wallId));
     setUpdatedWalls(walls.filter((w) => w.id !== wallId));
     navigate("/saved");
   };
-
 
   console.log("SAVED WALLS________", walls);
 
@@ -40,9 +39,11 @@ const SavedWalls = (props) => {
         walls.map((wall, i) => {
           return (
             <div key={`Inside all saved walls view: ${i}`}>
-              <Link to={`/saved/$${wall.id}`}>{i+1}. {wall.name}</Link>
+              <Link to={`/saved/${wall.id}`}>
+                {wall.id}. {wall.name}
+              </Link>
               <button onClick={(evt) => handleDeleteWall(evt, wall.id)}>
-                  X
+                X
               </button>
             </div>
           );
