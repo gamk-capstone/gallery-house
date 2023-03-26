@@ -10,11 +10,11 @@ Curious to know more about our process? Check out some of our development assets
 
 Wireframes: https://drive.google.com/file/d/1rS4xYL1XWBwF-KKN3gmDqnZCiYj1GNdu/view
 
-Color Scheme: ![](colors_gallery_house.jpg)
+Color Scheme: ![Alt text](public/colors_gallery_house.jpg)
 
-TypeSet: ![](text_gallery_house.jpg)
+TypeSet: ![Alt text](public/text_gallery_house.jpg)
 
-Anatomy of a Button: Saving a Wall on Gallery House: 
+Anatomy of a Button, How a wall gets saved on Gallery House: ![Alt text](public/colors_gallery_house.jpg)
 
 Tech Stack: PostgreSQL, Express, React/Redux, Node
 Libraries: get-image-colors, chalk <3
