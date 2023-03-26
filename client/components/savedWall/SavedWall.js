@@ -12,19 +12,28 @@ const SavedWall = (props) => {
   const walls = useSelector(selectGalleryWall);
   const dispatch = useDispatch();
 
-  // const [savedWalls, setSavedWalls] = useState([]);
+  const [savedWalls, setSavedWalls] = useState([]);
 
   useEffect(() => {
     dispatch(fetchWallsAsync(id));
-    // setSavedWalls(getSavedWals);
+    // setSavedWalls(getSavedWalls);
   }, [dispatch]);
+
+  console.log("SAVED WALLS________", walls);
 
   return (
     <div className="galleryWallParentDiv">
       <div>{username}'s Saved Galleries! </div>
       {walls ? (
-        walls.map((wall) => {
-          <div>{wall.id}</div>;
+        walls.map((wall, i) => {
+          return (
+            <div key={`Inside all saved walls view: ${i}`}>
+              {/* <Link to="">
+                {`/user/${userId}/walls/${wallId}`} */}
+                {wall.id}
+              {/* </Link> */}
+            </div>
+          );
         })
       ) : (
         <div>
