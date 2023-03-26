@@ -103,10 +103,10 @@ async function seed() {
         `https://openapi.etsy.com/v3/application/shops/5625705/listings/active?limit=100`,
         { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
       );
-      // let data11 = await axios.get(
-      //   `https://openapi.etsy.com/v3/application/shops/19121341/listings/active?limit=100`,
-      //   { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
-      // );
+      let data11 = await axios.get(
+        `https://openapi.etsy.com/v3/application/shops/19121341/listings/active?limit=100`,
+        { headers: { "x-api-key": "5wdviq8lfzumur7vsxlc7i3g" } }
+      );
 
       const listing_ids = data.results.map((l) => l.listing_id);
       const listings_ids1 = data1.data.results.map((l) => l.listing_id);
@@ -167,6 +167,8 @@ async function seed() {
       listing_ids_result.splice(listing_ids_result.indexOf(1210493804), 1);
       removed++;
       listing_ids_result.splice(listing_ids_result.indexOf(1409734426), 1);
+      removed++;
+      listing_ids_result.splice(listing_ids_result.indexOf(1242062210), 1);
       removed++;
 
       return listing_ids_result;
