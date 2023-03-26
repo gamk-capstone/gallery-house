@@ -17,6 +17,7 @@ const store = configureStore({
     userWalls: userWallsSlice,
     galleryWall: galleryWallSlice,
     savedWalls: savedWallsSlice,
+    savedWall: savedWallSlice,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });

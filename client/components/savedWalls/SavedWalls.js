@@ -5,7 +5,6 @@ import {
   fetchWallsAsync,
   selectSavedWalls,
   deleteWallById,
-  saveWallAsync,
 } from "../savedWalls/savedWallsSlice";
 
 const SavedWalls = (props) => {
@@ -29,8 +28,6 @@ const SavedWalls = (props) => {
     setUpdatedWalls(walls.filter((w) => w.id !== wallId));
     navigate("/saved");
   };
-
-  console.log("SAVED WALLS________", walls);
 
   return (
     <div className="galleryWallParentDiv">

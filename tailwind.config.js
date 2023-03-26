@@ -2,6 +2,7 @@
 
 module.exports = {
   content: ["./client/**/*.{html,js}"],
+  purge: ["./src/**/*.html", "./src/**/*.{js, jsx, ts, tsx}"],
   theme: {
     extend: {
       fontFamily: {

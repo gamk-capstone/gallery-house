@@ -15,10 +15,24 @@ const SavedWall = () => {
   console.log("WALLID____", wallId);
 
   useEffect(() => {
-    dispatch(fetchSingleWallAsync({userId: id, wallId: wallId}));
-  }, []);
+    dispatch(fetchSingleWallAsync({ userId: id, wallId: wallId }));
+  }, [dispatch]);
 
-  return <div>{wall}</div>;
+  console.log("WALL_________", wall);
+  console.log(wall.updatedAtl)
+
+  return (
+    <div className="">
+      {wall ? (
+        <div>
+          <h2>{wall.name}</h2>
+          <p>Last Updated: {wall.updatedAt}</p>
+        </div>
+      ) : (
+        <div>Oops, this wall doesn't exist!</div>
+      )}
+    </div>
+  );
 };
 
 export default SavedWall;
