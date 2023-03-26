@@ -18,6 +18,18 @@ router.get("/:userId/walls", async (req, res, next) => {
   }
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
 // //route at /api/:userId/galleries/:galleryId GETS one saved wall for a user based on thier userId
 // router.get("/:userId/galleries/:galleryId", async (req, res, next) => {
 //   try {
