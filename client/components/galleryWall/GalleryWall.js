@@ -46,6 +46,7 @@ const GalleryWall = () => {
     }
     if (filledFrames === 0 && etsyImages.length === 0) {
       alert(`Your wall is empty. Please add images before saving.`);
+      navigate(`/create`)
     } else {
       if (
         filledFrames < selectedNumPhotos &&
@@ -71,7 +72,11 @@ const GalleryWall = () => {
       dispatch(
         saveWallAsync({ name: wallName, images: savedWallImages, userId: id })
       );
+    }
+    if (filledFrames === 0 && etsyImages.length === 0){
       navigate("/create");
+    } else {
+      navigate("/saved");
     }
   };
 

@@ -5,6 +5,7 @@ import {
   fetchWallsAsync,
   selectSavedWalls,
   deleteWallById,
+  saveWallAsync,
 } from "../savedWalls/savedWallsSlice";
 
 const SavedWalls = (props) => {

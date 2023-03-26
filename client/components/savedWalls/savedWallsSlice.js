@@ -23,16 +23,16 @@ export const fetchWallsAsync = createAsyncThunk(
  * `saveWallAsync` POSTS data at /api/walls
  */
 export const saveWallAsync = createAsyncThunk(
-    "saveWall",
-    async ({ name, images, userId }) => {
-      const { data } = await axios.post("http://localhost:8080/api/walls", {
-        name,
-        images,
-        userId,
-      });
-      return data;
-    }
-  );
+  "saveWall",
+  async ({ name, images, userId }) => {
+    const { data } = await axios.post("http://localhost:8080/api/walls", {
+      name,
+      images,
+      userId,
+    });
+    return data;
+  }
+);
 
 /**
  * `deleteWallById DELETES data at api/walls based on wallId
@@ -51,10 +51,10 @@ export const savedWallsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(saveWallAsync.fulfilled, (state, { payload }) => {
-        payload;
-      })
       .addCase(fetchWallsAsync.fulfilled, (state, { payload }) => payload)
+      .addCase(saveWallAsync.fulfilled, (state, { payload }) => {
+        state.push(payload);
+      })
       .addCase(deleteWallById.fulfilled, (state, { payload }) =>
         state.filter((w) => w.id !== payload.id)
       );
