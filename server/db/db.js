@@ -3,7 +3,7 @@ const pkg = require('../../package.json')
 require("dotenv").config()
 
 // databaseName used for testing on local machine
-// const databaseName = pkg.name + (process.env.NODE_ENV === 'test' ? '-test' : '')
+const databaseName = pkg.name + (process.env.NODE_ENV === 'test' ? '-test' : '')
 
 const config = {
   logging: false,
@@ -23,7 +23,9 @@ if(process.env.DATABASE_URL){
 }
 
 const db = new Sequelize(
-  process.env.DATABASE_URL, config)
+  `postgres://localhost:5432/${databaseName}?sslmode=disable`, //comment out this line to connect to db hosted on bit.io
+  // || process.env.DATABASE_URL, //comment out this link to conneect to postgres db on your local machine
+  config)
 module.exports = db
 
 // Our url for connected to postgres on our local machine

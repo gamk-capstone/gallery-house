@@ -55,7 +55,7 @@ const GalleryWall = () => {
         );
       }
       console.log(savedWallImages);
-      dispatch(saveWallAsync(savedWallImages))
+      dispatch(saveWallAsync({ images: savedWallImages, userId: id }));
       navigate("/create");
     }
   };

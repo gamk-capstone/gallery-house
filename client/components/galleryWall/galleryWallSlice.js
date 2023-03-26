@@ -23,11 +23,12 @@ export const fetchEtsyImages = createAsyncThunk(
  */
 export const saveWallAsync = createAsyncThunk(
   "saveWall",
-  async (savedWallImages) => {
-    const { data } = await axios.post(
-      "http://localhost:8080/api/walls",
-      savedWallImages
-    );
+  async ({ images, userId }) => {
+    const { data } = await axios.post("http://localhost:8080/api/walls", {
+      images,
+      userId,
+    });
+    console.log(data);
     return data;
   }
 );
@@ -39,7 +40,8 @@ export const galleryWallSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchEtsyImages.fulfilled, (state, { payload }) => payload);
     builder.addCase(saveWallAsync.fulfilled, (state, { payload }) => {
-      state.push(payload);
+      // state.push(payload);
+      payload;
     });
   },
 });
