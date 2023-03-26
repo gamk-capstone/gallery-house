@@ -41,8 +41,9 @@ export const fetchWallsAsync = createAsyncThunk(
  */
 export const saveWallAsync = createAsyncThunk(
   "saveWall",
-  async ({ images, userId }) => {
+  async ({ name, images, userId }) => {
     const { data } = await axios.post("http://localhost:8080/api/walls", {
+      name,
       images,
       userId,
     });

@@ -28,7 +28,7 @@ const SavedWalls = (props) => {
         walls.map((wall, i) => {
           return (
             <div key={`Inside all saved walls view: ${i}`}>
-              <Link to={`/saved/$${wall.id}`}>{wall.id}</Link>
+              <Link to={`/saved/$${wall.id}`}>{wall.id}. {wall.name}</Link>
             </div>
           );
         })

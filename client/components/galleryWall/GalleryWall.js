@@ -12,6 +12,7 @@ import EightImgGalleryWall from "./EightImgGalleryWall";
 import MyArt from "../myArt/MyArt";
 import { fetchEtsyImages, saveWallAsync } from "./galleryWallSlice";
 import { useNavigate } from "react-router-dom";
+import SaveWallForm from "../saveWallForm/index";
 
 const GalleryWall = () => {
   const { id } = useSelector((state) => state.auth.me);
@@ -28,9 +29,20 @@ const GalleryWall = () => {
   //dispatch that number to thunk that generates etsy images
   const [filledFrames, setFilledFrames] = useState(0);
   const myArtStateRef = useRef();
+  
+  const [wallName, setWallName] = useState("Untitled");
 
+  /**
+   * `handleSaveWall` is a React event handler that dispatches a thunk `saveWallAsync` to POST the current user's wall to the db 
+   * so they can access it later.
+   * @param {*} e the user's click
+   * @returns a new row in the Saved Walls Model and an updated Redux state
+   */
   const handleSaveWall = (e) => {
     e.preventDefault();
+    if (wallName.length < 1) {
+      alert("Name is a required field.");
+    }
     if (filledFrames === 0 && etsyImages.length === 0) {
       alert(`Your wall is empty. Please add images before saving.`);
     } else {
@@ -55,7 +67,7 @@ const GalleryWall = () => {
         );
       }
       console.log(savedWallImages);
-      dispatch(saveWallAsync({ images: savedWallImages, userId: id }));
+      dispatch(saveWallAsync({ name: wallName, images: savedWallImages, userId: id }));
       navigate("/create");
     }
   };
@@ -63,6 +75,12 @@ const GalleryWall = () => {
   const [etsyImages, setEtsyImages] = useState([]);
   const [generate, setGenerate] = useState(false);
 
+  /**
+   * `fillFrame` is a React event handler that dispatches a thunk `fetchEtsyImages` and returns and array of image objects from
+   * the Etsy v3 open API based on hue number.
+   * @param {*} e the user's click
+   * @returns {array} an array of Etsy image objects (including their productUrl) based on hue number
+   */
   const fillFrames = async (e) => {
     e.preventDefault();
     const total = selectedNumPhotos;
@@ -267,7 +285,12 @@ const GalleryWall = () => {
           {/** Generate art button */}
           <button onClick={(e) => fillFrames(e)}>Generate Art</button>
           {/** Save button */}
-          <button onClick={(e) => handleSaveWall(e)}>Save</button>
+          <SaveWallForm
+            wallName={wallName}
+            setWallName={setWallName}
+            handleSaveWall={handleSaveWall}
+          ></SaveWallForm>
+          {/* <button onClick={(e) => handleSaveWall(e)}>Save</button> */}
           <MyArt ref={myArtStateRef} />
           <button onClick={() => getMyArtState()}>Select Frame</button>
           <div>
