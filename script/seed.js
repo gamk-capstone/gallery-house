@@ -52,6 +52,7 @@ async function seed() {
     // 17352094, 10642912, 5677896, 5625705,
   ];
 
+  let removed = 0;
   //  * `findAllActiveListingsByShop` retrieves a list of all active listings on Etsy in a specific shop, paginated by listing creation date.
   //  * @returns {array} An array of 100 active listing_ids.
   //  */
@@ -129,17 +130,28 @@ async function seed() {
         ...listing_ids5,
         ...listing_ids6,
         ...listing_ids7,
-        // ...listing_ids8,
-        // ...listing_ids9,
-        // ...listing_ids10,
-        // ...listing_ids11,
+        ...listing_ids8,
+        ...listing_ids9,
+        ...listing_ids10,
+        ...listing_ids11,
       ];
-      //removed faulty listing
+      //remove faulty listings
       listing_ids_result.splice(listing_ids_result.indexOf(1012513409), 1);
+      removed++;
       listing_ids_result.splice(listing_ids_result.indexOf(809794921), 1);
+      removed++;
       listing_ids_result.splice(listing_ids_result.indexOf(267791209), 1);
+      removed++;
       listing_ids_result.splice(listing_ids_result.indexOf(817216741), 1);
+      removed++;
       listing_ids_result.splice(listing_ids_result.indexOf(667190580), 1);
+      removed++;
+      listing_ids_result.splice(listing_ids_result.indexOf(1429765158), 1);
+      removed++;
+      listing_ids_result.splice(listing_ids_result.indexOf(1428988952), 1);
+      removed++;
+      listing_ids_result.splice(listing_ids_result.indexOf(1211486212), 1);
+      removed++;
 
       return listing_ids_result;
     } catch (error) {
@@ -279,7 +291,6 @@ async function seed() {
   const art = await getListingsByListingIds();
   console.log("art.length", art.length);
 
-  let removed = 0;
   /**
    * `getEstyImagesMainColors` uses a callback function `getMainColors` (from /server/get-images.js) to retrieve the four main
    * colors of each image in our db. The colors are stored according to their HSL value (Hue, Saturation, and Lumousity).
@@ -304,9 +315,6 @@ async function seed() {
       // if (colorsFromFn.find((arr) => arr.includes(0 || NaN))) {
       //   break;
       // }
-      if (colorsFromFn.length - 1 !== 4) {
-        break;
-      }
 
       // analyze the results of the current image's 4 main colors
       // if the current array has 4 image values
