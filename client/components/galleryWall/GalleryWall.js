@@ -10,7 +10,8 @@ import SixImgGalleryWall from "./SixImgGalleryWall";
 import SevenImgGalleryWall from "./SevenImgGalleryWall";
 import EightImgGalleryWall from "./EightImgGalleryWall";
 import MyArt from "../myArt/MyArt";
-import { fetchEtsyImages, saveWallAsync } from "./galleryWallSlice";
+import { fetchEtsyImages } from "./galleryWallSlice";
+import { saveWallAsync } from "../savedWalls/savedWallsSlice";
 import { useNavigate } from "react-router-dom";
 import SaveWallForm from "../saveWallForm/index";
 
@@ -29,11 +30,11 @@ const GalleryWall = () => {
   //dispatch that number to thunk that generates etsy images
   const [filledFrames, setFilledFrames] = useState(0);
   const myArtStateRef = useRef();
-  
+
   const [wallName, setWallName] = useState("Untitled");
 
   /**
-   * `handleSaveWall` is a React event handler that dispatches a thunk `saveWallAsync` to POST the current user's wall to the db 
+   * `handleSaveWall` is a React event handler that dispatches a thunk `saveWallAsync` to POST the current user's wall to the db
    * so they can access it later.
    * @param {*} e the user's click
    * @returns a new row in the Saved Walls Model and an updated Redux state
@@ -67,7 +68,9 @@ const GalleryWall = () => {
         );
       }
       console.log(savedWallImages);
-      dispatch(saveWallAsync({ name: wallName, images: savedWallImages, userId: id }));
+      dispatch(
+        saveWallAsync({ name: wallName, images: savedWallImages, userId: id })
+      );
       navigate("/create");
     }
   };

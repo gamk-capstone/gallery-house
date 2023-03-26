@@ -122,17 +122,17 @@ async function seed() {
       const listing_ids11 = data11.data.results.map((l) => l.listing_id);
 
       const listing_ids_result = [
-        ...listing_ids,
-        ...listings_ids1,
-        ...listings_ids2,
-        ...listing_ids3,
-        ...listing_ids4,
-        ...listing_ids5,
-        ...listing_ids6,
-        ...listing_ids7,
-        ...listing_ids8,
-        ...listing_ids9,
-        ...listing_ids10,
+        // ...listing_ids,
+        // ...listings_ids1,
+        // ...listings_ids2,
+        // ...listing_ids3,
+        // ...listing_ids4,
+        // ...listing_ids5,
+        // ...listing_ids6,
+        // ...listing_ids7,
+        // ...listing_ids8,
+        // ...listing_ids9,
+        // ...listing_ids10,
         ...listing_ids11,
       ];
       //remove faulty listings
@@ -169,6 +169,8 @@ async function seed() {
       listing_ids_result.splice(listing_ids_result.indexOf(1409734426), 1);
       removed++;
       listing_ids_result.splice(listing_ids_result.indexOf(1242062210), 1);
+      removed++;
+      listing_ids_result.splice(listing_ids_result.indexOf(1379644894), 1);
       removed++;
 
       return listing_ids_result;

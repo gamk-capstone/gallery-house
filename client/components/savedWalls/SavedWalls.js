@@ -1,23 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   fetchWallsAsync,
-  selectGalleryWall,
-} from "../galleryWall/galleryWallSlice";
+  selectSavedWalls,
+  deleteWallById,
+} from "../savedWalls/savedWallsSlice";
 
 const SavedWalls = (props) => {
   const username = useSelector((state) => state.auth.me.username);
   const { id } = useSelector((state) => state.auth.me);
-  const walls = useSelector(selectGalleryWall);
+  const walls = useSelector(selectSavedWalls);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const [savedWalls, setSavedWalls] = useState([]);
+  const [updatedWalls, setUpdatedWalls] = useState([]);
 
   useEffect(() => {
     dispatch(fetchWallsAsync(id));
     // setSavedWalls(getSavedWalls);
   }, [dispatch]);
+
+   //`handleDeleteWall` dispatches a thunk to delete data at /api/user/:userId/walls/:wallId and filters the local state accordingly.
+   const handleDeleteWall = async (evt, wallId) => {
+    evt.preventDefault();
+    dispatch(deleteWallById(wallId));
+    setUpdatedWalls(walls.filter((w) => w.id !== wallId));
+    navigate("/saved");
+  };
+
 
   console.log("SAVED WALLS________", walls);
 
@@ -28,7 +39,10 @@ const SavedWalls = (props) => {
         walls.map((wall, i) => {
           return (
             <div key={`Inside all saved walls view: ${i}`}>
-              <Link to={`/saved/$${wall.id}`}>{wall.id}. {wall.name}</Link>
+              <Link to={`/saved/$${wall.id}`}>{i+1}. {wall.name}</Link>
+              <button onClick={(evt) => handleDeleteWall(evt, wall.id)}>
+                  X
+              </button>
             </div>
           );
         })
