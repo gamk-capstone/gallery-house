@@ -8,15 +8,6 @@ const MyArt = ({ setImageUrl, setCompColor }) => {
   const dispatch = useDispatch();
   const art = useSelector(selectUserArt);
 
-  // useImperativeHandle(_ref, () => ({
-  //   getImgUrl: () => {
-  //     return imgUrl;
-  //   },
-  //   getImgCompColor: () => {
-  //     return compColor;
-  //   }
-  // }));
-
   useEffect(() => {
     dispatch(fetchUserArtAsync(id));
   }, [dispatch, id]);
