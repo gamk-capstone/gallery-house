@@ -17,7 +17,7 @@ router.get("/etsyArt", async (req, res, next) => {
   }
 });
 
-//route for getting all userArt of one user
+//route at /api/art/user/all/:id GETS all instances of UserArt for one user based on id
 router.get("/user/all/:id", async (req, res, next) => {
   try {
     const userArt = await UserArt.findAll({
@@ -39,7 +39,7 @@ router.get("/user/:id", async (req, res, next) => {
   }
 });
 
-//route at /api/art/user/:id DELETES a single UserArt
+//route at /api/art/user/:id DELETES a single UserArt instance based on its id
 router.delete("/user/:id", async (req, res, next) => {
   try {
     const userArt = await UserArt.findByPk(req.params.id);
@@ -49,19 +49,9 @@ router.delete("/user/:id", async (req, res, next) => {
   }
 });
 
-//route at /api/art/user POSTS new instance of UserArt
+//route at /api/art/user POSTS a new instance of UserArt
 router.post("/user", async (req, res, next) => {
   try {
-    // const complimentaryColor = (hslArr) => {
-    //   const h = hslArr[0];
-    //   const s = hslArr[1];
-    //   const l = hslArr[2];
-    //   const o = hslArr[3];
-    //   if (h >= 180) {
-    //     return [h - 180, s, l, o];
-    //   }
-    //   return [h + 180, s, l, o];
-    // };
     const complimentaryColor = (hslArr) => {
       const h = hslArr[0];
       const s = hslArr[1];
@@ -108,22 +98,22 @@ router.post("/user", async (req, res, next) => {
   }
 });
 
-//route at /api/art/:hueNum GETS instances of Art model, one of who's 4 main colors have hue greater than 200
-//the findAndCountAll method returns an object with two properties:
+//route at /api/art/:hueNum/:limit GETS instances of Art model, one of who's 4 main colors have hue greater than 200
+// the findAndCountAll method returns an object with two properties:
 // count - an integer - the total number records matching the query
 // rows - an array of objects - the obtained records
 router.get("/etsyArt/:hueNum/:limit", async (req, res, next) => {
   try {
     const estyArtByColor = await Art.findAndCountAll({
       where: {
-        [Op.and]: [sequelize.literal(
-          `colors[1][1] BETWEEN ${req.params.hueNum - 10} AND ${
-            req.params.hueNum + 10
-          }`
-        ),
-        sequelize.literal(
-          `colors[1][2] BETWEEN 5 AND 100`
-        )]
+        [Op.and]: [
+          sequelize.literal(
+            `colors[1][1] BETWEEN ${req.params.hueNum - 10} AND ${
+              req.params.hueNum + 10
+            }`
+          ),
+          sequelize.literal(`colors[1][2] BETWEEN 5 AND 100`),
+        ],
       },
       limit: req.params.limit, //this is where we can pass down the number of frames to get the right number of images
       order: sequelize.fn("RANDOM"), //returns data in random order on each call

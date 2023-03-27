@@ -80,7 +80,6 @@ const AuthForm = ({ name, displayName }) => {
           <button type="submit" className="btn-primary">
             {displayName}
           </button>
-
           {error && <div> {error} </div>}
         </form>
       </div>

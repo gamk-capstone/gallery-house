@@ -1,5 +1,8 @@
 import React from "react";
 
+/**
+ * Toolbar component
+ */
 const Toolbar = () => {
   return (
     <div className="flex flex-col items-center bg-red-300 w-8 p-4 gap-6">

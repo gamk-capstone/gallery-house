@@ -9,9 +9,11 @@ import { logout } from "../../app/store";
  */
 
 const Navbar = () => {
-  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  //redux state
+  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
 
   /**
    * `logoutAndRedirectHome` dispatches a logout action (removing a user's token from local storage) and navigates a user to the
@@ -28,6 +30,7 @@ const Navbar = () => {
         {isLoggedIn ? (
           <div className="flex flex-row justify-between items-center pr-16">
             <div className="flex flex-row justify-start items-center gap-32 p-16">
+              {/* The navbar will show these links after a user logs in */}
               <Link to="/create">
                 <img
                   src="/gallery-house.png"
@@ -36,7 +39,6 @@ const Navbar = () => {
                 />
               </Link>
               <div className="flex flex-row gap-8">
-                {/* The navbar will show these links after a user logs in */}
                 <Link to="/home" className="nav-link">
                   Home
                 </Link>
@@ -58,6 +60,7 @@ const Navbar = () => {
           </div>
         ) : (
           <div className="flex flex-row justify-start items-center gap-32 p-16">
+            {/* The navbar will show these links before a user logs in and when a user logs out */}
             <Link to="/home">
               <img
                 src="/gallery-house.png"
@@ -66,7 +69,6 @@ const Navbar = () => {
               />
             </Link>
             <div className="flex flex-row gap-8">
-              {/* The navbar will show these links before a user logs in and when a user logs out */}
               <Link to="/home" className="nav-link">
                 Home
               </Link>

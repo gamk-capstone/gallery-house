@@ -137,8 +137,6 @@ const GalleryWall = () => {
   const s3 = new AWS.S3();
   const [file, setFile] = useState([]);
 
-  // const myArtStateRef = useRef();
-
   AWS.config.update({
     accessKeyId: accessKey,
     secretAccessKey: secretKey,
@@ -176,7 +174,6 @@ const GalleryWall = () => {
   //--------------------------------------------------
   //#region Layout
   //--------------------------------------------------
-
 
   // local state to keep track of the number of frames to render according to user selction
   const [selectedNumPhotos, setSelectedNumPhotos] = useState("5");
@@ -330,7 +327,6 @@ const GalleryWall = () => {
         <div id="userArtStuff">
           {/** Generate art button */}
           <button onClick={(e) => fillFrames(e)}>Generate Art</button>
-          {/** Save wall form */}
           <SaveWallForm
             wallName={wallName}
             setWallName={setWallName}

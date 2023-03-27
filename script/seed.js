@@ -49,7 +49,7 @@ async function seed() {
    */
   const shop_ids = [
     5478758, 19639425, 14928731, 7780904, 6300167, 12949606, 8954053, 10607194,
-    17352094, 5677896, 5625705, 19121341
+    17352094, 5677896, 5625705, 19121341,
   ];
 
   let removed = 0;
@@ -331,12 +331,14 @@ async function seed() {
        * [ 320, 46, 37, 1 ]
        * ]
        */
-      // Have to perform linear search because the array is unsorted
-      // To apply Binary Search first the 2D array needs to be sorted in any order that itself takes (M*N)log(M*N) time. So the total time complexity to search any element here is O((M * N) log(M * N)) + O(N + M) which very poor when it is compared with the time complexity of Linear Search which is just O(N*M). Therefore, I choose Linear Search for searching in an unsorted array, over Binary Search.
 
-      // if (colorsFromFn.find((arr) => arr.includes(0 || NaN))) {
-      //   break;
-      // }
+      // Perform linear search because the array is unsorted
+      /**
+       * To apply Binary Search, first the 2D array needs to be sorted and that takes (M*N)log(M*N) time. So the
+       * total time complexity to search any element is O((M * N) log(M * N)) + O(N + M) which bad compared with the time
+       * complexity of Linear Search which is just O(N*M). Therefore, we choose Linear Search for
+       * searching in an unsorted array, over Binary Search.
+       */
 
       // analyze the results of the current image's 4 main colors
       // if the current array has 4 image values
@@ -376,36 +378,6 @@ async function seed() {
   const loadArt = await Promise.all(art.map((l) => Art.create(l)));
 
   // //#endregion Instances of `Art` model
-
-  // // --------------------------------------------------------------------
-  // //#region Instances of `Wall` model
-  // // --------------------------------------------------------------------
-
-  // const walls = await Promise.all([
-  //   Wall.create({
-  //     name: "wall1",
-  //     userId: 1,
-  //   }),
-  //   Wall.create({
-  //     name: "wall2",
-  //     userId: 2,
-  //   }),
-  //   Wall.create({
-  //     name: "wall3",
-  //     userId: 3,
-  //   }),
-  // ]);
-
-  // // Find the associated art
-  // const artRow = await Art.findByPk(1);
-  // const artRow2 = await Art.findByPk(2);
-  // // Insert the associated art in the `ArtOnWall` model
-  // await walls[0].addArt(artRow, { through: ArtOnWall });
-  // await walls[0].addArt(artRow2, { through: ArtOnWall });
-  // await walls[1].addArt(artRow2, { through: ArtOnWall });
-  // await walls[2].addArt(artRow2, { through: ArtOnWall });
-
-  // #endregion Instances of `Wall` model
 
   // --------------------------------------------------------------------
   //#region Instances of `SavedWall` model

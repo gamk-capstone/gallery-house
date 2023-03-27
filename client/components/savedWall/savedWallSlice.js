@@ -1,5 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+/**
+ * This is where we keep all the state details for our savedWallSlice.
+ */
 
 /**
  * `fetchSingleWallAysnc` GETS data at /api/user/:userId/:wallId and returns a single instance of wall for this user
@@ -25,6 +28,9 @@ export const fetchSingleWallAsync = createAsyncThunk(
   }
 );
 
+/**
+ * `savedWallSlice` maintains the state of SavedWall.
+ */
 export const savedWallSlice = createSlice({
   name: "savedWall",
   initialState: [],

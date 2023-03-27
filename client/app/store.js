@@ -1,5 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
+
+//Imported reducers
 import authReducer from '../components/auth/authSlice';
 import allUsersArtSlice from '../components/userArt/allUsersArtSlice';
 import singleUserArtSlice from '../components/userArt/singleUserArtSlice';

@@ -14,7 +14,7 @@ const SevenImageGalleryWall = ({
   etsyImages,
   generate,
   saved,
-  savedUrls
+  savedUrls,
 }) => {
   return (
     <div className="flex justify-center flex-col gap-4">

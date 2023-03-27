@@ -14,11 +14,19 @@ const SquareFrame = ({
   saved,
   savedUrls,
 }) => {
+  //--------------------------------------------------
+  //#region Local State
+  //--------------------------------------------------
   const [selected, setSelected] = useState(false);
   const [purchaseUrl, setPurchaseUrl] = useState(null);
   const [thisGenerate, setThisGenerate] = useState(true);
   const [currentUrl, setCurrentUrl] = useState("/white.jpeg");
 
+  //#endregion Local State
+
+  /**
+   * `updateCount` properly iterates the `filledFrames` state based on if this frame is selected
+   */
   const updateCount = () => {
     if (!selected) {
       setFilledFrames(filledFrames + 1);
@@ -27,6 +35,7 @@ const SquareFrame = ({
     }
   };
 
+  //hook that toggles the `thisGenerate` state to false if this frame contains a user's art. Dependent on `currentUrl` state.
   useEffect(() => {
     const updateFrameStatus = () => {
       //Guard case: If the currentUrl is userArtUrl, set thisGenerate false.
@@ -37,6 +46,7 @@ const SquareFrame = ({
     updateFrameStatus();
   }, [currentUrl]);
 
+  //hook that sets the `currentUrl` and `purchaseUrl` with the etsyImages. Depended on `generate` state.
   useEffect(() => {
     const populateWithEtsyImg = () => {
       //If thisGenerate is true, populate this frame.
@@ -51,6 +61,7 @@ const SquareFrame = ({
     populateWithEtsyImg();
   }, [generate]);
 
+  //hook that populates the frame with saved art. Dependent on `saveUrls` state.
   useEffect(() => {
     if (savedUrls) {
       const myRe =

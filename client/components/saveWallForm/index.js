@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 
+/**
+ * SavedWallForm component
+ */
 const SavedWallForm = ({ wallName, setWallName, handleSaveWall }) => {
   return (
     <form onSubmit={handleSaveWall}>

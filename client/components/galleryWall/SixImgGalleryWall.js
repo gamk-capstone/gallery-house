@@ -13,9 +13,8 @@ const SixImageGalleryWall = ({
   etsyImages,
   generate,
   saved,
-  savedUrls
+  savedUrls,
 }) => {
-
   return (
     <div className="flex justify-center flex-col gap-4">
       <div className="flex justify-center flex-row items-end gap-4">
