@@ -6,7 +6,7 @@ Developer team GAMK (Grace, Alex, Malinda, and Katrina) are proud to introduce G
 
 Powered by Etsy’s public API (v3), upload an image of your art to your Gallery Wall, and Gallery House shows you pieces that compliment it based color, sourced from one of our six featured Esty sellers. Click on a piece of art and navigate to its Esty listing, or save your Gallery Wall and come back to view it later.
 
-Curious to know more about our process? Check out some of our development assets below.  
+Curious to know more about our process? Check out some of our development assets included below.  
 
 Wireframes: https://drive.google.com/file/d/1rS4xYL1XWBwF-KKN3gmDqnZCiYj1GNdu/view
 
