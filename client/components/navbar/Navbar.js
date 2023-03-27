@@ -28,11 +28,13 @@ const Navbar = () => {
         {isLoggedIn ? (
           <div className="flex flex-row justify-between items-center pr-16">
             <div className="flex flex-row justify-start items-center gap-32 p-16">
-              <img
-                src="/gallery-house.png"
-                alt="Gallery House logo"
-                className="max-w-[20rem]"
-              />
+              <Link to="/create">
+                <img
+                  src="/gallery-house.png"
+                  alt="Gallery House logo"
+                  className="max-w-[20rem]"
+                />
+              </Link>
               <div className="flex flex-row gap-8">
                 {/* The navbar will show these links after a user logs in */}
                 <Link to="/home" className="nav-link">
@@ -56,11 +58,13 @@ const Navbar = () => {
           </div>
         ) : (
           <div className="flex flex-row justify-start items-center gap-32 p-16">
-            <img
-              src="/gallery-house.png"
-              alt="Gallery House logo"
-              className="max-w-[20rem]"
-            />
+            <Link to="/home">
+              <img
+                src="/gallery-house.png"
+                alt="Gallery House logo"
+                className="max-w-[20rem]"
+              />
+            </Link>
             <div className="flex flex-row gap-8">
               {/* The navbar will show these links before a user logs in and when a user logs out */}
               <Link to="/home" className="nav-link">
