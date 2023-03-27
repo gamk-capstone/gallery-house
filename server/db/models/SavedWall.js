@@ -1,15 +1,14 @@
 const Sequelize = require("sequelize");
 const db = require("../db");
 
-/**
- * `Wall` model has column for `name`.
- * name [string] - cannot be null
- */
-const Wall = db.define("wall", {
+const SavedWall = db.define("wall", {
   name: {
     type: Sequelize.STRING,
     allowNull: true,
   },
+  images: {
+    type: Sequelize.ARRAY(Sequelize.STRING),
+  },
 });
 
-module.exports = Wall;
+module.exports = SavedWall;

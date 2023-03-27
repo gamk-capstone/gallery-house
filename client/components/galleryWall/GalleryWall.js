@@ -2,33 +2,110 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import AWS from "aws-sdk";
 import { useDispatch } from "react-redux";
-import { createUserArtAsync } from "../userArt/allUsersArtSlice";
+import { useNavigate } from "react-router-dom";
+
+//Environment vairables
 const accessKey = process.env.ACCESS_KEY_ID;
 const secretKey = process.env.SECRET_ACCESS_KEY;
+
+//Imported Components
 import FiveImgGalleryWall from "./FiveImgGalleryWall";
 import SixImgGalleryWall from "./SixImgGalleryWall";
 import SevenImgGalleryWall from "./SevenImgGalleryWall";
 import EightImgGalleryWall from "./EightImgGalleryWall";
 import MyArt from "../myArt/MyArt";
+import SaveWallForm from "../saveWallForm/index";
+
+//Imported Files
+import { createUserArtAsync } from "../userArt/allUsersArtSlice";
 import { fetchEtsyImages } from "./galleryWallSlice";
+import { saveWallAsync } from "../savedWalls/savedWallsSlice";
 import EtsyArt from "../etsyArt/EtsyArt";
 
+/**
+ * GalleryWall component
+ */
 const GalleryWall = () => {
-  const { id } = useSelector((state) => state.auth.me);
   const dispatch = useDispatch();
-  const s3 = new AWS.S3();
+  const navigate = useNavigate();
+
+  //Redux state
+  const { id } = useSelector((state) => state.auth.me);
+
+  //Local state that are used in multiple features
   const [imageUrl, setImageUrl] = useState(null);
-  const [compColor, setCompColor] = useState(null);
-  //const [compColor2, setCompColor2] = useState(null);
-  const [file, setFile] = useState([]);
   const [filledFrames, setFilledFrames] = useState(0);
+  const [saved, setSaved] = useState(false);
 
-  //use state in gallery wall to determine the amount of total frames
-  //create function that subtracts filled frames from total frames
-  //dispatch that number to thunk that generates etsy images
+  //--------------------------------------------------
+  //#region Save Wall Feature
+  //--------------------------------------------------
 
+  const [wallName, setWallName] = useState("Untitled");
+
+  /**
+   * `handleSaveWall` is a React event handler that dispatches a thunk `saveWallAsync` to POST the current user's wall to the db
+   * so they can access it later.
+   * @param {*} e the user's click
+   * @returns a new row in the Saved Walls Model and an updated Redux state
+   */
+  const handleSaveWall = (e) => {
+    e.preventDefault();
+    if (wallName.length < 1) {
+      alert("Name is a required field.");
+    }
+    if (filledFrames === 0 && etsyImages.length === 0) {
+      alert(`Your wall is empty. Please add images before saving.`);
+      navigate(`/create`);
+    } else {
+      if (
+        filledFrames < selectedNumPhotos &&
+        etsyImages.length < selectedNumPhotos
+      ) {
+        console.log(filledFrames);
+        console.log(selectedNumPhotos);
+        alert(`Your wall isn't complete.`);
+      }
+      let savedWallImages = [];
+      if (imageUrl && imageUrl.length > 0) {
+        savedWallImages.push({ imageUrl: imageUrl, purchaseUrl: null });
+      }
+      if (etsyImages && etsyImages.length > 0) {
+        etsyImages.map((i) =>
+          savedWallImages.push({
+            imageUrl: i.imageUrl,
+            purchaseUrl: i.purchaseUrl,
+          })
+        );
+      }
+      console.log(savedWallImages);
+      dispatch(
+        saveWallAsync({ name: wallName, images: savedWallImages, userId: id })
+      );
+    }
+    if (filledFrames === 0 && etsyImages.length === 0) {
+      navigate("/create");
+    } else {
+      navigate("/saved");
+    }
+  };
+
+  //#endregion Save Wall Feature
+
+  //--------------------------------------------------
+  //#region Generate Feature
+  //--------------------------------------------------
+
+  const [compColor, setCompColor] = useState(null);
   const [etsyImages, setEtsyImages] = useState([]);
   const [generate, setGenerate] = useState(false);
+
+  /**
+   * `fillFrames` is a React event handler that dispatches a thunk `fetchEtsyImages` and returns and array of image objects from
+   * the Etsy v3 open API based on hue number.
+   * @param {*} e the user's click
+   * @returns {array} an array of Etsy image objects (including their productUrl) based on hue number
+   */
 
   const fillFrames = async (e) => {
     e.preventDefault();
@@ -42,7 +119,6 @@ const GalleryWall = () => {
       imageUrl: i.imageUrl,
       purchaseUrl: i.purchaseUrl,
     }));
-    console.log(imgArrToSendToFrames);
     setEtsyImages(imgArrToSendToFrames);
     if (!generate) {
       setGenerate(true);
@@ -50,6 +126,17 @@ const GalleryWall = () => {
       setGenerate(false);
     }
   };
+
+  //#endregion Generate Feature
+
+  //--------------------------------------------------
+  //#region User Art Feature
+  //--------------------------------------------------
+
+  const s3 = new AWS.S3();
+  const [file, setFile] = useState([]);
+
+  // const myArtStateRef = useRef();
 
   AWS.config.update({
     accessKeyId: accessKey,
@@ -82,6 +169,13 @@ const GalleryWall = () => {
   const fileSelectedHandler = (event) => {
     setFile(event.target.files[0]);
   };
+
+  //#endregion User Art Feature
+
+  //--------------------------------------------------
+  //#region Layout
+  //--------------------------------------------------
+
 
   // local state to keep track of the number of frames to render according to user selction
   const [selectedNumPhotos, setSelectedNumPhotos] = useState("5");
@@ -137,6 +231,10 @@ const GalleryWall = () => {
     }
   };
 
+  //--------------------------------------------------
+  //#region Sofa
+  //--------------------------------------------------
+
   // local state to keep track of the furniture image to render according to user selection
   const [selectedSofa, setSelectedSofa] = useState("sofaBeigeRounded");
   /**
@@ -159,9 +257,13 @@ const GalleryWall = () => {
       case "ovalTable":
         return <img src="/oval-table.png" className="max-w-[900px]" />;
       case "rectangleTable":
-        return <img src="/dining-table-rectangle.png" className="max-w-[900px]" />;
+        return (
+          <img src="/dining-table-rectangle.png" className="max-w-[900px]" />
+        );
     }
   };
+  //#endregion Sofa 
+
   return (
     <div className="flex flex-row gap-40">
       <div id="toolbarContainer" className="flex items-center">
@@ -225,7 +327,14 @@ const GalleryWall = () => {
         {getNumberForLayout()}
         {getSofaForLayout()}
         <div id="userArtStuff">
+          {/** Generate art button */}
           <button onClick={(e) => fillFrames(e)}>Generate Art</button>
+          {/** Save wall form */}
+          <SaveWallForm
+            wallName={wallName}
+            setWallName={setWallName}
+            handleSaveWall={handleSaveWall}
+          ></SaveWallForm>
           <MyArt setImageUrl={setImageUrl} setCompColor={setCompColor} />
           <EtsyArt etsyImages={etsyImages} setImageUrl={setImageUrl}/>
           <div>

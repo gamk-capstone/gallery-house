@@ -6,6 +6,7 @@ const User = require("./models/User");
 const Art = require("./models/Art");
 const UserArt = require("./models/UserArt");
 const Wall = require("./models/Wall");
+const SavedWall = require("./models/SavedWall")
 
 //Assosiations 
 Wall.belongsTo(User);
@@ -20,6 +21,8 @@ User.hasMany(UserArt, {
   foreignKey: 'userId',
   as: 'userArts'
 });
+User.hasMany(SavedWall)
+SavedWall.belongsTo(User)
 
 module.exports = {
   db,
@@ -28,5 +31,6 @@ module.exports = {
     Art,
     UserArt,
     Wall,
+    SavedWall
   },
 };
