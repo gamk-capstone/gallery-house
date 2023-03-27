@@ -18,8 +18,8 @@ const Home = () => {
         </h1>
         <p className="font-house-regular-italic text-dark-pink text-2xl w-[90%]">
           We match your art to complimentary pieces from Esty sellers, allowing
-          you to seamlessly create beautiful custom gallery walls informed by
-          color theory.
+          you to seamlessly create custom gallery walls informed by color
+          theory.
         </p>
         <button
           onClick={navigateToLogin}
