@@ -8,7 +8,7 @@ const db = require("../db");
 const Wall = db.define("wall", {
   name: {
     type: Sequelize.STRING,
-    allowNull: false,
+    allowNull: true,
   },
 });
 

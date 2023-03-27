@@ -5,9 +5,11 @@ import AuthForm from "../components/auth/AuthForm";
 import { me } from "./store";
 import Home from "../components/home/Home";
 import GalleryWall from "../components/galleryWall/GalleryWall";
-import SavedWall from "../components/savedWall/SavedWall";
+import SavedWalls from "../components/savedWalls/SavedWalls";
+import SavedWall from "../components/savedWall/SavedWall"
 import User from "../components/user/User";
 import Toolbar from "../components/toolbar/Toolbar";
+import SaveWallForm from "../components/saveWallForm/index";
 /**
  * The `AppRoutes` component defines the routes in Gallery House, based on whether a user is logged in or not.
  */
@@ -34,11 +36,17 @@ const AppRoutes = () => {
           {/* The /create route brings a user to their `GalleryWall` component */}
           <Route path="/create" element={<GalleryWall />} />
 
-          {/* The /saved route brings a user to the `SavedWall` component */}
-          <Route path="/saved" element={<SavedWall />} />
+          {/* The /saveForm route brings a user to `SavedWallForm` component*/}
+          <Route path="/saveForm" element={<SaveWallForm />} />
+
+          {/* The /saved route brings a user to the `SavedWalls` component */}
+          <Route path="/saved" element={<SavedWalls />} />
+
+          {/* The /saved/:wallId route brings a user to the `SavedWalls` component */}
+          <Route path="/saved/:wallId" element={<SavedWall />} />
 
           {/* The /users/:id route brings a user to the `User` component */}
-          <Route path="/users/:id" element={<User />} />
+          {/* <Route path="/users/:id" element={<User />} /> */}
         </Routes>
       ) : (
         //A guest (or logged-out) user's routes:

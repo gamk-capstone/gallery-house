@@ -11,6 +11,8 @@ const LandscapeRectangleFrame = ({
   filledFrames,
   etsyImages,
   generate,
+  saved,
+  savedUrls,
 }) => {
   const [selected, setSelected] = useState(false);
   const [currentUrl, setCurrentUrl] = useState("/white.jpeg");
@@ -47,9 +49,18 @@ const LandscapeRectangleFrame = ({
     populateWithEtsyImg();
   }, [generate]);
 
+  useEffect(() => {
+    if (savedUrls) {
+      const myRe =
+        /([\w+]+\:\/\/)?([\w\d-]+\.)*[\w-]+[\.\:]\w+([\/\?\=\&\#\.]?[\w-]+)*\/?/gm;
+      setCurrentUrl(savedUrls.match(myRe)[0]);
+    }
+    setSelected(false);
+  }, [savedUrls]);
+
   return (
     <div>
-      {etsyImages ? (
+      {etsyImages && etsyImages.purchaseUrl ? (
         <a href={etsyImages.purchaseUrl}>
           <img
             src={`${selected || generate ? currentUrl : "/white.jpeg"}`}
