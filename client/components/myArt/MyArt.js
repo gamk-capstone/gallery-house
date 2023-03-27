@@ -2,22 +2,20 @@ import React, { useEffect, useState, forwardRef, useImperativeHandle } from "rea
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUserArtAsync, selectUserArt } from "../userArt/allUsersArtSlice";
 
-const MyArt = forwardRef((props, _ref) => {
+const MyArt = ({ setImageUrl, setCompColor }) => {
   const username = useSelector((state) => state.auth.me.username);
   const { id } = useSelector((state) => state.auth.me);
   const dispatch = useDispatch();
   const art = useSelector(selectUserArt);
-  const [imgUrl, setImgUrl] = useState(null);
-  const [compColor, setCompColor] = useState(null);
 
-  useImperativeHandle(_ref, () => ({
-    getImgUrl: () => {
-      return imgUrl;
-    },
-    getImgCompColor: () => {
-      return compColor;
-    }
-  }));
+  // useImperativeHandle(_ref, () => ({
+  //   getImgUrl: () => {
+  //     return imgUrl;
+  //   },
+  //   getImgCompColor: () => {
+  //     return compColor;
+  //   }
+  // }));
 
   useEffect(() => {
     dispatch(fetchUserArtAsync(id));
@@ -33,7 +31,7 @@ const MyArt = forwardRef((props, _ref) => {
         <div>
         {art?.map((piece) => {
           return <img src={piece.s3Url} className="w-40 h-60 p-3 object-cover drop-shadow-md shrink" key={piece.id} onClick={() => {
-            setImgUrl(piece.s3Url);
+            setImageUrl(piece.s3Url);
             setCompColor(piece.complimentaryColor);
           }}/>;
         })}
@@ -47,6 +45,6 @@ const MyArt = forwardRef((props, _ref) => {
       <RenderArt />
     </div>
   );
-});
+};
 
-export default React.memo(MyArt);
+export default MyArt;
