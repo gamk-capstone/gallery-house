@@ -14,6 +14,8 @@ const EightImgGalleryWall = ({
   setFilledFrames,
   etsyImages,
   generate,
+  saved,
+  savedUrls
 }) => {
   return (
     <div className="flex justify-center flex-col gap-4">
@@ -24,6 +26,8 @@ const EightImgGalleryWall = ({
           setFilledFrames={setFilledFrames}
           etsyImages={etsyImages ? etsyImages[0] : ""}
           generate={generate}
+          saved={saved}
+          savedUrls={savedUrls ? savedUrls[0] : ""}
         />
         <SquareLargeFrame
           userArtUrl={userArtUrl}
@@ -31,6 +35,8 @@ const EightImgGalleryWall = ({
           setFilledFrames={setFilledFrames}
           etsyImages={etsyImages ? etsyImages[1] : ""}
           generate={generate}
+          saved={saved}
+          savedUrls={savedUrls ? savedUrls[1] : ""}
         />
         <PortraitRectangleFrame
           userArtUrl={userArtUrl}
@@ -38,6 +44,8 @@ const EightImgGalleryWall = ({
           setFilledFrames={setFilledFrames}
           etsyImages={etsyImages ? etsyImages[2] : ""}
           generate={generate}
+          saved={saved}
+          savedUrls={savedUrls ? savedUrls[2] : ""}
         />
         <LandscapeRectangleExtraWideFrame
           userArtUrl={userArtUrl}
@@ -45,6 +53,8 @@ const EightImgGalleryWall = ({
           setFilledFrames={setFilledFrames}
           etsyImages={etsyImages ? etsyImages[3] : ""}
           generate={generate}
+          saved={saved}
+          savedUrls={savedUrls ? savedUrls[3] : ""}
         />
       </div>
       <div className="flex justify-center flex-row items-start gap-4">
@@ -54,6 +64,8 @@ const EightImgGalleryWall = ({
           setFilledFrames={setFilledFrames}
           etsyImages={etsyImages ? etsyImages[4] : ""}
           generate={generate}
+          saved={saved}
+          savedUrls={savedUrls ? savedUrls[4] : ""}
         />
         <PortraitRectangleFrame
           userArtUrl={userArtUrl}
@@ -61,6 +73,8 @@ const EightImgGalleryWall = ({
           setFilledFrames={setFilledFrames}
           etsyImages={etsyImages ? etsyImages[5] : ""}
           generate={generate}
+          saved={saved}
+          savedUrls={savedUrls ? savedUrls[5] : ""}
         />
         <SquareLargeFrame
           userArtUrl={userArtUrl}
@@ -68,6 +82,8 @@ const EightImgGalleryWall = ({
           setFilledFrames={setFilledFrames}
           etsyImages={etsyImages ? etsyImages[6] : ""}
           generate={generate}
+          saved={saved}
+          savedUrls={savedUrls ? savedUrls[6] : ""}
         />
         <LandscapeRectangleExtraWideFrame
           userArtUrl={userArtUrl}
@@ -75,6 +91,8 @@ const EightImgGalleryWall = ({
           setFilledFrames={setFilledFrames}
           etsyImages={etsyImages ? etsyImages[7] : ""}
           generate={generate}
+          saved={saved}
+          savedUrls={savedUrls ? savedUrls[7] : ""}
         />
       </div>
     </div>
