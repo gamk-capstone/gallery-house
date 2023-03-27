@@ -52,7 +52,10 @@ const SavedWall = () => {
   //a third hook updates the local state for number of images
   useEffect(() => {
     if (images) {
-      setNumberOfImages(images.length - 1);
+      setNumberOfImages(images.length);
+      if (images.map((i) => i.includes("gamkgalleryhouse"))) {
+        setNumberOfImages(images.length - 1);
+      }
     }
   }, [images]);
 
@@ -86,7 +89,7 @@ const SavedWall = () => {
    */
 
   const getNumberForLayout = () => {
-    if (numberOfImages=== 5)
+    if (numberOfImages === 5)
       return (
         <FiveImgGalleryWall
           saved={saved}
@@ -94,7 +97,7 @@ const SavedWall = () => {
           generate={generate}
         />
       );
-    if (numberOfImages=== 6) {
+    if (numberOfImages === 6) {
       return (
         <SixImgGalleryWall
           saved={saved}

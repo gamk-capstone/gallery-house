@@ -11,7 +11,8 @@ const LandscapeRectangleExtraWideFrame = ({
   filledFrames,
   generate,
   etsyImages,
-  savedUrls
+  saved,
+  savedUrls,
 }) => {
   const [selected, setSelected] = useState(false);
   const [currentUrl, setCurrentUrl] = useState("/white.jpeg");

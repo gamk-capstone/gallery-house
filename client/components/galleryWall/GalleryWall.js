@@ -64,7 +64,7 @@ const GalleryWall = () => {
       ) {
         console.log(filledFrames);
         console.log(selectedNumPhotos);
-        alert(`Your wall isn't complete. Are you sure you want to save it?`);
+        alert(`Your wall isn't complete.`);
       }
       let savedWallImages = [];
       if (imageUrl && imageUrl.length > 0) {
