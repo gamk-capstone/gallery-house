@@ -49,7 +49,7 @@ const NavbarHomepage = () => {
             <button
               type="button"
               onClick={logoutAndRedirectHome}
-              className="text-black font-house-bold text-3xl focus:text-pink hover:text-pink rounded-full border-4 border-solid border-pink hover:text-pink hover:border-black px-4 py-2"
+              className="text-black font-house-bold text-3xl focus:text-pink rounded-full border-4 border-solid border-pink hover:text-pink hover:border-black px-4 py-2"
             >
               Logout
             </button>
