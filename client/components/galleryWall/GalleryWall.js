@@ -197,7 +197,6 @@ const GalleryWall = () => {
             setFilledFrames={setFilledFrames}
             etsyImages={etsyImages}
             generate={generate}
-            // saved={saved}
           />
         );
         break;
@@ -209,7 +208,6 @@ const GalleryWall = () => {
             setFilledFrames={setFilledFrames}
             etsyImages={etsyImages}
             generate={generate}
-            // saved={saved}
           />
         );
         break;
@@ -221,7 +219,6 @@ const GalleryWall = () => {
             setFilledFrames={setFilledFrames}
             etsyImages={etsyImages}
             generate={generate}
-            // saved={saved}
           />
         );
         break;
@@ -233,7 +230,6 @@ const GalleryWall = () => {
             setFilledFrames={setFilledFrames}
             etsyImages={etsyImages}
             generate={generate}
-            // saved={saved}
           />
         );
     }

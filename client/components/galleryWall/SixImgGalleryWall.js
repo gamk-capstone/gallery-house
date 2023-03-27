@@ -12,6 +12,8 @@ const SixImageGalleryWall = ({
   setFilledFrames,
   etsyImages,
   generate,
+  saved,
+  savedUrls
 }) => {
 
   return (
@@ -23,6 +25,8 @@ const SixImageGalleryWall = ({
           setFilledFrames={setFilledFrames}
           etsyImages={etsyImages ? etsyImages[0] : ""}
           generate={generate}
+          saved={saved}
+          savedUrls={savedUrls ? savedUrls[0] : ""}
         />
         <SquareFrame
           userArtUrl={userArtUrl}
@@ -30,7 +34,8 @@ const SixImageGalleryWall = ({
           setFilledFrames={setFilledFrames}
           etsyImages={etsyImages ? etsyImages[1] : ""}
           generate={generate}
-
+          saved={saved}
+          savedUrls={savedUrls ? savedUrls[1] : ""}
         />
         <SquareFrame
           userArtUrl={userArtUrl}
@@ -38,6 +43,8 @@ const SixImageGalleryWall = ({
           setFilledFrames={setFilledFrames}
           etsyImages={etsyImages ? etsyImages[2] : ""}
           generate={generate}
+          saved={saved}
+          savedUrls={savedUrls ? savedUrls[2] : ""}
         />
       </div>
       <div className="flex justify-center flex-row items-start gap-4">
@@ -47,6 +54,8 @@ const SixImageGalleryWall = ({
           setFilledFrames={setFilledFrames}
           etsyImages={etsyImages ? etsyImages[3] : ""}
           generate={generate}
+          saved={saved}
+          savedUrls={savedUrls ? savedUrls[3] : ""}
         />
         <SquareFrame
           userArtUrl={userArtUrl}
@@ -54,6 +63,8 @@ const SixImageGalleryWall = ({
           setFilledFrames={setFilledFrames}
           etsyImages={etsyImages ? etsyImages[4] : ""}
           generate={generate}
+          saved={saved}
+          savedUrls={savedUrls ? savedUrls[4] : ""}
         />
         <SquareFrame
           userArtUrl={userArtUrl}
@@ -61,6 +72,8 @@ const SixImageGalleryWall = ({
           setFilledFrames={setFilledFrames}
           etsyImages={etsyImages ? etsyImages[5] : ""}
           generate={generate}
+          saved={saved}
+          savedUrls={savedUrls ? savedUrls[5] : ""}
         />
       </div>
     </div>

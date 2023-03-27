@@ -1,3 +1,4 @@
+//Imported tools/libraries
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -14,45 +15,46 @@ import {
   selectSavedWall,
 } from "../savedWall/savedWallSlice";
 
+/**
+ * SavedWall component
+ */
 const SavedWall = () => {
-  const { id } = useSelector((state) => state.auth.me);
   const dispatch = useDispatch();
-  const wall = useSelector(selectSavedWall);
-  console.log("ID____", id);
   const { wallId } = useParams();
-  console.log("WALLID____", wallId);
+
+  //Redux state
+  const { id } = useSelector((state) => state.auth.me);
+  const wall = useSelector(selectSavedWall);
+
+  //Local state that is used in this component
   const [saved, setSaved] = useState(true);
-  const [savedUrls, setSavedUrls] = useState([]);
+  const [savedUrls, setSavedUrls] = useState(null);
   const [generate, setGenerate] = useState(null);
 
+  const { images } = wall;
+  const [numberOfImages, setNumberOfImages] = useState("5");
+
+  //`fillFramesWithSavedImgs` is a react hook that dispatched a thunk `fetchSingleWallAsync` and return the data for this saved wall.
   useEffect(() => {
     const fillFramesWithSavedImgs = async () => {
-      await dispatch(
-        fetchSingleWallAsync({ userId: id, wallId: wallId })
-      );
+      await dispatch(fetchSingleWallAsync({ userId: id, wallId: wallId }));
     };
     fillFramesWithSavedImgs();
   }, [dispatch]);
 
-  useEffect(()=> {
-    // const getSavedUrls = ()=> {
-      setSaved(true);
-      setSavedUrls(images);
-      setGenerate(true);
-    // }
-    // getSavedUrls();
-  }, [wall]);
+  //a second hook updates the local state with images from thunk
+  useEffect(() => {
+    setSaved(true);
+    setSavedUrls(images);
+    setGenerate(true);
+  }, [images]);
 
-//   useEffect(()=> {
-//   const updateImageData = () => {
-//     const myRe = /([\w+]+\:\/\/)?([\w\d-]+\.)*[\w-]+[\.\:]\w+([\/\?\=\&\#\.]?[\w-]+)*\/?/gm
-//     let imageArr = savedUrls.map((i) => i.match(myRe));
-//     return imageArr;
-//   }
-//   updateImageData();
-// }, []);
-
-    
+  //a third hook updates the local state for number of images
+  useEffect(() => {
+    if (images) {
+      setNumberOfImages(images.length);
+    }
+  }, [images]);
 
   // console.log("WALL_________", wall);
   // console.log(wall.updatedAt.slice(5, 7)+wall.updatedAt.slice(8, 10)+wall.updatedAt.slice(0, 4))
@@ -61,22 +63,19 @@ const SavedWall = () => {
   //#region Layout
   //--------------------------------------------------
 
-  const {images} = wall
-  const [numberOfImages, setNumberOfImages] = useState(5);
-
-  useEffect(() => {
-    if (images) {
-      if (images.length - 1 === 6) {
-        setNumberOfImages(5);
-      } else if (images && images.length - 1 === 7) {
-        setNumberOfImages(6);
-      } else if (images && images.length - 1 === 8) {
-        setNumberOfImages(7);
-      } else {
-        setNumberOfImages(8);
-      }
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (images) {
+  //     if (images.length - 1 === 6) {
+  //       setNumberOfImages(5);
+  //     } else if (images && images.length - 1 === 7) {
+  //       setNumberOfImages(6);
+  //     } else if (images && images.length - 1 === 8) {
+  //       setNumberOfImages(7);
+  //     } else {
+  //       setNumberOfImages(8);
+  //     }
+  //   }
+  // }, []);
 
   console.log("IMAGES", images);
   console.log("NUMBER OF IMAGES", numberOfImages);
@@ -87,18 +86,125 @@ const SavedWall = () => {
    */
 
   const getNumberForLayout = () => {
-    if (numberOfImages === 5) {
-      return <FiveImgGalleryWall saved={saved} savedUrls={savedUrls} generate={generate}/>;
-    } else if (numberOfImages === 6) {
-      return <SixImgGalleryWall saved={saved} savedUrls={savedUrls} generate={generate}/>;
-    } else if (numberOfImages === 7) {
-      return <SevenImgGalleryWall saved={saved} savedUrls={savedUrls} generate={generate}/>;
-    } else if (numberOfImages === 8) {
-      return <EightImgGalleryWall saved={saved} savedUrls={savedUrls} generate={generate}/>;
-    } else {
-      return <div>Oops, there was a problem saving your wall.</div>;
+    if (numberOfImages === 5)
+      return (
+        <FiveImgGalleryWall
+          saved={saved}
+          savedUrls={savedUrls}
+          generate={generate}
+        />
+      );
+    if (numberOfImages === 6) {
+      return (
+        <SixImgGalleryWall
+          saved={saved}
+          savedUrls={savedUrls}
+          generate={generate}
+        />
+      );
+    }
+    if (numberOfImages === 7) {
+      return (
+        <SevenImgGalleryWall
+          saved={saved}
+          savedUrls={savedUrls}
+          generate={generate}
+        />
+      );
+    }
+    if (numberOfImages === 8) {
+      return (
+        <EightImgGalleryWall
+          saved={saved}
+          savedUrls={savedUrls}
+          generate={generate}
+        />
+      );
     }
   };
+
+  // const getNumberForLayout = () => {
+  //   switch (numberOfImages) {
+  //     case "5":
+  //       return (
+  //         <FiveImgGalleryWall
+  //           saved={saved}
+  //           savedUrls={savedUrls}
+  //           generate={generate}
+  //         />
+  //       );
+  //       break;
+  //     case "6":
+  //       return (
+  //         <SixImgGalleryWall
+  //           saved={saved}
+  //           savedUrls={savedUrls}
+  //           generate={generate}
+  //         />
+  //       );
+  //       break;
+  //     case "7":
+  //       return (
+  //         <SevenImgGalleryWall
+  //           saved={saved}
+  //           savedUrls={savedUrls}
+  //           generate={generate}
+  //         />
+  //       );
+  //       break;
+  //     case "8":
+  //       return (
+  //         <EightImgGalleryWall
+  //           saved={saved}
+  //           savedUrls={savedUrls}
+  //           generate={generate}
+  //         />
+  //       );
+  //   }
+  // };
+
+  // useEffect(() => {
+  // const getNumberForLayout = () => {
+  //   if (numberOfImages === 5) {
+  //     return (
+  //       <FiveImgGalleryWall
+  //         saved={saved}
+  //         savedUrls={savedUrls}
+  //         generate={generate}
+  //       />
+  //     );
+  //   }
+  //   if (numberOfImages === 6) {
+  //     return (
+  //       <SixImgGalleryWall
+  //         saved={saved}
+  //         savedUrls={savedUrls}
+  //         generate={generate}
+  //       />
+  //     );
+  //   }
+  //   if (numberOfImages === 7) {
+  //     return (
+  //       <SevenImgGalleryWall
+  //         saved={saved}
+  //         savedUrls={savedUrls}
+  //         generate={generate}
+  //       />
+  //     );
+  //   }
+  //   if (numberOfImages === 8) {
+  //     return (
+  //       <EightImgGalleryWall
+  //         saved={saved}
+  //         savedUrls={savedUrls}
+  //         generate={generate}
+  //       />
+  //     );
+  //   } else {
+  //     return <div>Oops, there was a problem saving your wall.</div>;
+  //   }
+  // };
+  // }, [numberOfImages]);
 
   //#endregion Layout
 
