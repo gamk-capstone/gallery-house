@@ -13,8 +13,9 @@ const SevenImageGalleryWall = ({
   setFilledFrames,
   etsyImages,
   generate,
+  saved,
+  savedUrls
 }) => {
-  console.log("etsyImages", etsyImages);
   return (
     <div className="flex justify-center flex-col gap-4">
       <div className="flex justify-center flex-row items-end gap-4">
@@ -24,6 +25,8 @@ const SevenImageGalleryWall = ({
           setFilledFrames={setFilledFrames}
           etsyImages={etsyImages ? etsyImages[0] : ""}
           generate={generate}
+          saved={saved}
+          savedUrls={savedUrls ? savedUrls[0] : ""}
         />
         <LandscapeRectangleFrame
           userArtUrl={userArtUrl}
@@ -31,6 +34,8 @@ const SevenImageGalleryWall = ({
           setFilledFrames={setFilledFrames}
           etsyImages={etsyImages ? etsyImages[1] : ""}
           generate={generate}
+          saved={saved}
+          savedUrls={savedUrls ? savedUrls[1] : ""}
         />
       </div>
       <div className="flex justify-center flex-row items-center gap-4">
@@ -40,6 +45,8 @@ const SevenImageGalleryWall = ({
           setFilledFrames={setFilledFrames}
           etsyImages={etsyImages ? etsyImages[2] : ""}
           generate={generate}
+          saved={saved}
+          savedUrls={savedUrls ? savedUrls[2] : ""}
         />
         <SquareFrame
           userArtUrl={userArtUrl}
@@ -47,6 +54,8 @@ const SevenImageGalleryWall = ({
           setFilledFrames={setFilledFrames}
           etsyImages={etsyImages ? etsyImages[3] : ""}
           generate={generate}
+          saved={saved}
+          savedUrls={savedUrls ? savedUrls[3] : ""}
         />
         <SquareFrame
           userArtUrl={userArtUrl}
@@ -54,6 +63,8 @@ const SevenImageGalleryWall = ({
           setFilledFrames={setFilledFrames}
           etsyImages={etsyImages ? etsyImages[4] : ""}
           generate={generate}
+          saved={saved}
+          savedUrls={savedUrls ? savedUrls[4] : ""}
         />
       </div>
       <div className="flex justify-center flex-row items-start gap-4">
@@ -63,6 +74,8 @@ const SevenImageGalleryWall = ({
           setFilledFrames={setFilledFrames}
           etsyImages={etsyImages ? etsyImages[5] : ""}
           generate={generate}
+          saved={saved}
+          savedUrls={savedUrls ? savedUrls[5] : ""}
         />
         <SquareFrame
           userArtUrl={userArtUrl}
@@ -70,6 +83,8 @@ const SevenImageGalleryWall = ({
           setFilledFrames={setFilledFrames}
           etsyImages={etsyImages ? etsyImages[6] : ""}
           generate={generate}
+          saved={saved}
+          savedUrls={savedUrls ? savedUrls[6] : ""}
         />
       </div>
     </div>

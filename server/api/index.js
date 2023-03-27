@@ -8,6 +8,7 @@ module.exports = router;
 router.use("/users", require("./users"));
 router.use("/art", require("./art"));
 router.use("/user", require("./user"));
+router.use("/walls", require("./walls"))
 
 router.use((req, res, next) => {
   const error = new Error("Not Found");

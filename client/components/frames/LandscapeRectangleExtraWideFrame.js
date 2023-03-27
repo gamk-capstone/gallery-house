@@ -11,6 +11,8 @@ const LandscapeRectangleExtraWideFrame = ({
   filledFrames,
   generate,
   etsyImages,
+  saved,
+  savedUrls,
 }) => {
   const [selected, setSelected] = useState(false);
   const [currentUrl, setCurrentUrl] = useState("/white.jpeg");
@@ -47,9 +49,18 @@ const LandscapeRectangleExtraWideFrame = ({
     populateWithEtsyImg();
   }, [generate]);
 
+  useEffect(() => {
+    if (savedUrls) {
+      const myRe =
+        /([\w+]+\:\/\/)?([\w\d-]+\.)*[\w-]+[\.\:]\w+([\/\?\=\&\#\.]?[\w-]+)*\/?/gm;
+      setCurrentUrl(savedUrls.match(myRe)[0]);
+    }
+    setSelected(false);
+  }, [savedUrls]);
+
   return (
     <div>
-      {etsyImages ? (
+      {etsyImages && !selected ? (
         <a href={etsyImages.purchaseUrl}>
           <img
             src={`${selected || generate ? currentUrl : "/white.jpeg"}`}
@@ -75,7 +86,5 @@ const LandscapeRectangleExtraWideFrame = ({
     </div>
   );
 };
-
-//className="w-72 h-40 p-3 border-2 border-solid border-[#e2be75] object-cover bg-gradient-to-t from-[#bf953f] via-[#b38728] to-[#fbf5b7] drop-shadow-md shrink"
 
 export default LandscapeRectangleExtraWideFrame;

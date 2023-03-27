@@ -15,7 +15,6 @@ const User = () => {
   const { userId } = useParams();
   const userWalls = useSelector(selectUserWalls);
   const userObject = useSelector(selectUserObject);
-  console.log(userWalls);
 
   useEffect(() => {
     dispatch(fetchUserWallsAsync(userId));
