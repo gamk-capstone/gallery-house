@@ -45,13 +45,13 @@ const SquareFrame = ({
   }, [generate]);
 
   useEffect(() => {
-    const populateWithSavedImg = () => {
-      if (saved) {
-        setCurrentUrl(savedUrls);
-      }
-    };
-    populateWithSavedImg();
-  }, [saved]);
+    if (savedUrls) {
+      const myRe =
+        /([\w+]+\:\/\/)?([\w\d-]+\.)*[\w-]+[\.\:]\w+([\/\?\=\&\#\.]?[\w-]+)*\/?/gm;
+      setCurrentUrl(savedUrls.match(myRe)[0]);
+    }
+    setSelected(false);
+  }, [savedUrls]);
 
   return (
     <div>

@@ -50,28 +50,22 @@ const SquareFrame = ({
     populateWithEtsyImg();
   }, [generate]);
 
-  // const myRe = /([\w+]+\:\/\/)?([\w\d-]+\.)*[\w-]+[\.\:]\w+([\/\?\=\&\#\.]?[\w-]+)*\/?/gm
-  // let imageArr = savedUrls.match(myRe)[0]
-
-  // useEffect(() => {
-  //   const populateWithSavedImg = () => {
-  //     // const savedImageUrl = imageArr[0]
-  //     // const savedProductUrl = imageArr[1]
-  //     if (saved) {
-  //       setCurrentUrl(
-  //         imageArr
-  //       );
-  //     }
-  //   };
-  //   populateWithSavedImg();
-  // }, [saved]);
+  useEffect(() => {
+    if (savedUrls) {
+      const myRe = /([\w+]+\:\/\/)?([\w\d-]+\.)*[\w-]+[\.\:]\w+([\/\?\=\&\#\.]?[\w-]+)*\/?/gm
+      setCurrentUrl(
+        savedUrls.match(myRe)[0]
+      );
+    }
+    setSelected(false);
+}, [savedUrls]);
 
   return (
     <div>
       {etsyImages && !selected ? (
         <a href={etsyImages.purchaseUrl}>
           <img
-            src={`${selected || generate || currentUrl === savedUrls ? currentUrl : "/white.jpeg"}`}
+            src={`${selected || generate ? currentUrl : "/white.jpeg"}`}
             className={`w-40 h-40 p-3 border-2 border-solid border-[#e2be75] object-cover bg-gradient-to-t from-[#bf953f] via-[#b38728] to-[#fbf5b7] drop-shadow-md shrink`}
             onClick={() => {
               setCurrentUrl(userArtUrl);

@@ -23,6 +23,7 @@ const SavedWall = () => {
   console.log("WALLID____", wallId);
   const [saved, setSaved] = useState(true);
   const [savedUrls, setSavedUrls] = useState([]);
+  const [generate, setGenerate] = useState(null);
 
   useEffect(() => {
     const fillFramesWithSavedImgs = async () => {
@@ -37,6 +38,7 @@ const SavedWall = () => {
     // const getSavedUrls = ()=> {
       setSaved(true);
       setSavedUrls(images);
+      setGenerate(true);
     // }
     // getSavedUrls();
   }, [wall]);
@@ -52,7 +54,7 @@ const SavedWall = () => {
 
     
 
-  console.log("WALL_________", wall);
+  // console.log("WALL_________", wall);
   // console.log(wall.updatedAt.slice(5, 7)+wall.updatedAt.slice(8, 10)+wall.updatedAt.slice(0, 4))
 
   //--------------------------------------------------
@@ -86,13 +88,13 @@ const SavedWall = () => {
 
   const getNumberForLayout = () => {
     if (numberOfImages === 5) {
-      return <FiveImgGalleryWall saved={saved} savedUrls={savedUrls} />;
+      return <FiveImgGalleryWall saved={saved} savedUrls={savedUrls} generate={generate}/>;
     } else if (numberOfImages === 6) {
-      return <SixImgGalleryWall saved={saved} savedUrls={savedUrls} />;
+      return <SixImgGalleryWall saved={saved} savedUrls={savedUrls} generate={generate}/>;
     } else if (numberOfImages === 7) {
-      return <SevenImgGalleryWall saved={saved} savedUrls={savedUrls} />;
+      return <SevenImgGalleryWall saved={saved} savedUrls={savedUrls} generate={generate}/>;
     } else if (numberOfImages === 8) {
-      return <EightImgGalleryWall saved={saved} savedUrls={savedUrls} />;
+      return <EightImgGalleryWall saved={saved} savedUrls={savedUrls} generate={generate}/>;
     } else {
       return <div>Oops, there was a problem saving your wall.</div>;
     }
