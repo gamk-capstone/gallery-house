@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import AWS from "aws-sdk";
 import { useDispatch } from "react-redux";
@@ -11,6 +11,7 @@ import SevenImgGalleryWall from "./SevenImgGalleryWall";
 import EightImgGalleryWall from "./EightImgGalleryWall";
 import MyArt from "../myArt/MyArt";
 import { fetchEtsyImages } from "./galleryWallSlice";
+import EtsyArt from "../etsyArt/EtsyArt";
 
 const GalleryWall = () => {
   const { id } = useSelector((state) => state.auth.me);
@@ -18,9 +19,9 @@ const GalleryWall = () => {
   const s3 = new AWS.S3();
   const [imageUrl, setImageUrl] = useState(null);
   const [compColor, setCompColor] = useState(null);
+  //const [compColor2, setCompColor2] = useState(null);
   const [file, setFile] = useState([]);
   const [filledFrames, setFilledFrames] = useState(0);
-  const myArtStateRef = useRef();
 
   //use state in gallery wall to determine the amount of total frames
   //create function that subtracts filled frames from total frames
@@ -80,13 +81,6 @@ const GalleryWall = () => {
 
   const fileSelectedHandler = (event) => {
     setFile(event.target.files[0]);
-  };
-
-  const getMyArtState = () => {
-    const myArtUrlState = myArtStateRef.current.getImgUrl();
-    const myArtCompColorState = myArtStateRef.current.getImgCompColor();
-    setImageUrl(myArtUrlState);
-    setCompColor(myArtCompColorState);
   };
 
   // local state to keep track of the number of frames to render according to user selction
@@ -232,8 +226,8 @@ const GalleryWall = () => {
         {getSofaForLayout()}
         <div id="userArtStuff">
           <button onClick={(e) => fillFrames(e)}>Generate Art</button>
-          <MyArt ref={myArtStateRef} />
-          <button onClick={() => getMyArtState()}>Select Frame</button>
+          <MyArt setImageUrl={setImageUrl} setCompColor={setCompColor} />
+          <EtsyArt etsyImages={etsyImages} setImageUrl={setImageUrl}/>
           <div>
             <input
               type="file"
