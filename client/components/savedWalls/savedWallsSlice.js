@@ -9,7 +9,7 @@ export const fetchWallsAsync = createAsyncThunk(
   async (userId) => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8080/api/walls/${userId}`
+        `http://localhost:8080/api/walls/user/${userId}`
       );
       console.log("walls/fetchAll", data);
       return data;

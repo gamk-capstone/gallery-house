@@ -1,35 +1,45 @@
+//Imported tools/libraries
 import React, { useState, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 import AWS from "aws-sdk";
 import { useDispatch } from "react-redux";
-import { createUserArtAsync } from "../userArt/allUsersArtSlice";
+import { useNavigate } from "react-router-dom";
+
+//Environment vairables
 const accessKey = process.env.ACCESS_KEY_ID;
 const secretKey = process.env.SECRET_ACCESS_KEY;
+
+//Imported Components
 import FiveImgGalleryWall from "./FiveImgGalleryWall";
 import SixImgGalleryWall from "./SixImgGalleryWall";
 import SevenImgGalleryWall from "./SevenImgGalleryWall";
 import EightImgGalleryWall from "./EightImgGalleryWall";
 import MyArt from "../myArt/MyArt";
-import { fetchEtsyImages } from "./galleryWallSlice";
-import { saveWallAsync } from "../savedWalls/savedWallsSlice";
-import { useNavigate } from "react-router-dom";
 import SaveWallForm from "../saveWallForm/index";
 
-const GalleryWall = () => {
-  const { id } = useSelector((state) => state.auth.me);
-  const dispatch = useDispatch();
-  const s3 = new AWS.S3();
-  const [imageUrl, setImageUrl] = useState(null);
-  const [file, setFile] = useState([]);
-  const [compColor, setCompColor] = useState(null);
+//Imported Files
+import { createUserArtAsync } from "../userArt/allUsersArtSlice";
+import { fetchEtsyImages } from "./galleryWallSlice";
+import { saveWallAsync } from "../savedWalls/savedWallsSlice";
 
+/**
+ * GalleryWall component
+ */
+const GalleryWall = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  //use state in gallery wall to determine the amount of total frames
-  //create function that subtracts filled frames from total frames
-  //dispatch that number to thunk that generates etsy images
+  //Redux state
+  const { id } = useSelector((state) => state.auth.me);
+
+  //Local state that are used in multiple features
+  const [imageUrl, setImageUrl] = useState(null);
   const [filledFrames, setFilledFrames] = useState(0);
-  const myArtStateRef = useRef();
+  const [saved, setSaved] = useState(false);
+
+  //--------------------------------------------------
+  //#region Save Wall Feature
+  //--------------------------------------------------
 
   const [wallName, setWallName] = useState("Untitled");
 
@@ -46,7 +56,7 @@ const GalleryWall = () => {
     }
     if (filledFrames === 0 && etsyImages.length === 0) {
       alert(`Your wall is empty. Please add images before saving.`);
-      navigate(`/create`)
+      navigate(`/create`);
     } else {
       if (
         filledFrames < selectedNumPhotos &&
@@ -73,22 +83,30 @@ const GalleryWall = () => {
         saveWallAsync({ name: wallName, images: savedWallImages, userId: id })
       );
     }
-    if (filledFrames === 0 && etsyImages.length === 0){
+    if (filledFrames === 0 && etsyImages.length === 0) {
       navigate("/create");
     } else {
       navigate("/saved");
     }
   };
 
+  //#endregion Save Wall Feature
+
+  //--------------------------------------------------
+  //#region Generate Feature
+  //--------------------------------------------------
+
+  const [compColor, setCompColor] = useState(null);
   const [etsyImages, setEtsyImages] = useState([]);
   const [generate, setGenerate] = useState(false);
 
   /**
-   * `fillFrame` is a React event handler that dispatches a thunk `fetchEtsyImages` and returns and array of image objects from
+   * `fillFrames` is a React event handler that dispatches a thunk `fetchEtsyImages` and returns and array of image objects from
    * the Etsy v3 open API based on hue number.
    * @param {*} e the user's click
    * @returns {array} an array of Etsy image objects (including their productUrl) based on hue number
    */
+
   const fillFrames = async (e) => {
     e.preventDefault();
     const total = selectedNumPhotos;
@@ -108,6 +126,17 @@ const GalleryWall = () => {
       setGenerate(false);
     }
   };
+
+  //#endregion Generate Feature
+
+  //--------------------------------------------------
+  //#region User Art Feature
+  //--------------------------------------------------
+
+  const s3 = new AWS.S3();
+  const [file, setFile] = useState([]);
+
+  const myArtStateRef = useRef();
 
   AWS.config.update({
     accessKeyId: accessKey,
@@ -146,6 +175,12 @@ const GalleryWall = () => {
     setImageUrl(myArtState);
   };
 
+  //#endregion User Art Feature
+
+  //--------------------------------------------------
+  //#region Layout
+  //--------------------------------------------------
+
   // local state to keep track of the number of frames to render according to user selction
   const [selectedNumPhotos, setSelectedNumPhotos] = useState("5");
   /**
@@ -162,6 +197,7 @@ const GalleryWall = () => {
             setFilledFrames={setFilledFrames}
             etsyImages={etsyImages}
             generate={generate}
+            // saved={saved}
           />
         );
         break;
@@ -173,6 +209,7 @@ const GalleryWall = () => {
             setFilledFrames={setFilledFrames}
             etsyImages={etsyImages}
             generate={generate}
+            // saved={saved}
           />
         );
         break;
@@ -184,6 +221,7 @@ const GalleryWall = () => {
             setFilledFrames={setFilledFrames}
             etsyImages={etsyImages}
             generate={generate}
+            // saved={saved}
           />
         );
         break;
@@ -195,10 +233,15 @@ const GalleryWall = () => {
             setFilledFrames={setFilledFrames}
             etsyImages={etsyImages}
             generate={generate}
+            // saved={saved}
           />
         );
     }
   };
+
+  //--------------------------------------------------
+  //#region Sofa
+  //--------------------------------------------------
 
   // local state to keep track of the furniture image to render according to user selection
   const [selectedSofa, setSelectedSofa] = useState("sofaBeigeRounded");
@@ -227,6 +270,8 @@ const GalleryWall = () => {
         );
     }
   };
+  //#endregion Sofa 
+
   return (
     <div className="flex flex-row gap-40">
       <div id="toolbarContainer" className="flex items-center">
@@ -292,13 +337,12 @@ const GalleryWall = () => {
         <div id="userArtStuff">
           {/** Generate art button */}
           <button onClick={(e) => fillFrames(e)}>Generate Art</button>
-          {/** Save button */}
+          {/** Save wall form */}
           <SaveWallForm
             wallName={wallName}
             setWallName={setWallName}
             handleSaveWall={handleSaveWall}
           ></SaveWallForm>
-          {/* <button onClick={(e) => handleSaveWall(e)}>Save</button> */}
           <MyArt ref={myArtStateRef} />
           <button onClick={() => getMyArtState()}>Select Frame</button>
           <div>

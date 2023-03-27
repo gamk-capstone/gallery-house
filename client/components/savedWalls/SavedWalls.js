@@ -14,7 +14,7 @@ const SavedWalls = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [updatedWalls, setUpdatedWalls] = useState([]);
+  // const [updatedWalls, setUpdatedWalls] = useState([]);
 
   useEffect(() => {
     dispatch(fetchWallsAsync(id));
@@ -25,7 +25,7 @@ const SavedWalls = (props) => {
   const handleDeleteWall = async (evt, wallId) => {
     evt.preventDefault();
     dispatch(deleteWallById(wallId));
-    setUpdatedWalls(walls.filter((w) => w.id !== wallId));
+    // setUpdatedWalls(walls.filter((w) => w.id !== wallId));
     navigate("/saved");
   };
 
@@ -37,7 +37,7 @@ const SavedWalls = (props) => {
           return (
             <div key={`Inside all saved walls view: ${i}`}>
               <Link to={`/saved/${wall.id}`}>
-                {wall.id}. {wall.name}
+                {i+1}. {wall.name}
               </Link>
               <button onClick={(evt) => handleDeleteWall(evt, wall.id)}>
                 X

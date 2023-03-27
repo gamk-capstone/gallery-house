@@ -10,7 +10,7 @@ export const fetchSingleWallAsync = createAsyncThunk(
     try {
       console.log("WALLID", wallId);
       const { data } = await axios.get(
-        `http://localhost:8080/api/walls/${userId}/${wallId}`
+        `http://localhost:8080/api/walls/${wallId}/user/${userId}`
       );
       if (data === "") {
         alert("Oops, this wall does not exist.");

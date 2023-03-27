@@ -24,7 +24,8 @@ if(process.env.DATABASE_URL){
 
 const db = new Sequelize(
   `postgres://localhost:5432/${databaseName}?sslmode=disable`, //comment out this line to connect to db hosted on bit.io
-  // || process.env.DATABASE_URL, //comment out this link to conneect to postgres db on your local machine
+  // || 
+  // process.env.DATABASE_URL, //comment out this link to conneect to postgres db on your local machine
   config)
 module.exports = db
 

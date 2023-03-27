@@ -11,6 +11,8 @@ const PortraitRectangleFrame = ({
   filledFrames,
   etsyImages,
   generate,
+  saved,
+  savedUrls
 }) => {
   const [selected, setSelected] = useState(false);
   const [currentUrl, setCurrentUrl] = useState("/white.jpeg");
@@ -47,12 +49,28 @@ const PortraitRectangleFrame = ({
     populateWithEtsyImg();
   }, [generate]);
 
+  useEffect(() => {
+    // const populateWithSavedImg = () => {
+     
+      if (savedUrls) {
+        const myRe = /([\w+]+\:\/\/)?([\w\d-]+\.)*[\w-]+[\.\:]\w+([\/\?\=\&\#\.]?[\w-]+)*\/?/gm
+        setCurrentUrl(
+          savedUrls.match(myRe)[0]
+        );
+      }
+    // };
+    // populateWithSavedImg();
+  }, [savedUrls]);
+
+  console.log(savedUrls, "PORTRAIT RECTANGLE")
+  console.log(currentUrl, "currentUrl PORTRAIT RECTANGLE")
+
   return (
     <div>
-      {etsyImages ? (
+      {etsyImages && !selected ? (
         <a href={etsyImages.purchaseUrl}>
           <img
-            src={`${selected || generate ? currentUrl : "/white.jpeg"}`}
+            src={`${selected || generate || saved ? currentUrl : "/white.jpeg"}`}
             className={`w-40 h-60 p-3 border-2 border-solid border-[#e2be75] object-cover bg-gradient-to-t from-[#bf953f] via-[#b38728] to-[#fbf5b7] drop-shadow-md shrink`}
             onClick={() => {
               setCurrentUrl(userArtUrl);
