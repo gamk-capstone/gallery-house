@@ -52,15 +52,47 @@ router.delete("/user/:id", async (req, res, next) => {
 //route at /api/art/user POSTS new instance of UserArt
 router.post("/user", async (req, res, next) => {
   try {
+    // const complimentaryColor = (hslArr) => {
+    //   const h = hslArr[0];
+    //   const s = hslArr[1];
+    //   const l = hslArr[2];
+    //   const o = hslArr[3];
+    //   if (h >= 180) {
+    //     return [h - 180, s, l, o];
+    //   }
+    //   return [h + 180, s, l, o];
+    // };
     const complimentaryColor = (hslArr) => {
       const h = hslArr[0];
       const s = hslArr[1];
       const l = hslArr[2];
       const o = hslArr[3];
-      if (h >= 180) {
-        return [h - 180, s, l, o];
+      let newHue = 0;
+      //h = red // return green
+      if ((h) => 330 || h < 10) {
+        newHue = 120;
+        //h = orange // return blue
       }
-      return [h + 180, s, l, o];
+      if ((h) => 10 && h < 40) {
+        newHue = 220;
+        //h = yellow // return purple
+      }
+      if (h >= 40 && h < 70) {
+        newHue = 300;
+        //h = green // return red
+      }
+      if (h >= 70 && h < 160) {
+        newHue = 0;
+        //h = blue // return orange
+      }
+      if (h >= 160 && h < 250) {
+        newHue = 30;
+        //h = purple // return yellow
+      }
+      if (h >= 250 && h < 330) {
+        newHue = 45;
+      }
+      return [newHue, s, l, o];
     };
 
     const hslColors = await getMainColors(req.body.s3Url);
@@ -83,7 +115,16 @@ router.post("/user", async (req, res, next) => {
 router.get("/etsyArt/:hueNum/:limit", async (req, res, next) => {
   try {
     const estyArtByColor = await Art.findAndCountAll({
-      where: sequelize.literal(`colors[1][1] BETWEEN ${req.params.hueNum - 50} AND ${req.params.hueNum + 50}`),
+      where: {
+        [Op.and]: [sequelize.literal(
+          `colors[1][1] BETWEEN ${req.params.hueNum - 10} AND ${
+            req.params.hueNum + 10
+          }`
+        ),
+        sequelize.literal(
+          `colors[1][2] BETWEEN 5 AND 100`
+        )]
+      },
       limit: req.params.limit, //this is where we can pass down the number of frames to get the right number of images
       order: sequelize.fn("RANDOM"), //returns data in random order on each call
     });
