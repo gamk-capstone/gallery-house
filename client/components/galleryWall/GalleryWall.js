@@ -118,6 +118,7 @@ const GalleryWall = () => {
     const imgArrToSendToFrames = images.payload.rows.map((i) => ({
       imageUrl: i.imageUrl,
       purchaseUrl: i.purchaseUrl,
+      id: i.id
     }));
     setEtsyImages(imgArrToSendToFrames);
     if (!generate) {
