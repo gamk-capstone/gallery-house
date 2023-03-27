@@ -6,6 +6,9 @@
   .btn-primary {
     @apply py-2 px-4 text-black font-house-regular text-xl rounded-full border-4 border-solid border-pink hover:bg-pink;
   }
+  /* .btn-medium-pink {
+    @apply py-2 px-4 text-dark-pink font-house-regular text-xl rounded-full border-4 border-dark-pink hover:border-pink hover:text-pink;
+  } */
   .nav-link {
     @apply text-black font-house-bold text-3xl focus:text-pink hover:text-pink;
   }
