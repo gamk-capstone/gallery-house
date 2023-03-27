@@ -4,7 +4,7 @@ const {
 } = require("../db");
 module.exports = router;
 
-//route at /api/walls/:userId GETS all instances of Wall model for a single user based on thier userId
+//route at /api/walls/user/:userId GETS all instances of Wall model for a single user based on thier userId
 router.get("/user/:userId", async (req, res, next) => {
   try {
     res.send(await SavedWall.findAll({
@@ -17,7 +17,7 @@ router.get("/user/:userId", async (req, res, next) => {
   }
 });
 
-//route at /:wallId GETS a single instance of Wall model for a single user based on its wallId
+//route at /api/walls/:wallId/user/:userId GETS a single instance of Wall model for a single user based on its wallId
 router.get("/:wallId/user/:userId", async (req, res, next) => {
   try {
     console.log(req.params)
