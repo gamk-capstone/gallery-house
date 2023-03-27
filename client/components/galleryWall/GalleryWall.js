@@ -1,5 +1,4 @@
-//Imported tools/libraries
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import AWS from "aws-sdk";
 import { useDispatch } from "react-redux";
@@ -21,6 +20,7 @@ import SaveWallForm from "../saveWallForm/index";
 import { createUserArtAsync } from "../userArt/allUsersArtSlice";
 import { fetchEtsyImages } from "./galleryWallSlice";
 import { saveWallAsync } from "../savedWalls/savedWallsSlice";
+import EtsyArt from "../etsyArt/EtsyArt";
 
 /**
  * GalleryWall component
@@ -136,7 +136,7 @@ const GalleryWall = () => {
   const s3 = new AWS.S3();
   const [file, setFile] = useState([]);
 
-  const myArtStateRef = useRef();
+  // const myArtStateRef = useRef();
 
   AWS.config.update({
     accessKeyId: accessKey,
@@ -170,16 +170,12 @@ const GalleryWall = () => {
     setFile(event.target.files[0]);
   };
 
-  const getMyArtState = () => {
-    const myArtState = myArtStateRef.current.getImgUrl();
-    setImageUrl(myArtState);
-  };
-
   //#endregion User Art Feature
 
   //--------------------------------------------------
   //#region Layout
   //--------------------------------------------------
+
 
   // local state to keep track of the number of frames to render according to user selction
   const [selectedNumPhotos, setSelectedNumPhotos] = useState("5");
@@ -339,8 +335,8 @@ const GalleryWall = () => {
             setWallName={setWallName}
             handleSaveWall={handleSaveWall}
           ></SaveWallForm>
-          <MyArt ref={myArtStateRef} />
-          <button onClick={() => getMyArtState()}>Select Frame</button>
+          <MyArt setImageUrl={setImageUrl} setCompColor={setCompColor} />
+          <EtsyArt etsyImages={etsyImages} setImageUrl={setImageUrl}/>
           <div>
             <input
               type="file"
