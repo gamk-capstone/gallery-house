@@ -195,3 +195,9 @@
   gap: 1em;
 }
 /* end X num gallery wall components */
+
+/* start gallery wall component */
+.sofaImage {
+  width: 1200px;
+}
+/* end gallery wall component */
