@@ -34,7 +34,7 @@ const AuthForm = ({ name, displayName }) => {
         Login or sign up to start creating your custom gallery wall.
       </p>
       <div className="authFormContainer">
-        <div className="fauthFormLinksContainer">
+        <div className="authFormLinksContainer">
           <Link to="/login" className="authFormLink">
             Login
           </Link>

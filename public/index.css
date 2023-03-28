@@ -19,10 +19,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
   background-color: #edcc26;
   padding: 3rem;
-  gap: 2rem;
+  gap: 1rem;
+  width: 30rem;
 }
 
 .authFormLinksContainer {
@@ -31,27 +32,30 @@
   justify-content: space-between;
   align-items: center;
   gap: 2rem;
+  height: 3rem;
 }
 
 .authFormLink {
   color: #000000;
   font-family: "le-havre", "sans-serif";
   font-weight: 400;
-  font-size: 1rem;
+  font-size: 3rem;
+  text-decoration: none;
 }
 
+.authFormLink:hover,
 .authFormLink:focus {
   color: #fa67ce;
 }
 
 .authFormDot {
   color: #fa67ce;
+  font-size: 3rem;
 }
 
 .authFormLine {
-  border-style: solid;
-  border-width: 100%;
-  color: #fa67ce;
+  border: 3px solid #fa67ce;
+  width: 100%;
 }
 
 .authFormForm {
@@ -75,26 +79,35 @@
   color: #000000;
   font-family: "le-havre", "sans-serif";
   font-weight: 400;
-  font-size: 0.25rem;
+  font-size: 2rem;
 }
 
 .formInput {
   color: #000000;
   font-family: "le-havre", "sans-serif";
   font-weight: 400;
-  font-size: 1rem;
-  padding: 2rem;
+  font-size: 2rem;
+  padding: 1rem;
+  width: 90%;
 }
 
 .submitBtn {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  background-color: #edcc26;
+  padding: 10px 20px;
+  text-align: center;
   color: #000000;
   border-style: solid;
   border-width: 3px;
-  border-radius: 50%;
+  border-radius: 32px;
+  border-color: #fa67ce;
+  font-family: "le-havre", "sans-serif";
+  font-weight: 400;
+  font-size: 2rem;
 }
 
+.submitBtn:hover {
+  cursor: pointer;
+  border-color: #000000;
+  color: #fa67ce;
+}
 /* end auth component */
