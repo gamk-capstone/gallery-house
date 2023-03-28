@@ -137,8 +137,6 @@ const GalleryWall = () => {
   const s3 = new AWS.S3();
   const [file, setFile] = useState([]);
 
-  // const myArtStateRef = useRef();
-
   AWS.config.update({
     accessKeyId: accessKey,
     secretAccessKey: secretKey,
@@ -169,6 +167,8 @@ const GalleryWall = () => {
 
   const fileSelectedHandler = (event) => {
     setFile(event.target.files[0]);
+
+    dispatch(createUserArtAsync(file));
   };
 
   //#endregion User Art Feature
