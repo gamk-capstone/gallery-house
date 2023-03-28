@@ -12,9 +12,8 @@ const SquareFrame = ({
   etsyImages,
   generate,
   saved,
-  savedUrls
+  savedUrls,
 }) => {
-
   const [selected, setSelected] = useState(false);
   const [thisGenerate, setThisGenerate] = useState(true);
   const [currentUrl, setCurrentUrl] = useState("/white.jpeg");
@@ -52,13 +51,12 @@ const SquareFrame = ({
 
   useEffect(() => {
     if (savedUrls) {
-      const myRe = /([\w+]+\:\/\/)?([\w\d-]+\.)*[\w-]+[\.\:]\w+([\/\?\=\&\#\.]?[\w-]+)*\/?/gm
-      setCurrentUrl(
-        savedUrls.match(myRe)[0]
-      );
+      const myRe =
+        /([\w+]+\:\/\/)?([\w\d-]+\.)*[\w-]+[\.\:]\w+([\/\?\=\&\#\.]?[\w-]+)*\/?/gm;
+      setCurrentUrl(savedUrls.match(myRe)[0]);
     }
     setSelected(false);
-}, [savedUrls]);
+  }, [savedUrls]);
 
   return (
     <div>
@@ -66,7 +64,7 @@ const SquareFrame = ({
         <a href={etsyImages.purchaseUrl}>
           <img
             src={`${selected || generate ? currentUrl : "/white.jpeg"}`}
-            className={`w-40 h-40 p-3 border-2 border-solid border-[#e2be75] object-cover bg-gradient-to-t from-[#bf953f] via-[#b38728] to-[#fbf5b7] drop-shadow-md shrink`}
+            className="square"
             onClick={() => {
               setCurrentUrl(userArtUrl);
               setSelected(!selected);
@@ -77,7 +75,7 @@ const SquareFrame = ({
       ) : (
         <img
           src={`${selected || generate ? currentUrl : "/white.jpeg"}`}
-          className={`w-40 h-40 p-3 border-2 border-solid border-[#e2be75] object-cover bg-gradient-to-t from-[#bf953f] via-[#b38728] to-[#fbf5b7] drop-shadow-md shrink`}
+          className="square"
           onClick={() => {
             setCurrentUrl(userArtUrl);
             setSelected(!selected);

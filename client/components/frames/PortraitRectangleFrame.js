@@ -12,7 +12,7 @@ const PortraitRectangleFrame = ({
   etsyImages,
   generate,
   saved,
-  savedUrls
+  savedUrls,
 }) => {
   const [selected, setSelected] = useState(false);
   const [currentUrl, setCurrentUrl] = useState("/white.jpeg");
@@ -50,19 +50,18 @@ const PortraitRectangleFrame = ({
   }, [generate]);
 
   useEffect(() => {
-      if (savedUrls) {
-        const myRe = /([\w+]+\:\/\/)?([\w\d-]+\.)*[\w-]+[\.\:]\w+([\/\?\=\&\#\.]?[\w-]+)*\/?/gm
-        setCurrentUrl(
-          savedUrls.match(myRe)[0]
-        );
-      }
-      setSelected(false);
+    if (savedUrls) {
+      const myRe =
+        /([\w+]+\:\/\/)?([\w\d-]+\.)*[\w-]+[\.\:]\w+([\/\?\=\&\#\.]?[\w-]+)*\/?/gm;
+      setCurrentUrl(savedUrls.match(myRe)[0]);
+    }
+    setSelected(false);
   }, [savedUrls]);
 
-  console.log(savedUrls, "PORTRAIT RECTANGLE")
-  console.log(currentUrl, "currentUrl PORTRAIT RECTANGLE")
-  console.log(generate, "generate PORTRAIT RECTANGLE")
-  console.log(selected, "selected PORTRAIT RECTANGLE")
+  console.log(savedUrls, "PORTRAIT RECTANGLE");
+  console.log(currentUrl, "currentUrl PORTRAIT RECTANGLE");
+  console.log(generate, "generate PORTRAIT RECTANGLE");
+  console.log(selected, "selected PORTRAIT RECTANGLE");
 
   return (
     <div>
@@ -70,7 +69,7 @@ const PortraitRectangleFrame = ({
         <a href={etsyImages.purchaseUrl}>
           <img
             src={`${selected || generate ? currentUrl : "/white.jpeg"}`}
-            className={`w-40 h-60 p-3 border-2 border-solid border-[#e2be75] object-cover bg-gradient-to-t from-[#bf953f] via-[#b38728] to-[#fbf5b7] drop-shadow-md shrink`}
+            className="portraitRectangle"
             onClick={() => {
               setCurrentUrl(userArtUrl);
               setSelected(!selected);
@@ -81,7 +80,7 @@ const PortraitRectangleFrame = ({
       ) : (
         <img
           src={`${selected || generate ? currentUrl : "/white.jpeg"}`}
-          className={`w-40 h-60 p-3 border-2 border-solid border-[#e2be75] object-cover bg-gradient-to-t from-[#bf953f] via-[#b38728] to-[#fbf5b7] drop-shadow-md shrink`}
+          className="portraitRectangle"
           onClick={() => {
             setCurrentUrl(userArtUrl);
             setSelected(!selected);
