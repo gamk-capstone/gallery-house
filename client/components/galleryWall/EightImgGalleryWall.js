@@ -15,11 +15,11 @@ const EightImgGalleryWall = ({
   etsyImages,
   generate,
   saved,
-  savedUrls
+  savedUrls,
 }) => {
   return (
-    <div className="flex justify-center flex-col gap-4">
-      <div className="flex justify-center flex-row items-end gap-4">
+    <div className="frameLayoutParentDiv">
+      <div className="frameLayoutTopRow">
         <LandscapeRectangleExtraWideFrame
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}
@@ -57,7 +57,7 @@ const EightImgGalleryWall = ({
           savedUrls={savedUrls ? savedUrls[3] : ""}
         />
       </div>
-      <div className="flex justify-center flex-row items-start gap-4">
+      <div className="frameLayoutBottomRow">
         <LandscapeRectangleExtraWideFrame
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}

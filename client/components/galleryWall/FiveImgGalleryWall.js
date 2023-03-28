@@ -17,10 +17,9 @@ const FiveImgGalleryWall = ({
   saved,
   savedUrls,
 }) => {
-
   return (
-    <div className="flex justify-center flex-col gap-4">
-      <div className="flex justify-center flex-row items-end gap-4">
+    <div className="frameLayoutParentDiv">
+      <div className="frameLayoutTopRow">
         <LandscapeRectangleFrame
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}
@@ -40,7 +39,7 @@ const FiveImgGalleryWall = ({
           savedUrls={savedUrls ? savedUrls[1] : ""}
         />
       </div>
-      <div className="flex justify-center flex-row items-start gap-4">
+      <div className="frameLayoutBottomRow">
         <LandscapeRectangleFrame
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}

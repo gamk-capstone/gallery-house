@@ -13,12 +13,11 @@ const SixImageGalleryWall = ({
   etsyImages,
   generate,
   saved,
-  savedUrls
+  savedUrls,
 }) => {
-
   return (
-    <div className="flex justify-center flex-col gap-4">
-      <div className="flex justify-center flex-row items-end gap-4">
+    <div className="frameLayoutParentDiv">
+      <div className="frameLayoutTopRow">
         <SquareFrame
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}
@@ -47,7 +46,7 @@ const SixImageGalleryWall = ({
           savedUrls={savedUrls ? savedUrls[2] : ""}
         />
       </div>
-      <div className="flex justify-center flex-row items-start gap-4">
+      <div className="frameLayoutBottomRow">
         <SquareFrame
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}
