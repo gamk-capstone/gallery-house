@@ -5,7 +5,6 @@ import logger from 'redux-logger';
 import authReducer from '../components/auth/authSlice';
 import allUsersArtSlice from '../components/userArt/allUsersArtSlice';
 import singleUserArtSlice from '../components/userArt/singleUserArtSlice';
-import userWallsSlice from '../components/user/userWallsSlice';
 import galleryWallSlice from "../components/galleryWall/galleryWallSlice";
 import savedWallsSlice from "../components/savedWalls/savedWallsSlice"
 import savedWallSlice from "../components/savedWall/savedWallSlice"
@@ -16,7 +15,6 @@ const store = configureStore({
     auth: authReducer,
     usersArt: allUsersArtSlice,
     singleUserArt: singleUserArtSlice,
-    userWalls: userWallsSlice,
     galleryWall: galleryWallSlice,
     savedWalls: savedWallsSlice,
     savedWall: savedWallSlice,
