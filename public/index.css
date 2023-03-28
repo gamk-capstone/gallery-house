@@ -202,6 +202,62 @@
 }
 /* end gallery wall component */
 
+/* start home component */
+.homeParentContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 3rem;
+}
+
+.boxContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  background-color: #edcc26;
+  width: 60%;
+  padding: 10rem;
+}
+
+.homeH1 {
+  font-family: "hwt-arabesque", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #ad368a;
+  font-size: 5rem;
+  margin: 0;
+}
+
+.homeH2 {
+  font-family: "le-havre", "sans-serif";
+  font-weight: 400;
+  font-size: 2rem;
+  color: #ad368a;
+}
+
+.startCreatingBtn {
+  background-color: #edcc26;
+  padding: 10px 20px;
+  text-align: center;
+  color: #ad368a;
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 32px;
+  border-color: #ad368a;
+  font-family: "le-havre", "sans-serif";
+  font-weight: 400;
+  font-size: 2rem;
+  width: 15rem;
+}
+
+.startCreatingBtn:hover {
+  cursor: pointer;
+  border-color: #000000;
+  color: #000000;
+}
+/* end home component */
+
 /* start navbar component */
 .navParent {
   border-bottom: 10px solid #edcc26;
