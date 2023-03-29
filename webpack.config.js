@@ -23,7 +23,7 @@ module.exports = {
         os: require.resolve("os-browserify/browser"),
       },
     },
-    plugins: [new webpack.DefinePlugin(envKeys)],
+    // plugins: [new webpack.DefinePlugin(envKeys)],
     context: __dirname,
     devtool: "source-map",
     module: {
