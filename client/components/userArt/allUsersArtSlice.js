@@ -4,31 +4,39 @@ import axios from "axios";
 /**
  * `fetchUserArtAsync` GETS data at /api/art/user
  */
-export const fetchUserArtAsync = createAsyncThunk("fetchUserArt", async (id) => {
-  try {
-    const { data } = await axios.get(`/api/art/user/all/${id}`);
-    return data;
-  } catch (err) {
-    next(err);
+export const fetchUserArtAsync = createAsyncThunk(
+  "fetchUserArt",
+  async (id) => {
+    try {
+      const { data } = await axios.get(`/api/art/user/all/${id}`);
+      return data;
+    } catch (err) {
+      next(err);
+    }
   }
-});
+);
 
 /**
  * `createUserArtAsync` POSTS data at /api/art/user
  */
-export const createUserArtAsync = createAsyncThunk("addUserArt", async (userArtInfo) => {
-  try {
-    const { data } = await axios.post("/api/art/user", 
-    userArtInfo
-    );
-    return data;
-  } catch (err) {
-    next (err)
+export const createUserArtAsync = createAsyncThunk(
+  "addUserArt",
+  async (formData) => {
+    try {
+      const { data } = await axios.post("/api/art/uploadfile", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      if (res.status === 200) {
+        return data;
+      }
+    } catch (err) {
+      next(err);
+    }
   }
-});
+);
 
 /**
- * `deleteUserArtAsync` DELETES data at /api/art/user/:id 
+ * `deleteUserArtAsync` DELETES data at /api/art/user/:id
  */
 export const deleteUserArtAsync = createAsyncThunk(
   "deleteUserArt",
@@ -39,7 +47,8 @@ export const deleteUserArtAsync = createAsyncThunk(
     } catch (err) {
       next(err);
     }
-  });
+  }
+);
 
   export const allUsersArtSlice = createSlice({
     name: "usersArt",
@@ -59,6 +68,6 @@ export const deleteUserArtAsync = createAsyncThunk(
     }
   });
 
-  export const selectUserArt = (state) => state.usersArt;
+export const selectUserArt = (state) => state.usersArt;
 
-  export default allUsersArtSlice.reducer;
+export default allUsersArtSlice.reducer;
