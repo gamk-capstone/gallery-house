@@ -30,29 +30,34 @@ const SavedWalls = (props) => {
   };
 
   return (
-    <div className="galleryWallParentDiv">
-      <div>{username}'s Saved Galleries! </div>
-      {walls ? (
-        walls.map((wall, i) => {
-          return (
-            <div key={`Inside all saved walls view: ${i}`}>
-              <Link to={`/saved/${wall.id}`}>
-                {i+1}. {wall.name}
-              </Link>
-              <button onClick={(evt) => handleDeleteWall(evt, wall.id)}>
-                X
-              </button>
-            </div>
-          );
-        })
-      ) : (
-        <div>
-          You don't have any galleries yet. Start{" "}
-          <span>
-            <Link to="/create">creating!</Link>
-          </span>
-        </div>
-      )}
+    <div className="savedWallsParentDiv">
+      <div className="savedWallsContainer">
+        <div className="savedWallsHeader">{username}'s Saved Galleries! </div>
+        {walls ? (
+          walls.map((wall, i) => {
+            return (
+              <div key={`Inside all saved walls view: ${i}`}>
+                <Link to={`/saved/${wall.id}`} className="savedWallsNameLink">
+                  {i + 1}. {wall.name}
+                </Link>
+                <button
+                  onClick={(evt) => handleDeleteWall(evt, wall.id)}
+                  className="deleteBtn"
+                >
+                  x
+                </button>
+              </div>
+            );
+          })
+        ) : (
+          <div>
+            You don't have any galleries yet. Start{" "}
+            <span>
+              <Link to="/create">creating!</Link>
+            </span>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

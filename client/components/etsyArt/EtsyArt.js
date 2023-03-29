@@ -1,8 +1,6 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React from "react";
 
 const EtsyArt = ({ etsyImages, setImageUrl }) => {
-  const username = useSelector((state) => state.auth.me.username);
 
   const RenderArt = () => {
     if (!etsyImages) {
@@ -20,7 +18,7 @@ const EtsyArt = ({ etsyImages, setImageUrl }) => {
   };
   return (
     <div className="etsyArt-container">
-      <h1>{`${username}'s Generated Etsy Art`}</h1>
+      <h1>Generated Etsy Art</h1>
       <RenderArt />
     </div>
   );

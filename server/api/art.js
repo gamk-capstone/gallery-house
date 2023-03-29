@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const {
-  models: { Art, UserArt },
+  models: { Art, UserArt, SavedEtsyArt },
 } = require("../db");
 const getMainColors = require("../get-images");
 module.exports = router;
@@ -172,11 +172,43 @@ router.get("/etsyArt/:hueNum/:limit", async (req, res, next) => {
   }
 });
 
-//route at /api/user/:id PUTS (updates) one instance of UserArt based on its primary key
+//route at /api/art/user/:id PUTS (updates) one instance of UserArt based on its primary key
 router.put("/user/:id", async (req, res, next) => {
   try {
     const userArt = await UserArt.findByPk(req.params.id);
     res.json(await userArt.update(req.body));
+  } catch (err) {
+    next(err);
+  }
+});
+
+//route at /api/art/etsy/saved POSTS (creates) one instance of SavedEtsyArt
+router.post("/etsy/saved", async (req, res, next) => {
+  try {
+    res.status(201).json(await SavedEtsyArt.create(req.body));
+  } catch (err) {
+    next (err);
+  }
+});
+
+//route /api/art/etsy/saved/:id GETS all of the user's instances of SavedEtsyArt based on the user's id
+router.get("/etsy/saved/:id", async (req, res, next) => {
+  try {
+    const savedEtsyArt = await SavedEtsyArt.findAll({
+      where: { userId: req.params.id },
+    });
+    res.json(savedEtsyArt);
+  } catch (err) {
+    next(err);
+  }
+});
+
+//route at /api/art/user/:id DELETES a single UserArt
+router.delete("/etsy/saved/:id", async (req, res, next) => {
+  try {
+    const savedEtsyArt = await SavedEtsyArt.findByPk(req.params.id);
+    await savedEtsyArt.destroy();
+    res.json(savedEtsyArt);
   } catch (err) {
     next(err);
   }

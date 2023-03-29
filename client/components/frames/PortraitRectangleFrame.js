@@ -1,4 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  createSavedEtsyArtAsync,
+} from "../savedEtsyArt/savedEtsyArtSlice";
 
 /**
  * `PortraitRectangleFrame` component
@@ -14,9 +18,11 @@ const PortraitRectangleFrame = ({
   saved,
   savedUrls,
 }) => {
+  const dispatch = useDispatch();
+  const { id } = useSelector((state) => state.auth.me);
   const [selected, setSelected] = useState(false);
   const [purchaseUrl, setPurchaseUrl] = useState(null);
-  const [currentUrl, setCurrentUrl] = useState("/white.jpeg");
+  const [currentUrl, setCurrentUrl] = useState("./images/white.jpeg");
   const [thisGenerate, setThisGenerate] = useState(true);
 
   const updateCount = () => {
@@ -25,6 +31,17 @@ const PortraitRectangleFrame = ({
     } else if (selected) {
       setFilledFrames(filledFrames - 1);
     }
+  };
+
+  //Creates a new instance of SavedEtsyArt associated with the user
+  const handleSave = () => {
+    dispatch(
+      createSavedEtsyArtAsync({
+        imageUrl: currentUrl,
+        purchaseUrl: purchaseUrl,
+        userId: id,
+      })
+    );
   };
 
   useEffect(() => {
@@ -70,31 +87,41 @@ const PortraitRectangleFrame = ({
       {etsyImages && !selected ? (
         <div>
           <img
-            src={`${selected || generate ? currentUrl : "/white.jpeg"}`}
-            className={`w-40 h-60 p-3 border-2 border-solid border-[#e2be75] object-cover bg-gradient-to-t from-[#bf953f] via-[#b38728] to-[#fbf5b7] drop-shadow-md shrink`}
+            src={`${selected || generate ? currentUrl : "./images/white.jpeg"}`}
+            className="portraitRectangle"
             onClick={() => {
-              setCurrentUrl(userArtUrl);
-              setSelected(!selected);
-              updateCount();
+              if (userArtUrl) {
+                setCurrentUrl(userArtUrl);
+                setSelected(!selected);
+                updateCount();
+                }
             }}
           />
           <section className="img-buttons">
-            <a href={purchaseUrl}>
+            <a href={purchaseUrl} target="_blank">
               <button>Nav</button>
             </a>
-            <button onClick={() => setThisGenerate(!thisGenerate)}>
+            <button
+              onClick={() => {
+                setThisGenerate(!thisGenerate);
+                setSelected(!selected);
+              }}
+            >
               Lock/Unlock
             </button>
+            <button onClick={handleSave}>Like</button>
           </section>
         </div>
       ) : (
         <img
-          src={`${selected || generate ? currentUrl : "/white.jpeg"}`}
-          className={`w-40 h-60 p-3 border-2 border-solid border-[#e2be75] object-cover bg-gradient-to-t from-[#bf953f] via-[#b38728] to-[#fbf5b7] drop-shadow-md shrink`}
+          src={`${selected || generate ? currentUrl : "./images/white.jpeg"}`}
+          className="portraitRectangle"
           onClick={() => {
-            setCurrentUrl(userArtUrl);
-            setSelected(!selected);
-            updateCount();
+            if (userArtUrl) {
+              setCurrentUrl(userArtUrl);
+              setSelected(!selected);
+              updateCount();
+              }
           }}
         />
       )}

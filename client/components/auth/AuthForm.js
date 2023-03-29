@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { authenticate } from "../../app/store";
 import { Link } from "react-router-dom";
+// import "./auth.css";
 
 /**
  * The `AuthForm` component can be used for Login or Sign Up.
@@ -28,56 +29,39 @@ const AuthForm = ({ name, displayName }) => {
 
   return (
     //HTML for the Login and Sign up form
-    <div className="flex flex-col items-center gap-8 pt-[3rem]">
-      <p className="font-house-regular text-pink text-3xl">
+    <div className="authPageParentDiv">
+      <p className="authIntroText">
         Login or sign up to start creating your custom gallery wall.
       </p>
-      <div className="flex flex-col items-center bg-yellow p-10 gap-4 ">
-        <div
-          id="loginOptionsContainer"
-          className="flex flex-row justify-between items-center gap-4"
-        >
-          <Link
-            to="/login"
-            className="text-black font-house-regular text-2xl focus:text-pink hover:text-pink"
-          >
+      <div className="authFormContainer">
+        <div className="authFormLinksContainer">
+          <Link to="/login" className="authFormLink">
             Login
           </Link>
-          <p className="text-pink">●</p>
-          <Link
-            to="/signup"
-            className="text-black font-house-regular text-2xl focus:text-pink hover:text-pink"
-          >
+          <p className="authFormDot">●</p>
+          <Link to="/signup" className="authFormLink">
             Sign Up
           </Link>
         </div>
-        <hr className="border-2 w-full border-pink"></hr>
+        <hr className="authFormLine"></hr>
         <form
           onSubmit={handleLoginOrSignUpSubmit}
           name={name}
-          className="flex flex-col items-center gap-4"
+          className="authFormForm"
         >
-          <div className="flex flex-col items-center">
-            <label htmlFor="username" className="max-w-sm">
-              <small className="font-house-regular text-lg">Username:</small>
+          <div className="authFormFieldsContainer">
+            <label htmlFor="username" className="formFieldLabel">
+              <small className="formFieldLabelText">Username:</small>
             </label>
-            <input
-              name="username"
-              type="text"
-              className="max-w-sm p-4 font-house-regular text-lg focus:outline-none"
-            />
+            <input name="username" type="text" className="formInput" />
           </div>
-          <div className="flex flex-col items-center">
-            <label htmlFor="password" className="max-w-sm">
-              <small className="font-house-regular text-xl">Password:</small>
+          <div className="authFormFieldsContainer">
+            <label htmlFor="password" className="formFieldLabel">
+              <small className="formFieldLabelText">Password:</small>
             </label>
-            <input
-              name="password"
-              type="password"
-              className="max-w-sm p-4 font-house-regular text-xl focus:outline-none"
-            />
+            <input name="password" type="password" className="formInput" />
           </div>
-          <button type="submit" className="btn-primary">
+          <button type="submit" className="submitBtn">
             {displayName}
           </button>
 

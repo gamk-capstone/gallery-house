@@ -50,22 +50,23 @@ export const deleteUserArtAsync = createAsyncThunk(
   }
 );
 
-export const allUsersArtSlice = createSlice({
-  name: "usersArt",
-  initialState: [],
-  reducers: {},
-  extraReducers: (builder) => {
-    builder.addCase(fetchUserArtAsync.fulfilled, (state, action) => {
-      return action.payload;
-    });
-    builder.addCase(createUserArtAsync.fulfilled, (state, action) => {
-      state.push(action.payload);
-    });
-    builder.addCase(deleteUserArtAsync.fulfilled, (state, action) => {
-      return {};
-    });
-  },
-});
+  export const allUsersArtSlice = createSlice({
+    name: "usersArt",
+    initialState: [],
+    reducers: {},
+    extraReducers: (builder) => {
+      builder.addCase(fetchUserArtAsync.fulfilled, (state, action) => {
+        return action.payload;
+      });
+      builder.addCase(createUserArtAsync.fulfilled, (state, action) => {
+        state.push(action.payload);
+      });
+      builder.addCase(deleteUserArtAsync.fulfilled, (state, action) => {
+        const newState = state.filter((usersArt) => usersArt.id !== action.payload.id);
+      return newState;
+      })
+    }
+  });
 
 export const selectUserArt = (state) => state.usersArt;
 
