@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
 import authReducer from '../components/auth/authSlice';
 import allUsersArtSlice from '../components/userArt/allUsersArtSlice';
-import singleUserArtSlice from '../components/userArt/singleUserArtSlice';
+import singleUserArtSlice from '../components/userArt/SingleUserArtSlice';
 import userWallsSlice from '../components/user/userWallsSlice';
 import galleryWallSlice from "../components/galleryWall/galleryWallSlice";
 import savedWallsSlice from "../components/savedWalls/savedWallsSlice"
