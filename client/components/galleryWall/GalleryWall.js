@@ -119,7 +119,7 @@ const GalleryWall = () => {
     const imgArrToSendToFrames = images.payload.rows.map((i) => ({
       imageUrl: i.imageUrl,
       purchaseUrl: i.purchaseUrl,
-      id: i.id
+      id: i.id,
     }));
     setEtsyImages(imgArrToSendToFrames);
     if (!generate) {
@@ -158,7 +158,7 @@ const GalleryWall = () => {
     };
     const { Location } = await s3.upload(params).promise();
     console.log("uploading to s3", Location);
-    console.log(file)
+    console.log(file);
 
     dispatch(
       createUserArtAsync({
@@ -178,7 +178,6 @@ const GalleryWall = () => {
   //--------------------------------------------------
   //#region Layout
   //--------------------------------------------------
-
 
   // local state to keep track of the number of frames to render according to user selction
   const [selectedNumPhotos, setSelectedNumPhotos] = useState("5");
@@ -247,25 +246,23 @@ const GalleryWall = () => {
   const getSofaForLayout = () => {
     switch (selectedSofa) {
       case "sofaBeigeRounded":
-        return <img src="/sofa-beige-rounded.png" className="max-w-[900px]" />;
+        return <img src="/sofa-beige-rounded.png" className="sofaImage" />;
         break;
       case "sofaTealVelvet":
-        return <img src="/sofa-teal-velvet.png" className="max-w-[900px]" />;
+        return <img src="/sofa-teal-velvet.png" className="sofaImage" />;
       case "blackLeather":
-        return <img src="/black-leather.png" className="max-w-[900px]" />;
+        return <img src="/black-leather.png" className="sofaImage" />;
       case "blueVelvet":
-        return <img src="/blue-velvet.png" className="max-w-[900px]" />;
+        return <img src="/blue-velvet.png" className="sofaImage" />;
       case "blushVelvet":
-        return <img src="/blush-velvet.png" className="max-w-[900px]" />;
+        return <img src="/blush-velvet.png" className="sofaImage" />;
       case "ovalTable":
-        return <img src="/oval-table.png" className="max-w-[900px]" />;
+        return <img src="/oval-table.png" className="sofaImage" />;
       case "rectangleTable":
-        return (
-          <img src="/dining-table-rectangle.png" className="max-w-[900px]" />
-        );
+        return <img src="/dining-table-rectangle.png" className="sofaImage" />;
     }
   };
-  //#endregion Sofa 
+  //#endregion Sofa
 
   return (
     <div className="flex flex-row gap-40">
@@ -339,8 +336,8 @@ const GalleryWall = () => {
             handleSaveWall={handleSaveWall}
           ></SaveWallForm>
           <MyArt setImageUrl={setImageUrl} setCompColor={setCompColor} />
-          <EtsyArt etsyImages={etsyImages} setImageUrl={setImageUrl}/>
-          <SavedEtsyArt setImageUrl={setImageUrl}/>
+          <EtsyArt etsyImages={etsyImages} setImageUrl={setImageUrl} />
+          <SavedEtsyArt setImageUrl={setImageUrl} />
           <div>
             <input
               type="file"

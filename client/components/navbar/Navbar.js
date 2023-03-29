@@ -24,24 +24,24 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="border-yellow border-solid border-b-[1.5rem]">
+      <nav className="navParent">
         {isLoggedIn ? (
-          <div className="flex flex-row justify-between items-center pr-16">
-            <div className="flex flex-row justify-start items-center gap-32 p-16">
+          <div className="logoLinksContainer">
+            <div className="logoContainer">
               <img
                 src="/gallery-house.png"
                 alt="Gallery House logo"
-                className="max-w-[20rem]"
+                className="navLogo"
               />
-              <div className="flex flex-row gap-8">
+              <div className="linksContainer">
                 {/* The navbar will show these links after a user logs in */}
-                <Link to="/home" className="nav-link">
+                <Link to="/home" className="navLink">
                   Home
                 </Link>
-                <Link to="/create" className="nav-link">
+                <Link to="/create" className="navLink">
                   Create
                 </Link>
-                <Link to="/saved" className="nav-link">
+                <Link to="/saved" className="navLink">
                   Saved Galleries
                 </Link>
               </div>
@@ -49,29 +49,31 @@ const Navbar = () => {
             <button
               type="button"
               onClick={logoutAndRedirectHome}
-              className="text-black font-house-bold text-3xl focus:text-pink rounded-full border-4 border-solid border-pink hover:text-pink hover:border-black px-4 py-2"
+              className="logoutBtn"
             >
               Logout
             </button>
           </div>
         ) : (
-          <div className="flex flex-row justify-start items-center gap-32 p-16">
-            <img
-              src="/gallery-house.png"
-              alt="Gallery House logo"
-              className="max-w-[20rem]"
-            />
-            <div className="flex flex-row gap-8">
-              {/* The navbar will show these links before a user logs in and when a user logs out */}
-              <Link to="/home" className="nav-link">
-                Home
-              </Link>
-              <Link to="/login" className="nav-link">
-                Login
-              </Link>
-              <Link to="/signup" className="nav-link">
-                Sign Up
-              </Link>
+          <div className="logoLinksContainerLoggedOut">
+            <div className="logoContainer">
+              <img
+                src="/gallery-house.png"
+                alt="Gallery House logo"
+                className="navLogo"
+              />
+              <div className="linksContainer">
+                {/* The navbar will show these links before a user logs in and when a user logs out */}
+                <Link to="/home" className="navLink">
+                  Home
+                </Link>
+                <Link to="/login" className="navLink">
+                  Login
+                </Link>
+                <Link to="/signup" className="navLink">
+                  Sign Up
+                </Link>
+              </div>
             </div>
           </div>
         )}
