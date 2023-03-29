@@ -7,14 +7,6 @@ module.exports = router;
 const { Op } = require("sequelize");
 const sequelize = require("sequelize");
 
-//New imports ---Moving user art upload to backend
-const AWS = require("aws-sdk");
-const multer = require("multer");
-const upload = multer({ dest: "uploads/" });
-const fs = require("fs");
-require('dotenv').config()
-// import fileType from 'file-type';
-
 //route at /api/art GETS all instances of Art model
 router.get("/etsyArt", async (req, res, next) => {
   try {
@@ -57,20 +49,27 @@ router.delete("/user/:id", async (req, res, next) => {
   }
 });
 
+//New imports ---Moving user art upload to backend
+const AWS = require("aws-sdk");
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
+const fs = require("fs");
+require("dotenv").config();
+
 const accessKey = process.env.ACCESS_KEY_ID;
 const secretKey = process.env.SECRET_ACCESS_KEY;
 const region = process.env.REGION;
+const bucketName = process.env.AWS_BUCKET_NAME;
 
 // const s3 = new AWS.S3();
 const s3 = new AWS.S3({
   accessKeyId: accessKey,
   secretAccessKey: secretKey,
   region: region,
+  s3BucketEndpoint:true,
+  endpoint:"http://" + bucketName + ".s3.amazonaws.com"
 });
 
-// router.get("/check", (req, res) => {
-//     res.json({'message': 'ok'});
-// })
 // AWS.config.update({
 //   accessKeyId: 'AKIA2TK54RLQLTXKGZ7Y',
 //   secretAccessKey: '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',
@@ -84,33 +83,37 @@ router.post("/uploadfile", upload.single("file"), (req, res) => {
   if (req.file == null) {
     return res.status(400).json({ message: "Please choose the file" });
   }
-  const file = req.file;
+  let file = req.file;
 
   const uploadToS3 = (file) => {
     // if (!file) {
     //   return;
     // }
     const fileStream = fs.createReadStream(file.path);
+    console.log("fileStream", fileStream);
 
+    // console.log("BUCKET", bucketName)
+    // console.log("KEY", file.originalname)
+    // console.log("Body", fileStream)
     const params = {
-      Bucket: "gamkgalleryhouse",
-      Key: `${Date.now()}.${file.name}`,
+      Bucket: bucketName,
+      Key: file.originalname,
       Body: fileStream,
     };
 
-    // s3.upload(params, function (err, data) {
-    //   console.log(data);
-    //   if (err) {
-    //     throw err;
-    //   }
-    //   console.log(`File uploaded successfully.
-    //   ${data.Location}`);
-    // });
-    const { Location } = s3.upload(params).promise();
-    console.log("uploading to s3", Location);
+    s3.upload(params, function (err, data) {
+      console.log("data", data);
+      if (err) {
+        throw err;
+      }
+      console.log(`File uploaded successfully.
+      ${data.Location}`);
+    });
+    // const { Location } = await s3.upload(params).promise();
+    // console.log("uploading to s3", Location);
   };
   uploadToS3(file);
-  res.status(201);
+  return res.status(201);
   // const complimentaryColor = (hslArr) => {
   //   const h = hslArr[0];
   //   const s = hslArr[1];

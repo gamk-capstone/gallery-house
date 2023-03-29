@@ -165,15 +165,15 @@ const GalleryWall = () => {
   //   );
   // };
 
-  const uploadFile = async (e) => {
+  const uploadFile = (e) => {
     e.preventDefault();
 
     const formData = new FormData();
     formData.append('file', file)
 
-    console.log(file);
+    console.log(formData);
 
-    dispatch(await createUserArtAsync(formData, { headers: {'Content-Type': 'multipart/form-data'}}));
+    dispatch(createUserArtAsync(formData, { headers: {'Content-Type': 'multipart/form-data'}}));
   };
 
   const fileSelectedHandler = (event) => {
