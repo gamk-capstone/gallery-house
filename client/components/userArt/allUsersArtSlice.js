@@ -26,9 +26,7 @@ export const createUserArtAsync = createAsyncThunk(
       const { data } = await axios.post("/api/art/uploadfile", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-      if (res.status === 200) {
-        return data;
-      }
+      return data;
     } catch (err) {
       next(err);
     }
@@ -50,23 +48,21 @@ export const deleteUserArtAsync = createAsyncThunk(
   }
 );
 
-  export const allUsersArtSlice = createSlice({
-    name: "usersArt",
-    initialState: [],
-    reducers: {},
-    extraReducers: (builder) => {
-      builder.addCase(fetchUserArtAsync.fulfilled, (state, action) => {
-        return action.payload;
-      });
-      builder.addCase(createUserArtAsync.fulfilled, (state, action) => {
-        state.push(action.payload);
-      });
-      builder.addCase(deleteUserArtAsync.fulfilled, (state, action) => {
-        const newState = state.filter((usersArt) => usersArt.id !== action.payload.id);
-      return newState;
+export const allUsersArtSlice = createSlice({
+  name: "usersArt",
+  initialState: [],
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchUserArtAsync.fulfilled, (state, { payload }) => payload)
+      .addCase(createUserArtAsync.fulfilled, (state, { payload }) => {
+        state.push({ payload });
       })
-    }
-  });
+      .addCase(deleteUserArtAsync.fulfilled, (state, { payload }) => {
+        state.filter((a) => a.id !== payload.id);
+      });
+  },
+});
 
 export const selectUserArt = (state) => state.usersArt;
 
