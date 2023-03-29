@@ -170,7 +170,7 @@
 /* end frames component */
 
 /* start X num gallery wall components */
-.frameLayoutParentDiv {
+/* .frameLayoutParentDiv {
   display: flex;
   flex-direction: column;
   gap: 1em;
@@ -198,7 +198,7 @@
   align-items: flex-start;
   justify-content: center;
   gap: 1em;
-}
+} */
 /* end X num gallery wall components */
 
 /* start gallery wall component */
