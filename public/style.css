@@ -339,7 +339,7 @@
 /* end navbar component */
 
 /* start saved walls component */
-.savedWallsParentDiv {
+/* .savedWallsParentDiv {
   display: flex;
   flex-direction: column;
   padding-top: 3rem;
@@ -392,5 +392,5 @@
   cursor: pointer;
   border-color: #000000;
   color: #fa67ce;
-}
+} */
 /* end saved walls component */
