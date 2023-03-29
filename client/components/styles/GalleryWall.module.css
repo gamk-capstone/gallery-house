@@ -1,3 +1,58 @@
+.parentDiv {
+  display: flex;
+  flex-direction: row;
+}
+
+.framesSofaToolbarContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.framesSofaContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.toolbarContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.toolbarFrames {
+  display: flex;
+  flex-direction: row;
+}
+
+.toolbarSofa {
+  display: flex;
+  flex-direction: row;
+}
+
+.saveWallForm {
+  display: flex;
+  flex-direction: row;
+}
+
+.userArtContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.artUploader {
+  display: flex;
+  flex-direction: row;
+}
+
+.generatedEtsyArtContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.savedEtsyArtContainer {
+  display: flex;
+  flex-direction: column;
+}
+
 .sofaImage {
   width: 1200px;
 }

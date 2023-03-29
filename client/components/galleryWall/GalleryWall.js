@@ -142,12 +142,16 @@ const GalleryWall = () => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append('file', file)
-    formData.append('id', id)
+    formData.append("file", file);
+    formData.append("id", id);
 
     console.log(formData);
 
-    dispatch(createUserArtAsync(formData, { headers: {'Content-Type': 'multipart/form-data'}}));
+    dispatch(
+      createUserArtAsync(formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+    );
   };
 
   const fileSelectedHandler = (event) => {
@@ -269,17 +273,15 @@ const GalleryWall = () => {
   //#endregion Sofa
 
   return (
-    <div className={styles.toolbar}>
-      <div id="toolbarContainer" className={styles.toolbarContainer}>
-        <div
-          id="toolbar"
-          className="flex flex-col bg-slate-300 p-4 max-w-[5rem] gap-4"
-        >
-          <div
-            id="numberFramesSelection"
-            className="flex flex-col justify-center gap-2"
-          >
-            <i className="material-icons text-2xl">filter_5</i>
+    <div className={styles.parentDiv}>
+      <div className={styles.framesSofaToolbarContainer}>
+        <div className={styles.framesSofaContainer}>
+          {getNumberForLayout()}
+          {getSofaForLayout()}
+        </div>
+        <div className={styles.toolbarContainer}>
+          <div className={styles.toolbarFrames}>
+            <i>filter_5</i>
             <label htmlFor="numberOfFrames"></label>
             <select
               name="numberOfFrames"
@@ -295,12 +297,8 @@ const GalleryWall = () => {
               <option value={8}>8</option>
             </select>
           </div>
-          <hr></hr>
-          <div
-            id="furnitureSelection"
-            className="flex flex-col justify-center gap-2"
-          >
-            <i className="material-icons">chair</i>
+          <div className={styles.toolbarSofa}>
+            <i>chair</i>
             <label htmlFor="furnitureSelection"></label>
             <select
               name="furnitureSelection"
@@ -318,41 +316,37 @@ const GalleryWall = () => {
               <option value="rectangleTable">Rectangle Dining Table</option>
             </select>
           </div>
-          <hr></hr>
-          <div id="photoUpload">
-            <i className="material-icons">add_a_photo</i>
-          </div>
         </div>
-      </div>
-      <div
-        id="frameAndFurnitureContainer"
-        className="flex flex-col justify-center"
-      >
-        {getNumberForLayout()}
-        {getSofaForLayout()}
-        <div id="userArtStuff">
-          {/** Generate art button */}
-          <button onClick={(e) => fillFrames(e)}>Generate Art</button>
-          {/** Save wall form */}
+        <div className={styles.saveWallForm}>
           <SaveWallForm
             wallName={wallName}
             setWallName={setWallName}
             handleSaveWall={handleSaveWall}
           ></SaveWallForm>
-          <MyArt setImageUrl={setImageUrl} setCompColor={setCompColor} />
-          <EtsyArt etsyImages={etsyImages} setImageUrl={setImageUrl} />
-          <SavedEtsyArt setImageUrl={setImageUrl} />
-          <div>
-            <form method="post" action="#" onSubmit={uploadFile}>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={fileSelectedHandler}
-              />
-              <button>Upload</button>
-            </form>
-          </div>
         </div>
+      </div>
+
+      <div className={styles.userArtContainer}>
+        <MyArt setImageUrl={setImageUrl} setCompColor={setCompColor} />
+        <div className={styles.artUploader}>
+          <form method="post" action="#" onSubmit={uploadFile}>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={fileSelectedHandler}
+            />
+            <button>Upload</button>
+          </form>
+        </div>
+      </div>
+
+      <div className={styles.generatedEtsyArtContainer}>
+        {/** Generate art button */}
+        <button onClick={(e) => fillFrames(e)}>Generate Art</button>
+      </div>
+
+      <div className={styles.savedEtsyArtContainer}>
+        <SavedEtsyArt setImageUrl={setImageUrl} />
       </div>
     </div>
   );
