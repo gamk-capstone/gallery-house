@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchUserArtAsync, selectUserArt } from "../userArt/allUsersArtSlice";
+import { fetchUserArtAsync, selectUserArt, deleteUserArtAsync } from "../userArt/allUsersArtSlice";
 
 const MyArt = ({ setImageUrl, setCompColor }) => {
   const username = useSelector((state) => state.auth.me.username);

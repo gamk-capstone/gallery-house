@@ -53,7 +53,8 @@ export const deleteUserArtAsync = createAsyncThunk(
         state.push(action.payload);
       });
       builder.addCase(deleteUserArtAsync.fulfilled, (state, action) => {
-        return {};
+        const newState = state.filter((usersArt) => usersArt.id !== action.payload.id);
+      return newState;
       })
     }
   });
