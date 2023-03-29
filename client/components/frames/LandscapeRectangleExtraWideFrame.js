@@ -40,7 +40,9 @@ const LandscapeRectangleExtraWideFrame = ({
     }
   };
 
-  //Creates a new instance of SavedEtsyArt associated with the user
+  /**
+   *  `handleSave` creates a new instance of SavedEtsyArt associated with the user
+   */ 
   const handleSave = () => {
     dispatch(
       createSavedEtsyArtAsync({
