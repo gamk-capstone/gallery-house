@@ -264,7 +264,7 @@
 /* end home component */
 
 /* start navbar component */
-.navParent {
+/* .navParent {
   border-bottom: 10px solid #edcc26;
   width: 100%;
 }
@@ -335,7 +335,7 @@
   cursor: pointer;
   border-color: #000000;
   color: #fa67ce;
-}
+} */
 /* end navbar component */
 
 /* start saved walls component */
