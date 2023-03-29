@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import AWS from "aws-sdk";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import styles from "../styles/GalleryWall.module.css"
 
 //Environment vairables
 const accessKey = process.env.ACCESS_KEY_ID;
@@ -246,27 +247,27 @@ const GalleryWall = () => {
   const getSofaForLayout = () => {
     switch (selectedSofa) {
       case "sofaBeigeRounded":
-        return <img src="/sofa-beige-rounded.png" className="sofaImage" />;
+        return <img src="./images/sofa-beige-rounded.png" className="sofaImage" />;
         break;
       case "sofaTealVelvet":
-        return <img src="/sofa-teal-velvet.png" className="sofaImage" />;
+        return <img src="./images/sofa-teal-velvet.png" className="sofaImage" />;
       case "blackLeather":
-        return <img src="/black-leather.png" className="sofaImage" />;
+        return <img src="./images/black-leather.png" className="sofaImage" />;
       case "blueVelvet":
-        return <img src="/blue-velvet.png" className="sofaImage" />;
+        return <img src="./images/blue-velvet.png" className="sofaImage" />;
       case "blushVelvet":
-        return <img src="/blush-velvet.png" className="sofaImage" />;
+        return <img src="./images/blush-velvet.png" className="sofaImage" />;
       case "ovalTable":
-        return <img src="/oval-table.png" className="sofaImage" />;
+        return <img src="./images/oval-table.png" className="sofaImage" />;
       case "rectangleTable":
-        return <img src="/dining-table-rectangle.png" className="sofaImage" />;
+        return <img src="./images/dining-table-rectangle.png" className="sofaImage" />;
     }
   };
   //#endregion Sofa
 
   return (
-    <div className="flex flex-row gap-40">
-      <div id="toolbarContainer" className="flex items-center">
+    <div className={styles.toolbar}>
+      <div id="toolbarContainer" className={styles.toolbarContainer}>
         <div
           id="toolbar"
           className="flex flex-col bg-slate-300 p-4 max-w-[5rem] gap-4"

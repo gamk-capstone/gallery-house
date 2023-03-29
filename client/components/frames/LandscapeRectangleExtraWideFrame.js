@@ -22,7 +22,7 @@ const LandscapeRectangleExtraWideFrame = ({
   const { id } = useSelector((state) => state.auth.me);
   const [selected, setSelected] = useState(false);
   const [purchaseUrl, setPurchaseUrl] = useState(null);
-  const [currentUrl, setCurrentUrl] = useState("/white.jpeg");
+  const [currentUrl, setCurrentUrl] = useState("./images/white.jpeg");
   const [thisGenerate, setThisGenerate] = useState(true);
 
   const updateCount = () => {
@@ -82,7 +82,7 @@ const LandscapeRectangleExtraWideFrame = ({
       {etsyImages && !selected ? (
         <div>
           <img
-            src={`${selected || generate ? currentUrl : "/white.jpeg"}`}
+            src={`${selected || generate ? currentUrl : "./images/white.jpeg"}`}
             className="landscapeExtraWide"
             onClick={() => {
               if (userArtUrl) {
@@ -104,7 +104,7 @@ const LandscapeRectangleExtraWideFrame = ({
         </div>
       ) : (
         <img
-          src={`${selected || generate ? currentUrl : "/white.jpeg"}`}
+          src={`${selected || generate ? currentUrl : "./images/white.jpeg"}`}
           className="landscapeExtraWide"
           onClick={() => {
             if (userArtUrl) {

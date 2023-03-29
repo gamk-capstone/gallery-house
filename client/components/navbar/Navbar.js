@@ -29,7 +29,7 @@ const Navbar = () => {
           <div className="logoLinksContainer">
             <div className="logoContainer">
               <img
-                src="/gallery-house.png"
+                src="./images/gallery-house.png"
                 alt="Gallery House logo"
                 className="navLogo"
               />

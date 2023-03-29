@@ -20,7 +20,7 @@ const LandscapeRectangleFrame = ({
   const { id } = useSelector((state) => state.auth.me);
   const [selected, setSelected] = useState(false);
   const [purchaseUrl, setPurchaseUrl] = useState(null);
-  const [currentUrl, setCurrentUrl] = useState("/white.jpeg");
+  const [currentUrl, setCurrentUrl] = useState("./images/white.jpeg");
   const [thisGenerate, setThisGenerate] = useState(true);
 
   const updateCount = () => {
@@ -80,7 +80,7 @@ const LandscapeRectangleFrame = ({
       {etsyImages && etsyImages.purchaseUrl ? (
         <div>
           <img
-            src={`${selected || generate ? currentUrl : "/white.jpeg"}`}
+            src={`${selected || generate ? currentUrl : "./images/white.jpeg"}`}
             className="landscapeRectangle"
             onClick={() => {
               if (userArtUrl) {
@@ -102,7 +102,7 @@ const LandscapeRectangleFrame = ({
         </div>
       ) : (
         <img
-          src={`${selected || generate ? currentUrl : "/white.jpeg"}`}
+          src={`${selected || generate ? currentUrl : "./images/white.jpeg"}`}
           className="landscapeRectangle"
           onClick={() => {
             if (userArtUrl) {

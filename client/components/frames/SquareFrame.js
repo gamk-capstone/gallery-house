@@ -21,7 +21,7 @@ const SquareFrame = ({
   const [selected, setSelected] = useState(false);
   const [purchaseUrl, setPurchaseUrl] = useState(null);
   const [thisGenerate, setThisGenerate] = useState(true);
-  const [currentUrl, setCurrentUrl] = useState("/white.jpeg");
+  const [currentUrl, setCurrentUrl] = useState("./images/white.jpeg");
 
   const updateCount = () => {
     if (!selected) {
@@ -80,7 +80,7 @@ const SquareFrame = ({
       {etsyImages && !selected ? (
         <div>
           <img
-            src={`${selected || generate ? currentUrl : "/white.jpeg"}`}
+            src={`${selected || generate ? currentUrl : "./images/white.jpeg"}`}
             className="square"
             onClick={() => {
               if (userArtUrl) {
@@ -102,7 +102,7 @@ const SquareFrame = ({
         </div>
       ) : (
         <img
-          src={`${selected || generate ? currentUrl : "/white.jpeg"}`}
+          src={`${selected || generate ? currentUrl : "./images/white.jpeg"}`}
           className="square"
           onClick={() => {
             if (userArtUrl) {
