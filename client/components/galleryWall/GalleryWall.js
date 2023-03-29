@@ -14,6 +14,7 @@ import SixImgGalleryWall from "./SixImgGalleryWall";
 import SevenImgGalleryWall from "./SevenImgGalleryWall";
 import EightImgGalleryWall from "./EightImgGalleryWall";
 import MyArt from "../myArt/MyArt";
+import SavedEtsyArt from "../savedEtsyArt/SavedEtsyArt";
 import SaveWallForm from "../saveWallForm/index";
 
 //Imported Files
@@ -118,7 +119,7 @@ const GalleryWall = () => {
     const imgArrToSendToFrames = images.payload.rows.map((i) => ({
       imageUrl: i.imageUrl,
       purchaseUrl: i.purchaseUrl,
-      id: i.id
+      id: i.id,
     }));
     setEtsyImages(imgArrToSendToFrames);
     if (!generate) {
@@ -142,7 +143,7 @@ const GalleryWall = () => {
   AWS.config.update({
     accessKeyId: accessKey,
     secretAccessKey: secretKey,
-    region: "us-east-1",
+    region: "us-east-2",
     signatureVersion: "v4",
   });
 
@@ -157,6 +158,7 @@ const GalleryWall = () => {
     };
     const { Location } = await s3.upload(params).promise();
     console.log("uploading to s3", Location);
+    console.log(file);
 
     dispatch(
       createUserArtAsync({
@@ -335,6 +337,7 @@ const GalleryWall = () => {
           ></SaveWallForm>
           <MyArt setImageUrl={setImageUrl} setCompColor={setCompColor} />
           <EtsyArt etsyImages={etsyImages} setImageUrl={setImageUrl} />
+          <SavedEtsyArt setImageUrl={setImageUrl} />
           <div>
             <input
               type="file"
