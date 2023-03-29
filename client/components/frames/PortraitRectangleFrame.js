@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  createSavedEtsyArtAsync,
-} from "../savedEtsyArt/savedEtsyArtSlice";
+import { createSavedEtsyArtAsync } from "../savedEtsyArt/savedEtsyArtSlice";
+import styles from "../styles/PortraitRectangleFrame.module.css";
 
 /**
  * `PortraitRectangleFrame` component
@@ -88,13 +87,13 @@ const PortraitRectangleFrame = ({
         <div>
           <img
             src={`${selected || generate ? currentUrl : "./images/white.jpeg"}`}
-            className="portraitRectangle"
+            className={styles.portraitRectangle}
             onClick={() => {
               if (userArtUrl) {
                 setCurrentUrl(userArtUrl);
                 setSelected(!selected);
                 updateCount();
-                }
+              }
             }}
           />
           <section className="img-buttons">
@@ -115,13 +114,13 @@ const PortraitRectangleFrame = ({
       ) : (
         <img
           src={`${selected || generate ? currentUrl : "./images/white.jpeg"}`}
-          className="portraitRectangle"
+          className={styles.portraitRectangle}
           onClick={() => {
             if (userArtUrl) {
               setCurrentUrl(userArtUrl);
               setSelected(!selected);
               updateCount();
-              }
+            }
           }}
         />
       )}

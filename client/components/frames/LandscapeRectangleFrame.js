@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createSavedEtsyArtAsync } from "../savedEtsyArt/savedEtsyArtSlice";
+import styles from "../styles/LandscapeRectangleFrame.module.css";
 
 /**
  * `LandscapeRectangleFrame` component
@@ -81,12 +82,12 @@ const LandscapeRectangleFrame = ({
         <div>
           <img
             src={`${selected || generate ? currentUrl : "./images/white.jpeg"}`}
-            className="landscapeRectangle"
+            className={styles.landscapeRectangle}
             onClick={() => {
               if (userArtUrl) {
-              setCurrentUrl(userArtUrl);
-              setSelected(!selected);
-              updateCount();
+                setCurrentUrl(userArtUrl);
+                setSelected(!selected);
+                updateCount();
               }
             }}
           />
@@ -103,13 +104,13 @@ const LandscapeRectangleFrame = ({
       ) : (
         <img
           src={`${selected || generate ? currentUrl : "./images/white.jpeg"}`}
-          className="landscapeRectangle"
+          className={styles.landscapeRectangle}
           onClick={() => {
             if (userArtUrl) {
               setCurrentUrl(userArtUrl);
               setSelected(!selected);
               updateCount();
-              }
+            }
           }}
         />
       )}
