@@ -1,6 +1,6 @@
 /* start auth component */
 
-.authPageParentDiv {
+/* .authPageParentDiv {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -114,7 +114,7 @@
   cursor: pointer;
   border-color: #000000;
   color: #fa67ce;
-}
+} */
 /* end auth component */
 
 /* start frames component */
