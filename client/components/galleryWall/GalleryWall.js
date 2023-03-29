@@ -133,30 +133,6 @@ const GalleryWall = () => {
   //#endregion Generate Feature
 
   //--------------------------------------------------
-  //#region User Art Feature
-  //--------------------------------------------------
-
-  const [file, setFile] = useState([]);
-
-  const uploadFile = (e) => {
-    e.preventDefault();
-
-    const formData = new FormData();
-    formData.append('file', file)
-    formData.append('id', id)
-
-    console.log(formData);
-
-    dispatch(createUserArtAsync(formData, { headers: {'Content-Type': 'multipart/form-data'}}));
-  };
-
-  const fileSelectedHandler = (event) => {
-    setFile(event.target.files[0]);
-  };
-
-  //#endregion User Art Feature
-
-  //--------------------------------------------------
   //#region Layout
   //--------------------------------------------------
 
@@ -319,16 +295,6 @@ const GalleryWall = () => {
           <MyArt setImageUrl={setImageUrl} setCompColor={setCompColor} />
           <EtsyArt etsyImages={etsyImages} setImageUrl={setImageUrl} />
           <SavedEtsyArt setImageUrl={setImageUrl} />
-          <div>
-            <form method="post" action="#" onSubmit={uploadFile}>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={fileSelectedHandler}
-              />
-              <button>Upload</button>
-            </form>
-          </div>
         </div>
       </div>
     </div>

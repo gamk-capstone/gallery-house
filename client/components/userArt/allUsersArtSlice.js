@@ -20,7 +20,7 @@ export const fetchUserArtAsync = createAsyncThunk(
  * `createUserArtAsync` POSTS data at /api/art/user
  */
 export const createUserArtAsync = createAsyncThunk(
-  "addUserArt",
+  "createUserArt",
   async (formData) => {
     try {
       const { data } = await axios.post("/api/art/uploadfile", formData, {
@@ -56,11 +56,11 @@ export const allUsersArtSlice = createSlice({
     builder
       .addCase(fetchUserArtAsync.fulfilled, (state, { payload }) => payload)
       .addCase(createUserArtAsync.fulfilled, (state, { payload }) => {
-        state.push({ payload });
+        state.push(payload);
       })
-      .addCase(deleteUserArtAsync.fulfilled, (state, { payload }) => {
-        state.filter((a) => a.id !== payload.id);
-      });
+      .addCase(deleteUserArtAsync.fulfilled, (state, { payload }) => 
+        state.filter((a) => a.id !== payload.id)
+      );
   },
 });
 
