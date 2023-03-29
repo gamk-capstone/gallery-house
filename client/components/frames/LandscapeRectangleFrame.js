@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { createSavedEtsyArtAsync } from "../savedEtsyArt/savedEtsyArtSlice";
 
 /**
  * `LandscapeRectangleFrame` component
@@ -14,6 +16,8 @@ const LandscapeRectangleFrame = ({
   saved,
   savedUrls,
 }) => {
+  const dispatch = useDispatch();
+  const { id } = useSelector((state) => state.auth.me);
   const [selected, setSelected] = useState(false);
   const [purchaseUrl, setPurchaseUrl] = useState(null);
   const [currentUrl, setCurrentUrl] = useState("/white.jpeg");
@@ -25,6 +29,17 @@ const LandscapeRectangleFrame = ({
     } else if (selected) {
       setFilledFrames(filledFrames - 1);
     }
+  };
+
+  //Creates a new instance of SavedEtsyArt associated with the user
+  const handleSave = () => {
+    dispatch(
+      createSavedEtsyArtAsync({
+        imageUrl: currentUrl,
+        purchaseUrl: purchaseUrl,
+        userId: id,
+      })
+    );
   };
 
   useEffect(() => {
@@ -74,12 +89,13 @@ const LandscapeRectangleFrame = ({
             }}
           />
           <section className="img-buttons">
-            <a href={purchaseUrl}>
+            <a href={purchaseUrl} target="_blank">
               <button>Nav</button>
             </a>
             <button onClick={() => setThisGenerate(!thisGenerate)}>
               Lock/Unlock
             </button>
+            <button onClick={handleSave}>Like</button>
           </section>
         </div>
       ) : (

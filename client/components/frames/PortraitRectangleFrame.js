@@ -1,4 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  createSavedEtsyArtAsync,
+} from "../savedEtsyArt/savedEtsyArtSlice";
 
 /**
  * `PortraitRectangleFrame` component
@@ -14,6 +18,8 @@ const PortraitRectangleFrame = ({
   saved,
   savedUrls,
 }) => {
+  const dispatch = useDispatch();
+  const { id } = useSelector((state) => state.auth.me);
   const [selected, setSelected] = useState(false);
   const [purchaseUrl, setPurchaseUrl] = useState(null);
   const [currentUrl, setCurrentUrl] = useState("/white.jpeg");
@@ -25,6 +31,17 @@ const PortraitRectangleFrame = ({
     } else if (selected) {
       setFilledFrames(filledFrames - 1);
     }
+  };
+
+  //Creates a new instance of SavedEtsyArt associated with the user
+  const handleSave = () => {
+    dispatch(
+      createSavedEtsyArtAsync({
+        imageUrl: currentUrl,
+        purchaseUrl: purchaseUrl,
+        userId: id,
+      })
+    );
   };
 
   useEffect(() => {
@@ -79,12 +96,18 @@ const PortraitRectangleFrame = ({
             }}
           />
           <section className="img-buttons">
-            <a href={purchaseUrl}>
+            <a href={purchaseUrl} target="_blank">
               <button>Nav</button>
             </a>
-            <button onClick={() => setThisGenerate(!thisGenerate)}>
+            <button
+              onClick={() => {
+                setThisGenerate(!thisGenerate);
+                setSelected(!selected);
+              }}
+            >
               Lock/Unlock
             </button>
+            <button onClick={handleSave}>Like</button>
           </section>
         </div>
       ) : (
