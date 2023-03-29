@@ -170,6 +170,7 @@ const GalleryWall = () => {
 
     const formData = new FormData();
     formData.append('file', file)
+    formData.append('id', id)
 
     console.log(formData);
 

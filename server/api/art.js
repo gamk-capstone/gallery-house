@@ -77,7 +77,7 @@ const s3 = new AWS.S3({
 //   signatureVersion: "v4",
 // });
 
-router.post("/uploadfile", upload.single("file"), (req, res) => {
+router.post("/uploadfile", upload.single("file"), async (req, res) => {
   // console.log(req);
   console.log("req.file", req.file);
   if (req.file == null) {
@@ -113,50 +113,62 @@ router.post("/uploadfile", upload.single("file"), (req, res) => {
     // console.log("uploading to s3", Location);
   };
   uploadToS3(file);
-  return res.status(201);
-  // const complimentaryColor = (hslArr) => {
-  //   const h = hslArr[0];
-  //   const s = hslArr[1];
-  //   const l = hslArr[2];
-  //   const o = hslArr[3];
-  //   let newHue = 0;
-  //   //h = red // return green
-  //   if ((h) => 330 || h < 10) {
-  //     newHue = 120;
-  //     //h = orange // return blue
-  //   }
-  //   if ((h) => 10 && h < 40) {
-  //     newHue = 220;
-  //     //h = yellow // return purple
-  //   }
-  //   if (h >= 40 && h < 70) {
-  //     newHue = 300;
-  //     //h = green // return red
-  //   }
-  //   if (h >= 70 && h < 160) {
-  //     newHue = 0;
-  //     //h = blue // return orange
-  //   }
-  //   if (h >= 160 && h < 250) {
-  //     newHue = 30;
-  //     //h = purple // return yellow
-  //   }
-  //   if (h >= 250 && h < 330) {
-  //     newHue = 45;
-  //   }
-  //   return [newHue, s, l, o];
-  // };
+  // return res.status(201);
+
+  
+  const complimentaryColor = (hslArr) => {
+    const h = hslArr[0];
+    const s = hslArr[1];
+    const l = hslArr[2];
+    const o = hslArr[3];
+    let newHue = 0;
+    //h = red // return green
+    if ((h) => 330 || h < 10) {
+      newHue = 120;
+      //h = orange // return blue
+    }
+    if ((h) => 10 && h < 40) {
+      newHue = 220;
+      //h = yellow // return purple
+    }
+    if (h >= 40 && h < 70) {
+      newHue = 300;
+      //h = green // return red
+    }
+    if (h >= 70 && h < 160) {
+      newHue = 0;
+      //h = blue // return orange
+    }
+    if (h >= 160 && h < 250) {
+      newHue = 30;
+      //h = purple // return yellow
+    }
+    if (h >= 250 && h < 330) {
+      newHue = 45;
+    }
+    return [newHue, s, l, o];
+  };
+  const s3Url = "http://" + bucketName + ".s3.amazonaws.com/" + file.originalname
   // console.log("req.body.s3Url", req.body.s3Url);
+  console.log(s3Url)
 
-  // const hslColors = await getMainColors(req.body.s3Url);
-  // // const hslColors = await getMainColors(file);
-  // console.log("hslColors", hslColors);
-  // const compColor = complimentaryColor(hslColors[0]);
-  // console.log("compColor", compColor);
-  // req.body.mainColors = hslColors;
-  // req.body.complimentaryColor = compColor;
+  const hslColors = await getMainColors(s3Url);
+  // const hslColors = await getMainColors(file);
+  console.log("hslColors", hslColors);
+  const compColor = complimentaryColor(hslColors[0]);
+  console.log("compColor", compColor);
 
-  // res.status(201).send(await UserArt.create(req.body));
+  console.log("id", req.body.id)
+
+  const userArt = {
+    name: file.originalname,
+    s3Url: s3Url,
+    mainColors: hslColors,
+    complimentaryColor: compColor,
+    userId: req.body.id,
+  }
+
+  res.status(201).send(await UserArt.create(userArt));
 });
 
 //route at /api/art/user POSTS a new instance of UserArt
