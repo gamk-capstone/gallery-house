@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import AWS from "aws-sdk";
+// import AWS from "aws-sdk";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styles from "../styles/GalleryWall.module.css"
 
 //Environment vairables
-const accessKey = process.env.ACCESS_KEY_ID;
-const secretKey = process.env.SECRET_ACCESS_KEY;
+// const accessKey = process.env.ACCESS_KEY_ID;
+// const secretKey = process.env.SECRET_ACCESS_KEY;
 
 //Imported Components
 import FiveImgGalleryWall from "./FiveImgGalleryWall";
@@ -136,38 +136,18 @@ const GalleryWall = () => {
   //#region User Art Feature
   //--------------------------------------------------
 
-  const s3 = new AWS.S3();
   const [file, setFile] = useState([]);
 
-  // const myArtStateRef = useRef();
+  const uploadFile = (e) => {
+    e.preventDefault();
 
-  AWS.config.update({
-    accessKeyId: accessKey,
-    secretAccessKey: secretKey,
-    region: "us-east-2",
-    signatureVersion: "v4",
-  });
+    const formData = new FormData();
+    formData.append('file', file)
+    formData.append('id', id)
 
-  const uploadToS3 = async () => {
-    if (!file) {
-      return;
-    }
-    const params = {
-      Bucket: "gamkgalleryhouse",
-      Key: `${Date.now()}.${file.name}`,
-      Body: file,
-    };
-    const { Location } = await s3.upload(params).promise();
-    console.log("uploading to s3", Location);
-    console.log(file);
+    console.log(formData);
 
-    dispatch(
-      createUserArtAsync({
-        name: file.name,
-        s3Url: Location,
-        userId: id,
-      })
-    );
+    dispatch(createUserArtAsync(formData, { headers: {'Content-Type': 'multipart/form-data'}}));
   };
 
   const fileSelectedHandler = (event) => {
@@ -340,16 +320,14 @@ const GalleryWall = () => {
           <EtsyArt etsyImages={etsyImages} setImageUrl={setImageUrl} />
           <SavedEtsyArt setImageUrl={setImageUrl} />
           <div>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={fileSelectedHandler}
-            />
-            {file && (
-              <div style={{ marginTop: "10px" }}>
-                <button onClick={uploadToS3}>Upload</button>
-              </div>
-            )}
+            <form method="post" action="#" onSubmit={uploadFile}>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={fileSelectedHandler}
+              />
+              <button>Upload</button>
+            </form>
           </div>
         </div>
       </div>
