@@ -43,6 +43,7 @@ router.get("/user/:id", async (req, res, next) => {
 router.delete("/user/:id", async (req, res, next) => {
   try {
     const userArt = await UserArt.findByPk(req.params.id);
+    await userArt.destroy();
     res.json(userArt);
   } catch (err) {
     next(err);
