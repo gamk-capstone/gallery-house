@@ -15,6 +15,7 @@ const SquareFrame = ({
   savedUrls,
 }) => {
   const [selected, setSelected] = useState(false);
+  const [purchaseUrl, setPurchaseUrl] = useState(null);
   const [thisGenerate, setThisGenerate] = useState(true);
   const [currentUrl, setCurrentUrl] = useState("/white.jpeg");
 
@@ -42,6 +43,7 @@ const SquareFrame = ({
       if (thisGenerate && etsyImages) {
         //setCurrentUrl === estyImageUrl
         setCurrentUrl(etsyImages.imageUrl);
+        setPurchaseUrl(etsyImages.purchaseUrl);
       } else {
         // currentUrl === currentUrl;
       }
@@ -61,7 +63,7 @@ const SquareFrame = ({
   return (
     <div>
       {etsyImages && !selected ? (
-        <a href={etsyImages.purchaseUrl}>
+        <div>
           <img
             src={`${selected || generate ? currentUrl : "/white.jpeg"}`}
             className="square"
@@ -71,7 +73,15 @@ const SquareFrame = ({
               updateCount();
             }}
           />
-        </a>
+          <section className="img-buttons">
+            <a href={purchaseUrl}>
+              <button>Nav</button>
+            </a>
+            <button onClick={() => setThisGenerate(!thisGenerate)}>
+              Lock/Unlock
+            </button>
+          </section>
+        </div>
       ) : (
         <img
           src={`${selected || generate ? currentUrl : "/white.jpeg"}`}

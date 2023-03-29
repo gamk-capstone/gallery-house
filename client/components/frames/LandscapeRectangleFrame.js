@@ -15,6 +15,7 @@ const LandscapeRectangleFrame = ({
   savedUrls,
 }) => {
   const [selected, setSelected] = useState(false);
+  const [purchaseUrl, setPurchaseUrl] = useState(null);
   const [currentUrl, setCurrentUrl] = useState("/white.jpeg");
   const [thisGenerate, setThisGenerate] = useState(true);
 
@@ -42,6 +43,7 @@ const LandscapeRectangleFrame = ({
       if (thisGenerate && etsyImages) {
         //setCurrentUrl === estyImageUrl
         setCurrentUrl(etsyImages.imageUrl);
+        setPurchaseUrl(etsyImages.purchaseUrl);
       } else {
         currentUrl === currentUrl;
       }
@@ -61,7 +63,7 @@ const LandscapeRectangleFrame = ({
   return (
     <div>
       {etsyImages && etsyImages.purchaseUrl ? (
-        <a href={etsyImages.purchaseUrl}>
+        <div>
           <img
             src={`${selected || generate ? currentUrl : "/white.jpeg"}`}
             className="landscapeRectangle"
@@ -71,7 +73,15 @@ const LandscapeRectangleFrame = ({
               updateCount();
             }}
           />
-        </a>
+          <section className="img-buttons">
+            <a href={purchaseUrl}>
+              <button>Nav</button>
+            </a>
+            <button onClick={() => setThisGenerate(!thisGenerate)}>
+              Lock/Unlock
+            </button>
+          </section>
+        </div>
       ) : (
         <img
           src={`${selected || generate ? currentUrl : "/white.jpeg"}`}
