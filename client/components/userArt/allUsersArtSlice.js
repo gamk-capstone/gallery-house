@@ -24,10 +24,12 @@ export const fetchUserArtAsync = createAsyncThunk(
  * `createUserArtAsync` POSTS data at /api/art/user
  */
 export const createUserArtAsync = createAsyncThunk(
-  "addUserArt",
-  async (userArtInfo) => {
+  "createUserArt",
+  async (formData) => {
     try {
-      const { data } = await axios.post("/api/art/user", userArtInfo);
+      const { data } = await axios.post("/api/art/uploadfile", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
       return data;
     } catch (err) {
       next(err);
@@ -58,15 +60,14 @@ export const allUsersArtSlice = createSlice({
   initialState: [],
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchUserArtAsync.fulfilled, (state, action) => {
-      return action.payload;
-    });
-    builder.addCase(createUserArtAsync.fulfilled, (state, action) => {
-      state.push(action.payload);
-    });
-    builder.addCase(deleteUserArtAsync.fulfilled, (state, action) => {
-      return {};
-    });
+    builder
+      .addCase(fetchUserArtAsync.fulfilled, (state, { payload }) => payload)
+      .addCase(createUserArtAsync.fulfilled, (state, { payload }) => {
+        state.push(payload);
+      })
+      .addCase(deleteUserArtAsync.fulfilled, (state, { payload }) =>
+        state.filter((a) => a.id !== payload.id)
+      );
   },
 });
 

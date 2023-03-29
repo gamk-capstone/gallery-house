@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import AWS from "aws-sdk";
+// import AWS from "aws-sdk";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import styles from "../styles/GalleryWall.module.css"
 
 //Environment vairables
-const accessKey = process.env.ACCESS_KEY_ID;
-const secretKey = process.env.SECRET_ACCESS_KEY;
+// const accessKey = process.env.ACCESS_KEY_ID;
+// const secretKey = process.env.SECRET_ACCESS_KEY;
 
 //Imported Components
 import FiveImgGalleryWall from "./FiveImgGalleryWall";
@@ -14,6 +15,7 @@ import SixImgGalleryWall from "./SixImgGalleryWall";
 import SevenImgGalleryWall from "./SevenImgGalleryWall";
 import EightImgGalleryWall from "./EightImgGalleryWall";
 import MyArt from "../myArt/MyArt";
+import SavedEtsyArt from "../savedEtsyArt/SavedEtsyArt";
 import SaveWallForm from "../saveWallForm/index";
 
 //Imported Files
@@ -118,7 +120,7 @@ const GalleryWall = () => {
     const imgArrToSendToFrames = images.payload.rows.map((i) => ({
       imageUrl: i.imageUrl,
       purchaseUrl: i.purchaseUrl,
-      id: i.id
+      id: i.id,
     }));
     setEtsyImages(imgArrToSendToFrames);
     if (!generate) {
@@ -129,47 +131,6 @@ const GalleryWall = () => {
   };
 
   //#endregion Generate Feature
-
-  //--------------------------------------------------
-  //#region User Art Feature
-  //--------------------------------------------------
-
-  const s3 = new AWS.S3();
-  const [file, setFile] = useState([]);
-
-  AWS.config.update({
-    accessKeyId: accessKey,
-    secretAccessKey: secretKey,
-    region: "us-east-1",
-    signatureVersion: "v4",
-  });
-
-  const uploadToS3 = async () => {
-    if (!file) {
-      return;
-    }
-    const params = {
-      Bucket: "gamkgalleryhouse",
-      Key: `${Date.now()}.${file.name}`,
-      Body: file,
-    };
-    const { Location } = await s3.upload(params).promise();
-    console.log("uploading to s3", Location);
-
-    dispatch(
-      createUserArtAsync({
-        name: file.name,
-        s3Url: Location,
-        userId: id,
-      })
-    );
-  };
-
-  const fileSelectedHandler = (event) => {
-    setFile(event.target.files[0]);
-  };
-
-  //#endregion User Art Feature
 
   //--------------------------------------------------
   //#region Layout
@@ -242,29 +203,27 @@ const GalleryWall = () => {
   const getSofaForLayout = () => {
     switch (selectedSofa) {
       case "sofaBeigeRounded":
-        return <img src="/sofa-beige-rounded.png" className="max-w-[900px]" />;
+        return <img src="./images/sofa-beige-rounded.png" className="sofaImage" />;
         break;
       case "sofaTealVelvet":
-        return <img src="/sofa-teal-velvet.png" className="max-w-[900px]" />;
+        return <img src="./images/sofa-teal-velvet.png" className="sofaImage" />;
       case "blackLeather":
-        return <img src="/black-leather.png" className="max-w-[900px]" />;
+        return <img src="./images/black-leather.png" className="sofaImage" />;
       case "blueVelvet":
-        return <img src="/blue-velvet.png" className="max-w-[900px]" />;
+        return <img src="./images/blue-velvet.png" className="sofaImage" />;
       case "blushVelvet":
-        return <img src="/blush-velvet.png" className="max-w-[900px]" />;
+        return <img src="./images/blush-velvet.png" className="sofaImage" />;
       case "ovalTable":
-        return <img src="/oval-table.png" className="max-w-[900px]" />;
+        return <img src="./images/oval-table.png" className="sofaImage" />;
       case "rectangleTable":
-        return (
-          <img src="/dining-table-rectangle.png" className="max-w-[900px]" />
-        );
+        return <img src="./images/dining-table-rectangle.png" className="sofaImage" />;
     }
   };
-  //#endregion Sofa 
+  //#endregion Sofa
 
   return (
-    <div className="flex flex-row gap-40">
-      <div id="toolbarContainer" className="flex items-center">
+    <div className={styles.toolbar}>
+      <div id="toolbarContainer" className={styles.toolbarContainer}>
         <div
           id="toolbar"
           className="flex flex-col bg-slate-300 p-4 max-w-[5rem] gap-4"
@@ -333,19 +292,8 @@ const GalleryWall = () => {
             handleSaveWall={handleSaveWall}
           ></SaveWallForm>
           <MyArt setImageUrl={setImageUrl} setCompColor={setCompColor} />
-          <EtsyArt etsyImages={etsyImages} setImageUrl={setImageUrl}/>
-          <div>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={fileSelectedHandler}
-            />
-            {file && (
-              <div style={{ marginTop: "10px" }}>
-                <button onClick={uploadToS3}>Upload</button>
-              </div>
-            )}
-          </div>
+          <EtsyArt etsyImages={etsyImages} setImageUrl={setImageUrl} />
+          <SavedEtsyArt setImageUrl={setImageUrl} />
         </div>
       </div>
     </div>

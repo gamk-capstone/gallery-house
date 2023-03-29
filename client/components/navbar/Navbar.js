@@ -26,7 +26,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="border-yellow border-solid border-b-[1.5rem]">
+      <nav className="navParent">
         {isLoggedIn ? (
           <div className="flex flex-row justify-between items-center pr-16">
             <div className="flex flex-row justify-start items-center gap-32 p-16">
@@ -42,10 +42,10 @@ const Navbar = () => {
                 <Link to="/home" className="nav-link">
                   Home
                 </Link>
-                <Link to="/create" className="nav-link">
+                <Link to="/create" className="navLink">
                   Create
                 </Link>
-                <Link to="/saved" className="nav-link">
+                <Link to="/saved" className="navLink">
                   Saved Galleries
                 </Link>
               </div>
@@ -53,7 +53,7 @@ const Navbar = () => {
             <button
               type="button"
               onClick={logoutAndRedirectHome}
-              className="text-black font-house-bold text-3xl focus:text-pink rounded-full border-4 border-solid border-pink hover:text-pink hover:border-black px-4 py-2"
+              className="logoutBtn"
             >
               Logout
             </button>
