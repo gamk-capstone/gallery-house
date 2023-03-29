@@ -6,6 +6,7 @@ import {
   selectSavedWalls,
   deleteWallById,
 } from "../savedWalls/savedWallsSlice";
+import styles from "../styles/SavedWalls.module.css";
 
 const SavedWalls = (props) => {
   const username = useSelector((state) => state.auth.me.username);
@@ -30,19 +31,24 @@ const SavedWalls = (props) => {
   };
 
   return (
-    <div className="savedWallsParentDiv">
-      <div className="savedWallsContainer">
-        <div className="savedWallsHeader">{username}'s Saved Galleries! </div>
+    <div className={styles.savedWallsParentDiv}>
+      <div className={styles.savedWallsContainer}>
+        <div className={styles.savedWallsHeader}>
+          {username}'s Saved Galleries!{" "}
+        </div>
         {walls ? (
           walls.map((wall, i) => {
             return (
               <div key={`Inside all saved walls view: ${i}`}>
-                <Link to={`/saved/${wall.id}`} className="savedWallsNameLink">
+                <Link
+                  to={`/saved/${wall.id}`}
+                  className={styles.savedWallsNameLink}
+                >
                   {i + 1}. {wall.name}
                 </Link>
                 <button
                   onClick={(evt) => handleDeleteWall(evt, wall.id)}
-                  className="deleteBtn"
+                  className={styles.deleteBtn}
                 >
                   x
                 </button>

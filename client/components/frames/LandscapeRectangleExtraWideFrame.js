@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  createSavedEtsyArtAsync,
-} from "../savedEtsyArt/savedEtsyArtSlice";
+import { createSavedEtsyArtAsync } from "../savedEtsyArt/savedEtsyArtSlice";
+import styles from "../styles/LandscapeRectangleExtraWideFrame.module.css";
 
 /**
  * `LandscapeRectangleExtraWideFrame` component
@@ -83,13 +82,13 @@ const LandscapeRectangleExtraWideFrame = ({
         <div>
           <img
             src={`${selected || generate ? currentUrl : "./images/white.jpeg"}`}
-            className="landscapeExtraWide"
+            className={styles.landscapeExtraWide}
             onClick={() => {
               if (userArtUrl) {
                 setCurrentUrl(userArtUrl);
                 setSelected(!selected);
                 updateCount();
-                }
+              }
             }}
           />
           <section className="img-buttons">
@@ -105,13 +104,13 @@ const LandscapeRectangleExtraWideFrame = ({
       ) : (
         <img
           src={`${selected || generate ? currentUrl : "./images/white.jpeg"}`}
-          className="landscapeExtraWide"
+          className={styles.landscapeExtraWide}
           onClick={() => {
             if (userArtUrl) {
               setCurrentUrl(userArtUrl);
               setSelected(!selected);
               updateCount();
-              }
+            }
           }}
         />
       )}

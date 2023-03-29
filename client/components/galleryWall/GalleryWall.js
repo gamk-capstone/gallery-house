@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 // import AWS from "aws-sdk";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import styles from "../styles/GalleryWall.module.css"
+import styles from "../styles/GalleryWall.module.css";
 
 //Environment vairables
 // const accessKey = process.env.ACCESS_KEY_ID;
@@ -227,20 +227,43 @@ const GalleryWall = () => {
   const getSofaForLayout = () => {
     switch (selectedSofa) {
       case "sofaBeigeRounded":
-        return <img src="./images/sofa-beige-rounded.png" className="sofaImage" />;
+        return (
+          <img
+            src="./images/sofa-beige-rounded.png"
+            className={styles.sofaImage}
+          />
+        );
         break;
       case "sofaTealVelvet":
-        return <img src="./images/sofa-teal-velvet.png" className="sofaImage" />;
+        return (
+          <img
+            src="./images/sofa-teal-velvet.png"
+            className={styles.sofaImage}
+          />
+        );
       case "blackLeather":
-        return <img src="./images/black-leather.png" className="sofaImage" />;
+        return (
+          <img src="./images/black-leather.png" className={styles.sofaImage} />
+        );
       case "blueVelvet":
-        return <img src="./images/blue-velvet.png" className="sofaImage" />;
+        return (
+          <img src="./images/blue-velvet.png" className={styles.sofaImage} />
+        );
       case "blushVelvet":
-        return <img src="./images/blush-velvet.png" className="sofaImage" />;
+        return (
+          <img src="./images/blush-velvet.png" className={styles.sofaImage} />
+        );
       case "ovalTable":
-        return <img src="./images/oval-table.png" className="sofaImage" />;
+        return (
+          <img src="./images/oval-table.png" className={styles.sofaImage} />
+        );
       case "rectangleTable":
-        return <img src="./images/dining-table-rectangle.png" className="sofaImage" />;
+        return (
+          <img
+            src="./images/dining-table-rectangle.png"
+            className={styles.sofaImage}
+          />
+        );
     }
   };
   //#endregion Sofa

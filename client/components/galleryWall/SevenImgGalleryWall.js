@@ -1,6 +1,7 @@
 import React from "react";
 import SquareFrame from "../frames/SquareFrame";
 import LandscapeRectangleFrame from "../frames/LandscapeRectangleFrame";
+import styles from "../styles/XImgGalleryWall.module.css";
 
 /**
  * `SevenImgGalleryWall` component
@@ -17,8 +18,8 @@ const SevenImageGalleryWall = ({
   savedUrls,
 }) => {
   return (
-    <div className="frameLayoutParentDiv">
-      <div className="frameLayoutTopRow">
+    <div className={styles.frameLayoutParentDiv}>
+      <div className={styles.frameLayoutTopRow}>
         <SquareFrame
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}
@@ -38,7 +39,7 @@ const SevenImageGalleryWall = ({
           savedUrls={savedUrls ? savedUrls[1] : ""}
         />
       </div>
-      <div className="frameLayoutMiddleRow">
+      <div className={styles.frameLayoutMiddleRow}>
         <SquareFrame
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}
@@ -67,7 +68,7 @@ const SevenImageGalleryWall = ({
           savedUrls={savedUrls ? savedUrls[4] : ""}
         />
       </div>
-      <div className="frameLayoutBottomRow">
+      <div className={styles.frameLayoutBottomRow}>
         <LandscapeRectangleFrame
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}

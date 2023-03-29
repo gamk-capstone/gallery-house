@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createSavedEtsyArtAsync } from "../savedEtsyArt/savedEtsyArtSlice";
+import styles from "../styles/SquareLargeFrame.module.css";
 
 const SquareFrame = ({
   userArtUrl,
@@ -76,13 +77,13 @@ const SquareFrame = ({
         <div>
           <img
             src={`${selected || generate ? currentUrl : "./images/white.jpeg"}`}
-            className="squareLarge"
+            className={styles.squareLarge}
             onClick={() => {
               if (userArtUrl) {
                 setCurrentUrl(userArtUrl);
                 setSelected(!selected);
                 updateCount();
-                }
+              }
             }}
           />
           <section className="img-buttons">
@@ -98,13 +99,13 @@ const SquareFrame = ({
       ) : (
         <img
           src={`${selected || generate ? currentUrl : "./images/white.jpeg"}`}
-          className="squareLarge"
+          className={styles.squareLarge}
           onClick={() => {
             if (userArtUrl) {
               setCurrentUrl(userArtUrl);
               setSelected(!selected);
               updateCount();
-              }
+            }
           }}
         />
       )}

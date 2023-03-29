@@ -1,6 +1,6 @@
 /* start auth component */
 
-.authPageParentDiv {
+/* .authPageParentDiv {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -114,11 +114,11 @@
   cursor: pointer;
   border-color: #000000;
   color: #fa67ce;
-}
+} */
 /* end auth component */
 
 /* start frames component */
-.landscapeExtraWide {
+/* .landscapeExtraWide {
   width: 20rem;
   height: 12rem;
   padding: 1rem;
@@ -166,11 +166,11 @@
   background: linear-gradient(40deg, #bf953f, #fcf6ba, #b38728, #fbf5b7);
   filter: drop-shadow(3px 3px 3px rgb(182, 173, 153));
   object-fit: cover;
-}
+} */
 /* end frames component */
 
 /* start X num gallery wall components */
-.frameLayoutParentDiv {
+/* .frameLayoutParentDiv {
   display: flex;
   flex-direction: column;
   gap: 1em;
@@ -198,17 +198,17 @@
   align-items: flex-start;
   justify-content: center;
   gap: 1em;
-}
+} */
 /* end X num gallery wall components */
 
 /* start gallery wall component */
-.sofaImage {
+/* .sofaImage {
   width: 1200px;
-}
+} */
 /* end gallery wall component */
 
 /* start home component */
-.homeParentContainer {
+/* .homeParentContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -260,11 +260,11 @@
   cursor: pointer;
   border-color: #000000;
   color: #000000;
-}
+} */
 /* end home component */
 
 /* start navbar component */
-.navParent {
+/* .navParent {
   border-bottom: 10px solid #edcc26;
   width: 100%;
 }
@@ -335,11 +335,11 @@
   cursor: pointer;
   border-color: #000000;
   color: #fa67ce;
-}
+} */
 /* end navbar component */
 
 /* start saved walls component */
-.savedWallsParentDiv {
+/* .savedWallsParentDiv {
   display: flex;
   flex-direction: column;
   padding-top: 3rem;
@@ -392,5 +392,5 @@
   cursor: pointer;
   border-color: #000000;
   color: #fa67ce;
-}
+} */
 /* end saved walls component */

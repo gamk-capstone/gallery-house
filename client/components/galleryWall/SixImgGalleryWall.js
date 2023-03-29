@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import SquareFrame from "../frames/SquareFrame";
+import styles from "../styles/XImgGalleryWall.module.css";
 
 /**
  * `SixImgGalleryWall` component
@@ -16,8 +17,8 @@ const SixImageGalleryWall = ({
   savedUrls,
 }) => {
   return (
-    <div className="frameLayoutParentDiv">
-      <div className="frameLayoutTopRow">
+    <div className={styles.frameLayoutParentDiv}>
+      <div className={styles.frameLayoutTopRow}>
         <SquareFrame
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}
@@ -46,7 +47,7 @@ const SixImageGalleryWall = ({
           savedUrls={savedUrls ? savedUrls[2] : ""}
         />
       </div>
-      <div className="frameLayoutBottomRow">
+      <div className={styles.frameLayoutBottomRow}>
         <SquareFrame
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}
