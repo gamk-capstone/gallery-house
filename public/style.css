@@ -208,7 +208,7 @@
 /* end gallery wall component */
 
 /* start home component */
-.homeParentContainer {
+/* .homeParentContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -260,7 +260,7 @@
   cursor: pointer;
   border-color: #000000;
   color: #000000;
-}
+} */
 /* end home component */
 
 /* start navbar component */
