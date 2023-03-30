@@ -64,7 +64,6 @@ const MyArt = ({ setImageUrl, setCompColor }) => {
 
     return (
       <div className={styles.parentDiv}>
-        <hr className={styles.hr} />
         <div>
           <form
             method="post"
@@ -87,7 +86,9 @@ const MyArt = ({ setImageUrl, setCompColor }) => {
               You have {art.length} piece(s) of art.{" "}
             </h2>
             {art.length === 0 ? (
-              <span>You haven't uploaded any art yet.</span>
+              <h2 className={styles.myArtH2}>
+                You haven't uploaded any art yet.
+              </h2>
             ) : (
               <div className={styles.userArtContainer}>
                 {art?.map((piece, i) => {
@@ -117,6 +118,7 @@ const MyArt = ({ setImageUrl, setCompColor }) => {
   return (
     <div className={styles.parentDiv}>
       <h1 className={styles.myArtH1}>{`${username}'s Art`}</h1>
+      <hr className={styles.hr} />
       <RenderArt />
     </div>
   );
