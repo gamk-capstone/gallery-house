@@ -142,12 +142,16 @@ const GalleryWall = () => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append('file', file)
-    formData.append('id', id)
+    formData.append("file", file);
+    formData.append("id", id);
 
     console.log(formData);
 
-    dispatch(createUserArtAsync(formData, { headers: {'Content-Type': 'multipart/form-data'}}));
+    dispatch(
+      createUserArtAsync(formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+    );
   };
 
   const fileSelectedHandler = (event) => {
@@ -269,90 +273,94 @@ const GalleryWall = () => {
   //#endregion Sofa
 
   return (
-    <div className={styles.toolbar}>
-      <div id="toolbarContainer" className={styles.toolbarContainer}>
-        <div
-          id="toolbar"
-          className="flex flex-col bg-slate-300 p-4 max-w-[5rem] gap-4"
-        >
-          <div
-            id="numberFramesSelection"
-            className="flex flex-col justify-center gap-2"
-          >
-            <i className="material-icons text-2xl">filter_5</i>
-            <label htmlFor="numberOfFrames"></label>
-            <select
-              name="numberOfFrames"
-              onChange={(e) => {
-                setSelectedNumPhotos(e.target.value);
-                setFilledFrames(0);
-              }}
-            >
-              <option value={5}>-</option>
-              <option value={5}>5</option>
-              <option value={6}>6</option>
-              <option value={7}>7</option>
-              <option value={8}>8</option>
-            </select>
+    <div className={styles.parentDiv}>
+      <div className={styles.framesSofaToolbarContainer}>
+        <div className={styles.framesSofaContainer}>
+          {getNumberForLayout()}
+          {getSofaForLayout()}
+        </div>
+        <div className={styles.toolbarSaveContainer}>
+          <div className={styles.toolbarContainer}>
+            <div className={styles.toolbarFrames}>
+              <i className="material-symbols-rounded">filter_5</i>
+              <label htmlFor="numberOfFrames"></label>
+              <select
+                name="numberOfFrames"
+                onChange={(e) => {
+                  setSelectedNumPhotos(e.target.value);
+                  setFilledFrames(0);
+                }}
+              >
+                <option value={5}>-</option>
+                <option value={5}>5</option>
+                <option value={6}>6</option>
+                <option value={7}>7</option>
+                <option value={8}>8</option>
+              </select>
+            </div>
+            <div className={styles.toolbarSofa}>
+              <i className="material-symbols-rounded">chair</i>
+              <label htmlFor="furnitureSelection"></label>
+              <select
+                name="furnitureSelection"
+                onChange={(e) => setSelectedSofa(e.target.value)}
+              >
+                <option value="sofaBeigeRounded">-</option>
+                <option value="sofaBeigeRounded">Sofa Beige Rounded</option>
+                <option value="sofaTealVelvet">
+                  Mid Century Modern Teal Velvet Sofa
+                </option>
+                <option value="blushVelvet">Blush Velvet Sofa</option>
+                <option value="blackLeather">Black Leather Sofa</option>
+                <option value="blueVelvet">Navy Blue Fabric Sofa</option>
+                <option value="ovalTable">Oval Dining Table</option>
+                <option value="rectangleTable">Rectangle Dining Table</option>
+              </select>
+            </div>
           </div>
-          <hr></hr>
-          <div
-            id="furnitureSelection"
-            className="flex flex-col justify-center gap-2"
-          >
-            <i className="material-icons">chair</i>
-            <label htmlFor="furnitureSelection"></label>
-            <select
-              name="furnitureSelection"
-              onChange={(e) => setSelectedSofa(e.target.value)}
-            >
-              <option value="sofaBeigeRounded">-</option>
-              <option value="sofaBeigeRounded">Sofa Beige Rounded</option>
-              <option value="sofaTealVelvet">
-                Mid Century Modern Teal Velvet Sofa
-              </option>
-              <option value="blushVelvet">Blush Velvet Sofa</option>
-              <option value="blackLeather">Black Leather Sofa</option>
-              <option value="blueVelvet">Navy Blue Fabric Sofa</option>
-              <option value="ovalTable">Oval Dining Table</option>
-              <option value="rectangleTable">Rectangle Dining Table</option>
-            </select>
-          </div>
-          <hr></hr>
-          <div id="photoUpload">
-            <i className="material-icons">add_a_photo</i>
+          <div className={styles.saveWallForm}>
+            <SaveWallForm
+              wallName={wallName}
+              setWallName={setWallName}
+              handleSaveWall={handleSaveWall}
+            ></SaveWallForm>
           </div>
         </div>
       </div>
-      <div
-        id="frameAndFurnitureContainer"
-        className="flex flex-col justify-center"
-      >
-        {getNumberForLayout()}
-        {getSofaForLayout()}
-        <div id="userArtStuff">
-          {/** Generate art button */}
-          <button onClick={(e) => fillFrames(e)}>Generate Art</button>
-          {/** Save wall form */}
-          <SaveWallForm
-            wallName={wallName}
-            setWallName={setWallName}
-            handleSaveWall={handleSaveWall}
-          ></SaveWallForm>
-          <MyArt setImageUrl={setImageUrl} setCompColor={setCompColor} />
-          <EtsyArt etsyImages={etsyImages} setImageUrl={setImageUrl} />
-          <SavedEtsyArt setImageUrl={setImageUrl} />
-          <div>
-            <form method="post" action="#" onSubmit={uploadFile}>
+
+      <div className={styles.vertLine}></div>
+
+      <div className={styles.userArtContainer}>
+        <MyArt setImageUrl={setImageUrl} setCompColor={setCompColor} />
+        <div className={styles.artUploader}>
+          <form method="post" action="#" onSubmit={uploadFile}>
+            <label className={styles.fileUpload}>
               <input
                 type="file"
                 accept="image/*"
                 onChange={fileSelectedHandler}
               />
-              <button>Upload</button>
-            </form>
-          </div>
+              Choose file
+            </label>
+            <button className={styles.submitBtn}>Upload ⇪</button>
+          </form>
         </div>
+      </div>
+
+      <div className={styles.vertLine}></div>
+
+      <div className={styles.generatedEtsyArtContainer}>
+        <h2>Complimentary Art</h2>
+        {/** Generate art button */}
+        <button onClick={(e) => fillFrames(e)} className={styles.generateBtn}>
+          Generate Art
+        </button>
+      </div>
+
+      <div className={styles.vertLine}></div>
+
+      <div className={styles.savedEtsyArtContainer}>
+        <SavedEtsyArt setImageUrl={setImageUrl} />
       </div>
     </div>
   );

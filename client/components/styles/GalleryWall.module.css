@@ -1,3 +1,118 @@
+.parentDiv {
+  display: flex;
+  flex-direction: row;
+  margin-top: 3rem;
+  gap: 2rem;
+}
+
+.framesSofaToolbarContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.framesSofaContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.toolbarSaveContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.toolbarContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.toolbarFrames {
+  display: flex;
+  flex-direction: row;
+}
+
+.toolbarSofa {
+  display: flex;
+  flex-direction: row;
+}
+
+.saveWallForm {
+  display: flex;
+  flex-direction: row;
+}
+
+.vertLine {
+  border: 1px solid #000000;
+  height: 1000px;
+}
+
+.userArtContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.artUploader {
+  display: flex;
+  flex-direction: row;
+}
+
+.generatedEtsyArtContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.savedEtsyArtContainer {
+  display: flex;
+  flex-direction: column;
+}
+
 .sofaImage {
   width: 1200px;
+}
+
+.generateBtn {
+  background-color: #ffffff;
+  padding: 10px 20px;
+  text-align: center;
+  color: #000000;
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 32px;
+  border-color: #fa67ce;
+  font-family: "le-havre", "sans-serif";
+  font-weight: 400;
+  font-size: 1rem;
+  width: 60%;
+}
+
+.generateBtn:hover {
+  cursor: pointer;
+  border-color: #000000;
+  color: #fa67ce;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.submitBtn,
+.fileUpload {
+  background-color: #fa67ce;
+  color: #000000;
+  padding: 10px 20px;
+  text-align: center;
+  font-family: "le-havre", "sans-serif";
+  font-weight: 400;
+  font-size: 1rem;
+  border: none;
+  border-radius: 32px;
+}
+
+.submitBtn:hover,
+.fileUpload:hover {
+  cursor: pointer;
 }

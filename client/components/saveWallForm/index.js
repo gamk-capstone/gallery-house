@@ -1,18 +1,24 @@
 import React, { useState } from "react";
+import styles from "../styles/SavedWallForm.module.css";
 
 const SavedWallForm = ({ wallName, setWallName, handleSaveWall }) => {
   return (
     <form onSubmit={handleSaveWall}>
-      <label htmlFor="wallName">Give your wall a name:</label>
-      <div>
+      <label htmlFor="wallName" className={styles.label}>
+        Give your wall a name:
+      </label>
+      <div className={styles.inputSubmitContainer}>
         {/* Input for wallName value */}
         <input
           name="wallName"
           value={wallName}
           onChange={(e) => setWallName(e.target.value)}
+          className={styles.input}
         />
+        <button type="submit" className={styles.submitBtn}>
+          Save
+        </button>
       </div>
-      <button type="submit">Save</button>
     </form>
   );
 };

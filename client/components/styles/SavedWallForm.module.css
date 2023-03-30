@@ -1,0 +1,41 @@
+.inputSubmitContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.label {
+  font-family: "le-havre", "sans-serif";
+  font-weight: 400;
+  font-size: 1rem;
+  color: #000000;
+}
+
+.input {
+  color: #000000;
+  font-family: "le-havre", "sans-serif";
+  font-weight: 400;
+  font-size: 1rem;
+  padding: 1rem;
+  width: 90%;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.submitBtn {
+  background-color: #fa67ce;
+  color: #000000;
+  padding: 10px 20px;
+  text-align: center;
+  font-family: "le-havre", "sans-serif";
+  font-weight: 400;
+  font-size: 1rem;
+  border: none;
+  border-radius: 32px;
+}
+
+.submitBtn:hover {
+  cursor: pointer;
+}
