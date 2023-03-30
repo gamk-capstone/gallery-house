@@ -6,12 +6,35 @@ const path = require('path')
  * @returns an array of arrays containing the hsl values of the given image's fourt main colors
  */
 const getMainColors = async (imageUrl, imagePath) => {
-  const options = {
-    count: 4,
-    type: "image/jpg",
+  let options = {}
+  if (imageUrl.includes("jpg")){
+    options = {
+      count: 4,
+      type: "image/jpg",
+    };
+  } else if (imageUrl.includes("jpeg")){
+    options = {
+      count: 4,
+      type: "image/jpeg",
+    };
+  } else if (imageUrl.includes("png")){
+    options = {
+      count: 4,
+      type: "image/png",
+    };
+  } else if (imageUrl.includes("svg")){
+    options = {
+      count: 4,
+      type: "image/svg",
+    };
+  } else if (imageUrl.includes("gif")){
+    options = {
+      count: 4,
+      type: "image/gif",
+    };
   };
 
-  const colors = await getColors(path.join(__dirname.slice(0, __dirname.length - 6), imagePath), options);
+  const colors = await getColors(imageUrl, options);
 
   const getHslValues = (colors) => {
     // `colors` is an array of color objects

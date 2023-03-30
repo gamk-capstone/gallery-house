@@ -33,9 +33,9 @@ const MyArt = ({ setImageUrl, setCompColor }) => {
     if (art.length === 0) {
       return <h2>You haven't uploaded any art yet.</h2>;
     }
-    if (file === []){
-      return <h2>You haven't successfully selected a file yet.</h2>
-    }
+    // if (file === []){
+    //   return <h2>You haven't successfully selected a file yet.</h2>
+    // }
 
     //--------------------------------------------------
     //#region User Art Feature
@@ -60,17 +60,17 @@ const MyArt = ({ setImageUrl, setCompColor }) => {
     };
 
     const fileSelectedHandler = (event) => {
-      const name = event.target.files[0].name;
-      console.log(name.slice(name.length - 4, name.length));
-      if (
-        !name.slice(name.length - 3, name.length - 1) === "jpg" ||
-        !name.slice(name.length - 4, name.length - 1) === "jpeg"
-      ) {
-        alert(`Please upload an image file with extension .jpg or .jpeg.`);
-        return;
-      } else {
+      // const name = event.target.files[0].name;
+      // console.log(name.slice(name.length - 4, name.length));
+      // if (
+      //   !name.slice(name.length - 3, name.length - 1) === "jpg" ||
+      //   !name.slice(name.length - 4, name.length - 1) === "jpeg"
+      // ) {
+      //   alert(`Please upload an image file with extension .jpg or .jpeg.`);
+      //   return;
+      // } else {
         setFile(event.target.files[0]);
-      }
+      // }
     };
 
     //#endregion User Art Upload Feature
@@ -88,7 +88,7 @@ const MyArt = ({ setImageUrl, setCompColor }) => {
             <label className={styles.fileUpload}>
               <input
                 type="file"
-                accept="image/jpg"
+                accept="image/*"
                 onChange={fileSelectedHandler}
               />
               Choose file
