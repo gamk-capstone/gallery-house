@@ -15,7 +15,6 @@ export const fetchWallsAsync = createAsyncThunk(
       const { data } = await axios.get(
         `http://localhost:8080/api/walls/user/${userId}`
       );
-      console.log("walls/fetchAll", data);
       return data;
     } catch (error) {
       console.log(error);

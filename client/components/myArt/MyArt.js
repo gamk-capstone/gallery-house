@@ -30,10 +30,6 @@ const MyArt = ({ setImageUrl, setCompColor }) => {
    * `RenderArt` component
    */
   const RenderArt = () => {
-    if (art.length === 0) {
-      return <h2>You haven't uploaded any art yet.</h2>;
-    }
-
     //--------------------------------------------------
     //#region User Art Feature
     //--------------------------------------------------
@@ -46,8 +42,6 @@ const MyArt = ({ setImageUrl, setCompColor }) => {
       const formData = new FormData();
       formData.append("file", file);
       formData.append("id", id);
-
-      console.log(formData);
 
       dispatch(
         createUserArtAsync(formData, {
@@ -90,27 +84,31 @@ const MyArt = ({ setImageUrl, setCompColor }) => {
           </form>
           <div className={styles.numImagesContainer}>
             <h2 className={styles.myArtH2}>
-              You have {art.length} piece(s) of art.
+              You have {art.length} piece(s) of art.{" "}
             </h2>
-            <div className={styles.userArtContainer}>
-              {art?.map((piece, i) => {
-                return (
-                  <div key={`inside myArt list-${i}`}>
-                    <img
-                      src={piece.s3Url}
-                      className={styles.myArtImg}
-                      onClick={() => {
-                        setImageUrl(piece.s3Url);
-                        setCompColor(piece.complimentaryColor);
-                      }}
-                    />
-                    <button onClick={(e) => handleDelete(e, piece.id)}>
-                      X
-                    </button>
-                  </div>
-                );
-              })}
-            </div>
+            {art.length === 0 ? (
+              <span>You haven't uploaded any art yet.</span>
+            ) : (
+              <div className={styles.userArtContainer}>
+                {art?.map((piece, i) => {
+                  return (
+                    <div key={`inside myArt list-${i}`}>
+                      <img
+                        src={piece.s3Url}
+                        className={styles.myArtImg}
+                        onClick={() => {
+                          setImageUrl(piece.s3Url);
+                          setCompColor(piece.complimentaryColor);
+                        }}
+                      />
+                      <button onClick={(e) => handleDelete(e, piece.id)}>
+                        X
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </div>
       </div>

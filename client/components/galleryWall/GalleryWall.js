@@ -39,7 +39,7 @@ const GalleryWall = () => {
   //#region Save Wall Feature
   //--------------------------------------------------
 
-  const [wallName, setWallName] = useState("Untitled");
+  const [wallName, setWallName] = useState("Give your wall a name");
 
   /**
    * `handleSaveWall` is a React event handler that dispatches a thunk `saveWallAsync` to POST the current user's wall to the db
