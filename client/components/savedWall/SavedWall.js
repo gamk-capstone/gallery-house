@@ -22,12 +22,12 @@ const SavedWall = () => {
   const dispatch = useDispatch();
   const { wallId } = useParams();
 
-  //Redux state
+  //redux state
   const { id } = useSelector((state) => state.auth.me);
   const username = useSelector((state) => state.auth.me.username);
   const wall = useSelector(selectSavedWall);
 
-  //Local state that is used in this component
+  //local state that is used in this component
   const [saved, setSaved] = useState(true);
   const [savedUrls, setSavedUrls] = useState(null);
   const [generate, setGenerate] = useState(null);

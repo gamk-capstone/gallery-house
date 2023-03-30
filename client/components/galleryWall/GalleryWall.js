@@ -5,10 +5,6 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styles from "../styles/GalleryWall.module.css";
 
-//Environment vairables
-// const accessKey = process.env.ACCESS_KEY_ID;
-// const secretKey = process.env.SECRET_ACCESS_KEY;
-
 //Imported Components
 import FiveImgGalleryWall from "./FiveImgGalleryWall";
 import SixImgGalleryWall from "./SixImgGalleryWall";
@@ -19,10 +15,8 @@ import SavedEtsyArt from "../savedEtsyArt/SavedEtsyArt";
 import SaveWallForm from "../saveWallForm/index";
 
 //Imported Files
-import { createUserArtAsync } from "../userArt/allUsersArtSlice";
 import { fetchEtsyImages } from "./galleryWallSlice";
 import { saveWallAsync } from "../savedWalls/savedWallsSlice";
-import EtsyArt from "../etsyArt/EtsyArt";
 
 /**
  * GalleryWall component
@@ -131,34 +125,6 @@ const GalleryWall = () => {
   };
 
   //#endregion Generate Feature
-
-  //--------------------------------------------------
-  //#region User Art Feature
-  //--------------------------------------------------
-
-  const [file, setFile] = useState([]);
-
-  const uploadFile = (e) => {
-    e.preventDefault();
-
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("id", id);
-
-    console.log(formData);
-
-    dispatch(
-      createUserArtAsync(formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      })
-    );
-  };
-
-  const fileSelectedHandler = (event) => {
-    setFile(event.target.files[0]);
-  };
-
-  //#endregion User Art Feature
 
   //--------------------------------------------------
   //#region Layout
@@ -332,19 +298,6 @@ const GalleryWall = () => {
 
       <div className={styles.userArtContainer}>
         <MyArt setImageUrl={setImageUrl} setCompColor={setCompColor} />
-        <div className={styles.artUploader}>
-          <form method="post" action="#" onSubmit={uploadFile}>
-            <label className={styles.fileUpload}>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={fileSelectedHandler}
-              />
-              Choose file
-            </label>
-            <button className={styles.submitBtn}>Upload ⇪</button>
-          </form>
-        </div>
       </div>
 
       <div className={styles.vertLine}></div>
