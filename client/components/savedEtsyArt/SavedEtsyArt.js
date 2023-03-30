@@ -3,8 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   fetchSavedEtsyArtAsync,
   selectSavedEtsyArt,
-  deleteSavedEtsyArtAsync
+  deleteSavedEtsyArtAsync,
 } from "./savedEtsyArtSlice";
+import styles from "../styles/SavedEtsyArt.module.css";
 
 const SavedEtsyArt = ({ setImageUrl }) => {
   const username = useSelector((state) => state.auth.me.username);
@@ -16,14 +17,19 @@ const SavedEtsyArt = ({ setImageUrl }) => {
     dispatch(fetchSavedEtsyArtAsync(id));
   }, [dispatch, id]);
 
-
   const RenderSavedEtsyArt = () => {
     if (savedEtsyArt?.length === 0) {
-      return <h2>You haven't saved any Etsy art yet.</h2>;
+      return (
+        <h2 className={styles.savedArtH2}>
+          You haven't saved any Etsy art yet.
+        </h2>
+      );
     }
     return (
       <div>
-        <h2>You have {savedEtsyArt?.length} piece(s) of Etsy art saved.</h2>
+        <h2 className={styles.savedArtH2}>
+          You have {savedEtsyArt?.length} piece(s) of Etsy art saved.
+        </h2>
         <div>
           {savedEtsyArt?.map((piece) => {
             return (
@@ -37,7 +43,11 @@ const SavedEtsyArt = ({ setImageUrl }) => {
                   <a href={piece.purchaseUrl} target="_blank">
                     <button>Nav</button>
                   </a>
-                  <button onClick={() => dispatch(deleteSavedEtsyArtAsync(piece.id))}>Unlike</button>
+                  <button
+                    onClick={() => dispatch(deleteSavedEtsyArtAsync(piece.id))}
+                  >
+                    Unlike
+                  </button>
                 </section>
               </div>
             );
@@ -47,8 +57,9 @@ const SavedEtsyArt = ({ setImageUrl }) => {
     );
   };
   return (
-    <div className="savedEtsyArt-container">
-      <h1>{`${username}'s Saved Etsy Art`}</h1>
+    <div className={styles.savedArtContainer}>
+      <h1 className={styles.savedArtH1}>{`${username}'s Saved Etsy Art`}</h1>
+      <hr className={styles.hr} />
       <RenderSavedEtsyArt />
     </div>
   );

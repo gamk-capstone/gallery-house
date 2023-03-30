@@ -1,0 +1,25 @@
+.savedArtContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.savedArtH1 {
+  font-family: "le-havre", "sans-serif";
+  font-weight: 700;
+  font-size: 3rem;
+  color: #000000;
+}
+
+.savedArtH2 {
+  font-family: "le-havre", "sans-serif";
+  font-weight: 400;
+  font-size: 2rem;
+  color: #000000;
+}
+
+.hr {
+  color: #6de2d4;
+  border: solid 2px;
+  width: 100%;
+}
