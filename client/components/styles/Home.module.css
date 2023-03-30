@@ -12,7 +12,7 @@
   gap: 1rem;
   background-color: #edcc26;
   width: 60%;
-  padding: 10rem;
+  padding: 5rem;
 }
 
 .homeH1 {
@@ -20,30 +20,30 @@
   font-weight: 400;
   font-style: normal;
   color: #ad368a;
-  font-size: 5rem;
+  font-size: 3rem;
   margin: 0;
 }
 
 .homeH2 {
   font-family: "le-havre", "sans-serif";
   font-weight: 400;
-  font-size: 2rem;
+  font-size: 1rem;
   color: #ad368a;
 }
 
 .startCreatingBtn {
   background-color: #edcc26;
-  padding: 10px 20px;
+  padding: 5px 10px;
   text-align: center;
   color: #ad368a;
   border-style: solid;
-  border-width: 3px;
+  border-width: 2px;
   border-radius: 32px;
   border-color: #ad368a;
   font-family: "le-havre", "sans-serif";
   font-weight: 400;
-  font-size: 2rem;
-  width: 15rem;
+  font-size: 1rem;
+  max-width: 10rem;
 }
 
 .startCreatingBtn:hover {

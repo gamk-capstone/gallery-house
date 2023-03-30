@@ -10,7 +10,7 @@
   font-family: "le-havre", "sans-serif";
   font-weight: 700;
   color: #fa67ce;
-  font-size: 2rem;
+  font-size: 1rem;
 }
 
 .authFormContainer {
@@ -19,9 +19,9 @@
   align-items: center;
   gap: 1rem;
   background-color: #edcc26;
-  padding: 3rem;
+  padding: 1.5rem;
   gap: 1rem;
-  width: 30rem;
+  width: 15rem;
 }
 
 .authFormLinksContainer {
@@ -30,14 +30,14 @@
   justify-content: space-between;
   align-items: center;
   gap: 2rem;
-  height: 3rem;
+  height: 1.5rem;
 }
 
 .authFormLink {
   color: #000000;
   font-family: "le-havre", "sans-serif";
-  font-weight: 400;
-  font-size: 2.5rem;
+  font-weight: 700;
+  font-size: 1.25rem;
   text-decoration: none;
 }
 
@@ -48,11 +48,11 @@
 
 .authFormDot {
   color: #fa67ce;
-  font-size: 3rem;
+  font-size: 1.5rem;
 }
 
 .authFormLine {
-  border: 3px solid #fa67ce;
+  border: 2px solid #fa67ce;
   width: 100%;
 }
 
@@ -60,7 +60,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .authFormFieldsContainer {
@@ -70,22 +70,22 @@
 }
 
 .formFieldLabel {
-  max-width: 10rem;
+  max-width: 12rem;
 }
 
 .formFieldLabelText {
   color: #000000;
   font-family: "le-havre", "sans-serif";
   font-weight: 400;
-  font-size: 2rem;
+  font-size: 1rem;
 }
 
 .formInput {
   color: #000000;
   font-family: "le-havre", "sans-serif";
   font-weight: 400;
-  font-size: 2rem;
-  padding: 1rem;
+  font-size: 1rem;
+  padding: 0.5rem;
   width: 90%;
   border: none;
 }
@@ -96,16 +96,16 @@
 
 .submitBtn {
   background-color: #edcc26;
-  padding: 10px 20px;
+  padding: 5px 10px;
   text-align: center;
   color: #000000;
   border-style: solid;
-  border-width: 3px;
+  border-width: 2px;
   border-radius: 32px;
   border-color: #fa67ce;
   font-family: "le-havre", "sans-serif";
   font-weight: 400;
-  font-size: 2rem;
+  font-size: 1rem;
 }
 
 .submitBtn:hover {
