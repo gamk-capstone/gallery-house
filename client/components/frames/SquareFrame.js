@@ -25,7 +25,7 @@ const SquareFrame = ({
   const [selected, setSelected] = useState(false);
   const [purchaseUrl, setPurchaseUrl] = useState(null);
   const [thisGenerate, setThisGenerate] = useState(true);
-  const [currentUrl, setCurrentUrl] = useState("./images/white.jpeg");
+  const [currentUrl, setCurrentUrl] = useState("/images/white.jpeg");
 
   //#endregion Local State
 
@@ -95,7 +95,7 @@ const SquareFrame = ({
       {purchaseUrl ? (
         <div>
           <img
-            src={`${selected || generate ? currentUrl : "./images/white.jpeg"}`}
+            src={`${selected || generate ? currentUrl : "/images/white.jpeg"}`}
             className={styles.square}
             onClick={() => {
               if (userArtUrl) {
@@ -117,7 +117,7 @@ const SquareFrame = ({
         </div>
       ) : (
         <img
-          src={`${selected || generate ? currentUrl : "./images/white.jpeg"}`}
+          src={`${selected || generate ? currentUrl : "/images/white.jpeg"}`}
           className={styles.square}
           onClick={() => {
             if (userArtUrl) {

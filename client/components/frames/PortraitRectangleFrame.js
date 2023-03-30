@@ -25,7 +25,7 @@ const PortraitRectangleFrame = ({
   const { id } = useSelector((state) => state.auth.me);
   const [selected, setSelected] = useState(false);
   const [purchaseUrl, setPurchaseUrl] = useState(null);
-  const [currentUrl, setCurrentUrl] = useState("./images/white.jpeg");
+  const [currentUrl, setCurrentUrl] = useState("/images/white.jpeg");
   const [thisGenerate, setThisGenerate] = useState(true);
 
   //#endregion Local State
@@ -96,7 +96,7 @@ const PortraitRectangleFrame = ({
       {purchaseUrl ? (
         <div>
           <img
-            src={`${selected || generate ? currentUrl : "./images/white.jpeg"}`}
+            src={`${selected || generate ? currentUrl : "/images/white.jpeg"}`}
             className={styles.portraitRectangle}
             onClick={() => {
               if (userArtUrl) {
@@ -123,7 +123,7 @@ const PortraitRectangleFrame = ({
         </div>
       ) : (
         <img
-          src={`${selected || generate ? currentUrl : "./images/white.jpeg"}`}
+          src={`${selected || generate ? currentUrl : "/images/white.jpeg"}`}
           className={styles.portraitRectangle}
           onClick={() => {
             if (userArtUrl) {
