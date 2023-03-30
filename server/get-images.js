@@ -11,8 +11,6 @@ const getMainColors = async (imageUrl, imagePath) => {
     type: "image/jpg",
   };
 
-  console.log("imagePath", imagePath)
-  console.log("path", __dirname.slice(0, __dirname.length - 6))
   const colors = await getColors(path.join(__dirname.slice(0, __dirname.length - 6), imagePath), options);
 
   const getHslValues = (colors) => {
