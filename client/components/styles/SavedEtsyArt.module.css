@@ -23,3 +23,7 @@
   border: solid 2px;
   width: 100%;
 }
+
+.savedArtImg {
+  max-width: 10rem;
+}

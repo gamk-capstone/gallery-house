@@ -36,7 +36,7 @@ const SavedEtsyArt = ({ setImageUrl }) => {
               <div key={piece.id}>
                 <img
                   src={piece.imageUrl}
-                  className="w-40 h-60 p-3 object-cover drop-shadow-md shrink"
+                  className={styles.savedArtImg}
                   onClick={() => setImageUrl(piece.imageUrl)}
                 />
                 <section className="img-buttons">

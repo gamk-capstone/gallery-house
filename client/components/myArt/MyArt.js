@@ -38,7 +38,7 @@ const MyArt = ({ setImageUrl, setCompColor }) => {
               <div>
                 <img
                   src={piece.s3Url}
-                  className="w-40 h-60 p-3 object-cover drop-shadow-md shrink"
+                  className={styles.myArtImg}
                   key={piece.id}
                   onClick={() => {
                     setImageUrl(piece.s3Url);
