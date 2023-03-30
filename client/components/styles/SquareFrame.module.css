@@ -1,8 +1,8 @@
 .square {
-  width: 12rem;
-  height: 12rem;
-  padding: 1rem;
-  border: 2px solid #e2be75;
+  width: 6rem;
+  height: 6rem;
+  padding: 0.5rem;
+  border: 1px solid #e2be75;
   background: linear-gradient(40deg, #bf953f, #fcf6ba, #b38728, #fbf5b7);
   filter: drop-shadow(3px 3px 3px rgb(182, 173, 153));
   object-fit: cover;
