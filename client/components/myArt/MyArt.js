@@ -7,6 +7,7 @@ import {
   deleteUserArtAsync,
   createUserArtAsync,
 } from "../userArt/allUsersArtSlice";
+import styles from "../styles/GalleryWall.module.css";
 
 /**
  * `MyArt` component
@@ -68,12 +69,19 @@ const MyArt = ({ setImageUrl, setCompColor }) => {
     };
 
     return (
-      <div>
-        <form method="post" action="#" onSubmit={uploadFile}>
-          <input type="file" accept="image/*" onChange={fileSelectedHandler} />
-          <button>Upload</button>
-        </form>
-        <div>
+      <div className={styles.userArtContainer}>
+        <div className={styles.artUploader}>
+          <form method="post" action="#" onSubmit={uploadFile}>
+            <label className={styles.fileUpload}>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={fileSelectedHandler}
+              />
+              Choose file
+            </label>
+            <button className={styles.submitBtn}>Upload ⇪</button>
+          </form>
           <h2>You have {art.length} piece(s) of art.</h2>
           <div>
             {art?.map((piece, i) => {
