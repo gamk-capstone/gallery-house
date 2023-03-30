@@ -60,8 +60,6 @@ const GalleryWall = () => {
         filledFrames < selectedNumPhotos &&
         etsyImages.length < selectedNumPhotos
       ) {
-        console.log(filledFrames);
-        console.log(selectedNumPhotos);
         alert(`Your wall isn't complete.`);
       }
       let savedWallImages = [];
@@ -76,7 +74,6 @@ const GalleryWall = () => {
           })
         );
       }
-      console.log(savedWallImages);
       savedWallImages.push(selectedSofa)
       dispatch(
         saveWallAsync({ name: wallName, images: savedWallImages, userId: id })
@@ -238,7 +235,6 @@ const GalleryWall = () => {
     }
   };
 
-  console.log("selectedSofa", selectedSofa);
   //#endregion Sofa
 
   return (

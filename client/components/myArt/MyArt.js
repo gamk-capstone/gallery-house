@@ -47,8 +47,6 @@ const MyArt = ({ setImageUrl, setCompColor }) => {
       formData.append("file", file);
       formData.append("id", id);
 
-      console.log(formData);
-
       dispatch(
         createUserArtAsync(formData, {
           headers: { "Content-Type": "multipart/form-data" },
