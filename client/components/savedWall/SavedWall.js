@@ -57,7 +57,7 @@ const SavedWall = () => {
   useEffect(() => {
     if (images) {
       setNumberOfImages(images.length);
-      setSofa(images[images.length -1 ]);
+      setSofa(images[images.length - 1]);
       if (images.map((i) => i.includes("gamkgalleryhouse"))) {
         setNumberOfImages(images.length - 1);
       }
@@ -71,7 +71,7 @@ const SavedWall = () => {
   console.log("IMAGES", images);
   console.log("NUMBER OF IMAGES", numberOfImages);
   console.log("savedUrls", savedUrls);
-  console.log("SOFA", sofa)
+  console.log("SOFA", sofa);
 
   /**
    * `getNumberForLayout` configures the correct layout based on the number of images in this saved wall.
@@ -170,9 +170,11 @@ const SavedWall = () => {
   };
 
   return (
-    <div className="">
-      {getNumberForLayout()}
-      {getSofaForLayout()}
+    <div className={styles.parentDiv}>
+      <div className={styles.framesSofaContainer}>
+        {getNumberForLayout()}
+        {getSofaForLayout()}
+      </div>
       {wall ? (
         <div>
           {wall.name ? (
