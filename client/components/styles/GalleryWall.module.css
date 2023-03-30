@@ -61,7 +61,7 @@
 }
 
 .sofaImage {
-  width: 1200px;
+  max-width: 600px;
 }
 
 .generateBtn {
