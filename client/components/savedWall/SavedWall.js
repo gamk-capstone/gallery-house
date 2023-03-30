@@ -68,11 +68,6 @@ const SavedWall = () => {
   //#region Layout
   //--------------------------------------------------
 
-  console.log("IMAGES", images);
-  console.log("NUMBER OF IMAGES", numberOfImages);
-  console.log("savedUrls", savedUrls);
-  console.log("SOFA", sofa);
-
   /**
    * `getNumberForLayout` configures the correct layout based on the number of images in this saved wall.
    */

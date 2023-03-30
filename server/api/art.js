@@ -55,7 +55,6 @@ const s3 = new AWS.S3({
 
 //POST route at /api/art/uploadfile uploads to s3 bucket and creates and instance of UserArt model
 router.post("/uploadfile", upload.single("file"), async (req, res) => {
-  console.log("req.file", req.file);
   if (req.file == null) {
     return res.status(400).json({ message: "Please choose the file" });
   }
@@ -72,7 +71,6 @@ router.post("/uploadfile", upload.single("file"), async (req, res) => {
     };
 
     s3.upload(params, function (err, data) {
-      console.log("data", data);
       if (err) {
         throw err;
       }
