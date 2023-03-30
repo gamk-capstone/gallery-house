@@ -7,25 +7,32 @@
 
 .savedWallsContainer {
   background-color: #edcc26;
-  padding: 5rem;
+  padding: 2rem 3rem 2rem 3rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .savedWallsHeader {
   font-family: "hwt-arabesque", sans-serif;
   font-weight: 400;
   color: #ad368a;
-  font-size: 3rem;
+  font-size: 1.5rem;
+}
+
+.savedWallContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
 }
 
 .savedWallsNameLink {
   font-family: "le-havre", "sans-serif";
   font-weight: 400;
   color: #000000;
-  font-size: 2rem;
+  font-size: 1.25rem;
   text-decoration: none;
 }
 
@@ -35,16 +42,17 @@
 
 .deleteBtn {
   background-color: #edcc26;
-  border-radius: 50%;
-  padding: 0rem 1rem 0.25rem 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding-bottom: 0.25rem;
   text-align: center;
   color: #000000;
   border-style: solid;
-  border-width: 3px;
+  border-width: 2px;
   border-color: #fa67ce;
   font-family: "le-havre", "sans-serif";
   font-weight: 400;
-  font-size: 2rem;
+  font-size: 1rem;
 }
 
 .deleteBtn:hover {
