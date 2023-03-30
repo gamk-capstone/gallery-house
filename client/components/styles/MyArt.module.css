@@ -1,14 +1,15 @@
-.myArtContainer {
+.parentDiv {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .myArtH1 {
   font-family: "le-havre", "sans-serif";
   font-weight: 700;
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: #000000;
+  margin: 0;
 }
 
 .myArtH2 {
@@ -20,22 +21,34 @@
 
 .hr {
   color: #6de2d4;
-  border: solid 2px;
+  border: solid 1px;
   width: 100%;
 }
 
-.myArtImg {
-  max-width: 10rem;
+.numImagesContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .userArtContainer {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.myArtImg {
+  width: 5rem;
+  height: 7rem;
+  object-fit: cover;
 }
 
 .artUploader {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  gap: 1rem;
 }
 
 input[type="file"] {
@@ -46,11 +59,11 @@ input[type="file"] {
 .fileUpload {
   background-color: #fa67ce;
   color: #000000;
-  padding: 10px 20px;
+  padding: 5px 10px;
   text-align: center;
   font-family: "le-havre", "sans-serif";
   font-weight: 400;
-  font-size: 1rem;
+  font-size: 0.75rem;
   border: none;
   border-radius: 32px;
 }
@@ -58,4 +71,6 @@ input[type="file"] {
 .submitBtn:hover,
 .fileUpload:hover {
   cursor: pointer;
+  border: solid 1px #fa67ce;
+  background-color: #ffffff;
 }
