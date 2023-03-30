@@ -67,7 +67,8 @@ const MyArt = ({ setImageUrl, setCompColor }) => {
     };
 
     return (
-      <div className={styles.userArtContainer}>
+      <div className={styles.parentDiv}>
+        <hr className={styles.hr} />
         <div>
           <form
             method="post"
@@ -85,11 +86,11 @@ const MyArt = ({ setImageUrl, setCompColor }) => {
             </label>
             <button className={styles.submitBtn}>Upload ⇪</button>
           </form>
-          <div className={styles.imagesContainer}>
+          <div className={styles.numImagesContainer}>
             <h2 className={styles.myArtH2}>
               You have {art.length} piece(s) of art.
             </h2>
-            <div>
+            <div className={styles.userArtContainer}>
               {art?.map((piece, i) => {
                 return (
                   <div key={`inside myArt list-${i}`}>
@@ -114,9 +115,8 @@ const MyArt = ({ setImageUrl, setCompColor }) => {
     );
   };
   return (
-    <div className={styles.myArtContainer}>
+    <div className={styles.parentDiv}>
       <h1 className={styles.myArtH1}>{`${username}'s Art`}</h1>
-      <hr className={styles.hr} />
       <RenderArt />
     </div>
   );
