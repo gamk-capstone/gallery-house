@@ -26,7 +26,7 @@ const SavedEtsyArt = ({ setImageUrl }) => {
       );
     }
     return (
-      <div>
+      <div className={styles.savedArtContainer}>
         <h2 className={styles.savedArtH2}>
           You have {savedEtsyArt?.length} piece(s) of Etsy art saved.
         </h2>
