@@ -33,7 +33,6 @@ const getMainColors = async (imageUrl, imagePath) => {
       type: "image/gif",
     };
   };
-
   const colors = await getColors(imageUrl, options);
 
   const getHslValues = (colors) => {

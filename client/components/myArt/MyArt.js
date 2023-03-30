@@ -60,17 +60,7 @@ const MyArt = ({ setImageUrl, setCompColor }) => {
     };
 
     const fileSelectedHandler = (event) => {
-      // const name = event.target.files[0].name;
-      // console.log(name.slice(name.length - 4, name.length));
-      // if (
-      //   !name.slice(name.length - 3, name.length - 1) === "jpg" ||
-      //   !name.slice(name.length - 4, name.length - 1) === "jpeg"
-      // ) {
-      //   alert(`Please upload an image file with extension .jpg or .jpeg.`);
-      //   return;
-      // } else {
-        setFile(event.target.files[0]);
-      // }
+      setFile(event.target.files[0]);
     };
 
     //#endregion User Art Upload Feature
