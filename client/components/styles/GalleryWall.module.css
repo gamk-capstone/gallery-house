@@ -8,6 +8,7 @@
 .framesSofaToolbarContainer {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .framesSofaContainer {
@@ -17,7 +18,9 @@
 
 .toolbarContainer {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2rem;
 }
 
 .toolbarFrames {
