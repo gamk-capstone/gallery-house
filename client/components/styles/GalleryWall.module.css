@@ -116,3 +116,16 @@ input[type="file"] {
 .fileUpload:hover {
   cursor: pointer;
 }
+
+.complimentaryArtH1 {
+  font-family: "le-havre", "sans-serif";
+  font-weight: 700;
+  font-size: 2rem;
+  color: #000000;
+}
+
+.hr {
+  color: #6de2d4;
+  border: solid 2px;
+  width: 100%;
+}
