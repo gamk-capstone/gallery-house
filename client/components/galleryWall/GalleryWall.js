@@ -236,6 +236,8 @@ const GalleryWall = () => {
         );
     }
   };
+
+  console.log("selectedSofa", selectedSofa)
   //#endregion Sofa
 
   return (
