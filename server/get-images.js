@@ -8,7 +8,7 @@ const getColors = require("get-image-colors");
 const getMainColors = async (imageUrl) => {
   const options = {
     count: 4,
-    type: "image/jpeg" || "image/jpg" || "image/png",
+    type: "image/png",
   };
 
   const colors = await getColors(imageUrl, options);
