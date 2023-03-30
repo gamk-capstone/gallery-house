@@ -238,7 +238,6 @@ const GalleryWall = () => {
   };
   //#endregion Sofa
 
-  // return (
   return (
     <div className={styles.parentDiv}>
       <div className={styles.framesSofaToolbarContainer}>
@@ -318,94 +317,6 @@ const GalleryWall = () => {
       </div>
     </div>
   );
-  // };
-  //   <div className={styles.parentDiv}>
-  //     <div className={styles.framesSofaToolbarContainer}>
-  //       <div className={styles.framesSofaContainer}>
-  //         {getNumberForLayout()}
-  //         {getSofaForLayout()}
-  //       </div>
-  //       <div className={styles.toolbarSaveContainer}>
-  //         <div className={styles.toolbarContainer}>
-  //           <div className={styles.toolbarFrames}>
-  //             <i className="material-symbols-rounded">filter_5</i>
-  //             <label htmlFor="numberOfFrames"></label>
-  //             <select
-  //               name="numberOfFrames"
-  //               onChange={(e) => {
-  //                 setSelectedNumPhotos(e.target.value);
-  //                 setFilledFrames(0);
-  //               }}
-  //             >
-  //               <option value={5}>-</option>
-  //               <option value={5}>5</option>
-  //               <option value={6}>6</option>
-  //               <option value={7}>7</option>
-  //               <option value={8}>8</option>
-  //             </select>
-  //           </div>
-  //           <div className={styles.toolbarSofa}>
-  //             <i className="material-symbols-rounded">chair</i>
-  //             <label htmlFor="furnitureSelection"></label>
-  //             <select
-  //               name="furnitureSelection"
-  //               onChange={(e) => setSelectedSofa(e.target.value)}
-  //             >
-  //               <option value="sofaBeigeRounded">-</option>
-  //               <option value="sofaBeigeRounded">Sofa Beige Rounded</option>
-  //               <option value="sofaTealVelvet">
-  //                 Mid Century Modern Teal Velvet Sofa
-  //               </option>
-  //               <option value="blushVelvet">Blush Velvet Sofa</option>
-  //               <option value="blackLeather">Black Leather Sofa</option>
-  //               <option value="blueVelvet">Navy Blue Fabric Sofa</option>
-  //               <option value="ovalTable">Oval Dining Table</option>
-  //               <option value="rectangleTable">Rectangle Dining Table</option>
-  //             </select>
-  //           </div>
-  //         </div>
-  //         <div className={styles.saveWallForm}>
-  //           <SaveWallForm
-  //             wallName={wallName}
-  //             setWallName={setWallName}
-  //             handleSaveWall={handleSaveWall}
-  //           ></SaveWallForm>
-  //         </div>
-  //       </div>
-  //     </div>
-  //     <div
-  //       id="frameAndFurnitureContainer"
-  //       className="flex flex-col justify-center"
-  //     >
-  //       {getNumberForLayout()}
-  //       {getSofaForLayout()}
-  //       <div id="userArtStuff">
-  //         {/** Generate art button */}
-  //         <button onClick={(e) => fillFrames(e)}>Generate Art</button>
-  //         <SaveWallForm
-  //           wallName={wallName}
-  //           setWallName={setWallName}
-  //           handleSaveWall={handleSaveWall}
-  //         ></SaveWallForm>
-  //         <MyArt setImageUrl={setImageUrl} setCompColor={setCompColor} />
-  //         <EtsyArt etsyImages={etsyImages} setImageUrl={setImageUrl} />
-  //         <SavedEtsyArt setImageUrl={setImageUrl} />
-  //       </div>
-  //     </div>
-  //     <div className={styles.vertLine}></div>
-  //     <div className={styles.generatedEtsyArtContainer}>
-  //       <h2>Complimentary Art</h2>
-  //       {/** Generate art button */}
-  //       <button onClick={(e) => fillFrames(e)} className={styles.generateBtn}>
-  //         Generate Art
-  //       </button>
-  //     </div>
-  //     <div className={styles.vertLine}></div>
-  //     <div className={styles.savedEtsyArtContainer}>
-  //       <SavedEtsyArt setImageUrl={setImageUrl} />
-  //     </div>
-  //   </div>
-  // );
 };
 
 export default GalleryWall;

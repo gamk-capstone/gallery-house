@@ -117,7 +117,7 @@ router.post("/uploadfile", upload.single("file"), async (req, res) => {
   const s3Url =
     "http://" + bucketName + ".s3.amazonaws.com/" + file.originalname;
 
-  const hslColors = await getMainColors(s3Url);
+  const hslColors = await getMainColors(s3Url, file.path);
   const compColor = complimentaryColor(hslColors[0]);
 
   const userArt = {
