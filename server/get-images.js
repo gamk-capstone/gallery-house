@@ -1,17 +1,19 @@
 const getColors = require("get-image-colors");
-
+const path = require('path')
 /**
  * `getMainColors` takes an imageUrl and returns the hsl values of the image's four main colors.
  * @param {*} imageUrl 
  * @returns an array of arrays containing the hsl values of the given image's fourt main colors
  */
-const getMainColors = async (imageUrl) => {
+const getMainColors = async (imageUrl, imagePath) => {
   const options = {
     count: 4,
     type: "image/jpg",
   };
 
-  const colors = await getColors(imageUrl, options);
+  console.log("imagePath", imagePath)
+  console.log("path", __dirname.slice(0, __dirname.length - 6))
+  const colors = await getColors(path.join(__dirname.slice(0, __dirname.length - 6), imagePath), options);
 
   const getHslValues = (colors) => {
     // `colors` is an array of color objects
