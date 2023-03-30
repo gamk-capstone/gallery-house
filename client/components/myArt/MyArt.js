@@ -31,7 +31,9 @@ const MyArt = ({ setImageUrl, setCompColor }) => {
    */
   const RenderArt = () => {
     if (art.length === 0) {
-      return <h2>You haven't uploaded any art yet.</h2>;
+      return (
+        <h2 className={styles.myArtH2}>You haven't uploaded any art yet.</h2>
+      );
     }
 
     //--------------------------------------------------
@@ -119,6 +121,7 @@ const MyArt = ({ setImageUrl, setCompColor }) => {
   return (
     <div className={styles.parentDiv}>
       <h1 className={styles.myArtH1}>{`${username}'s Art`}</h1>
+      <hr className={styles.hr} />
       <RenderArt />
     </div>
   );
