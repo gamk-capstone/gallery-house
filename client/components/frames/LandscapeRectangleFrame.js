@@ -72,13 +72,14 @@ const LandscapeRectangleFrame = ({
       const myRe =
         /([\w+]+\:\/\/)?([\w\d-]+\.)*[\w-]+[\.\:]\w+([\/\?\=\&\#\.]?[\w-]+)*\/?/gm;
       setCurrentUrl(savedUrls.match(myRe)[0]);
+      setPurchaseUrl(savedUrls.match(myRe)[1]);
     }
     setSelected(false);
   }, [savedUrls]);
 
   return (
     <div>
-      {etsyImages && etsyImages.purchaseUrl ? (
+      {purchaseUrl ? (
         <div>
           <img
             src={`${selected || generate ? currentUrl : "./images/white.jpeg"}`}

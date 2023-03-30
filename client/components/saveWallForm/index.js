@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import styles from "../styles/SavedWallForm.module.css";
 
+/**
+ * SavedWallForm component
+ */
 const SavedWallForm = ({ wallName, setWallName, handleSaveWall }) => {
   return (
     <form onSubmit={handleSaveWall}>
