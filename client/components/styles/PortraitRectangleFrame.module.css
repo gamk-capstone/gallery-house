@@ -1,4 +1,10 @@
-.portraitRectangle {
+.container {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.container img {
   width: 12rem;
   height: 17rem;
   padding: 1rem;
@@ -6,4 +12,21 @@
   background: linear-gradient(50deg, #bf953f, #fcf6ba, #b38728, #fbf5b7);
   filter: drop-shadow(3px 3px 3px rgb(182, 173, 153));
   object-fit: cover;
+  filter: brightness(100%);
+}
+
+.buttons {
+  display: none;
+}
+
+.filled:hover img {
+  filter: brightness(65%);
+}
+
+.filled:hover + .buttons, .buttons:hover {
+  display: flex;
+  position: absolute;
+  gap: .25rem;
+  top: 8%;
+  right: 10%;
 }
