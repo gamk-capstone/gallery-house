@@ -10,9 +10,11 @@ import styles from "../styles/Navbar.module.css";
  */
 
 const Navbar = () => {
-  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  //redux state
+  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
 
   /**
    * `logoutAndRedirectHome` dispatches a logout action (removing a user's token from local storage) and navigates a user to the
@@ -29,11 +31,13 @@ const Navbar = () => {
         {isLoggedIn ? (
           <div className={styles.logoLinksContainer}>
             <div className={styles.logoContainer}>
-              <img
-                src="./images/gallery-house.png"
-                alt="Gallery House logo"
-                className={styles.navLogo}
-              />
+              <Link to="/create">
+                <img
+                  src="./images/gallery-house.png"
+                  alt="Gallery House logo"
+                  className={styles.navLogo}
+                />
+              </Link>
               <div className={styles.linksContainer}>
                 {/* The navbar will show these links after a user logs in */}
                 <Link to="/home" className={styles.navLink}>
@@ -58,11 +62,13 @@ const Navbar = () => {
         ) : (
           <div className={styles.logoLinksContainerLoggedOut}>
             <div className={styles.logoContainer}>
-              <img
-                src="./images/gallery-house.png"
-                alt="Gallery House logo"
-                className={styles.navLogo}
-              />
+              <Link to="/home">
+                <img
+                  src="./images/gallery-house.png"
+                  alt="Gallery House logo"
+                  className={styles.navLogo}
+                />
+              </Link>
               <div className={styles.linksContainer}>
                 {/* The navbar will show these links before a user logs in and when a user logs out */}
                 <Link to="/home" className={styles.navLink}>

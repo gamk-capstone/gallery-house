@@ -17,7 +17,7 @@ const Home = () => {
       <div className={styles.boxContainer}>
         <h1 className={styles.homeH1}>So much color, so little time.</h1>
         <h2 className={styles.homeH2}>
-          We match your art to complimentary pieces from Esty sellers, allowing
+          We match your art to complimentary pieces from Etsy sellers, allowing
           you to seamlessly create custom gallery walls informed by color
           theory.
         </h2>

@@ -17,6 +17,10 @@ const LandscapeRectangleExtraWideFrame = ({
   saved,
   savedUrls,
 }) => {
+  //--------------------------------------------------
+  //#region Local State
+  //--------------------------------------------------
+
   const dispatch = useDispatch();
   const { id } = useSelector((state) => state.auth.me);
   const [selected, setSelected] = useState(false);
@@ -24,6 +28,11 @@ const LandscapeRectangleExtraWideFrame = ({
   const [currentUrl, setCurrentUrl] = useState("./images/white.jpeg");
   const [thisGenerate, setThisGenerate] = useState(true);
 
+  //#endregion Local State
+
+  /**
+   * `updateCount` properly iterates the `filledFrames` state based on if this frame is selected
+   */
   const updateCount = () => {
     if (!selected) {
       setFilledFrames(filledFrames + 1);
@@ -32,7 +41,9 @@ const LandscapeRectangleExtraWideFrame = ({
     }
   };
 
-  //Creates a new instance of SavedEtsyArt associated with the user
+  /**
+   *  `handleSave` creates a new instance of SavedEtsyArt associated with the user
+   */ 
   const handleSave = () => {
     dispatch(
       createSavedEtsyArtAsync({
@@ -43,6 +54,7 @@ const LandscapeRectangleExtraWideFrame = ({
     );
   };
 
+  //hook that toggles the `thisGenerate` state to false if this frame contains a user's art. Dependent on `currentUrl` state.
   useEffect(() => {
     const updateFrameStatus = () => {
       //Guard case: If the currentUrl is userArtUrl, set thisGenerate false.
@@ -53,6 +65,7 @@ const LandscapeRectangleExtraWideFrame = ({
     updateFrameStatus();
   }, [currentUrl]);
 
+  //hook that sets the `currentUrl` and `purchaseUrl` with the etsyImages. Depended on `generate` state.
   useEffect(() => {
     const populateWithEtsyImg = () => {
       //If thisGenerate is true, populate this frame.
@@ -67,18 +80,20 @@ const LandscapeRectangleExtraWideFrame = ({
     populateWithEtsyImg();
   }, [generate]);
 
+  //hook that populates the frame with saved art. Dependent on `saveUrls` state.
   useEffect(() => {
     if (savedUrls) {
       const myRe =
         /([\w+]+\:\/\/)?([\w\d-]+\.)*[\w-]+[\.\:]\w+([\/\?\=\&\#\.]?[\w-]+)*\/?/gm;
       setCurrentUrl(savedUrls.match(myRe)[0]);
+      setPurchaseUrl(savedUrls.match(myRe)[1]);
     }
     setSelected(false);
   }, [savedUrls]);
 
   return (
     <div>
-      {etsyImages && !selected ? (
+      {purchaseUrl ? (
         <div>
           <img
             src={`${selected || generate ? currentUrl : "./images/white.jpeg"}`}
