@@ -281,7 +281,7 @@ const GalleryWall = () => {
         </div>
         <div className={styles.toolbarContainer}>
           <div className={styles.toolbarFrames}>
-            <i>filter_5</i>
+            <i className="material-symbols-rounded">filter_5</i>
             <label htmlFor="numberOfFrames"></label>
             <select
               name="numberOfFrames"
@@ -298,7 +298,7 @@ const GalleryWall = () => {
             </select>
           </div>
           <div className={styles.toolbarSofa}>
-            <i>chair</i>
+            <i className="material-symbols-rounded">chair</i>
             <label htmlFor="furnitureSelection"></label>
             <select
               name="furnitureSelection"
@@ -326,24 +326,36 @@ const GalleryWall = () => {
         </div>
       </div>
 
+      <div className={styles.vertLine}></div>
+
       <div className={styles.userArtContainer}>
         <MyArt setImageUrl={setImageUrl} setCompColor={setCompColor} />
         <div className={styles.artUploader}>
           <form method="post" action="#" onSubmit={uploadFile}>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={fileSelectedHandler}
-            />
-            <button>Upload</button>
+            <label className={styles.fileUpload}>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={fileSelectedHandler}
+              />
+              Choose file
+            </label>
+            <button className={styles.submitBtn}>Upload ⇪</button>
           </form>
         </div>
       </div>
 
+      <div className={styles.vertLine}></div>
+
       <div className={styles.generatedEtsyArtContainer}>
+        <h2>Complimentary Art</h2>
         {/** Generate art button */}
-        <button onClick={(e) => fillFrames(e)}>Generate Art</button>
+        <button onClick={(e) => fillFrames(e)} className={styles.generateBtn}>
+          Generate Art
+        </button>
       </div>
+
+      <div className={styles.vertLine}></div>
 
       <div className={styles.savedEtsyArtContainer}>
         <SavedEtsyArt setImageUrl={setImageUrl} />
