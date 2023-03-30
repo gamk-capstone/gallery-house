@@ -25,7 +25,7 @@ const LandscapeRectangleExtraWideFrame = ({
   const { id } = useSelector((state) => state.auth.me);
   const [selected, setSelected] = useState(false);
   const [purchaseUrl, setPurchaseUrl] = useState(null);
-  const [currentUrl, setCurrentUrl] = useState("./images/white.jpeg");
+  const [currentUrl, setCurrentUrl] = useState("/images/white.jpeg");
   const [thisGenerate, setThisGenerate] = useState(true);
 
   //#endregion Local State
@@ -96,7 +96,7 @@ const LandscapeRectangleExtraWideFrame = ({
       {purchaseUrl ? (
         <div>
           <img
-            src={`${selected || generate ? currentUrl : "./images/white.jpeg"}`}
+            src={`${selected || generate ? currentUrl : "/images/white.jpeg"}`}
             className={styles.landscapeExtraWide}
             onClick={() => {
               if (userArtUrl) {
@@ -118,7 +118,7 @@ const LandscapeRectangleExtraWideFrame = ({
         </div>
       ) : (
         <img
-          src={`${selected || generate ? currentUrl : "./images/white.jpeg"}`}
+          src={`${selected || generate ? currentUrl : "/images/white.jpeg"}`}
           className={styles.landscapeExtraWide}
           onClick={() => {
             if (userArtUrl) {

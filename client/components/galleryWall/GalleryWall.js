@@ -32,6 +32,8 @@ const GalleryWall = () => {
   const [imageUrl, setImageUrl] = useState(null);
   const [filledFrames, setFilledFrames] = useState(0);
   const [saved, setSaved] = useState(false);
+  // local state to keep track of the furniture image to render according to user selection
+  const [selectedSofa, setSelectedSofa] = useState("sofaBeigeRounded");
 
   //--------------------------------------------------
   //#region Save Wall Feature
@@ -75,6 +77,7 @@ const GalleryWall = () => {
         );
       }
       console.log(savedWallImages);
+      savedWallImages.push(selectedSofa)
       dispatch(
         saveWallAsync({ name: wallName, images: savedWallImages, userId: id })
       );
@@ -188,8 +191,6 @@ const GalleryWall = () => {
   //#region Sofa
   //--------------------------------------------------
 
-  // local state to keep track of the furniture image to render according to user selection
-  const [selectedSofa, setSelectedSofa] = useState("sofaBeigeRounded");
   /**
    * `getSofaForLayout` switches the imageUrl of the sofa based on a user's input.
    * @returns HTML for the correct sofa image
@@ -237,7 +238,7 @@ const GalleryWall = () => {
     }
   };
 
-  console.log("selectedSofa", selectedSofa)
+  console.log("selectedSofa", selectedSofa);
   //#endregion Sofa
 
   return (
