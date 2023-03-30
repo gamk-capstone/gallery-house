@@ -105,6 +105,4 @@ input[type="file"] {
 .submitBtn:hover,
 .fileUpload:hover {
   cursor: pointer;
-  background-color: #000000;
-  color: #fa67ce;
 }
