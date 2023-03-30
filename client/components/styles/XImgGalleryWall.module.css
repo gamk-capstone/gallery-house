@@ -1,0 +1,29 @@
+.frameLayoutParentDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.frameLayoutTopRow {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 1em;
+}
+
+.frameLayoutMiddleRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+
+.frameLayoutBottomRow {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1em;
+}

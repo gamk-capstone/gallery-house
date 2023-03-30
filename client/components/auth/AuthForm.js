@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { authenticate } from "../../app/store";
 import { Link } from "react-router-dom";
-// import "./auth.css";
+import styles from "../styles/AuthForm.module.css";
 
 /**
  * The `AuthForm` component can be used for Login or Sign Up.
@@ -29,39 +29,43 @@ const AuthForm = ({ name, displayName }) => {
 
   return (
     //HTML for the Login and Sign up form
-    <div className="authPageParentDiv">
-      <p className="authIntroText">
+    <div className={styles.authPageParentDiv}>
+      <p className={styles.authIntroText}>
         Login or sign up to start creating your custom gallery wall.
       </p>
-      <div className="authFormContainer">
-        <div className="authFormLinksContainer">
-          <Link to="/login" className="authFormLink">
+      <div className={styles.authFormContainer}>
+        <div className={styles.authFormLinksContainer}>
+          <Link to="/login" className={styles.authFormLink}>
             Login
           </Link>
-          <p className="authFormDot">●</p>
-          <Link to="/signup" className="authFormLink">
+          <p className={styles.authFormDot}>●</p>
+          <Link to="/signup" className={styles.authFormLink}>
             Sign Up
           </Link>
         </div>
-        <hr className="authFormLine"></hr>
+        <hr className={styles.authFormLine}></hr>
         <form
           onSubmit={handleLoginOrSignUpSubmit}
           name={name}
-          className="authFormForm"
+          className={styles.authFormForm}
         >
-          <div className="authFormFieldsContainer">
-            <label htmlFor="username" className="formFieldLabel">
-              <small className="formFieldLabelText">Username:</small>
+          <div className={styles.authFormFieldsContainer}>
+            <label htmlFor="username" className={styles.formFieldLabel}>
+              <small className={styles.formFieldLabelText}>Username:</small>
             </label>
-            <input name="username" type="text" className="formInput" />
+            <input name="username" type="text" className={styles.formInput} />
           </div>
-          <div className="authFormFieldsContainer">
-            <label htmlFor="password" className="formFieldLabel">
-              <small className="formFieldLabelText">Password:</small>
+          <div className={styles.authFormFieldsContainer}>
+            <label htmlFor="password" className={styles.formFieldLabel}>
+              <small className={styles.formFieldLabelText}>Password:</small>
             </label>
-            <input name="password" type="password" className="formInput" />
+            <input
+              name="password"
+              type="password"
+              className={styles.formInput}
+            />
           </div>
-          <button type="submit" className="submitBtn">
+          <button type="submit" className={styles.submitBtn}>
             {displayName}
           </button>
           {error && <div> {error} </div>}

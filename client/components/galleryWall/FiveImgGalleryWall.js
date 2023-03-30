@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import LandscapeRectangleFrame from "../frames/LandscapeRectangleFrame";
 import SquareFrame from "../frames/SquareFrame";
 import PortraitRectangleFrame from "../frames/PortraitRectangleFrame";
+import styles from "../styles/XImgGalleryWall.module.css";
 
 /**
  * `FiveImgGalleryWall` component
@@ -18,8 +19,8 @@ const FiveImgGalleryWall = ({
   savedUrls,
 }) => {
   return (
-    <div className="frameLayoutParentDiv">
-      <div className="frameLayoutTopRow">
+    <div className={styles.frameLayoutParentDiv}>
+      <div className={styles.frameLayoutTopRow}>
         <LandscapeRectangleFrame
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}
@@ -39,7 +40,7 @@ const FiveImgGalleryWall = ({
           savedUrls={savedUrls ? savedUrls[1] : ""}
         />
       </div>
-      <div className="frameLayoutBottomRow">
+      <div className={styles.frameLayoutBottomRow}>
         <LandscapeRectangleFrame
           userArtUrl={userArtUrl}
           filledFrames={filledFrames}
