@@ -77,7 +77,7 @@ const GalleryWall = () => {
         );
       }
       console.log(savedWallImages);
-      savedWallImages.push(selectedSofa)
+      savedWallImages.push(selectedSofa);
       dispatch(
         saveWallAsync({ name: wallName, images: savedWallImages, userId: id })
       );
@@ -238,7 +238,6 @@ const GalleryWall = () => {
     }
   };
 
-  console.log("selectedSofa", selectedSofa);
   //#endregion Sofa
 
   return (
