@@ -15,7 +15,7 @@ import {
   selectSavedWall,
 } from "../savedWall/savedWallSlice";
 
-import styles from "../styles/GalleryWall.module.css";
+import styles from "../styles/SavedWall.module.css";
 
 /**
  * SavedWall component
@@ -165,23 +165,49 @@ const SavedWall = () => {
   };
 
   return (
-    <div className={styles.parentDiv}>
-      <div className={styles.framesSofaContainer}>
-        {getNumberForLayout()}
-        {getSofaForLayout()}
-      </div>
+    <div>
       {wall ? (
         <div>
           {wall.name ? (
-            <h2>Name: {wall.name}</h2>
+            <div className={styles.parentDiv}>
+              <div className={styles.wallInfo}>
+                <h2 className={styles.savedWallName}>{wall.name}</h2>
+                <div className={styles.createdInfo}>
+                  <p className={styles.updateText}>
+                    Created on {updateCreatedAt()} by {username}.
+                  </p>
+                </div>
+                <hr className={styles.hr} />
+              </div>
+              <div className={styles.sofaFramesContainer}>
+                {getNumberForLayout()}
+                {getSofaForLayout()}
+              </div>
+            </div>
           ) : (
-            <div>This wall doesn't have a name</div>
+            <div className={styles.parentDiv}>
+              <div className={styles.wallInfo}>
+                <h2 className={styles.savedWallNoName}>
+                  This wall doesn't have a name
+                </h2>
+                <div className={styles.createdInfo}>
+                  <p className={styles.updateText}>
+                    Created on {updateCreatedAt()} by {username}.
+                  </p>
+                </div>
+                <hr className={styles.hr} />
+              </div>
+              <div className={styles.sofaFramesContainer}>
+                {getNumberForLayout()}
+                {getSofaForLayout()}
+              </div>
+            </div>
           )}
-          <p>Created on: {updateCreatedAt()}</p>
-          <p> Created by: {username}</p>
         </div>
       ) : (
-        <div>Oops, this wall doesn't exist!</div>
+        <h2 className={styles.savedWallNoName}>
+          Oops, this wall doesn't exist!
+        </h2>
       )}
     </div>
   );

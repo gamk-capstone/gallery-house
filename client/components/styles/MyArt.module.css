@@ -7,7 +7,7 @@
 .myArtH1 {
   font-family: "le-havre", "sans-serif";
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   color: #000000;
   margin: 0;
 }
@@ -22,13 +22,14 @@
 .hr {
   color: #6de2d4;
   border: solid 1px;
-  width: 100%;
+  width: 30%;
 }
 
 .numImagesContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
 }
 
 .userArtContainer {
@@ -39,8 +40,8 @@
 }
 
 .myArtImg {
-  width: 5rem;
-  height: 7rem;
+  width: 7rem;
+  height: 9rem;
   object-fit: cover;
 }
 
@@ -73,4 +74,32 @@ input[type="file"] {
   cursor: pointer;
   border: solid 1px #fa67ce;
   background-color: #ffffff;
+}
+
+.imgContainer {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.buttons {
+  display: none;
+}
+
+.myArtImg:hover + .buttons, .buttons:hover {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  gap: .2rem;
+  top: 26%;
+  right: 31%;
+}
+
+.collapseHeader {
+  background-color: #6de2d4;
+  padding: 6px;
+  cursor: pointer;
+  font-family: "le-havre", "sans-serif";
+  font-weight: 400;
+  width: 65rem;
 }

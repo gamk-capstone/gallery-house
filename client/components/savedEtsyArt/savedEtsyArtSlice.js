@@ -42,6 +42,16 @@ export const deleteSavedEtsyArtAsync = createAsyncThunk(
     }
   });
 
+export const deleteSavedEtsyArtByUrlAsync = createAsyncThunk("deleteSavedEtsyArtByName",
+  async ({ userId, etsyId }) => {
+    try {
+      const { data } = await axios.delete(`api/art/etsy/saved/${userId}/${etsyId}`);
+      return data;
+    } catch (err) {
+      next (err)
+    }
+  })
+
 export const savedEtsyArtSlice = createSlice({
   name: "savedEtsyArt",
   initialState: [],
@@ -57,6 +67,10 @@ export const savedEtsyArtSlice = createSlice({
       const newState = state.filter((savedEtsyArt) => savedEtsyArt.id !== action.payload.id);
       return newState;
     });
+    builder.addCase(deleteSavedEtsyArtByUrlAsync.fulfilled, (state, action) => {
+      const newState = state.filter((savedEtsyArt) => savedEtsyArt.imageUrl !== action.payload.imageUrl);
+      return newState;
+    })
   }
 });
 

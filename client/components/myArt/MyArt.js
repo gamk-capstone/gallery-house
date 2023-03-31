@@ -7,6 +7,7 @@ import {
   deleteUserArtAsync,
   createUserArtAsync,
 } from "../userArt/allUsersArtSlice";
+import { useCollapse } from "react-collapsed";
 import styles from "../styles/MyArt.module.css";
 
 /**
@@ -25,6 +26,9 @@ const MyArt = ({ setImageUrl, setCompColor }) => {
   useEffect(() => {
     dispatch(fetchUserArtAsync(id));
   }, [dispatch, id]);
+
+  // Collapsed state
+  const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
 
   /**
    * `RenderArt` component
@@ -64,7 +68,6 @@ const MyArt = ({ setImageUrl, setCompColor }) => {
 
     return (
       <div className={styles.parentDiv}>
-        <hr className={styles.hr} />
         <div>
           <form
             method="post"
@@ -87,23 +90,30 @@ const MyArt = ({ setImageUrl, setCompColor }) => {
               You have {art.length} piece(s) of art.{" "}
             </h2>
             {art.length === 0 ? (
-              <span>You haven't uploaded any art yet.</span>
+              <h2 className={styles.myArtH2}>
+                You haven't uploaded any art yet.
+              </h2>
             ) : (
               <div className={styles.userArtContainer}>
                 {art?.map((piece, i) => {
                   return (
-                    <div key={`inside myArt list-${i}`}>
+                    <div className={styles.imgContainer} key={`inside myArt list-${i}`}>
                       <img
                         src={piece.s3Url}
                         className={styles.myArtImg}
-                        onClick={() => {
-                          setImageUrl(piece.s3Url);
-                          setCompColor(piece.complimentaryColor);
-                        }}
                       />
-                      <button onClick={(e) => handleDelete(e, piece.id)}>
-                        X
-                      </button>
+                      <section className={styles.buttons}>
+                        <button onClick={() => {
+                          setImageUrl(piece.s3Url);
+                          setCompColor(piece.complimentaryColor);}}>
+                          <span class="material-symbols-outlined">
+                            content_copy
+                          </span>
+                        </button>
+                        <button onClick={(e) => handleDelete(e, piece.id)}>
+                          <span class="material-symbols-outlined">delete</span>
+                        </button>
+                      </section>
                     </div>
                   );
                 })}
@@ -115,9 +125,19 @@ const MyArt = ({ setImageUrl, setCompColor }) => {
     );
   };
   return (
-    <div className={styles.parentDiv}>
-      <h1 className={styles.myArtH1}>{`${username}'s Art`}</h1>
-      <RenderArt />
+    <div>
+      <div className={styles.collapseHeader} {...getToggleProps()}>
+        {isExpanded ? "Collapse ^" : "Upload and View Your Art ⌄"}
+      </div>
+      <div {...getCollapseProps()}>
+        <div>
+          <div className={styles.parentDiv}>
+            <h1 className={styles.myArtH1}>{`${username}'s Art`}</h1>
+            <hr className={styles.hr} />
+            <RenderArt />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

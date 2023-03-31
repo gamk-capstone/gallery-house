@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createSavedEtsyArtAsync } from "../savedEtsyArt/savedEtsyArtSlice";
+import { createSavedEtsyArtAsync, deleteSavedEtsyArtByUrlAsync } from "../savedEtsyArt/savedEtsyArtSlice";
 import styles from "../styles/LandscapeRectangleExtraWideFrame.module.css";
 
 /**
@@ -27,6 +27,8 @@ const LandscapeRectangleExtraWideFrame = ({
   const [purchaseUrl, setPurchaseUrl] = useState(null);
   const [currentUrl, setCurrentUrl] = useState("/images/white.jpeg");
   const [thisGenerate, setThisGenerate] = useState(true);
+  const [locked, setLocked] = useState(false);
+  const [liked, setLiked] = useState(false);
 
   //#endregion Local State
 
@@ -50,6 +52,15 @@ const LandscapeRectangleExtraWideFrame = ({
         imageUrl: currentUrl,
         purchaseUrl: purchaseUrl,
         userId: id,
+      })
+    );
+  };
+
+  const handleDelete = () => {
+    dispatch(
+      deleteSavedEtsyArtByUrlAsync({
+        userId: id,
+        etsyId: etsyImages.id
       })
     );
   };
@@ -93,11 +104,135 @@ const LandscapeRectangleExtraWideFrame = ({
 
   return (
     <div>
-      {purchaseUrl ? (
-        <div>
+      {etsyImages ? (
+        !selected ? (
+          <div
+            className={
+              currentUrl === "./images/white.jpeg"
+                ? styles.container
+                : `${styles.container} ${styles.filled}`
+            }
+          >
+            <img
+              src={`${
+                selected || generate ? currentUrl : "./images/white.jpeg"
+              }`}
+              className={
+                currentUrl === "./images/white.jpeg"
+                  ? styles.landscapeExtraWide
+                  : `${styles.landscapeExtraWide} ${styles.filled}`
+              }
+              onClick={() => {
+                if (userArtUrl) {
+                  setCurrentUrl(userArtUrl);
+                  setSelected(!selected);
+                  updateCount();
+                }
+              }}
+            />
+            <section className={styles.buttons}>
+              <a href={purchaseUrl} target="_blank">
+                <button>
+                  <span className="material-symbols-outlined">
+                    shopping_cart
+                  </span>
+                </button>
+              </a>
+              <button
+                onClick={() => {
+                  setThisGenerate(!thisGenerate);
+                  setSelected(!selected);
+                  setLocked(!locked);
+                }}
+              >
+                <span className="material-symbols-outlined">
+                  {locked ? "lock" : "lock_open"}
+                </span>
+              </button>
+              <button
+                onClick={() => {
+                  if (liked) {
+                    handleDelete();
+                  } handleSave();
+                  setLiked(!liked);
+                }}
+              >
+                <span className="material-symbols-outlined">
+                  {liked ? "heart_broken" : "favorite"}
+                </span>
+              </button>
+            </section>
+          </div>
+        ) : (
+          <div
+            className={
+              currentUrl === "./images/white.jpeg"
+                ? styles.container
+                : `${styles.container} ${styles.filled}`
+            }
+          >
+            <img
+              src={`${
+                selected || generate ? currentUrl : "./images/white.jpeg"
+              }`}
+              className={
+                currentUrl === "./images/white.jpeg"
+                  ? styles.landscapeExtraWide
+                  : `${styles.landscapeExtraWide} ${styles.filled}`
+              }
+              onClick={() => {
+                if (userArtUrl) {
+                  setCurrentUrl(userArtUrl);
+                  setSelected(!selected);
+                  updateCount();
+                }
+              }}
+            />
+            <section className={styles.buttons}>
+              <a href={purchaseUrl} target="_blank">
+                <button>
+                  <span className="material-symbols-outlined">
+                    shopping_cart
+                  </span>
+                </button>
+              </a>
+              <button
+                onClick={() => {
+                  setThisGenerate(!thisGenerate);
+                  setSelected(!selected);
+                }}
+              >
+                <span
+                  className="material-symbols-outlined"
+                  onClick={() => setLocked(!locked)}
+                >
+                  {locked ? "lock" : "lock_open"}
+                </span>
+              </button>
+              <button
+                onClick={() => {
+                  if (liked) {
+                    handleDelete();
+                  } handleSave();
+                  setLiked(!liked);
+                }}
+              >
+                <span className="material-symbols-outlined">
+                  {liked ? "heart_broken" : "favorite"}
+                </span>
+              </button>
+            </section>
+          </div>
+        )
+      ) : (
+        <div className={styles.container}>
           <img
-            src={`${selected || generate ? currentUrl : "/images/white.jpeg"}`}
-            className={styles.landscapeExtraWide}
+            src={`${selected || generate ? currentUrl : "./images/white.jpeg"}`}
+            className={
+              currentUrl === "./images/white.jpeg"
+                ? styles.landscapeExtraWide
+                : `${styles.landscapeExtraWide} ${styles.filled}`
+            }
             onClick={() => {
               if (userArtUrl) {
                 setCurrentUrl(userArtUrl);
@@ -106,28 +241,7 @@ const LandscapeRectangleExtraWideFrame = ({
               }
             }}
           />
-          <section className="img-buttons">
-            <a href={purchaseUrl} target="_blank">
-              <button>Nav</button>
-            </a>
-            <button onClick={() => setThisGenerate(!thisGenerate)}>
-              Lock/Unlock
-            </button>
-            <button onClick={handleSave}>Like</button>
-          </section>
         </div>
-      ) : (
-        <img
-          src={`${selected || generate ? currentUrl : "/images/white.jpeg"}`}
-          className={styles.landscapeExtraWide}
-          onClick={() => {
-            if (userArtUrl) {
-              setCurrentUrl(userArtUrl);
-              setSelected(!selected);
-              updateCount();
-            }
-          }}
-        />
       )}
     </div>
   );

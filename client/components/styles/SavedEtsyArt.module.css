@@ -14,7 +14,7 @@
 .savedArtH1 {
   font-family: "le-havre", "sans-serif";
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   color: #000000;
   margin: 0;
 }
@@ -29,11 +29,39 @@
 .hr {
   color: #6de2d4;
   border: solid 1px;
-  width: 100%;
+  width: 30%;
 }
 
 .savedArtImg {
-  width: 5rem;
-  height: 7rem;
+  width: 7rem;
+  height: 9rem;
   object-fit: cover;
+}
+
+.imgContainer {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.buttons {
+  display: none;
+}
+
+.savedArtImg:hover + .buttons, .buttons:hover {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  gap: .2rem;
+  top: 13%;
+  right: 31%;
+}
+
+.collapseHeader {
+  background-color: #6de2d4;
+  padding: 6px;
+  cursor: pointer;
+  font-family: "le-havre", "sans-serif";
+  font-weight: 400;
+  width: 65rem;
 }

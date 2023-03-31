@@ -6,7 +6,7 @@ import { me } from "./store";
 import Home from "../components/home/Home";
 import GalleryWall from "../components/galleryWall/GalleryWall";
 import SavedWalls from "../components/savedWalls/SavedWalls";
-import SavedWall from "../components/savedWall/SavedWall"
+import SavedWall from "../components/savedWall/SavedWall";
 import Toolbar from "../components/toolbar/Toolbar";
 import SaveWallForm from "../components/saveWallForm/index";
 /**
@@ -43,7 +43,6 @@ const AppRoutes = () => {
 
           {/* The /saved/:wallId route brings a user to the `SavedWalls` component */}
           <Route path="/saved/:wallId" element={<SavedWall />} />
-
         </Routes>
       ) : (
         //A guest (or logged-out) user's routes:
@@ -60,7 +59,6 @@ const AppRoutes = () => {
             path="/signup"
             element={<AuthForm name="signup" displayName="Sign Up" />}
           />
-          <Route path="/toolbar" element={<Toolbar />} />
         </Routes>
       )}
     </div>

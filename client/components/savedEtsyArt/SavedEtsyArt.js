@@ -5,6 +5,7 @@ import {
   selectSavedEtsyArt,
   deleteSavedEtsyArtAsync,
 } from "./savedEtsyArtSlice";
+import { useCollapse } from "react-collapsed";
 import styles from "../styles/SavedEtsyArt.module.css";
 
 const SavedEtsyArt = ({ setImageUrl }) => {
@@ -16,6 +17,9 @@ const SavedEtsyArt = ({ setImageUrl }) => {
   useEffect(() => {
     dispatch(fetchSavedEtsyArtAsync(id));
   }, [dispatch, id]);
+
+  // Collapsed state
+  const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
 
   const RenderSavedEtsyArt = () => {
     if (savedEtsyArt?.length === 0) {
@@ -33,20 +37,29 @@ const SavedEtsyArt = ({ setImageUrl }) => {
         <div>
           {savedEtsyArt?.map((piece) => {
             return (
-              <div key={piece.id}>
+              <div className={styles.imgContainer} key={piece.id}>
                 <img
                   src={piece.imageUrl}
                   className={styles.savedArtImg}
-                  onClick={() => setImageUrl(piece.imageUrl)}
                 />
-                <section className="img-buttons">
+                <section className={styles.buttons}>
+                <button onClick={() => {
+                          setImageUrl(piece.imageUrl);}}>
+                          <span class="material-symbols-outlined">
+                            content_copy
+                          </span>
+                        </button>
                   <a href={piece.purchaseUrl} target="_blank">
-                    <button>Nav</button>
+                    <button><span className="material-symbols-outlined">
+                    shopping_cart
+                  </span></button>
                   </a>
                   <button
                     onClick={() => dispatch(deleteSavedEtsyArtAsync(piece.id))}
                   >
-                    Unlike
+                   <span className="material-symbols-outlined">
+                  heart_broken
+                </span>
                   </button>
                 </section>
               </div>
@@ -57,10 +70,21 @@ const SavedEtsyArt = ({ setImageUrl }) => {
     );
   };
   return (
-    <div className={styles.savedArtContainer}>
-      <h1 className={styles.savedArtH1}>{`${username}'s Saved Etsy Art`}</h1>
-      <hr className={styles.hr} />
-      <RenderSavedEtsyArt />
+    <div>
+      <div className={styles.collapseHeader} {...getToggleProps()}>
+        {isExpanded ? "Collapse ^" : "View Your Saved Etsy Art ⌄"}
+      </div>
+      <div {...getCollapseProps()}>
+        <div>
+          <div className={styles.savedArtContainer}>
+            <h1
+              className={styles.savedArtH1}
+            >{`${username}'s Saved Etsy Art`}</h1>
+            <hr className={styles.hr} />
+            <RenderSavedEtsyArt />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
