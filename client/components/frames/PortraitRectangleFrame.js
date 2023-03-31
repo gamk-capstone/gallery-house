@@ -20,6 +20,7 @@ const PortraitRectangleFrame = ({
   generate,
   saved,
   savedUrls,
+  setImageUrl
 }) => {
   //--------------------------------------------------
   //#region Local State
@@ -131,6 +132,7 @@ const PortraitRectangleFrame = ({
                   setCurrentUrl(userArtUrl);
                   setSelected(!selected);
                   updateCount();
+                  setImageUrl(null);
                 }
               }}
             />
@@ -189,6 +191,8 @@ const PortraitRectangleFrame = ({
                   setCurrentUrl(userArtUrl);
                   setSelected(!selected);
                   updateCount();
+                  setImageUrl(null);
+                  
                 }
               }}
             />
@@ -242,6 +246,7 @@ const PortraitRectangleFrame = ({
                 setCurrentUrl(userArtUrl);
                 setSelected(!selected);
                 updateCount();
+                setImageUrl(null);
               }
             }}
           />

@@ -11,6 +11,7 @@ const SquareFrame = ({
   etsyImages,
   saved,
   savedUrls,
+  setImageUrl
 }) => {
 
   //--------------------------------------------------
@@ -124,6 +125,7 @@ const SquareFrame = ({
                   setCurrentUrl(userArtUrl);
                   setSelected(!selected);
                   updateCount();
+                  setImageUrl(null);
                 }
               }}
             />
@@ -182,6 +184,7 @@ const SquareFrame = ({
                   setCurrentUrl(userArtUrl);
                   setSelected(!selected);
                   updateCount();
+                  setImageUrl(null);
                 }
               }}
             />
@@ -235,6 +238,7 @@ const SquareFrame = ({
                 setCurrentUrl(userArtUrl);
                 setSelected(!selected);
                 updateCount();
+                setImageUrl(null);
               }
             }}
           />

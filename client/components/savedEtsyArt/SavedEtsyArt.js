@@ -45,7 +45,7 @@ const SavedEtsyArt = ({ setImageUrl }) => {
                 <section className={styles.buttons}>
                 <button onClick={() => {
                           setImageUrl(piece.imageUrl);}}>
-                          <span class="material-symbols-outlined">
+                          <span className="material-symbols-outlined">
                             content_copy
                           </span>
                         </button>

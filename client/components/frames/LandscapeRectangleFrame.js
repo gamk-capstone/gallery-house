@@ -16,6 +16,7 @@ const LandscapeRectangleFrame = ({
   generate,
   saved,
   savedUrls,
+  setImageUrl
 }) => {
   const dispatch = useDispatch();
   const { id } = useSelector((state) => state.auth.me);
@@ -124,6 +125,7 @@ const LandscapeRectangleFrame = ({
                   setCurrentUrl(userArtUrl);
                   setSelected(!selected);
                   updateCount();
+                  setImageUrl(null);
                 }
               }}
             />
@@ -182,6 +184,7 @@ const LandscapeRectangleFrame = ({
                   setCurrentUrl(userArtUrl);
                   setSelected(!selected);
                   updateCount();
+                  setImageUrl(null);
                 }
               }}
             />
@@ -235,6 +238,7 @@ const LandscapeRectangleFrame = ({
                 setCurrentUrl(userArtUrl);
                 setSelected(!selected);
                 updateCount();
+                setImageUrl(null);
               }
             }}
           />
