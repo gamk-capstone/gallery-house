@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createSavedEtsyArtAsync, deleteSavedEtsyArtByUrlAsync } from "../savedEtsyArt/savedEtsyArtSlice";
+import {
+  createSavedEtsyArtAsync,
+  deleteSavedEtsyArtByUrlAsync,
+} from "../savedEtsyArt/savedEtsyArtSlice";
 import styles from "../styles/LandscapeRectangleExtraWideFrame.module.css";
 
 /**
@@ -45,7 +48,7 @@ const LandscapeRectangleExtraWideFrame = ({
 
   /**
    *  `handleSave` creates a new instance of SavedEtsyArt associated with the user
-   */ 
+   */
   const handleSave = () => {
     dispatch(
       createSavedEtsyArtAsync({
@@ -60,7 +63,7 @@ const LandscapeRectangleExtraWideFrame = ({
     dispatch(
       deleteSavedEtsyArtByUrlAsync({
         userId: id,
-        etsyId: etsyImages.id
+        etsyId: etsyImages.id,
       })
     );
   };
@@ -133,9 +136,10 @@ const LandscapeRectangleExtraWideFrame = ({
             <section className={styles.buttons}>
               <a href={purchaseUrl} target="_blank">
                 <button>
-                  <span className="material-symbols-outlined">
-                    shopping_cart
-                  </span>
+                  <img
+                    src="./images/icons/cart-icon.png"
+                    className={styles.icon}
+                  />
                 </button>
               </a>
               <button
@@ -153,7 +157,8 @@ const LandscapeRectangleExtraWideFrame = ({
                 onClick={() => {
                   if (liked) {
                     handleDelete();
-                  } handleSave();
+                  }
+                  handleSave();
                   setLiked(!liked);
                 }}
               >
@@ -213,7 +218,8 @@ const LandscapeRectangleExtraWideFrame = ({
                 onClick={() => {
                   if (liked) {
                     handleDelete();
-                  } handleSave();
+                  }
+                  handleSave();
                   setLiked(!liked);
                 }}
               >
