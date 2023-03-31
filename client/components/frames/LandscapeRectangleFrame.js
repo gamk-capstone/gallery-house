@@ -23,7 +23,14 @@ const LandscapeRectangleFrame = ({
   const [purchaseUrl, setPurchaseUrl] = useState(null);
   const [currentUrl, setCurrentUrl] = useState("/images/white.jpeg");
   const [thisGenerate, setThisGenerate] = useState(true);
+  const [locked, setLocked] = useState(false);
+  const [liked, setLiked] = useState(false);
 
+  //#endregion Local State
+
+  /**
+   * `updateCount` properly iterates the `filledFrames` state based on if this frame is selected
+   */
   const updateCount = () => {
     if (!selected) {
       setFilledFrames(filledFrames + 1);
@@ -32,17 +39,30 @@ const LandscapeRectangleFrame = ({
     }
   };
 
-  //Creates a new instance of SavedEtsyArt associated with the user
+  /**
+   * `handleSave` creates a new instance of SavedEtsyArt associated with the user
+   */
   const handleSave = () => {
     dispatch(
       createSavedEtsyArtAsync({
         imageUrl: currentUrl,
         purchaseUrl: purchaseUrl,
         userId: id,
+        etsyId: etsyImages.id
       })
     );
   };
 
+  const handleDelete = () => {
+    dispatch(
+      deleteSavedEtsyArtByUrlAsync({
+        userId: id,
+        etsyId: etsyImages.id
+      })
+    );
+  };
+
+  //hook that toggles the `thisGenerate` state to false if this frame contains a user's art. Dependent on `currentUrl` state.
   useEffect(() => {
     const updateFrameStatus = () => {
       //Guard case: If the currentUrl is userArtUrl, set thisGenerate false.
@@ -53,6 +73,7 @@ const LandscapeRectangleFrame = ({
     updateFrameStatus();
   }, [currentUrl]);
 
+  //hook that sets the `currentUrl` and `purchaseUrl` with the etsyImages. Depended on `generate` state.
   useEffect(() => {
     const populateWithEtsyImg = () => {
       //If thisGenerate is true, populate this frame.
@@ -67,6 +88,7 @@ const LandscapeRectangleFrame = ({
     populateWithEtsyImg();
   }, [generate]);
 
+  //hook that populates the frame with saved art. Dependent on `saveUrls` state.
   useEffect(() => {
     if (savedUrls) {
       const myRe =
@@ -79,11 +101,135 @@ const LandscapeRectangleFrame = ({
 
   return (
     <div>
-      {purchaseUrl ? (
-        <div>
+      {etsyImages ? (
+        !selected ? (
+          <div
+            className={
+              currentUrl === "./images/white.jpeg"
+                ? styles.container
+                : `${styles.container} ${styles.filled}`
+            }
+          >
+            <img
+              src={`${
+                selected || generate ? currentUrl : "./images/white.jpeg"
+              }`}
+              className={
+                currentUrl === "./images/white.jpeg"
+                  ? styles.landscapeRectangle
+                  : `${styles.landscapeRectangle} ${styles.filled}`
+              }
+              onClick={() => {
+                if (userArtUrl) {
+                  setCurrentUrl(userArtUrl);
+                  setSelected(!selected);
+                  updateCount();
+                }
+              }}
+            />
+            <section className={styles.buttons}>
+              <a href={purchaseUrl} target="_blank">
+                <button>
+                  <span className="material-symbols-outlined">
+                    shopping_cart
+                  </span>
+                </button>
+              </a>
+              <button
+                onClick={() => {
+                  setThisGenerate(!thisGenerate);
+                  setSelected(!selected);
+                  setLocked(!locked);
+                }}
+              >
+                <span className="material-symbols-outlined">
+                  {locked ? "lock" : "lock_open"}
+                </span>
+              </button>
+              <button
+                onClick={() => {
+                  if (liked) {
+                    handleDelete();
+                  } handleSave();
+                  setLiked(!liked);
+                }}
+              >
+                <span className="material-symbols-outlined">
+                  {liked ? "heart_broken" : "favorite"}
+                </span>
+              </button>
+            </section>
+          </div>
+        ) : (
+          <div
+            className={
+              currentUrl === "./images/white.jpeg"
+                ? styles.container
+                : `${styles.container} ${styles.filled}`
+            }
+          >
+            <img
+              src={`${
+                selected || generate ? currentUrl : "./images/white.jpeg"
+              }`}
+              className={
+                currentUrl === "./images/white.jpeg"
+                  ? styles.landscapeRectangle
+                  : `${styles.landscapeRectangle} ${styles.filled}`
+              }
+              onClick={() => {
+                if (userArtUrl) {
+                  setCurrentUrl(userArtUrl);
+                  setSelected(!selected);
+                  updateCount();
+                }
+              }}
+            />
+            <section className={styles.buttons}>
+              <a href={purchaseUrl} target="_blank">
+                <button>
+                  <span className="material-symbols-outlined">
+                    shopping_cart
+                  </span>
+                </button>
+              </a>
+              <button
+                onClick={() => {
+                  setThisGenerate(!thisGenerate);
+                  setSelected(!selected);
+                }}
+              >
+                <span
+                  className="material-symbols-outlined"
+                  onClick={() => setLocked(!locked)}
+                >
+                  {locked ? "lock" : "lock_open"}
+                </span>
+              </button>
+              <button
+                onClick={() => {
+                  if (liked) {
+                    handleDelete();
+                  } handleSave();
+                  setLiked(!liked);
+                }}
+              >
+                <span className="material-symbols-outlined">
+                  {liked ? "heart_broken" : "favorite"}
+                </span>
+              </button>
+            </section>
+          </div>
+        )
+      ) : (
+        <div className={styles.container}>
           <img
-            src={`${selected || generate ? currentUrl : "/images/white.jpeg"}`}
-            className={styles.landscapeRectangle}
+            src={`${selected || generate ? currentUrl : "./images/white.jpeg"}`}
+            className={
+              currentUrl === "./images/white.jpeg"
+                ? styles.landscapeRectangle
+                : `${styles.landscapeRectangle} ${styles.filled}`
+            }
             onClick={() => {
               if (userArtUrl) {
                 setCurrentUrl(userArtUrl);
@@ -92,28 +238,7 @@ const LandscapeRectangleFrame = ({
               }
             }}
           />
-          <section className="img-buttons">
-            <a href={purchaseUrl} target="_blank">
-              <button>Nav</button>
-            </a>
-            <button onClick={() => setThisGenerate(!thisGenerate)}>
-              Lock/Unlock
-            </button>
-            <button onClick={handleSave}>Like</button>
-          </section>
         </div>
-      ) : (
-        <img
-          src={`${selected || generate ? currentUrl : "/images/white.jpeg"}`}
-          className={styles.landscapeRectangle}
-          onClick={() => {
-            if (userArtUrl) {
-              setCurrentUrl(userArtUrl);
-              setSelected(!selected);
-              updateCount();
-            }
-          }}
-        />
       )}
     </div>
   );
