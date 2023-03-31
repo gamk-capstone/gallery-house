@@ -1,9 +1,33 @@
+.container {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
 .landscapeExtraWide {
-  width: 10rem;
-  height: 6rem;
-  padding: 0.5rem;
+  width: 17rem;
+  height: 11rem;
+  padding: .75rem;
+  margin: .5rem;
   border: 1px solid #e2be75;
   background: linear-gradient(30deg, #bf953f, #fcf6ba, #b38728, #fbf5b7);
   filter: drop-shadow(3px 3px 3px rgb(182, 173, 153));
   object-fit: cover;
+  filter: brightness(100%);
+}
+
+.buttons {
+  display: none;
+}
+
+.filled:hover img {
+  filter: brightness(65%);
+}
+
+.filled:hover + .buttons, .buttons:hover {
+  display: flex;
+  position: absolute;
+  gap: .2rem;
+  top: 12%;
+  right: 9%;
 }

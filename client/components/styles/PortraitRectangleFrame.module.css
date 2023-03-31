@@ -1,9 +1,33 @@
-.portraitRectangle {
-  width: 6rem;
-  height: 8.5rem;
-  padding: 0.5rem;
+.container {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.container img {
+  width: 11rem;
+  height: 15rem;
+  padding: .75rem;
+  margin: .5rem;
   border: 1px solid #e2be75;
   background: linear-gradient(50deg, #bf953f, #fcf6ba, #b38728, #fbf5b7);
   filter: drop-shadow(3px 3px 3px rgb(182, 173, 153));
   object-fit: cover;
+  filter: brightness(100%);
+}
+
+.buttons {
+  display: none;
+}
+
+.filled:hover img {
+  filter: brightness(65%);
+}
+
+.filled:hover + .buttons, .buttons:hover {
+  display: flex;
+  position: absolute;
+  gap: .2rem;
+  top: 10%;
+  right: 13%;
 }
