@@ -20,7 +20,6 @@ router.get("/user/:userId", async (req, res, next) => {
 //route at /api/walls/:wallId/user/:userId GETS a single instance of Wall model for a single user based on its wallId
 router.get("/:wallId/user/:userId", async (req, res, next) => {
   try {
-    console.log(req.params)
     res.send(await SavedWall.findAll({
       where: {
         id: req.params.wallId,

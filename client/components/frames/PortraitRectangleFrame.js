@@ -28,7 +28,7 @@ const PortraitRectangleFrame = ({
   const { id } = useSelector((state) => state.auth.me);
   const [selected, setSelected] = useState(false);
   const [purchaseUrl, setPurchaseUrl] = useState(null);
-  const [currentUrl, setCurrentUrl] = useState("./images/white.jpeg");
+  const [currentUrl, setCurrentUrl] = useState("/images/white.jpeg");
   const [thisGenerate, setThisGenerate] = useState(true);
   const [locked, setLocked] = useState(false);
   const [liked, setLiked] = useState(false);

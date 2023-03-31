@@ -311,7 +311,6 @@ async function seed() {
   };
 
   const art = await getListingsByListingIds();
-  console.log("art.length", art.length);
 
   /**
    * `getEstyImagesMainColors` uses a callback function `getMainColors` (from /server/get-images.js) to retrieve the four main
@@ -360,7 +359,6 @@ async function seed() {
 
           // if the current value is not a number OR it doesn't exist OR it is not an integer, exit the loop.
           if (isNaN(currValue) || !currValue || !Number.isInteger(currValue)) {
-            // console.log("BREAK____________", colorsFromFn);
             removed++;
             break;
           } //otherwise, continue searching the currValues in the currColor

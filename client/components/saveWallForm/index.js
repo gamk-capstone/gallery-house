@@ -7,9 +7,6 @@ import styles from "../styles/SavedWallForm.module.css";
 const SavedWallForm = ({ wallName, setWallName, handleSaveWall }) => {
   return (
     <form onSubmit={handleSaveWall}>
-      <label htmlFor="wallName" className={styles.label}>
-        Give your wall a name:
-      </label>
       <div className={styles.inputSubmitContainer}>
         {/* Input for wallName value */}
         <input

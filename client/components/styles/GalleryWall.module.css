@@ -1,38 +1,33 @@
 .parentDiv {
   display: flex;
-  flex-direction: row;
-  margin-top: 3rem;
-  gap: 2rem;
-}
-
-.framesSofaToolbarContainer {
-  display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 2rem;
+  gap: 1rem;
 }
 
-.framesSofaContainer {
+.sofaFramesContainer {
   display: flex;
   flex-direction: column;
-}
-
-.toolbarSaveContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
 }
 
 .toolbarContainer {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
   gap: 2rem;
 }
 
 .toolbarFrames {
   display: flex;
   flex-direction: row;
+}
+
+.selectNumFrames,
+.selectSofa {
+  max-height: 1rem;
+  max-width: 3rem;
 }
 
 .toolbarSofa {
@@ -45,16 +40,6 @@
   flex-direction: row;
 }
 
-.vertLine {
-  border: 1px solid #000000;
-  height: 1000px;
-}
-
-.generatedEtsyArtContainer {
-  display: flex;
-  flex-direction: column;
-}
-
 .savedEtsyArtContainer {
   display: flex;
   flex-direction: column;
@@ -65,24 +50,21 @@
 }
 
 .generateBtn {
-  background-color: #ffffff;
-  padding: 10px 20px;
-  text-align: center;
+  background-color: #fa67ce;
   color: #000000;
-  border-style: solid;
-  border-width: 3px;
-  border-radius: 32px;
-  border-color: #fa67ce;
+  padding: 5px 10px;
+  text-align: center;
   font-family: "le-havre", "sans-serif";
   font-weight: 400;
-  font-size: 1rem;
-  width: 60%;
+  font-size: 0.75rem;
+  border: none;
+  border-radius: 32px;
 }
 
 .generateBtn:hover {
   cursor: pointer;
-  border-color: #000000;
-  color: #fa67ce;
+  border: solid 1px #fa67ce;
+  background-color: #ffffff;
 }
 
 input[type="file"] {
@@ -105,13 +87,6 @@ input[type="file"] {
 .submitBtn:hover,
 .fileUpload:hover {
   cursor: pointer;
-}
-
-.complimentaryArtH1 {
-  font-family: "le-havre", "sans-serif";
-  font-weight: 700;
-  font-size: 2rem;
-  color: #000000;
 }
 
 .hr {

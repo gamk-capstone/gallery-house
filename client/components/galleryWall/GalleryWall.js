@@ -32,12 +32,14 @@ const GalleryWall = () => {
   const [imageUrl, setImageUrl] = useState(null);
   const [filledFrames, setFilledFrames] = useState(0);
   const [saved, setSaved] = useState(false);
+  // local state to keep track of the furniture image to render according to user selection
+  const [selectedSofa, setSelectedSofa] = useState("sofaBeigeRounded");
 
   //--------------------------------------------------
   //#region Save Wall Feature
   //--------------------------------------------------
 
-  const [wallName, setWallName] = useState("Untitled");
+  const [wallName, setWallName] = useState("Give your wall a name");
 
   /**
    * `handleSaveWall` is a React event handler that dispatches a thunk `saveWallAsync` to POST the current user's wall to the db
@@ -75,6 +77,7 @@ const GalleryWall = () => {
         );
       }
       console.log(savedWallImages);
+      savedWallImages.push(selectedSofa)
       dispatch(
         saveWallAsync({ name: wallName, images: savedWallImages, userId: id })
       );
@@ -188,8 +191,6 @@ const GalleryWall = () => {
   //#region Sofa
   //--------------------------------------------------
 
-  // local state to keep track of the furniture image to render according to user selection
-  const [selectedSofa, setSelectedSofa] = useState("sofaBeigeRounded");
   /**
    * `getSofaForLayout` switches the imageUrl of the sofa based on a user's input.
    * @returns HTML for the correct sofa image
@@ -236,76 +237,79 @@ const GalleryWall = () => {
         );
     }
   };
+
+  console.log("selectedSofa", selectedSofa);
   //#endregion Sofa
 
   return (
     <div className={styles.parentDiv}>
-      <div className={styles.framesSofaToolbarContainer}>
-        <div className={styles.framesSofaContainer}>
-          {getNumberForLayout()}
-          {getSofaForLayout()}
-        </div>
-        <div className={styles.toolbarSaveContainer}>
-          <div className={styles.toolbarContainer}>
-            <div className={styles.toolbarFrames}>
-              <i className="material-symbols-rounded">filter_5</i>
-              <label htmlFor="numberOfFrames"></label>
-              <select
-                name="numberOfFrames"
-                onChange={(e) => {
-                  setSelectedNumPhotos(e.target.value);
-                  setFilledFrames(0);
-                }}
-              >
-                <option value={5}>-</option>
-                <option value={5}>5</option>
-                <option value={6}>6</option>
-                <option value={7}>7</option>
-                <option value={8}>8</option>
-              </select>
-            </div>
-            <div className={styles.toolbarSofa}>
-              <i className="material-symbols-rounded">chair</i>
-              <label htmlFor="furnitureSelection"></label>
-              <select
-                name="furnitureSelection"
-                onChange={(e) => setSelectedSofa(e.target.value)}
-              >
-                <option value="sofaBeigeRounded">-</option>
-                <option value="sofaBeigeRounded">Sofa Beige Rounded</option>
-                <option value="sofaTealVelvet">
-                  Mid Century Modern Teal Velvet Sofa
-                </option>
-                <option value="blushVelvet">Blush Velvet Sofa</option>
-                <option value="blackLeather">Black Leather Sofa</option>
-                <option value="blueVelvet">Navy Blue Fabric Sofa</option>
-                <option value="ovalTable">Oval Dining Table</option>
-                <option value="rectangleTable">Rectangle Dining Table</option>
-              </select>
-            </div>
-          </div>
-          <div className={styles.saveWallForm}>
-            <SaveWallForm
-              wallName={wallName}
-              setWallName={setWallName}
-              handleSaveWall={handleSaveWall}
-            ></SaveWallForm>
-          </div>
-        </div>
+      {/* save wall */}
+      <div className={styles.saveWallForm}>
+        <SaveWallForm
+          wallName={wallName}
+          setWallName={setWallName}
+          handleSaveWall={handleSaveWall}
+        ></SaveWallForm>
+      </div>
+      <div className={styles.sofaFramesContainer}>
+        {/* frames */}
+        {getNumberForLayout()}
+        {/* sofa */}
+        {getSofaForLayout()}
       </div>
 
-      <div className={styles.vertLine}></div>
-
-      <div className={styles.userArtContainer}>
-        <MyArt setImageUrl={setImageUrl} setCompColor={setCompColor} />
+      {/* toolbar - num frame, furn, generate art */}
+      <div className={styles.toolbarContainer}>
+        <div className={styles.toolbarFrames}>
+          <i className="material-symbols-rounded">filter_5</i>
+          <label htmlFor="numberOfFrames"></label>
+          <select
+            name="numberOfFrames"
+            onChange={(e) => {
+              setSelectedNumPhotos(e.target.value);
+              setFilledFrames(0);
+            }}
+            className={styles.selectNumFrames}
+          >
+            <option value={5}>-</option>
+            <option value={5}>5</option>
+            <option value={6}>6</option>
+            <option value={7}>7</option>
+            <option value={8}>8</option>
+          </select>
+        </div>
+        <div className={styles.toolbarSofa}>
+          <i className="material-symbols-rounded">chair</i>
+          <label htmlFor="furnitureSelection"></label>
+          <select
+            name="furnitureSelection"
+            onChange={(e) => setSelectedSofa(e.target.value)}
+            className={styles.selectSofa}
+          >
+            <option value="sofaBeigeRounded">-</option>
+            <option value="sofaBeigeRounded">Sofa Beige Rounded</option>
+            <option value="sofaTealVelvet">
+              Mid Century Modern Teal Velvet Sofa
+            </option>
+            <option value="blushVelvet">Blush Velvet Sofa</option>
+            <option value="blackLeather">Black Leather Sofa</option>
+            <option value="blueVelvet">Navy Blue Fabric Sofa</option>
+            <option value="ovalTable">Oval Dining Table</option>
+            <option value="rectangleTable">Rectangle Dining Table</option>
+          </select>
+        </div>
+        {/** Generate art button */}
         <button onClick={(e) => fillFrames(e)} className={styles.generateBtn}>
-          Generate Art
+          ✧.* Generate Art
         </button>
       </div>
-        {/** Generate art button */}
 
-      <div className={styles.vertLine}></div>
+      {/* my art */}
+      <div className={styles.userArtContainer}>
+        <MyArt setImageUrl={setImageUrl} setCompColor={setCompColor} />
+      </div>
 
+      {/* saved art */}
       <div className={styles.savedEtsyArtContainer}>
         <SavedEtsyArt setImageUrl={setImageUrl} />
       </div>

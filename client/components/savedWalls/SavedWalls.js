@@ -39,7 +39,10 @@ const SavedWalls = (props) => {
         {walls ? (
           walls.map((wall, i) => {
             return (
-              <div key={`Inside all saved walls view: ${i}`}>
+              <div
+                key={`Inside all saved walls view: ${i}`}
+                className={styles.savedWallContainer}
+              >
                 <Link
                   to={`/saved/${wall.id}`}
                   className={styles.savedWallsNameLink}

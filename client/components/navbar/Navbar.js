@@ -33,7 +33,7 @@ const Navbar = () => {
             <div className={styles.logoContainer}>
               <Link to="/create">
                 <img
-                  src="./images/gallery-house.png"
+                  src="/images/gallery-house.png"
                   alt="Gallery House logo"
                   className={styles.navLogo}
                 />
@@ -64,7 +64,7 @@ const Navbar = () => {
             <div className={styles.logoContainer}>
               <Link to="/home">
                 <img
-                  src="./images/gallery-house.png"
+                  src="/images/gallery-house.png"
                   alt="Gallery House logo"
                   className={styles.navLogo}
                 />
