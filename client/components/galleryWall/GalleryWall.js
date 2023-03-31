@@ -298,18 +298,11 @@ const GalleryWall = () => {
 
       <div className={styles.userArtContainer}>
         <MyArt setImageUrl={setImageUrl} setCompColor={setCompColor} />
-      </div>
-
-      <div className={styles.vertLine}></div>
-
-      <div className={styles.generatedEtsyArtContainer}>
-        <h1 className={styles.complimentaryArtH1}>Complimentary Art</h1>
-        <hr className={styles.hr} />
-        {/** Generate art button */}
         <button onClick={(e) => fillFrames(e)} className={styles.generateBtn}>
           Generate Art
         </button>
       </div>
+        {/** Generate art button */}
 
       <div className={styles.vertLine}></div>
 

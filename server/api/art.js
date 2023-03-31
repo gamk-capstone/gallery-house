@@ -230,4 +230,25 @@ router.delete("/etsy/saved/:id", async (req, res, next) => {
   }
 });
 
+router.delete("/etsy/saved/:userId/:etsyId", async (req, res, next) => {
+  try {
+    const savedEtsyArt = await SavedEtsyArt.findOne({
+      where: {
+        userId: {
+          [Op.eq]: req.params.userId,
+        },
+        [Op.and]: {
+          etsyId: {
+            [Op.eq]: req.params.etsyId,
+          },
+        },
+      },
+    });
+    await savedEtsyArt.destroy();
+    res.json(savedEtsyArt);
+  } catch (err) {
+    next(err);
+  }
+});
+
 //#endregion SavedEtsyArt routes

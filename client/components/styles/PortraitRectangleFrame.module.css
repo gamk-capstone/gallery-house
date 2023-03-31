@@ -17,6 +17,8 @@
 
 .buttons {
   display: none;
+  height: .25rem;
+  width: .25rem;
 }
 
 .filled:hover img {
@@ -26,7 +28,7 @@
 .filled:hover + .buttons, .buttons:hover {
   display: flex;
   position: absolute;
-  gap: .25rem;
+  gap: .1rem;
   top: 8%;
-  right: 10%;
+  left: 2%;
 }

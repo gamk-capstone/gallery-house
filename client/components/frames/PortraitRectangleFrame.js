@@ -1,7 +1,10 @@
 import { current } from "@reduxjs/toolkit";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createSavedEtsyArtAsync } from "../savedEtsyArt/savedEtsyArtSlice";
+import {
+  createSavedEtsyArtAsync,
+  deleteSavedEtsyArtByUrlAsync,
+} from "../savedEtsyArt/savedEtsyArtSlice";
 import styles from "../styles/PortraitRectangleFrame.module.css";
 
 /**
@@ -18,7 +21,6 @@ const PortraitRectangleFrame = ({
   saved,
   savedUrls,
 }) => {
-
   //--------------------------------------------------
   //#region Local State
   //--------------------------------------------------
@@ -53,6 +55,16 @@ const PortraitRectangleFrame = ({
         imageUrl: currentUrl,
         purchaseUrl: purchaseUrl,
         userId: id,
+        etsyId: etsyImages.id
+      })
+    );
+  };
+
+  const handleDelete = () => {
+    dispatch(
+      deleteSavedEtsyArtByUrlAsync({
+        userId: id,
+        etsyId: etsyImages.id
       })
     );
   };
@@ -98,11 +110,13 @@ const PortraitRectangleFrame = ({
     <div>
       {etsyImages ? (
         !selected ? (
-          <div className={
-            currentUrl === "./images/white.jpeg"
-              ? styles.container
-              : `${styles.container} ${styles.filled}`
-          }>
+          <div
+            className={
+              currentUrl === "./images/white.jpeg"
+                ? styles.container
+                : `${styles.container} ${styles.filled}`
+            }
+          >
             <img
               src={`${
                 selected || generate ? currentUrl : "./images/white.jpeg"
@@ -132,25 +146,35 @@ const PortraitRectangleFrame = ({
                 onClick={() => {
                   setThisGenerate(!thisGenerate);
                   setSelected(!selected);
-                  setLocked(!locked)
+                  setLocked(!locked);
                 }}
               >
-                <span className="material-symbols-outlined">{ locked ? "lock" : "lock_open"}</span>
+                <span className="material-symbols-outlined">
+                  {locked ? "lock" : "lock_open"}
+                </span>
               </button>
-              <button onClick={() => {
-                handleSave();
-                setLiked(!liked);
-              }}>
-                <span className="material-symbols-outlined">{ liked ? "heart_broken" : "favorite"}</span>
+              <button
+                onClick={() => {
+                  if (liked) {
+                    handleDelete();
+                  } handleSave();
+                  setLiked(!liked);
+                }}
+              >
+                <span className="material-symbols-outlined">
+                  {liked ? "heart_broken" : "favorite"}
+                </span>
               </button>
             </section>
           </div>
         ) : (
-          <div className={
-            currentUrl === "./images/white.jpeg"
-              ? styles.container
-              : `${styles.container} ${styles.filled}`
-          }>
+          <div
+            className={
+              currentUrl === "./images/white.jpeg"
+                ? styles.container
+                : `${styles.container} ${styles.filled}`
+            }
+          >
             <img
               src={`${
                 selected || generate ? currentUrl : "./images/white.jpeg"
@@ -182,10 +206,24 @@ const PortraitRectangleFrame = ({
                   setSelected(!selected);
                 }}
               >
-                <span className="material-symbols-outlined" onClick={() => setLocked(!locked)}>{ locked ? "lock" : "lock_open"}</span>
+                <span
+                  className="material-symbols-outlined"
+                  onClick={() => setLocked(!locked)}
+                >
+                  {locked ? "lock" : "lock_open"}
+                </span>
               </button>
-              <button onClick={handleSave}>
-                <span className="material-symbols-outlined">favorite</span>
+              <button
+                onClick={() => {
+                  if (liked) {
+                    handleDelete();
+                  } handleSave();
+                  setLiked(!liked);
+                }}
+              >
+                <span className="material-symbols-outlined">
+                  {liked ? "heart_broken" : "favorite"}
+                </span>
               </button>
             </section>
           </div>
