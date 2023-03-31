@@ -32,6 +32,14 @@ User.hasMany(SavedEtsyArt, {
   foreignKey: 'userId',
   as: 'savedEtsyArts'
 });
+SavedEtsyArt.belongsTo(Art, {
+  foreignKey: 'etsyId',
+  as: 'etsyArt'
+});
+Art.hasMany(SavedEtsyArt, {
+  foreignKey: 'etsyId',
+  as: "savedEtsyArt"
+});
 
 module.exports = {
   db,
