@@ -93,6 +93,8 @@ input[type="file"] {
   gap: .2rem;
   top: 26%;
   right: 31%;
+}
+
 .collapseHeader {
   background-color: #6de2d4;
   padding: 6px;
