@@ -43,18 +43,20 @@ const SavedWalls = (props) => {
                 key={`Inside all saved walls view: ${i}`}
                 className={styles.savedWallContainer}
               >
-                <Link
-                  to={`/saved/${wall.id}`}
-                  className={styles.savedWallsNameLink}
-                >
-                  {i + 1}. {wall.name}
-                </Link>
-                <button
-                  onClick={(evt) => handleDeleteWall(evt, wall.id)}
-                  className={styles.deleteBtn}
-                >
-                  x
-                </button>
+                <div className={styles.singleSavedWall}>
+                  <Link
+                    to={`/saved/${wall.id}`}
+                    className={styles.savedWallsNameLink}
+                  >
+                    {i + 1}. {wall.name}
+                  </Link>
+                  <button
+                    onClick={(evt) => handleDeleteWall(evt, wall.id)}
+                    className={styles.deleteBtn}
+                  >
+                    x
+                  </button>
+                </div>
               </div>
             );
           })
