@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 // import AWS from "aws-sdk";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useCollapse } from "react-collapsed";
 import styles from "../styles/GalleryWall.module.css";
 
 //Imported Components
@@ -27,6 +28,9 @@ const GalleryWall = () => {
 
   //Redux state
   const { id } = useSelector((state) => state.auth.me);
+
+  // Collapse state
+  const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
 
   //Local state that are used in multiple features
   const [imageUrl, setImageUrl] = useState(null);
@@ -77,7 +81,7 @@ const GalleryWall = () => {
         );
       }
       console.log(savedWallImages);
-      savedWallImages.push(selectedSofa)
+      savedWallImages.push(selectedSofa);
       dispatch(
         saveWallAsync({ name: wallName, images: savedWallImages, userId: id })
       );
@@ -238,7 +242,6 @@ const GalleryWall = () => {
     }
   };
 
-  console.log("selectedSofa", selectedSofa);
   //#endregion Sofa
 
   return (
@@ -305,14 +308,38 @@ const GalleryWall = () => {
       </div>
 
       {/* my art */}
-      <div className={styles.userArtContainer}>
+      {/* <div className={styles.userArtContainer}>
         <MyArt setImageUrl={setImageUrl} setCompColor={setCompColor} />
+      </div> */}
+
+      {/* my art collapse */}
+      <div>
+        <div className={styles.collapseHeader} {...getToggleProps()}>
+          {isExpanded ? "Collapse ^" : "Upload and View Your Art ⌄"}
+        </div>
+        <div {...getCollapseProps()}>
+          <div>
+            <MyArt setImageUrl={setImageUrl} setCompColor={setCompColor} />
+          </div>
+        </div>
+      </div>
+
+      {/* saved art collapse */}
+      <div>
+        <div className={styles.collapseHeader} {...getToggleProps()}>
+          {isExpanded ? "Collapse ^" : "View Your Saved Etsy Art ⌄"}
+        </div>
+        <div {...getCollapseProps()}>
+          <div>
+            <SavedEtsyArt setImageUrl={setImageUrl} />
+          </div>
+        </div>
       </div>
 
       {/* saved art */}
-      <div className={styles.savedEtsyArtContainer}>
+      {/* <div className={styles.savedEtsyArtContainer}>
         <SavedEtsyArt setImageUrl={setImageUrl} />
-      </div>
+      </div> */}
     </div>
   );
 };
