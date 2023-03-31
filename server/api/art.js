@@ -87,50 +87,50 @@ router.post("/uploadfile", upload.single("file"), async (req, res) => {
   };
   uploadToS3(file);
 
-  // const complimentaryColor = (hslArr) => {
-  //   const h = hslArr[0];
-  //   const s = hslArr[1];
-  //   const l = hslArr[2];
-  //   const o = hslArr[3];
-  //   let newHue = 0;
-  //   //h = red // return green
-  //   if ((h) => 330 || h < 10) {
-  //     newHue = 120;
-  //     //h = orange // return blue
-  //   }
-  //   if ((h) => 10 && h < 40) {
-  //     newHue = 220;
-  //     //h = yellow // return purple
-  //   }
-  //   if (h >= 40 && h < 70) {
-  //     newHue = 300;
-  //     //h = green // return red
-  //   }
-  //   if (h >= 70 && h < 160) {
-  //     newHue = 0;
-  //     //h = blue // return orange
-  //   }
-  //   if (h >= 160 && h < 250) {
-  //     newHue = 30;
-  //     //h = purple // return yellow
-  //   }
-  //   if (h >= 250 && h < 330) {
-  //     newHue = 45;
-  //   }
-  //   return [newHue, s, l, o];
-  // };
+  const complimentaryColor = (hslArr) => {
+    const h = hslArr[0];
+    const s = hslArr[1];
+    const l = hslArr[2];
+    const o = hslArr[3];
+    let newHue = 0;
+    //h = red // return green
+    if ((h) => 330 || h < 10) {
+      newHue = 120;
+      //h = orange // return blue
+    }
+    if ((h) => 10 && h < 40) {
+      newHue = 220;
+      //h = yellow // return purple
+    }
+    if (h >= 40 && h < 70) {
+      newHue = 300;
+      //h = green // return red
+    }
+    if (h >= 70 && h < 160) {
+      newHue = 0;
+      //h = blue // return orange
+    }
+    if (h >= 160 && h < 250) {
+      newHue = 30;
+      //h = purple // return yellow
+    }
+    if (h >= 250 && h < 330) {
+      newHue = 45;
+    }
+    return [newHue, s, l, o];
+  };
 
   const s3Url =
     "http://" + bucketName + ".s3.amazonaws.com/" + file.originalname;
 
-  // const hslColors = await getMainColors(s3Url, file.path);
-  // const compColor = complimentaryColor(hslColors[0]);
+  const hslColors = await getMainColors(s3Url, file.path);
+  const compColor = complimentaryColor(hslColors[0]);
 
   const userArt = {
     name: file.originalname,
     s3Url: s3Url,
-    // mainColors: hslColors,
-    // complimentaryColor: compColor,
+    mainColors: hslColors,
+    complimentaryColor: compColor,
     userId: req.body.id,
   };
 
