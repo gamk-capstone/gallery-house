@@ -4,7 +4,7 @@
   display: inline-block;
 }
 
-.container img {
+.portraitRectangle {
   width: 5.5rem;
   height: 7.5rem;
   padding: 0.5rem;
@@ -30,4 +30,13 @@
   gap: 0.2rem;
   top: 10%;
   right: 13%;
+}
+
+.icon {
+  width: auto;
+  height: 10px;
+}
+
+.icon:hover {
+  cursor: pointer;
 }
