@@ -59,8 +59,13 @@ router.post("/uploadfile", upload.single("file"), async (req, res) => {
     return res.status(400).json({ message: "Please choose the file" });
   }
   let file = req.file;
+  // console.log(
+  //   "file\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+  //   file,
+  //   "file\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+  // );
 
-  const uploadToS3 = (file) => {
+  const uploadToS3 = async (file) => {
     const fileStream = fs.createReadStream(file.path);
     console.log("fileStream", fileStream);
 
@@ -68,9 +73,11 @@ router.post("/uploadfile", upload.single("file"), async (req, res) => {
       Bucket: bucketName,
       Key: file.originalname,
       Body: fileStream,
+      ContentType: file.mimetype,
+      ContentLength: file.size,
     };
 
-    s3.upload(params, function (err, data) {
+    await s3.upload(params, function (err, data) {
       if (err) {
         throw err;
       }
@@ -112,6 +119,7 @@ router.post("/uploadfile", upload.single("file"), async (req, res) => {
     }
     return [newHue, s, l, o];
   };
+
   const s3Url =
     "http://" + bucketName + ".s3.amazonaws.com/" + file.originalname;
 
