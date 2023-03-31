@@ -97,18 +97,23 @@ const MyArt = ({ setImageUrl, setCompColor }) => {
               <div className={styles.userArtContainer}>
                 {art?.map((piece, i) => {
                   return (
-                    <div key={`inside myArt list-${i}`}>
+                    <div className={styles.imgContainer} key={`inside myArt list-${i}`}>
                       <img
                         src={piece.s3Url}
                         className={styles.myArtImg}
-                        onClick={() => {
-                          setImageUrl(piece.s3Url);
-                          setCompColor(piece.complimentaryColor);
-                        }}
                       />
-                      <button onClick={(e) => handleDelete(e, piece.id)}>
-                        X
-                      </button>
+                      <section className={styles.buttons}>
+                        <button onClick={() => {
+                          setImageUrl(piece.s3Url);
+                          setCompColor(piece.complimentaryColor);}}>
+                          <span class="material-symbols-outlined">
+                            content_copy
+                          </span>
+                        </button>
+                        <button onClick={(e) => handleDelete(e, piece.id)}>
+                          <span class="material-symbols-outlined">delete</span>
+                        </button>
+                      </section>
                     </div>
                   );
                 })}
