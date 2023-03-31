@@ -33,7 +33,26 @@
 }
 
 .savedArtImg {
-  width: 5rem;
-  height: 7rem;
+  width: 7rem;
+  height: 9rem;
   object-fit: cover;
+}
+
+.imgContainer {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.buttons {
+  display: none;
+}
+
+.savedArtImg:hover + .buttons, .buttons:hover {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  gap: .2rem;
+  top: 13%;
+  right: 31%;
 }

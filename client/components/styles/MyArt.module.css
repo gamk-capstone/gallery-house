@@ -29,6 +29,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
 }
 
 .userArtContainer {
@@ -39,8 +40,8 @@
 }
 
 .myArtImg {
-  width: 5rem;
-  height: 7rem;
+  width: 7rem;
+  height: 9rem;
   object-fit: cover;
 }
 
@@ -73,4 +74,23 @@ input[type="file"] {
   cursor: pointer;
   border: solid 1px #fa67ce;
   background-color: #ffffff;
+}
+
+.imgContainer {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.buttons {
+  display: none;
+}
+
+.myArtImg:hover + .buttons, .buttons:hover {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  gap: .2rem;
+  top: 26%;
+  right: 31%;
 }

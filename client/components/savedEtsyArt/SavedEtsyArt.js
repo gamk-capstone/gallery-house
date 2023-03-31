@@ -33,20 +33,29 @@ const SavedEtsyArt = ({ setImageUrl }) => {
         <div>
           {savedEtsyArt?.map((piece) => {
             return (
-              <div key={piece.id}>
+              <div className={styles.imgContainer} key={piece.id}>
                 <img
                   src={piece.imageUrl}
                   className={styles.savedArtImg}
-                  onClick={() => setImageUrl(piece.imageUrl)}
                 />
-                <section className="img-buttons">
+                <section className={styles.buttons}>
+                <button onClick={() => {
+                          setImageUrl(piece.imageUrl);}}>
+                          <span class="material-symbols-outlined">
+                            content_copy
+                          </span>
+                        </button>
                   <a href={piece.purchaseUrl} target="_blank">
-                    <button>Nav</button>
+                    <button><span className="material-symbols-outlined">
+                    shopping_cart
+                  </span></button>
                   </a>
                   <button
                     onClick={() => dispatch(deleteSavedEtsyArtAsync(piece.id))}
                   >
-                    Unlike
+                   <span className="material-symbols-outlined">
+                  heart_broken
+                </span>
                   </button>
                 </section>
               </div>
