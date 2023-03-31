@@ -9,6 +9,8 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 0.5rem;
+  max-width: 33rem;
 }
 
 .savedArtH1 {
