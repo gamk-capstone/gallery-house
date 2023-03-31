@@ -9,7 +9,6 @@ import SavedWalls from "../components/savedWalls/SavedWalls";
 import SavedWall from "../components/savedWall/SavedWall";
 import Toolbar from "../components/toolbar/Toolbar";
 import SaveWallForm from "../components/saveWallForm/index";
-import Collapse from "../components/collapse/Collapse";
 /**
  * The `AppRoutes` component defines the routes in Gallery House, based on whether a user is logged in or not.
  */
@@ -60,7 +59,6 @@ const AppRoutes = () => {
             path="/signup"
             element={<AuthForm name="signup" displayName="Sign Up" />}
           />
-          <Route path="/test" element={<Collapse />} />
         </Routes>
       )}
     </div>

@@ -7,6 +7,7 @@ import {
   deleteUserArtAsync,
   createUserArtAsync,
 } from "../userArt/allUsersArtSlice";
+import { useCollapse } from "react-collapsed";
 import styles from "../styles/MyArt.module.css";
 
 /**
@@ -25,6 +26,9 @@ const MyArt = ({ setImageUrl, setCompColor }) => {
   useEffect(() => {
     dispatch(fetchUserArtAsync(id));
   }, [dispatch, id]);
+
+  // Collapsed state
+  const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
 
   /**
    * `RenderArt` component
@@ -116,10 +120,19 @@ const MyArt = ({ setImageUrl, setCompColor }) => {
     );
   };
   return (
-    <div className={styles.parentDiv}>
-      <h1 className={styles.myArtH1}>{`${username}'s Art`}</h1>
-      <hr className={styles.hr} />
-      <RenderArt />
+    <div>
+      <div className={styles.collapseHeader} {...getToggleProps()}>
+        {isExpanded ? "Collapse ^" : "Upload and View Your Art ⌄"}
+      </div>
+      <div {...getCollapseProps()}>
+        <div>
+          <div className={styles.parentDiv}>
+            <h1 className={styles.myArtH1}>{`${username}'s Art`}</h1>
+            <hr className={styles.hr} />
+            <RenderArt />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

@@ -29,11 +29,20 @@
 .hr {
   color: #6de2d4;
   border: solid 1px;
-  width: 100%;
+  width: 30%;
 }
 
 .savedArtImg {
   width: 5rem;
   height: 7rem;
   object-fit: cover;
+}
+
+.collapseHeader {
+  background-color: #6de2d4;
+  padding: 6px;
+  cursor: pointer;
+  font-family: "le-havre", "sans-serif";
+  font-weight: 400;
+  width: 65rem;
 }

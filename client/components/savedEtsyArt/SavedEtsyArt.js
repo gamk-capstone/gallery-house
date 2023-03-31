@@ -5,6 +5,7 @@ import {
   selectSavedEtsyArt,
   deleteSavedEtsyArtAsync,
 } from "./savedEtsyArtSlice";
+import { useCollapse } from "react-collapsed";
 import styles from "../styles/SavedEtsyArt.module.css";
 
 const SavedEtsyArt = ({ setImageUrl }) => {
@@ -16,6 +17,9 @@ const SavedEtsyArt = ({ setImageUrl }) => {
   useEffect(() => {
     dispatch(fetchSavedEtsyArtAsync(id));
   }, [dispatch, id]);
+
+  // Collapsed state
+  const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
 
   const RenderSavedEtsyArt = () => {
     if (savedEtsyArt?.length === 0) {
@@ -57,10 +61,21 @@ const SavedEtsyArt = ({ setImageUrl }) => {
     );
   };
   return (
-    <div className={styles.savedArtContainer}>
-      <h1 className={styles.savedArtH1}>{`${username}'s Saved Etsy Art`}</h1>
-      <hr className={styles.hr} />
-      <RenderSavedEtsyArt />
+    <div>
+      <div className={styles.collapseHeader} {...getToggleProps()}>
+        {isExpanded ? "Collapse ^" : "View Your Saved Etsy Art ⌄"}
+      </div>
+      <div {...getCollapseProps()}>
+        <div>
+          <div className={styles.savedArtContainer}>
+            <h1
+              className={styles.savedArtH1}
+            >{`${username}'s Saved Etsy Art`}</h1>
+            <hr className={styles.hr} />
+            <RenderSavedEtsyArt />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
