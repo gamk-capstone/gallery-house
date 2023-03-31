@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createSavedEtsyArtAsync, deleteSavedEtsyArtByUrlAsync } from "../savedEtsyArt/savedEtsyArtSlice";
+import {
+  createSavedEtsyArtAsync,
+  deleteSavedEtsyArtByUrlAsync,
+} from "../savedEtsyArt/savedEtsyArtSlice";
 import styles from "../styles/LandscapeRectangleExtraWideFrame.module.css";
 
 /**
@@ -46,7 +49,7 @@ const LandscapeRectangleExtraWideFrame = ({
 
   /**
    *  `handleSave` creates a new instance of SavedEtsyArt associated with the user
-   */ 
+   */
   const handleSave = () => {
     dispatch(
       createSavedEtsyArtAsync({
@@ -61,7 +64,7 @@ const LandscapeRectangleExtraWideFrame = ({
     dispatch(
       deleteSavedEtsyArtByUrlAsync({
         userId: id,
-        etsyId: etsyImages.id
+        etsyId: etsyImages.id,
       })
     );
   };
@@ -135,9 +138,10 @@ const LandscapeRectangleExtraWideFrame = ({
             <section className={styles.buttons}>
               <a href={purchaseUrl} target="_blank">
                 <button>
-                  <span className="material-symbols-outlined">
-                    shopping_cart
-                  </span>
+                  <img
+                    src="./images/icons/cart-icon.png"
+                    className={styles.icon}
+                  />
                 </button>
               </a>
               <button
@@ -147,21 +151,38 @@ const LandscapeRectangleExtraWideFrame = ({
                   setLocked(!locked);
                 }}
               >
-                <span className="material-symbols-outlined">
-                  {locked ? "lock" : "lock_open"}
-                </span>
+                {locked ? (
+                  <img
+                    src="./images/icons/lock-icon.png"
+                    className={styles.icon}
+                  />
+                ) : (
+                  <img
+                    src="./images/icons/unlock-icon.png"
+                    className={styles.icon}
+                  />
+                )}
               </button>
               <button
                 onClick={() => {
                   if (liked) {
                     handleDelete();
-                  } handleSave();
+                  }
+                  handleSave();
                   setLiked(!liked);
                 }}
               >
-                <span className="material-symbols-outlined">
-                  {liked ? "heart_broken" : "favorite"}
-                </span>
+                {liked ? (
+                  <img
+                    src="./images/icons/unlike-icon.png"
+                    className={styles.icon}
+                  />
+                ) : (
+                  <img
+                    src="./images/icons/like-icon.png"
+                    className={styles.icon}
+                  />
+                )}
               </button>
             </section>
           </div>
@@ -194,9 +215,10 @@ const LandscapeRectangleExtraWideFrame = ({
             <section className={styles.buttons}>
               <a href={purchaseUrl} target="_blank">
                 <button>
-                  <span className="material-symbols-outlined">
-                    shopping_cart
-                  </span>
+                  <img
+                    src="./images/icons/cart-icon.png"
+                    className={styles.icon}
+                  />
                 </button>
               </a>
               <button
@@ -205,24 +227,38 @@ const LandscapeRectangleExtraWideFrame = ({
                   setSelected(!selected);
                 }}
               >
-                <span
-                  className="material-symbols-outlined"
-                  onClick={() => setLocked(!locked)}
-                >
-                  {locked ? "lock" : "lock_open"}
-                </span>
+                {locked ? (
+                  <img
+                    src="./images/icons/lock-icon.png"
+                    className={styles.icon}
+                  />
+                ) : (
+                  <img
+                    src="./images/icons/unlock-icon.png"
+                    className={styles.icon}
+                  />
+                )}
               </button>
               <button
                 onClick={() => {
                   if (liked) {
                     handleDelete();
-                  } handleSave();
+                  }
+                  handleSave();
                   setLiked(!liked);
                 }}
               >
-                <span className="material-symbols-outlined">
-                  {liked ? "heart_broken" : "favorite"}
-                </span>
+                {liked ? (
+                  <img
+                    src="./images/icons/unlike-icon.png"
+                    className={styles.icon}
+                  />
+                ) : (
+                  <img
+                    src="./images/icons/like-icon.png"
+                    className={styles.icon}
+                  />
+                )}
               </button>
             </section>
           </div>
