@@ -34,32 +34,32 @@ const SavedEtsyArt = ({ setImageUrl }) => {
         <h2 className={styles.savedArtH2}>
           You have {savedEtsyArt?.length} piece(s) of Etsy art saved.
         </h2>
-        <div>
+        <div className={styles.savedArtImgsContainer}>
           {savedEtsyArt?.map((piece) => {
             return (
               <div className={styles.imgContainer} key={piece.id}>
-                <img
-                  src={piece.imageUrl}
-                  className={styles.savedArtImg}
-                />
+                <img src={piece.imageUrl} className={styles.savedArtImg} />
                 <section className={styles.buttons}>
-                <button onClick={() => {
-                          setImageUrl(piece.imageUrl);}}>
-                          <span className="material-symbols-outlined">
-                            content_copy
-                          </span>
-                        </button>
+                  <button
+                    onClick={() => {
+                      setImageUrl(piece.imageUrl);
+                    }}
+                  >
+                    <span class="material-symbols-outlined">content_copy</span>
+                  </button>
                   <a href={piece.purchaseUrl} target="_blank">
-                    <button><span className="material-symbols-outlined">
-                    shopping_cart
-                  </span></button>
+                    <button>
+                      <span className="material-symbols-outlined">
+                        shopping_cart
+                      </span>
+                    </button>
                   </a>
                   <button
                     onClick={() => dispatch(deleteSavedEtsyArtAsync(piece.id))}
                   >
-                   <span className="material-symbols-outlined">
-                  heart_broken
-                </span>
+                    <span className="material-symbols-outlined">
+                      heart_broken
+                    </span>
                   </button>
                 </section>
               </div>
