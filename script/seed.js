@@ -174,6 +174,16 @@ async function seed() {
       removed++;
       listing_ids_result.splice(listing_ids_result.indexOf(649425878), 1);
       removed++;
+      listing_ids_result.splice(listing_ids_result.indexOf(743109665), 1);
+      removed++;
+      listing_ids_result.splice(listing_ids_result.indexOf(577275053), 1);
+      removed++;
+      listing_ids_result.splice(listing_ids_result.indexOf(647418920), 1);
+      removed++;
+      listing_ids_result.splice(listing_ids_result.indexOf(659634387), 1);
+      removed++;
+      
+      
 
       return listing_ids_result;
     } catch (error) {
@@ -310,14 +320,13 @@ async function seed() {
     }
   };
 
-  const art = await getListingsByListingIds();
-
   /**
    * `getEstyImagesMainColors` uses a callback function `getMainColors` (from /server/get-images.js) to retrieve the four main
    * colors of each image in our db. The colors are stored according to their HSL value (Hue, Saturation, and Lumousity).
    * @returns the `colors` column of art table populated with data
    */
   const getEstyImagesMainColors = async () => {
+    const art = await getListingsByListingIds();
     for (let i = 0; i <= art.length - 1; i++) {
       //store results of current image's 4 main colors in a variable
       let colorsFromFn = await getMainColors(art[i].imageUrl);
@@ -368,9 +377,9 @@ async function seed() {
       //of our Art model.
       art[i].colors = colorsFromFn;
     }
+    return art;
   };
-
-  await getEstyImagesMainColors();
+  const art = await getEstyImagesMainColors();
 
   //Finally, create instances of Art model using manipulated data retrieved from Esty's (v3) open API.
   const loadArt = await Promise.all(art.map((l) => Art.create(l)));
