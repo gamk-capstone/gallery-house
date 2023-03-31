@@ -55,7 +55,7 @@ const PortraitRectangleFrame = ({
         imageUrl: currentUrl,
         purchaseUrl: purchaseUrl,
         userId: id,
-        etsyId: etsyImages.id
+        etsyId: etsyImages.id,
       })
     );
   };
@@ -64,7 +64,7 @@ const PortraitRectangleFrame = ({
     dispatch(
       deleteSavedEtsyArtByUrlAsync({
         userId: id,
-        etsyId: etsyImages.id
+        etsyId: etsyImages.id,
       })
     );
   };
@@ -137,9 +137,10 @@ const PortraitRectangleFrame = ({
             <section className={styles.buttons}>
               <a href={purchaseUrl} target="_blank">
                 <button>
-                  <span className="material-symbols-outlined">
-                    shopping_cart
-                  </span>
+                  <img
+                    src="./images/icons/cart-icon.png"
+                    className={styles.icon}
+                  />
                 </button>
               </a>
               <button
@@ -149,21 +150,38 @@ const PortraitRectangleFrame = ({
                   setLocked(!locked);
                 }}
               >
-                <span className="material-symbols-outlined">
-                  {locked ? "lock" : "lock_open"}
-                </span>
+                {locked ? (
+                  <img
+                    src="./images/icons/lock-icon.png"
+                    className={styles.icon}
+                  />
+                ) : (
+                  <img
+                    src="./images/icons/unlock-icon.png"
+                    className={styles.icon}
+                  />
+                )}
               </button>
               <button
                 onClick={() => {
                   if (liked) {
                     handleDelete();
-                  } handleSave();
+                  }
+                  handleSave();
                   setLiked(!liked);
                 }}
               >
-                <span className="material-symbols-outlined">
-                  {liked ? "heart_broken" : "favorite"}
-                </span>
+                {liked ? (
+                  <img
+                    src="./images/icons/unlike-icon.png"
+                    className={styles.icon}
+                  />
+                ) : (
+                  <img
+                    src="./images/icons/like-icon.png"
+                    className={styles.icon}
+                  />
+                )}
               </button>
             </section>
           </div>
@@ -195,9 +213,10 @@ const PortraitRectangleFrame = ({
             <section className={styles.buttons}>
               <a href={purchaseUrl} target="_blank">
                 <button>
-                  <span className="material-symbols-outlined">
-                    shopping_cart
-                  </span>
+                  <img
+                    src="./images/icons/cart-icon.png"
+                    className={styles.icon}
+                  />
                 </button>
               </a>
               <button
@@ -206,24 +225,38 @@ const PortraitRectangleFrame = ({
                   setSelected(!selected);
                 }}
               >
-                <span
-                  className="material-symbols-outlined"
-                  onClick={() => setLocked(!locked)}
-                >
-                  {locked ? "lock" : "lock_open"}
-                </span>
+                {locked ? (
+                  <img
+                    src="./images/icons/lock-icon.png"
+                    className={styles.icon}
+                  />
+                ) : (
+                  <img
+                    src="./images/icons/unlock-icon.png"
+                    className={styles.icon}
+                  />
+                )}
               </button>
               <button
                 onClick={() => {
                   if (liked) {
                     handleDelete();
-                  } handleSave();
+                  }
+                  handleSave();
                   setLiked(!liked);
                 }}
               >
-                <span className="material-symbols-outlined">
-                  {liked ? "heart_broken" : "favorite"}
-                </span>
+                {liked ? (
+                  <img
+                    src="./images/icons/unlike-icon.png"
+                    className={styles.icon}
+                  />
+                ) : (
+                  <img
+                    src="./images/icons/like-icon.png"
+                    className={styles.icon}
+                  />
+                )}
               </button>
             </section>
           </div>
