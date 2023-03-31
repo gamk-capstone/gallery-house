@@ -31,3 +31,12 @@
   top: 13%;
   right: 10%;
 }
+
+.icon {
+  width: auto;
+  height: 15px;
+}
+
+.icon:hover {
+  cursor: pointer;
+}
