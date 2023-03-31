@@ -59,11 +59,11 @@ router.post("/uploadfile", upload.single("file"), async (req, res) => {
     return res.status(400).json({ message: "Please choose the file" });
   }
   let file = req.file;
-  console.log(
-    "file\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
-    file,
-    "file\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-  );
+  // console.log(
+  //   "file\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+  //   file,
+  //   "file\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+  // );
 
   const uploadToS3 = async (file) => {
     const fileStream = fs.createReadStream(file.path);
