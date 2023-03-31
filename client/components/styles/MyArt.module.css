@@ -86,11 +86,12 @@ input[type="file"] {
   display: none;
 }
 
-.myArtImg:hover + .buttons, .buttons:hover {
+.myArtImg:hover + .buttons,
+.buttons:hover {
   display: flex;
   flex-direction: column;
   position: absolute;
-  gap: .2rem;
+  gap: 0.2rem;
   top: 26%;
   right: 31%;
 }
@@ -101,5 +102,5 @@ input[type="file"] {
   cursor: pointer;
   font-family: "le-havre", "sans-serif";
   font-weight: 400;
-  width: 65rem;
+  width: 33rem;
 }
