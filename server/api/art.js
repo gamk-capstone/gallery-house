@@ -14,9 +14,9 @@ const upload = multer({ dest: "uploads/" });
 const fs = require("fs");
 require("dotenv").config();
 
-const accessKey = process.env.ACCESS_KEY_ID;
-const secretKey = process.env.SECRET_ACCESS_KEY;
-const region = process.env.REGION;
+const accessKey = process.env.AWS_ACCESS_KEY_ID;
+const secretKey = process.env.AWS_SECRET_ACCESS_KEY;
+const region = process.env.AWS_REGION;
 const bucketName = process.env.AWS_BUCKET_NAME;
 
 //---------------------------------------
