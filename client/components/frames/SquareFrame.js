@@ -16,6 +16,7 @@ const SquareFrame = ({
   generate,
   saved,
   savedUrls,
+  setImageUrl
 }) => {
   //--------------------------------------------------
   //#region Local State
@@ -127,6 +128,7 @@ const SquareFrame = ({
                   setCurrentUrl(userArtUrl);
                   setSelected(!selected);
                   updateCount();
+                  setImageUrl(null);
                 }
               }}
             />
@@ -203,6 +205,7 @@ const SquareFrame = ({
                   setCurrentUrl(userArtUrl);
                   setSelected(!selected);
                   updateCount();
+                  setImageUrl(null);
                 }
               }}
             />
@@ -271,6 +274,7 @@ const SquareFrame = ({
                 setCurrentUrl(userArtUrl);
                 setSelected(!selected);
                 updateCount();
+                setImageUrl(null);
               }
             }}
           />

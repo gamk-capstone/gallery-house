@@ -19,6 +19,7 @@ const LandscapeRectangleExtraWideFrame = ({
   etsyImages,
   saved,
   savedUrls,
+  setImageUrl
 }) => {
   //--------------------------------------------------
   //#region Local State
@@ -130,6 +131,7 @@ const LandscapeRectangleExtraWideFrame = ({
                   setCurrentUrl(userArtUrl);
                   setSelected(!selected);
                   updateCount();
+                  setImageUrl(null);
                 }
               }}
             />
@@ -206,6 +208,7 @@ const LandscapeRectangleExtraWideFrame = ({
                   setCurrentUrl(userArtUrl);
                   setSelected(!selected);
                   updateCount();
+                  setImageUrl(null);
                 }
               }}
             />
@@ -274,6 +277,7 @@ const LandscapeRectangleExtraWideFrame = ({
                 setCurrentUrl(userArtUrl);
                 setSelected(!selected);
                 updateCount();
+                setImageUrl(null);
               }
             }}
           />
