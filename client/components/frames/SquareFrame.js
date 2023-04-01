@@ -102,6 +102,12 @@ const SquareFrame = ({
     setSelected(false);
   }, [savedUrls]);
 
+  console.log("generate", generate)
+  console.log("thisGenerate", thisGenerate)
+
+  console.log("etsyImages", etsyImages)
+  console.log("selected", selected)
+
   return (
     <div>
       {etsyImages ? (

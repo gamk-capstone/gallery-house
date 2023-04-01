@@ -111,7 +111,7 @@ const MyArt = ({ setImageUrl, setCompColor }) => {
                           </span>
                         </button>
                         <button onClick={(e) => handleDelete(e, piece.id)}>
-                          <span class="material-symbols-outlined">delete</span>
+                          <span className="material-symbols-outlined">delete</span>
                         </button>
                       </section>
                     </div>
