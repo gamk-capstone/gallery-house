@@ -45,7 +45,7 @@ const SavedEtsyArt = ({ setImageUrl }) => {
                       setImageUrl(piece.imageUrl);
                     }}
                   >
-                    <span class="material-symbols-outlined">content_copy</span>
+                    <span className="material-symbols-outlined">content_copy</span>
                   </button>
                   <a href={piece.purchaseUrl} target="_blank">
                     <button>

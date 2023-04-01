@@ -106,7 +106,7 @@ const MyArt = ({ setImageUrl, setCompColor }) => {
                         <button onClick={() => {
                           setImageUrl(piece.s3Url);
                           setCompColor(piece.complimentaryColor);}}>
-                          <span class="material-symbols-outlined">
+                          <span className="material-symbols-outlined">
                             content_copy
                           </span>
                         </button>

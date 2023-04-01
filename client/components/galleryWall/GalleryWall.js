@@ -260,7 +260,7 @@ const GalleryWall = () => {
       {/* toolbar - num frame, furn, generate art */}
       <div className={styles.toolbarContainer}>
         <div className={styles.toolbarFrames}>
-        <span class="material-symbols-outlined">
+        <span className="material-symbols-outlined">
 filter_5
 </span>
           <label htmlFor="numberOfFrames"></label>
@@ -280,7 +280,7 @@ filter_5
           </select>
         </div>
         <div className={styles.toolbarSofa}>
-        <span class="material-symbols-outlined">
+        <span className="material-symbols-outlined">
 chair
 </span>
           <label htmlFor="furnitureSelection"></label>
