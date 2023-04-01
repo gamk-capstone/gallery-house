@@ -139,6 +139,7 @@ const GalleryWall = () => {
    * `getNumberForLayout` switches the number of frames rendered based on a user's input.
    * @returns the correct component based on a user's input
    */
+  console.log(imageUrl);
   const getNumberForLayout = () => {
     switch (selectedNumPhotos) {
       case "5":
@@ -149,6 +150,7 @@ const GalleryWall = () => {
             setFilledFrames={setFilledFrames}
             etsyImages={etsyImages}
             generate={generate}
+            setImageUrl={setImageUrl}
           />
         );
         break;
@@ -160,6 +162,7 @@ const GalleryWall = () => {
             setFilledFrames={setFilledFrames}
             etsyImages={etsyImages}
             generate={generate}
+            setImageUrl={setImageUrl}
           />
         );
         break;
@@ -171,6 +174,7 @@ const GalleryWall = () => {
             setFilledFrames={setFilledFrames}
             etsyImages={etsyImages}
             generate={generate}
+            setImageUrl={setImageUrl}
           />
         );
         break;
@@ -182,6 +186,7 @@ const GalleryWall = () => {
             setFilledFrames={setFilledFrames}
             etsyImages={etsyImages}
             generate={generate}
+            setImageUrl={setImageUrl}
           />
         );
     }

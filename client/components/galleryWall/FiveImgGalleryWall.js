@@ -17,6 +17,7 @@ const FiveImgGalleryWall = ({
   generate,
   saved,
   savedUrls,
+  setImageUrl
 }) => {
   return (
     <div className={styles.frameLayoutParentDiv}>
@@ -29,6 +30,7 @@ const FiveImgGalleryWall = ({
           generate={generate}
           saved={saved}
           savedUrls={savedUrls ? savedUrls[0] : ""}
+          setImageUrl={setImageUrl}
         />
         <SquareFrame
           userArtUrl={userArtUrl}
@@ -38,6 +40,7 @@ const FiveImgGalleryWall = ({
           generate={generate}
           saved={saved}
           savedUrls={savedUrls ? savedUrls[1] : ""}
+          setImageUrl={setImageUrl}
         />
       </div>
       <div className={styles.frameLayoutBottomRow}>
@@ -49,6 +52,7 @@ const FiveImgGalleryWall = ({
           generate={generate}
           saved={saved}
           savedUrls={savedUrls ? savedUrls[2] : ""}
+          setImageUrl={setImageUrl}
         />
         <PortraitRectangleFrame
           userArtUrl={userArtUrl}
@@ -58,6 +62,7 @@ const FiveImgGalleryWall = ({
           generate={generate}
           saved={saved}
           savedUrls={savedUrls ? savedUrls[3] : ""}
+          setImageUrl={setImageUrl}
         />
         <LandscapeRectangleFrame
           userArtUrl={userArtUrl}
@@ -67,6 +72,7 @@ const FiveImgGalleryWall = ({
           generate={generate}
           saved={saved}
           savedUrls={savedUrls ? savedUrls[4] : ""}
+          setImageUrl={setImageUrl}
         />
       </div>
     </div>

@@ -17,6 +17,7 @@ const EightImgGalleryWall = ({
   generate,
   saved,
   savedUrls,
+  setImageUrl
 }) => {
   return (
     <div className={styles.frameLayoutParentDiv}>
@@ -29,6 +30,7 @@ const EightImgGalleryWall = ({
           generate={generate}
           saved={saved}
           savedUrls={savedUrls ? savedUrls[0] : ""}
+          setImageUrl={setImageUrl}
         />
         <SquareLargeFrame
           userArtUrl={userArtUrl}
@@ -38,6 +40,7 @@ const EightImgGalleryWall = ({
           generate={generate}
           saved={saved}
           savedUrls={savedUrls ? savedUrls[1] : ""}
+          setImageUrl={setImageUrl}
         />
         <PortraitRectangleFrame
           userArtUrl={userArtUrl}
@@ -47,6 +50,7 @@ const EightImgGalleryWall = ({
           generate={generate}
           saved={saved}
           savedUrls={savedUrls ? savedUrls[2] : ""}
+          setImageUrl={setImageUrl}
         />
         <LandscapeRectangleExtraWideFrame
           userArtUrl={userArtUrl}
@@ -56,6 +60,7 @@ const EightImgGalleryWall = ({
           generate={generate}
           saved={saved}
           savedUrls={savedUrls ? savedUrls[3] : ""}
+          setImageUrl={setImageUrl}
         />
       </div>
       <div className={styles.frameLayoutBottomRow}>
@@ -67,6 +72,7 @@ const EightImgGalleryWall = ({
           generate={generate}
           saved={saved}
           savedUrls={savedUrls ? savedUrls[4] : ""}
+          setImageUrl={setImageUrl}
         />
         <PortraitRectangleFrame
           userArtUrl={userArtUrl}
@@ -76,6 +82,7 @@ const EightImgGalleryWall = ({
           generate={generate}
           saved={saved}
           savedUrls={savedUrls ? savedUrls[5] : ""}
+          setImageUrl={setImageUrl}
         />
         <SquareLargeFrame
           userArtUrl={userArtUrl}
@@ -85,6 +92,7 @@ const EightImgGalleryWall = ({
           generate={generate}
           saved={saved}
           savedUrls={savedUrls ? savedUrls[6] : ""}
+          setImageUrl={setImageUrl}
         />
         <LandscapeRectangleExtraWideFrame
           userArtUrl={userArtUrl}
@@ -94,6 +102,7 @@ const EightImgGalleryWall = ({
           generate={generate}
           saved={saved}
           savedUrls={savedUrls ? savedUrls[7] : ""}
+          setImageUrl={setImageUrl}
         />
       </div>
     </div>
