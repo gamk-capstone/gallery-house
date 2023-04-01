@@ -60,8 +60,6 @@ const GalleryWall = () => {
         filledFrames < selectedNumPhotos &&
         etsyImages.length < selectedNumPhotos
       ) {
-        console.log(filledFrames);
-        console.log(selectedNumPhotos);
         alert(`Your wall isn't complete.`);
       }
       let savedWallImages = [];
@@ -76,7 +74,6 @@ const GalleryWall = () => {
           })
         );
       }
-      console.log(savedWallImages);
       savedWallImages.push(selectedSofa);
       dispatch(
         saveWallAsync({ name: wallName, images: savedWallImages, userId: id })
@@ -139,7 +136,6 @@ const GalleryWall = () => {
    * `getNumberForLayout` switches the number of frames rendered based on a user's input.
    * @returns the correct component based on a user's input
    */
-  console.log(imageUrl);
   const getNumberForLayout = () => {
     switch (selectedNumPhotos) {
       case "5":
