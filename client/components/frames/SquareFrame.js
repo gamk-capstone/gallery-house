@@ -129,7 +129,7 @@ const SquareFrame = ({
                   setCurrentUrl(userArtUrl);
                   setSelected(!selected);
                   updateCount();
-                  setImageUrl(null);
+                  setThisGenerate(!thisGenerate);//>>
                 }
               }}
             />
@@ -145,7 +145,7 @@ const SquareFrame = ({
               <button
                 onClick={() => {
                   //Lock/Unlocked" button it toggles the "thisGenerate" state so frame won't re-generate if the user likes the image
-                  setThisGenerate(!thisGenerate);
+                  setThisGenerate(!thisGenerate);//>>
                   setSelected(!selected);
                   setLocked(!locked);
                 }}
@@ -208,7 +208,7 @@ const SquareFrame = ({
                   setCurrentUrl(userArtUrl);
                   setSelected(!selected);
                   updateCount();
-                  setImageUrl(null);
+                  setThisGenerate(!thisGenerate);//>>
                 }
               }}
             />
@@ -224,7 +224,7 @@ const SquareFrame = ({
               <button
                 onClick={() => {
                   setThisGenerate(!thisGenerate);
-                  setSelected(true);
+                  setSelected(!selected);
                   setLocked(!locked);
                 }}
               >
@@ -279,7 +279,7 @@ const SquareFrame = ({
                 setCurrentUrl(userArtUrl);
                 setSelected(!selected);
                 updateCount();
-                setImageUrl(null);
+                setThisGenerate(!thisGenerate);//>>
               }
             }}
           />

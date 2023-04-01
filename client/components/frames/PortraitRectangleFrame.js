@@ -20,7 +20,7 @@ const PortraitRectangleFrame = ({
   generate,
   saved,
   savedUrls,
-  setImageUrl
+  setImageUrl,
 }) => {
   //--------------------------------------------------
   //#region Local State
@@ -79,7 +79,7 @@ const PortraitRectangleFrame = ({
       }
     };
     updateFrameStatus();
-  }, [currentUrl]);
+  }, [currentUrl, locked]);
 
   //hook that sets the `currentUrl` and `purchaseUrl` with the etsyImages. Depended on `generate` state.
   useEffect(() => {
@@ -132,8 +132,9 @@ const PortraitRectangleFrame = ({
                 if (userArtUrl) {
                   setCurrentUrl(userArtUrl);
                   setSelected(!selected);
+                  setThisGenerate(!thisGenerate);//>>
                   updateCount();
-                  setImageUrl(null);
+                  // setImageUrl(null);
                 }
               }}
             />
@@ -149,9 +150,9 @@ const PortraitRectangleFrame = ({
               <button
                 onClick={() => {
                   //Lock/Unlocked" button it toggles the "thisGenerate" state so frame won't re-generate if the user likes the image
-                  setThisGenerate(!thisGenerate);
-                  setSelected(true);
+                  setSelected(!selected);
                   setLocked(!locked);
+                  setThisGenerate(!thisGenerate);//>>
                 }}
               >
                 {locked ? (
@@ -212,24 +213,25 @@ const PortraitRectangleFrame = ({
                   setCurrentUrl(userArtUrl);
                   setSelected(!selected);
                   updateCount();
-                  setImageUrl(null);
-                  
+                  setThisGenerate(!thisGenerate);//>>
+                  // setImageUrl(null);
                 }
               }}
             />
             <section className={styles.buttons}>
-              <a href={purchaseUrl} target="_blank">
-                <button>
-                  <img
-                    src="./images/icons/cart-icon.png"
-                    className={styles.icon}
-                  />
-                </button>
-              </a>
+              {/* <a href={purchaseUrl} target="_blank"> */}
+              <button>
+                <img
+                  src="./images/icons/cart-icon.png"
+                  className={styles.icon}
+                />
+              </button>
+              {/* </a> */}
               <button
                 onClick={() => {
                   setThisGenerate(!thisGenerate);
                   setSelected(!selected);
+                  setThisGenerate(!thisGenerate);//>>
                 }}
               >
                 {locked ? (
@@ -283,7 +285,8 @@ const PortraitRectangleFrame = ({
                 setCurrentUrl(userArtUrl);
                 setSelected(!selected);
                 updateCount();
-                setImageUrl(null);
+                setThisGenerate(!thisGenerate);//>>
+                // setImageUrl(null);
               }
             }}
           />

@@ -132,7 +132,7 @@ const LandscapeRectangleExtraWideFrame = ({
                   setCurrentUrl(userArtUrl);
                   setSelected(!selected);
                   updateCount();
-                  setImageUrl(null);
+                  setThisGenerate(!thisGenerate);//>>
                 }
               }}
             />
@@ -148,8 +148,8 @@ const LandscapeRectangleExtraWideFrame = ({
               <button
                 onClick={() => {
                   //Lock/Unlocked" button it toggles the "thisGenerate" state so frame won't re-generate if the user likes the image
-                  setThisGenerate(!thisGenerate);
-                  setSelected(true);
+                  setThisGenerate(!thisGenerate);//>>
+                  setSelected(!selected);
                   setLocked(!locked);
                 }}
               >
@@ -211,7 +211,7 @@ const LandscapeRectangleExtraWideFrame = ({
                   setCurrentUrl(userArtUrl);
                   setSelected(!selected);
                   updateCount();
-                  setImageUrl(null);
+                  setThisGenerate(!thisGenerate);//>>
                 }
               }}
             />
@@ -281,7 +281,7 @@ const LandscapeRectangleExtraWideFrame = ({
                 setCurrentUrl(userArtUrl);
                 setSelected(!selected);
                 updateCount();
-                setImageUrl(null);
+                setThisGenerate(!thisGenerate);//>>
               }
             }}
           />

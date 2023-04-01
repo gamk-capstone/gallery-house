@@ -126,7 +126,7 @@ const LandscapeRectangleFrame = ({
                   setCurrentUrl(userArtUrl);
                   setSelected(!selected);
                   updateCount();
-                  setImageUrl(null);
+                  setThisGenerate(!thisGenerate);//>>
                 }
               }}
             />
@@ -142,8 +142,8 @@ const LandscapeRectangleFrame = ({
               <button
                 onClick={() => {
                   //Lock/Unlocked" button it toggles the "thisGenerate" state so frame won't re-generate if the user likes the image
-                  setThisGenerate(!thisGenerate);
-                  setSelected(true);
+                  setThisGenerate(!thisGenerate);//>>
+                  setSelected(!selected);
                   setLocked(!locked);
                 }}
               >
@@ -205,7 +205,7 @@ const LandscapeRectangleFrame = ({
                   setCurrentUrl(userArtUrl);
                   setSelected(!selected);
                   updateCount();
-                  setImageUrl(null);
+                  setThisGenerate(!thisGenerate);//>>
                 }
               }}
             />
@@ -275,7 +275,7 @@ const LandscapeRectangleFrame = ({
                 setCurrentUrl(userArtUrl);
                 setSelected(!selected);
                 updateCount();
-                setImageUrl(null);
+                setThisGenerate(!thisGenerate);//>>
               }
             }}
           />
