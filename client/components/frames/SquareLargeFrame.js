@@ -95,7 +95,7 @@ const SquareFrame = ({
       setCurrentUrl(savedUrls.match(myRe)[0]);
       setPurchaseUrl(savedUrls.match(myRe)[1]);
     }
-    setSelected(false);
+    // setSelected(false);
   }, [savedUrls]);
 
   return (

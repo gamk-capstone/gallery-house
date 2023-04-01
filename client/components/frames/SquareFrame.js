@@ -99,7 +99,7 @@ const SquareFrame = ({
       setCurrentUrl(savedUrls.match(myRe)[0]);
       setPurchaseUrl(savedUrls.match(myRe)[1]);
     }
-    setSelected(false);
+    // setSelected(false);
   }, [savedUrls]);
 
   console.log("generate", generate)
@@ -107,11 +107,13 @@ const SquareFrame = ({
 
   console.log("etsyImages", etsyImages)
   console.log("selected", selected)
+  console.log("savedUrls", savedUrls)
 
   return (
     <div>
       {etsyImages ? (
         !selected ? (
+          //When etsyImages and !selected
           <div
             className={
               currentUrl === "./images/white.jpeg"
@@ -188,6 +190,7 @@ const SquareFrame = ({
             </section>
           </div>
         ) : (
+          //When etsyImages and selected
           <div
             className={
               currentUrl === "./images/white.jpeg"
@@ -264,6 +267,7 @@ const SquareFrame = ({
           </div>
         )
       ) : (
+        //When !etsyImages
         <div className={styles.container}>
           <img
             src={`${selected || generate ? currentUrl : "./images/white.jpeg"}`}
