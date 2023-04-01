@@ -40,12 +40,13 @@ const SavedEtsyArt = ({ setImageUrl }) => {
               <div className={styles.imgContainer} key={piece.id}>
                 <img src={piece.imageUrl} className={styles.savedArtImg} />
                 <section className={styles.buttons}>
-                <button onClick={() => {
-                          setImageUrl(piece.imageUrl);}}>
-                          <span className="material-symbols-outlined">
-                            content_copy
-                          </span>
-                        </button>
+                  <button
+                    onClick={() => {
+                      setImageUrl(piece.imageUrl);
+                    }}
+                  >
+                    <span className="material-symbols-outlined">content_copy</span>
+                  </button>
                   <a href={piece.purchaseUrl} target="_blank">
                     <button>
                       <span className="material-symbols-outlined">
