@@ -13,7 +13,7 @@ export const fetchWallsAsync = createAsyncThunk(
   async (userId) => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8080/api/walls/user/${userId}`
+        `/api/walls/user/${userId}`
       );
       return data;
     } catch (error) {
@@ -28,7 +28,7 @@ export const fetchWallsAsync = createAsyncThunk(
 export const saveWallAsync = createAsyncThunk(
   "saveWall",
   async ({ name, images, userId }) => {
-    const { data } = await axios.post("http://localhost:8080/api/walls", {
+    const { data } = await axios.post(`/api/walls`, {
       name,
       images,
       userId,
