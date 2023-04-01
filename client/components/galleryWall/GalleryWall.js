@@ -136,7 +136,6 @@ const GalleryWall = () => {
    * `getNumberForLayout` switches the number of frames rendered based on a user's input.
    * @returns the correct component based on a user's input
    */
-  console.log("IMAGEURL", imageUrl);
   const getNumberForLayout = () => {
     switch (selectedNumPhotos) {
       case "5":
