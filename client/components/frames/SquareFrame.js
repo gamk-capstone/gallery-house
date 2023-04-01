@@ -99,15 +99,8 @@ const SquareFrame = ({
       setCurrentUrl(savedUrls.match(myRe)[0]);
       setPurchaseUrl(savedUrls.match(myRe)[1]);
     }
-    // setSelected(false);
+    setSelected(false);
   }, [savedUrls]);
-
-  console.log("generate", generate)
-  console.log("thisGenerate", thisGenerate)
-
-  console.log("etsyImages", etsyImages)
-  console.log("selected", selected)
-  console.log("savedUrls", savedUrls)
 
   return (
     <div>
@@ -149,6 +142,7 @@ const SquareFrame = ({
               </a>
               <button
                 onClick={() => {
+                  //Lock/Unlocked" button it toggles the "thisGenerate" state so frame won't re-generate if the user likes the image
                   setThisGenerate(!thisGenerate);
                   setSelected(!selected);
                   setLocked(!locked);
@@ -227,7 +221,8 @@ const SquareFrame = ({
               <button
                 onClick={() => {
                   setThisGenerate(!thisGenerate);
-                  setSelected(!selected);
+                  setSelected(true);
+                  setLocked(!locked);
                 }}
               >
                 {locked ? (
