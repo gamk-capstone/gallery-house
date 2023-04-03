@@ -107,6 +107,7 @@ const SquareFrame = ({
     <div>
       {etsyImages ? (
         !selected ? (
+          //When etsyImages and !selected
           <div
             className={
               currentUrl === "./images/white.jpeg"
@@ -128,7 +129,86 @@ const SquareFrame = ({
                   setCurrentUrl(userArtUrl);
                   setSelected(!selected);
                   updateCount();
-                  setImageUrl(null);
+                  setThisGenerate(!thisGenerate);//>>
+                }
+              }}
+            />
+            <section className={styles.buttons}>
+              <a href={purchaseUrl} target="_blank">
+                <button>
+                  <img
+                    src="./images/icons/cart-icon.png"
+                    className={styles.icon}
+                  />
+                </button>
+              </a>
+              <button
+                onClick={() => {
+                  //Lock/Unlocked" button it toggles the "thisGenerate" state so frame won't re-generate if the user likes the image
+                  setThisGenerate(!thisGenerate);//>>
+                  setSelected(!selected);
+                  setLocked(!locked);
+                }}
+              >
+                {locked ? (
+                  <img
+                    src="./images/icons/lock-icon.png"
+                    className={styles.icon}
+                  />
+                ) : (
+                  <img
+                    src="./images/icons/unlock-icon.png"
+                    className={styles.icon}
+                  />
+                )}
+              </button>
+              <button
+                onClick={() => {
+                  if (liked) {
+                    handleDelete();
+                  }
+                  handleSave();
+                  setLiked(!liked);
+                }}
+              >
+                {liked ? (
+                  <img
+                    src="./images/icons/unlike-icon.png"
+                    className={styles.icon}
+                  />
+                ) : (
+                  <img
+                    src="./images/icons/like-icon.png"
+                    className={styles.icon}
+                  />
+                )}
+              </button>
+            </section>
+          </div>
+        ) : (
+          //When etsyImages and selected
+          <div
+            className={
+              currentUrl === "./images/white.jpeg"
+                ? styles.container
+                : `${styles.container} ${styles.filled}`
+            }
+          >
+            <img
+              src={`${
+                selected || generate ? currentUrl : "./images/white.jpeg"
+              }`}
+              className={
+                currentUrl === "./images/white.jpeg"
+                  ? styles.square
+                  : `${styles.square} ${styles.filled}`
+              }
+              onClick={() => {
+                if (userArtUrl) {
+                  setCurrentUrl(userArtUrl);
+                  setSelected(!selected);
+                  updateCount();
+                  setThisGenerate(!thisGenerate);//>>
                 }
               }}
             />
@@ -183,84 +263,9 @@ const SquareFrame = ({
               </button>
             </section>
           </div>
-        ) : (
-          <div
-            className={
-              currentUrl === "./images/white.jpeg"
-                ? styles.container
-                : `${styles.container} ${styles.filled}`
-            }
-          >
-            <img
-              src={`${
-                selected || generate ? currentUrl : "./images/white.jpeg"
-              }`}
-              className={
-                currentUrl === "./images/white.jpeg"
-                  ? styles.square
-                  : `${styles.square} ${styles.filled}`
-              }
-              onClick={() => {
-                if (userArtUrl) {
-                  setCurrentUrl(userArtUrl);
-                  setSelected(!selected);
-                  updateCount();
-                  setImageUrl(null);
-                }
-              }}
-            />
-            <section className={styles.buttons}>
-              <a href={purchaseUrl} target="_blank">
-                <button>
-                  <img
-                    src="./images/icons/cart-icon.png"
-                    className={styles.icon}
-                  />
-                </button>
-              </a>
-              <button
-                onClick={() => {
-                  setThisGenerate(!thisGenerate);
-                  setSelected(!selected);
-                }}
-              >
-                {locked ? (
-                  <img
-                    src="./images/icons/lock-icon.png"
-                    className={styles.icon}
-                  />
-                ) : (
-                  <img
-                    src="./images/icons/unlock-icon.png"
-                    className={styles.icon}
-                  />
-                )}
-              </button>
-              <button
-                onClick={() => {
-                  if (liked) {
-                    handleDelete();
-                  }
-                  handleSave();
-                  setLiked(!liked);
-                }}
-              >
-                {liked ? (
-                  <img
-                    src="./images/icons/unlike-icon.png"
-                    className={styles.icon}
-                  />
-                ) : (
-                  <img
-                    src="./images/icons/like-icon.png"
-                    className={styles.icon}
-                  />
-                )}
-              </button>
-            </section>
-          </div>
         )
       ) : (
+        //When !etsyImages
         <div className={styles.container}>
           <img
             src={`${selected || generate ? currentUrl : "./images/white.jpeg"}`}
@@ -274,7 +279,7 @@ const SquareFrame = ({
                 setCurrentUrl(userArtUrl);
                 setSelected(!selected);
                 updateCount();
-                setImageUrl(null);
+                setThisGenerate(!thisGenerate);//>>
               }
             }}
           />

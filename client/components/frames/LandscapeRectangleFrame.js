@@ -104,6 +104,7 @@ const LandscapeRectangleFrame = ({
     <div>
       {etsyImages ? (
         !selected ? (
+          //When etsyImages and !selected
           <div
             className={
               currentUrl === "./images/white.jpeg"
@@ -125,7 +126,7 @@ const LandscapeRectangleFrame = ({
                   setCurrentUrl(userArtUrl);
                   setSelected(!selected);
                   updateCount();
-                  setImageUrl(null);
+                  setThisGenerate(!thisGenerate);//>>
                 }
               }}
             />
@@ -140,7 +141,8 @@ const LandscapeRectangleFrame = ({
               </a>
               <button
                 onClick={() => {
-                  setThisGenerate(!thisGenerate);
+                  //Lock/Unlocked" button it toggles the "thisGenerate" state so frame won't re-generate if the user likes the image
+                  setThisGenerate(!thisGenerate);//>>
                   setSelected(!selected);
                   setLocked(!locked);
                 }}
@@ -181,6 +183,7 @@ const LandscapeRectangleFrame = ({
             </section>
           </div>
         ) : (
+          //When etsyImages and selected
           <div
             className={
               currentUrl === "./images/white.jpeg"
@@ -202,7 +205,7 @@ const LandscapeRectangleFrame = ({
                   setCurrentUrl(userArtUrl);
                   setSelected(!selected);
                   updateCount();
-                  setImageUrl(null);
+                  setThisGenerate(!thisGenerate);//>>
                 }
               }}
             />
@@ -258,6 +261,7 @@ const LandscapeRectangleFrame = ({
           </div>
         )
       ) : (
+        //When !etsyImages
         <div className={styles.container}>
           <img
             src={`${selected || generate ? currentUrl : "./images/white.jpeg"}`}
@@ -271,7 +275,7 @@ const LandscapeRectangleFrame = ({
                 setCurrentUrl(userArtUrl);
                 setSelected(!selected);
                 updateCount();
-                setImageUrl(null);
+                setThisGenerate(!thisGenerate);//>>
               }
             }}
           />
