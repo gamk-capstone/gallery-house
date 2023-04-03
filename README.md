@@ -4,7 +4,7 @@ Beauty is in the eye of the beholder, but composition is a science. Let us help 
 
 Developer team GAMK (Grace, Alex, Malinda, and Katrina) are proud to introduce Gallery House: an eye-catching application that makes curating the art on your wall not just easy, but fun!
 
-Powered by Etsy’s open API (v3), upload an image of your art to your Gallery Wall, and Gallery House shows you pieces that compliment it based color, sourced from one of our twelve featured Esty sellers. Click on a piece of art and navigate to its Esty listing, or save your Gallery Wall and come back to view it later.
+Powered by Etsy’s open API (v3), upload an image of your art to your gallery wall, and Gallery House shows you pieces that compliment it based color, sourced from one of our twelve featured Etsy sellers. Click on a piece of art and navigate to its Etsy listing, or save your gallery wall and come back to view it later.
 
 Curious to know more about our process? Check out some of our development assets below.  
 
