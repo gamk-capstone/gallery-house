@@ -8,7 +8,7 @@ import {
 import { useCollapse } from "react-collapsed";
 import styles from "../styles/SavedEtsyArt.module.css";
 
-const SavedEtsyArt = ({ setImageUrl }) => {
+const SavedEtsyArt = ({ setImageUrl, setSavedPurchaseUrl }) => {
   const username = useSelector((state) => state.auth.me.username);
   const { id } = useSelector((state) => state.auth.me);
   const dispatch = useDispatch();
@@ -41,7 +41,9 @@ const SavedEtsyArt = ({ setImageUrl }) => {
                 <img src={piece.imageUrl} className={styles.savedArtImg} />
                 <section className={styles.buttons}>
                 <button onClick={() => {
-                          setImageUrl(piece.imageUrl);}}>
+                          setImageUrl(piece.imageUrl);
+                          setSavedPurchaseUrl(piece.purchaseUrl);
+                          }}>
                           <span className="material-symbols-outlined">
                             content_copy
                           </span>

@@ -15,7 +15,7 @@
   filter: brightness(100%);
 }
 
-.buttons, .clearButton {
+.buttons, .etsyArtButtons {
   display: none;
 }
 
@@ -23,8 +23,8 @@
   filter: brightness(65%);
 } 
 
-.filled:hover + .buttons, .filled:hover + .clearButton,
-.buttons:hover, .clearButton:hover {
+.filled:hover + .buttons, .filled:hover + .etsyArtButtons,
+.buttons:hover, .etsyArtButtons:hover {
   display: flex;
   position: absolute;
   gap: 0.2rem;

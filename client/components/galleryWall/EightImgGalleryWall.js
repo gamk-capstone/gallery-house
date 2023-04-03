@@ -17,7 +17,8 @@ const EightImgGalleryWall = ({
   generate,
   saved,
   savedUrls,
-  setImageUrl
+  setImageUrl,
+  purchaseUrl
 }) => {
   return (
     <div className={styles.frameLayoutParentDiv}>
