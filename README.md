@@ -1,6 +1,6 @@
 # Gallery House
 
-Beauty is in the eye of beholder, but composition is a science. Let us help you build the perfect gallery wall for your home, informed by color theory and principles of shape. 
+Beauty is in the eye of the beholder, but composition is a science. Let us help you build the perfect gallery wall for your home, informed by color theory and principles of shape. 
 
 Developer team GAMK (Grace, Alex, Malinda, and Katrina) are proud to introduce Gallery House: an eye-catching application that makes curating the art on your wall not just easy, but fun!
 
