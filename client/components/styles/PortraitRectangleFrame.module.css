@@ -19,7 +19,7 @@
   display: none;
 }
 
-.filled:hover img {
+.container:hover img {
   filter: brightness(65%);
 } 
 
@@ -29,7 +29,7 @@
   position: absolute;
   gap: 0.2rem;
   top: 10%;
-  right: 13%;
+  right: 10%;
 }
 
 .icon {
@@ -39,4 +39,8 @@
 
 .icon:hover {
   cursor: pointer;
+}
+
+.clearButton {
+  color: #9e4d91;
 }

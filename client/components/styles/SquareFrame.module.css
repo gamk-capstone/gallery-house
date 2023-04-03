@@ -15,21 +15,21 @@
   filter: brightness(100%);
 }
 
-.buttons {
+.buttons, .etsyArtButtons {
   display: none;
 }
 
-.filled:hover img {
+.container:hover img {
   filter: brightness(65%);
-}
+} 
 
-.filled:hover + .buttons,
-.buttons:hover {
+.filled:hover + .buttons, .filled:hover + .etsyArtButtons,
+.buttons:hover, .etsyArtButtons:hover {
   display: flex;
   position: absolute;
   gap: 0.2rem;
   top: 13%;
-  right: 13%;
+  right: 10.5%;
 }
 
 .icon {
@@ -39,4 +39,8 @@
 
 .icon:hover {
   cursor: pointer;
+}
+
+.clearButton {
+  color: #9e4d91;
 }

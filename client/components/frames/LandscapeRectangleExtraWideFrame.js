@@ -15,16 +15,14 @@ const LandscapeRectangleExtraWideFrame = ({
   userArtUrl,
   setFilledFrames,
   filledFrames,
-  generate,
   etsyImages,
-  saved,
+  generate,
   savedUrls,
-  setImageUrl
+  savedPurchaseUrl
 }) => {
   //--------------------------------------------------
   //#region Local State
   //--------------------------------------------------
-
   const dispatch = useDispatch();
   const { id } = useSelector((state) => state.auth.me);
   const [selected, setSelected] = useState(false);
@@ -48,7 +46,7 @@ const LandscapeRectangleExtraWideFrame = ({
   };
 
   /**
-   *  `handleSave` creates a new instance of SavedEtsyArt associated with the user
+   * `handleSave` creates a new instance of SavedEtsyArt associated with the user
    */
   const handleSave = () => {
     dispatch(
@@ -56,6 +54,7 @@ const LandscapeRectangleExtraWideFrame = ({
         imageUrl: currentUrl,
         purchaseUrl: purchaseUrl,
         userId: id,
+        etsyId: etsyImages.id,
       })
     );
   };
@@ -78,7 +77,7 @@ const LandscapeRectangleExtraWideFrame = ({
       }
     };
     updateFrameStatus();
-  }, [currentUrl]);
+  }, [currentUrl, locked]);
 
   //hook that sets the `currentUrl` and `purchaseUrl` with the etsyImages. Depended on `generate` state.
   useEffect(() => {
@@ -130,9 +129,10 @@ const LandscapeRectangleExtraWideFrame = ({
               onClick={() => {
                 if (userArtUrl) {
                   setCurrentUrl(userArtUrl);
+                  setPurchaseUrl(savedPurchaseUrl);
                   setSelected(!selected);
-                  updateCount();
                   setThisGenerate(!thisGenerate);//>>
+                  updateCount();
                 }
               }}
             />
@@ -148,9 +148,9 @@ const LandscapeRectangleExtraWideFrame = ({
               <button
                 onClick={() => {
                   //Lock/Unlocked" button it toggles the "thisGenerate" state so frame won't re-generate if the user likes the image
-                  setThisGenerate(!thisGenerate);//>>
                   setSelected(!selected);
                   setLocked(!locked);
+                  setThisGenerate(!thisGenerate);//>>
                 }}
               >
                 {locked ? (
@@ -209,14 +209,15 @@ const LandscapeRectangleExtraWideFrame = ({
               onClick={() => {
                 if (userArtUrl) {
                   setCurrentUrl(userArtUrl);
+                  setPurchaseUrl(savedPurchaseUrl);
                   setSelected(!selected);
                   updateCount();
-                  setThisGenerate(!thisGenerate);//>>
+                  setThisGenerate(!thisGenerate);
                 }
               }}
             />
-            <section className={styles.buttons}>
-              <a href={purchaseUrl} target="_blank">
+            <section className={styles.etsyArtButtons}>
+          <a href={purchaseUrl} target="_blank">
                 <button>
                   <img
                     src="./images/icons/cart-icon.png"
@@ -224,50 +225,16 @@ const LandscapeRectangleExtraWideFrame = ({
                   />
                 </button>
               </a>
-              <button
-                onClick={() => {
-                  setThisGenerate(!thisGenerate);
-                  setSelected(!selected);
-                }}
-              >
-                {locked ? (
-                  <img
-                    src="./images/icons/lock-icon.png"
-                    className={styles.icon}
-                  />
-                ) : (
-                  <img
-                    src="./images/icons/unlock-icon.png"
-                    className={styles.icon}
-                  />
-                )}
-              </button>
-              <button
-                onClick={() => {
-                  if (liked) {
-                    handleDelete();
-                  }
-                  handleSave();
-                  setLiked(!liked);
-                }}
-              >
-                {liked ? (
-                  <img
-                    src="./images/icons/unlike-icon.png"
-                    className={styles.icon}
-                  />
-                ) : (
-                  <img
-                    src="./images/icons/like-icon.png"
-                    className={styles.icon}
-                  />
-                )}
-              </button>
-            </section>
+          <button className={styles.clearButton} onClick={() => {
+                setCurrentUrl("/images/white.jpeg");
+                setThisGenerate(true);
+                setSelected(false);
+              }}>x</button>
+              </section>
           </div>
         )
       ) : (
-        //When !etsyImages
+        selected ? (
         <div className={styles.container}>
           <img
             src={`${selected || generate ? currentUrl : "./images/white.jpeg"}`}
@@ -279,13 +246,52 @@ const LandscapeRectangleExtraWideFrame = ({
             onClick={() => {
               if (userArtUrl) {
                 setCurrentUrl(userArtUrl);
+                setPurchaseUrl(savedPurchaseUrl);
                 setSelected(!selected);
                 updateCount();
-                setThisGenerate(!thisGenerate);//>>
+                setThisGenerate(false);
+                setLocked(true);
+              }
+            }}
+          />
+          <section className={styles.etsyArtButtons}>
+          <a href={purchaseUrl} target="_blank">
+                <button>
+                  <img
+                    src="./images/icons/cart-icon.png"
+                    className={styles.icon}
+                  />
+                </button>
+              </a>
+          <button className={styles.clearButton} onClick={() => {
+                setCurrentUrl("/images/white.jpeg");
+                setThisGenerate(true);
+                setSelected(false);
+              }}>x</button>
+              </section>
+        </div>
+        ) : (
+          <div className={styles.containerEmpty}>
+          <img
+            src={`${selected || generate ? currentUrl : "./images/white.jpeg"}`}
+            className={
+              currentUrl === "./images/white.jpeg"
+                ? styles.landscapeExtraWide
+                : `${styles.landscapeExtraWide} ${styles.filled}`
+            }
+            onClick={() => {
+              if (userArtUrl) {
+                setCurrentUrl(userArtUrl);
+                setPurchaseUrl(savedPurchaseUrl);
+                setSelected(!selected);
+                updateCount();
+                setThisGenerate(false);
+                setLocked(true);
               }
             }}
           />
         </div>
+        )
       )}
     </div>
   );

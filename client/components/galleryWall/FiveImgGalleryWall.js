@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import LandscapeRectangleFrame from "../frames/LandscapeRectangleFrame";
 import SquareFrame from "../frames/SquareFrame";
 import PortraitRectangleFrame from "../frames/PortraitRectangleFrame";
@@ -17,7 +17,6 @@ const FiveImgGalleryWall = ({
   generate,
   saved,
   savedUrls,
-  setImageUrl,
   savedPurchaseUrl
 }) => {
   return (
@@ -31,7 +30,7 @@ const FiveImgGalleryWall = ({
           generate={generate}
           saved={saved}
           savedUrls={savedUrls ? savedUrls[0] : ""}
-          setImageUrl={setImageUrl}
+          savedPurchaseUrl={savedPurchaseUrl}
         />
         <SquareFrame
           userArtUrl={userArtUrl}
@@ -41,7 +40,7 @@ const FiveImgGalleryWall = ({
           generate={generate}
           saved={saved}
           savedUrls={savedUrls ? savedUrls[1] : ""}
-          setImageUrl={setImageUrl}
+          savedPurchaseUrl={savedPurchaseUrl}
         />
       </div>
       <div className={styles.frameLayoutBottomRow}>
@@ -53,7 +52,7 @@ const FiveImgGalleryWall = ({
           generate={generate}
           saved={saved}
           savedUrls={savedUrls ? savedUrls[2] : ""}
-          setImageUrl={setImageUrl}
+          savedPurchaseUrl={savedPurchaseUrl}
         />
         <PortraitRectangleFrame
           userArtUrl={userArtUrl}
@@ -63,7 +62,6 @@ const FiveImgGalleryWall = ({
           generate={generate}
           saved={saved}
           savedUrls={savedUrls ? savedUrls[3] : ""}
-          setImageUrl={setImageUrl}
           savedPurchaseUrl={savedPurchaseUrl}
         />
         <LandscapeRectangleFrame
@@ -74,7 +72,6 @@ const FiveImgGalleryWall = ({
           generate={generate}
           saved={saved}
           savedUrls={savedUrls ? savedUrls[4] : ""}
-          setImageUrl={setImageUrl}
           savedPurchaseUrl={savedPurchaseUrl}
         />
       </div>
