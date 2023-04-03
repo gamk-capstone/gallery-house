@@ -222,6 +222,27 @@ const LandscapeRectangleFrame = ({
                   />
                 </button>
               </a>
+              <button
+                onClick={() => {
+                  if (liked) {
+                    handleDelete();
+                  }
+                  handleSave();
+                  setLiked(!liked);
+                }}
+              >
+                {liked ? (
+                  <img
+                    src="./images/icons/unlike-icon.png"
+                    className={styles.icon}
+                  />
+                ) : (
+                  <img
+                    src="./images/icons/like-icon.png"
+                    className={styles.icon}
+                  />
+                )}
+              </button>
           <button className={styles.clearButton} onClick={() => {
                 setCurrentUrl("/images/white.jpeg");
                 setThisGenerate(true);
