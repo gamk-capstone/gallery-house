@@ -15,16 +15,16 @@
   filter: brightness(100%);
 }
 
-.buttons {
+.buttons, .clearButton {
   display: none;
 }
 
 .filled:hover img {
   filter: brightness(65%);
-}
+} 
 
-.filled:hover + .buttons,
-.buttons:hover {
+.filled:hover + .buttons, .filled:hover + .clearButton,
+.buttons:hover, .clearButton:hover {
   display: flex;
   position: absolute;
   gap: 0.2rem;

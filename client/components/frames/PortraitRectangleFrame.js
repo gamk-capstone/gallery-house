@@ -185,6 +185,11 @@ const PortraitRectangleFrame = ({
                   />
                 )}
               </button>
+              <button onClick={() => {
+                setCurrentUrl("/images/white.jpeg");
+                setThisGenerate(true);
+                setSelected(false);
+              }}>x</button>
             </section>
           </div>
         ) : (
@@ -262,10 +267,16 @@ const PortraitRectangleFrame = ({
                   />
                 )}
               </button>
+              <button onClick={() => {
+                setCurrentUrl("/images/white.jpeg");
+                setThisGenerate(true);
+                setSelected(false);
+              }}>x</button>
             </section>
           </div>
         )
       ) : (
+        selected ? (
         <div className={styles.container}>
           <img
             src={`${selected || generate ? currentUrl : "./images/white.jpeg"}`}
@@ -279,11 +290,40 @@ const PortraitRectangleFrame = ({
                 setCurrentUrl(userArtUrl);
                 setSelected(!selected);
                 updateCount();
+                setThisGenerate(false);
+                setLocked(true);
+                setImageUrl(null);
+              }
+            }}
+          />
+          <button className={styles.clearButton} onClick={() => {
+                setCurrentUrl("/images/white.jpeg");
+                setThisGenerate(true);
+                setSelected(false);
+              }}>x</button>
+        </div>
+        ) : (
+          <div className={styles.container}>
+          <img
+            src={`${selected || generate ? currentUrl : "./images/white.jpeg"}`}
+            className={
+              currentUrl === "./images/white.jpeg"
+                ? styles.portraitRectangle
+                : `${styles.portraitRectangle} ${styles.filled}`
+            }
+            onClick={() => {
+              if (userArtUrl) {
+                setCurrentUrl(userArtUrl);
+                setSelected(!selected);
+                updateCount();
+                setThisGenerate(false);
+                setLocked(true);
                 setImageUrl(null);
               }
             }}
           />
         </div>
+        )
       )}
     </div>
   );
