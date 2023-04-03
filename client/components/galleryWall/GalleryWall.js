@@ -30,6 +30,7 @@ const GalleryWall = () => {
 
   //Local state that are used in multiple features
   const [imageUrl, setImageUrl] = useState(null);
+  const [savedPurchaseUrl, setSavedPurchaseUrl] = useState(null);
   const [filledFrames, setFilledFrames] = useState(0);
   const [saved, setSaved] = useState(false);
   // local state to keep track of the furniture image to render according to user selection
@@ -146,7 +147,7 @@ const GalleryWall = () => {
             setFilledFrames={setFilledFrames}
             etsyImages={etsyImages}
             generate={generate}
-            setImageUrl={setImageUrl}
+            savedPurchaseUrl={savedPurchaseUrl}
           />
         );
         break;
@@ -158,7 +159,7 @@ const GalleryWall = () => {
             setFilledFrames={setFilledFrames}
             etsyImages={etsyImages}
             generate={generate}
-            setImageUrl={setImageUrl}
+            savedPurchaseUrl={savedPurchaseUrl}
           />
         );
         break;
@@ -170,7 +171,7 @@ const GalleryWall = () => {
             setFilledFrames={setFilledFrames}
             etsyImages={etsyImages}
             generate={generate}
-            setImageUrl={setImageUrl}
+            savedPurchaseUrl={savedPurchaseUrl}
           />
         );
         break;
@@ -182,7 +183,7 @@ const GalleryWall = () => {
             setFilledFrames={setFilledFrames}
             etsyImages={etsyImages}
             generate={generate}
-            setImageUrl={setImageUrl}
+            savedPurchaseUrl={savedPurchaseUrl}
           />
         );
     }
@@ -315,7 +316,7 @@ chair
 
       {/* saved art */}
       <div className={styles.savedEtsyArtContainer}>
-        <SavedEtsyArt setImageUrl={setImageUrl} />
+        <SavedEtsyArt setImageUrl={setImageUrl} setSavedPurchaseUrl={setSavedPurchaseUrl}/>
       </div>
     </div>
   );

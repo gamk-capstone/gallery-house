@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import SquareFrame from "../frames/SquareFrame";
 import styles from "../styles/XImgGalleryWall.module.css";
 
@@ -15,7 +15,7 @@ const SixImageGalleryWall = ({
   generate,
   saved,
   savedUrls,
-  setImageUrl
+  savedPurchaseUrl
 }) => {
   return (
     <div className={styles.frameLayoutParentDiv}>
@@ -28,7 +28,7 @@ const SixImageGalleryWall = ({
           generate={generate}
           saved={saved}
           savedUrls={savedUrls ? savedUrls[0] : ""}
-          setImageUrl={setImageUrl}
+          savedPurchaseUrl={savedPurchaseUrl}
         />
         <SquareFrame
           userArtUrl={userArtUrl}
@@ -38,7 +38,7 @@ const SixImageGalleryWall = ({
           generate={generate}
           saved={saved}
           savedUrls={savedUrls ? savedUrls[1] : ""}
-          setImageUrl={setImageUrl}
+          savedPurchaseUrl={savedPurchaseUrl}
         />
         <SquareFrame
           userArtUrl={userArtUrl}
@@ -48,7 +48,7 @@ const SixImageGalleryWall = ({
           generate={generate}
           saved={saved}
           savedUrls={savedUrls ? savedUrls[2] : ""}
-          setImageUrl={setImageUrl}
+          savedPurchaseUrl={savedPurchaseUrl}
         />
       </div>
       <div className={styles.frameLayoutBottomRow}>
@@ -60,7 +60,7 @@ const SixImageGalleryWall = ({
           generate={generate}
           saved={saved}
           savedUrls={savedUrls ? savedUrls[3] : ""}
-          setImageUrl={setImageUrl}
+          savedPurchaseUrl={savedPurchaseUrl}
         />
         <SquareFrame
           userArtUrl={userArtUrl}
@@ -70,7 +70,7 @@ const SixImageGalleryWall = ({
           generate={generate}
           saved={saved}
           savedUrls={savedUrls ? savedUrls[4] : ""}
-          setImageUrl={setImageUrl}
+          savedPurchaseUrl={savedPurchaseUrl}
         />
         <SquareFrame
           userArtUrl={userArtUrl}
@@ -80,7 +80,7 @@ const SixImageGalleryWall = ({
           generate={generate}
           saved={saved}
           savedUrls={savedUrls ? savedUrls[5] : ""}
-          setImageUrl={setImageUrl}
+          savedPurchaseUrl={savedPurchaseUrl}
         />
       </div>
     </div>

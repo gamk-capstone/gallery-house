@@ -1,4 +1,3 @@
-import { current } from "@reduxjs/toolkit";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -18,9 +17,8 @@ const PortraitRectangleFrame = ({
   filledFrames,
   etsyImages,
   generate,
-  saved,
   savedUrls,
-  setImageUrl,
+  savedPurchaseUrl
 }) => {
   //--------------------------------------------------
   //#region Local State
@@ -131,10 +129,10 @@ const PortraitRectangleFrame = ({
               onClick={() => {
                 if (userArtUrl) {
                   setCurrentUrl(userArtUrl);
+                  setPurchaseUrl(savedPurchaseUrl);
                   setSelected(!selected);
                   setThisGenerate(!thisGenerate);//>>
                   updateCount();
-                  // setImageUrl(null);
                 }
               }}
             />
@@ -211,41 +209,22 @@ const PortraitRectangleFrame = ({
               onClick={() => {
                 if (userArtUrl) {
                   setCurrentUrl(userArtUrl);
+                  setPurchaseUrl(savedPurchaseUrl);
                   setSelected(!selected);
                   updateCount();
-                  setThisGenerate(!thisGenerate);//>>
-                  // setImageUrl(null);
+                  setThisGenerate(!thisGenerate);
                 }
               }}
             />
-            <section className={styles.buttons}>
-              {/* <a href={purchaseUrl} target="_blank"> */}
-              <button>
-                <img
-                  src="./images/icons/cart-icon.png"
-                  className={styles.icon}
-                />
-              </button>
-              {/* </a> */}
-              <button
-                onClick={() => {
-                  setThisGenerate(!thisGenerate);
-                  setSelected(!selected);
-                  setThisGenerate(!thisGenerate);//>>
-                }}
-              >
-                {locked ? (
+            <section className={styles.etsyArtButtons}>
+          <a href={purchaseUrl} target="_blank">
+                <button>
                   <img
-                    src="./images/icons/lock-icon.png"
+                    src="./images/icons/cart-icon.png"
                     className={styles.icon}
                   />
-                ) : (
-                  <img
-                    src="./images/icons/unlock-icon.png"
-                    className={styles.icon}
-                  />
-                )}
-              </button>
+                </button>
+              </a>
               <button
                 onClick={() => {
                   if (liked) {
@@ -267,11 +246,16 @@ const PortraitRectangleFrame = ({
                   />
                 )}
               </button>
-            </section>
+          <button className={styles.clearButton} onClick={() => {
+                setCurrentUrl("/images/white.jpeg");
+                setThisGenerate(true);
+                setSelected(false);
+              }}>x</button>
+              </section>
           </div>
         )
       ) : (
-        //When !etsyImages
+        selected ? (
         <div className={styles.container}>
           <img
             src={`${selected || generate ? currentUrl : "./images/white.jpeg"}`}
@@ -283,14 +267,52 @@ const PortraitRectangleFrame = ({
             onClick={() => {
               if (userArtUrl) {
                 setCurrentUrl(userArtUrl);
+                setPurchaseUrl(savedPurchaseUrl);
                 setSelected(!selected);
                 updateCount();
-                setThisGenerate(!thisGenerate);//>>
-                // setImageUrl(null);
+                setThisGenerate(false);
+                setLocked(true);
+              }
+            }}
+          />
+          <section className={styles.etsyArtButtons}>
+          <a href={purchaseUrl} target="_blank">
+                <button>
+                  <img
+                    src="./images/icons/cart-icon.png"
+                    className={styles.icon}
+                  />
+                </button>
+              </a>
+          <button className={styles.clearButton} onClick={() => {
+                setCurrentUrl("/images/white.jpeg");
+                setThisGenerate(true);
+                setSelected(false);
+              }}>x</button>
+              </section>
+        </div>
+        ) : (
+          <div className={styles.containerEmpty}>
+          <img
+            src={`${selected || generate ? currentUrl : "./images/white.jpeg"}`}
+            className={
+              currentUrl === "./images/white.jpeg"
+                ? styles.portraitRectangle
+                : `${styles.portraitRectangle} ${styles.filled}`
+            }
+            onClick={() => {
+              if (userArtUrl) {
+                setCurrentUrl(userArtUrl);
+                setPurchaseUrl(savedPurchaseUrl);
+                setSelected(!selected);
+                updateCount();
+                setThisGenerate(false);
+                setLocked(true);
               }
             }}
           />
         </div>
+        )
       )}
     </div>
   );
