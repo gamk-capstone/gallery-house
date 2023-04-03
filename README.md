@@ -11,12 +11,15 @@ Curious to know more about our process? Check out some of our development assets
 Wireframes: https://drive.google.com/file/d/1rS4xYL1XWBwF-KKN3gmDqnZCiYj1GNdu/view
 
 Color Scheme: 
+
 ![Alt text](public/images/colors_gallery_house.jpg)
 
 TypeSet: 
+
 ![Alt text](public/images/text_gallery_house.jpg)
 
 Anatomy of a Button, How a wall gets saved on Gallery House: 
+
 ![Alt text](public/images/anatomy_of_a_button_gallery_house.jpg)
 
 Tech Stack: PostgreSQL, Express, React/Redux, Node
