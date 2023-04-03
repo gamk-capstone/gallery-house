@@ -235,6 +235,7 @@ const LandscapeRectangleExtraWideFrame = ({
         )
       ) : (
         selected ? (
+        //When !etsyImages
         <div className={styles.container}>
           <img
             src={`${selected || generate ? currentUrl : "./images/white.jpeg"}`}
