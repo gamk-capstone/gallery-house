@@ -186,7 +186,8 @@ async function seed() {
       removed++;
       listing_ids_result.splice(listing_ids_result.indexOf(577968667), 1);
       removed++;
-      
+      listing_ids_result.splice(listing_ids_result.indexOf(1423627432), 1);
+      removed++;
 
       return listing_ids_result;
     } catch (error) {
